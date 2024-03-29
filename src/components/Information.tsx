@@ -1,9 +1,9 @@
-import { Card } from "./common/Card";
-import { MdOutlineGroups2 } from "react-icons/md";
+import { Card } from './common/Card'
+import { MdOutlineGroups2 } from 'react-icons/md'
 
 const InformationCards = [
   {
-    title: "Participantes",
+    title: 'Participantes',
     description: (
       <>
         <MdOutlineGroups2 className="w-10" />
@@ -12,14 +12,14 @@ const InformationCards = [
     ),
   },
   {
-    title: "Tematica",
-    description: "TBD",
+    title: 'Tematica',
+    description: 'TBD',
   },
   {
-    title: "Fecha",
-    description: "20 NOV",
+    title: 'Fecha',
+    description: '20 NOV',
   },
-];
+]
 
 export function Information() {
   return (
@@ -49,5 +49,5 @@ export function Information() {
         ))}
       </ul>
     </section>
-  );
+  )
 }

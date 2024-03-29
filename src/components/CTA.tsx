@@ -1,8 +1,9 @@
-import { Button } from "./common/Button";
+import { VARIANT } from '../types'
+import { Button } from './common/Button'
 
 type CTAProps = {
-  children: string;
-};
+  children: string
+}
 
 export const CTA = ({ children }: CTAProps) => {
   return (
@@ -10,12 +11,12 @@ export const CTA = ({ children }: CTAProps) => {
       <p className="text-[32px]">{children}</p>
       <Button
         onClick={() => {
-          console.log("");
+          console.log('')
         }}
         variant={'PRIMARY'}
       >
         Accede con Discord
       </Button>
     </article>
-  );
-};
+  )
+}

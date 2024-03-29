@@ -1,4 +1,4 @@
-import { Button } from "./common/Button";
+import { Button } from './common/Button'
 
 export const Nav = () => {
   return (
@@ -14,12 +14,12 @@ export const Nav = () => {
       </div>
       <Button
         onClick={() => {
-          console.log("has clickado");
+          console.log('has clickado')
         }}
         variant="SECONDARY"
       >
         Accede con Discord
       </Button>
     </nav>
-  );
-};
+  )
+}
