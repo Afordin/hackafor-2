@@ -5,8 +5,8 @@ import { Header } from "./components/Header";
 import { CTA } from "./components/CTA";
 
 const supabase = createClient(
-  import.meta.env.VITE_PROJECT,
-  import.meta.env.VITE_APIKEY
+  import.meta.env.VITE_PROJECT_URL,
+  import.meta.env.VITE_API_KEY
 );
 
 function App() {
