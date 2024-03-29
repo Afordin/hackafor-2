@@ -8,6 +8,7 @@ export default defineConfig({
       cBorder: "#51546E",
       cWhite: "#FAFAFA",
       cBlack: "#0A0A0A",
+      pBorder: "#262626",
     },
   },
   presets: [

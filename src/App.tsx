@@ -9,8 +9,8 @@ import { Ticket } from "./components/Ticket";
 import { Footer } from "./components/Footer";
 
 const supabase = createClient(
-import.meta.env.VITE_PROJECT_URL,
-import.meta.env.VITE_API_KEY
+  import.meta.env.VITE_PROJECT_URL,
+  import.meta.env.VITE_API_KEY
 );
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((_event, session) => {
-    setUserSession(session?.user ?? null);
+      setUserSession(session?.user ?? null);
     });
   }, []);
 
@@ -47,7 +47,7 @@ function App() {
   // };
 
   return (
-    <main className="w-full overflow-auto gap-y-[72px] font-dmsans flex flex-col text-white items-center bg-[#060606]">
+    <main className="min-h-screen font-dmsans flex flex-col gap-12 justify-center items-center text-white bg-cBackground">
       <Nav />
       <Header />
       <CTA>Para inscribirte inicia sesión con Discord</CTA>
@@ -58,10 +58,10 @@ function App() {
       <Footer />
       {/* <div className="flex flex-col gap-8">
         <button className="p-4" onClick={signInWithDiscord}>
-          Connect Discord
+        Connect Discord
         </button>
         <button className="p-4" onClick={sendMessage}>
-          Conectar
+        Conectar
         </button>
       </div> */}
     </main>
