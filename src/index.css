@@ -2,7 +2,11 @@
   box-sizing: border-box;
 }
 
-.vanta-canvas {
-  position: inherit !important;
-  width: 100% !important;
+html {
+  background: #000;
 }
+
+body{
+  position: relative;
+}
+
