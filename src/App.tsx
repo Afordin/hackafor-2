@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createClient, User } from "@supabase/supabase-js";
+import { Nav } from "./components/Nav";
 
 const supabase = createClient(
   import.meta.env.VITE_PROJECT,
@@ -40,7 +41,8 @@ function App() {
   // };
 
   return (
-    <main className="w-screen h-screen font-dmsans flex justify-center items-center text-white bg-cBackground">
+    <main className="w-screen h-screen gap-y-[72px] font-dmsans flex text-white justify-center bg-cBackground">
+      <Nav />
       {/* <div className="flex flex-col gap-8">
         <button className="p-4" onClick={signInWithDiscord}>
           Connect Discord
