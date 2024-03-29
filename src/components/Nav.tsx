@@ -16,7 +16,7 @@ export const Nav = () => {
         onClick={() => {
           console.log("has clickado");
         }}
-        variant="PRIMARY"
+        variant="SECONDARY"
       >
         Accede con Discord
       </Button>
