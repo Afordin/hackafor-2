@@ -3,7 +3,7 @@ import { VARIANT } from '../../types'
 type ButtonProps = {
   children: string
   onClick: () => void
-  variant: keyof typeof VARIANT
+  variant: VARIANT
 }
 
 const VARIANT_PRIMARY_STYLE =
@@ -18,7 +18,7 @@ export const Button = ({ children, onClick, variant }: ButtonProps) => {
     <button
       onClick={onClick}
       className={
-        variant === 'PRIMARY'
+        variant === VARIANT.PRIMARY
           ? VARIANT_PRIMARY_STYLE
           : VARIANT_SECONDARY_STYLE
       }
