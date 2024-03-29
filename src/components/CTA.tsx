@@ -1,3 +1,4 @@
+import { VARIANT } from "../types";
 import { Button } from "./common/Button";
 
 type CTAProps = {
@@ -6,13 +7,13 @@ type CTAProps = {
 
 export const CTA = ({ children }: CTAProps) => {
   return (
-    <article className="flex flex-col gap-8 w-full h-full items-center">
-      <p>{children}</p>
+    <article className="relative z-10 flex flex-col gap-8 w-full h-full items-center">
+      <p className="text-[32px]">{children}</p>
       <Button
         onClick={() => {
           console.log("");
         }}
-        variant="PRIMARY"
+        variant={VARIANT.PRIMARY}
       >
         Accede con Discord
       </Button>
