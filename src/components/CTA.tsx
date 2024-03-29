@@ -13,7 +13,7 @@ export const CTA = ({ children }: CTAProps) => {
         onClick={() => {
           console.log('')
         }}
-        variant={VARIANT.PRIMARY}
+        variant={'PRIMARY'}
       >
         Accede con Discord
       </Button>

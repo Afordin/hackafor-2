@@ -18,7 +18,7 @@ export const Button = ({ children, onClick, variant }: ButtonProps) => {
     <button
       onClick={onClick}
       className={
-        variant === VARIANT.PRIMARY
+        variant === 'PRIMARY'
           ? VARIANT_PRIMARY_STYLE
           : VARIANT_SECONDARY_STYLE
       }
