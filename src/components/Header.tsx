@@ -32,7 +32,6 @@ export const Header = () => {
     <article className="relative flex justify-center w-full min-h-[500px] h-full">
       <section
         style={{
-          position: "absolute",
           zIndex: 20,
           width: "100%",
           height: "100%",
@@ -41,7 +40,7 @@ export const Header = () => {
         id="vantajs-bg"
         ref={vantaRef}
       >
-        <div className="flex flex-col items-center justify-center font-bold w-full h-full ">
+        <div className="flex flex-col absolute items-center justify-center font-bold w-full h-full ">
           <h1 className="text-[200px]">Hackafor</h1>
           <h2 className="text-[48px] mt-[-70px]">
             Una hackaton de programación
