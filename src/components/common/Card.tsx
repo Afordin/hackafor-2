@@ -1,7 +1,7 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react'
 
 interface CardProps {
-  isMainCard?: boolean;
+  isMainCard?: boolean
 }
 
 export function Card({
@@ -11,10 +11,10 @@ export function Card({
   return (
     <div
       className={`w-full border border-pBorder rounded-4 p-6 flex flex-col items-center gap-4 ${
-        isMainCard ? "md:flex-row md:gap-10" : "md:items-start"
+        isMainCard ? 'md:flex-row md:gap-10' : 'md:items-start'
       } lg:px-10`}
     >
       {children}
     </div>
-  );
+  )
 }
