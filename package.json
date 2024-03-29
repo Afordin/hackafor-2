@@ -13,11 +13,14 @@
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.41.1",
+    "@types/three": "0.163.0",
     "@unocss/reset": "^0.56.5",
     "express": "^4.19.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
+    "three": "0.163.0",
+    "vanta": "0.5.24",
     "vite-plugin-ssr": "^0.4.142"
   },
   "devDependencies": {
