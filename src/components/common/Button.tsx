@@ -1,19 +1,19 @@
-import { VARIANT } from "../../types";
+import { VARIANT } from '../../types'
 
 type ButtonProps = {
-  children: string;
-  onClick: () => void;
-  variant: keyof typeof VARIANT;
-};
+  children: string
+  onClick: () => void
+  variant: keyof typeof VARIANT
+}
 
 const VARIANT_PRIMARY_STYLE =
-  "bg-gradient-to-rb from-[#FC1C37] to-[#AD40E1] text-[24px] text-cWhite rounded-full hover:from-cWhite hover:to-cWhite hover:text-cBlack font-bold px-[48px] py-[16px]";
+  'bg-gradient-to-rb from-[#FC1C37] to-[#AD40E1] text-[24px] text-cWhite rounded-full hover:from-cWhite hover:to-cWhite hover:text-cBlack font-bold px-[48px] py-[16px]'
 
 const VARIANT_SECONDARY_STYLE =
-  "bg-gradient-to-rb from-[#FC1C37] to-[#AD40E1] text-[16px] text-cWhite rounded-full hover:from-cWhite hover:to-cWhite font-bold px-[14px] py-[10px]";
+  'bg-gradient-to-rb from-[#FC1C37] to-[#AD40E1] text-[16px] text-cWhite rounded-full hover:from-cWhite hover:to-cWhite font-bold px-[14px] py-[10px]'
 
 export const Button = ({ children, onClick, variant }: ButtonProps) => {
-  console.log(variant);
+  console.log(variant)
   return (
     <button
       onClick={onClick}
@@ -25,5 +25,5 @@ export const Button = ({ children, onClick, variant }: ButtonProps) => {
     >
       {children}
     </button>
-  );
-};
+  )
+}
