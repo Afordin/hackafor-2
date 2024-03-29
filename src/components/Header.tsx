@@ -29,14 +29,15 @@ export const Header = () => {
   }, [vantaEffect]);
 
   return (
-    <article className="relative flex justify-center w-full h-full">
+    <article className="relative flex justify-center w-full min-h-[500px] h-full">
       <section
         style={{
           position: "absolute",
-          zIndex: 10,
+          zIndex: 20,
           width: "100%",
           height: "100%",
         }}
+        className="overflow-hidden"
         id="vantajs-bg"
         ref={vantaRef}
       >

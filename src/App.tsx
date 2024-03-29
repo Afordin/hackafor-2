@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import { createClient, User } from "@supabase/supabase-js";
 import { Nav } from "./components/Nav";
 import { Header } from "./components/Header";
+import { CTA } from "./components/CTA";
+import { Information } from "./components/Information";
+import { Carousel } from "./components/Carousel";
+import { Ticket } from "./components/Ticket";
+import { Footer } from "./components/Footer";
 
 const supabase = createClient(
   import.meta.env.VITE_PROJECT_URL,
@@ -42,9 +47,15 @@ function App() {
   // };
 
   return (
-    <main className="w-screen h-screen gap-y-[72px] font-dmsans flex flex-col text-white items-center bg-cBackground">
+    <main className="w-full overflow-x-hidden gap-y-[72px] font-dmsans flex flex-col text-white items-center">
       <Nav />
       <Header />
+      <CTA>Para inscribirte inicia sesión con Discord</CTA>
+      <Information />
+      <CTA>Para inscribirte inicia sesión con Discord</CTA>
+      <Carousel />
+      <Ticket />
+      <Footer />
       {/* <div className="flex flex-col gap-8">
         <button className="p-4" onClick={signInWithDiscord}>
           Connect Discord
