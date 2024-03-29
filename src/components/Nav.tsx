@@ -1,3 +1,4 @@
+import { VARIANT } from '../types'
 import { Button } from './common/Button'
 
 export const Nav = () => {
@@ -16,7 +17,7 @@ export const Nav = () => {
         onClick={() => {
           console.log('has clickado')
         }}
-        variant="SECONDARY"
+        variant={VARIANT.PRIMARY}
       >
         Accede con Discord
       </Button>
