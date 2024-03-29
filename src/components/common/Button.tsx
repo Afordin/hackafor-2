@@ -23,13 +23,7 @@ export const Button = ({ children, onClick, variant }: ButtonProps) => {
           : VARIANT_SECONDARY_STYLE
       }
     >
-      {variant === VARIANT.PRIMARY ? (
-        <span>{children}</span>
-      ) : (
-        <span className="bg-cBackground rounded-full px-8 py-2">
-          {children}
-        </span>
-      )}
+      {children}
     </button>
   );
 };
