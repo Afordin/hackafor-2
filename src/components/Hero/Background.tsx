@@ -11,7 +11,7 @@ export const Background = () => {
     const vantaEffect: object = HALO({
       el: vanta,
       THREE,
-      yOffset: 0.2,
+      yOffset: 0.15,
       mouseControls: true,
       touchControls: true,
       gyroControls: true,
@@ -20,6 +20,7 @@ export const Background = () => {
       size: 0.6,
       scale: 1,
       scaleMobile: 1,
+      amplitudeFactor: 0,
       backgroundColor: 0x60606,
       baseColor: '#AD40E1'
     })
