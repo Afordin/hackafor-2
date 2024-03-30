@@ -22,12 +22,6 @@ export default defineConfig({
         }
       }
     }),
-    presetIcons({
-      cdn: 'https://esm.sh/',
-      extraProperties: {
-        display: 'inline-block',
-        'vertical-align': 'middle'
-      }
-    })
+    presetIcons({})
   ]
 });

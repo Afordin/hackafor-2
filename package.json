@@ -36,7 +36,10 @@
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
-        "@types/react": "^18.2.25",
+    "@iconify-json/bi": "^1.1.23",
+    "@iconify-json/lucide": "^1.1.178",
+    "@iconify-json/material-symbols": "^1.1.76",
+    "@types/react": "^18.2.25",
     "@types/react-dom": "^18.2.10",
     "@types/three": "0.134.0",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
