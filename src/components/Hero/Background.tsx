@@ -38,10 +38,15 @@ export const Background = () => {
       style={{
         position: 'absolute',
         zIndex: -1,
+        top: 0,
+        left: 0,
         width: '100%',
         height: '140vh'
       }}
       ref={setVanta}
-    ></div>
+    >
+      {/* bottom gradient */}
+      <div className="absolute bottom-0 left-0 w-full h-80 bg-gradient-to-t from-cBackground to-transparent"></div>
+    </div>
   )
 }
