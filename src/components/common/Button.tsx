@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react'
-import { cn, VARIANT, ButtonSize, HtmlType } from '../../common'
+import { cn, VARIANT, ButtonSize, HtmlType } from '@common'
 
 const Sizes: Record<ButtonSize, string> = {
   [ButtonSize.xs]: 'py-1 px-3 text-xs font-semibold h-6',

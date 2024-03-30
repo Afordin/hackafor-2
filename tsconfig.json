@@ -7,6 +7,11 @@
       "DOM.Iterable",
       "ESNext"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "@common": ["./src/common/index.ts"],
+      "@components": ["./src/components/index.ts"],
+    },
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": false,

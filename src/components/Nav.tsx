@@ -1,5 +1,5 @@
-import { VARIANT } from '../common'
-import { Button } from './common/Button'
+import { VARIANT } from '@common'
+import { Button } from '@components'
 import { ROUTE } from '../constants'
 
 export const Nav = () => {
