@@ -1,4 +1,4 @@
-import { defineConfig, presetIcons, presetUno, presetWebFonts } from 'unocss'
+import { defineConfig, presetIcons, presetUno, presetWebFonts } from 'unocss';
 
 export default defineConfig({
   theme: {
@@ -16,7 +16,10 @@ export default defineConfig({
     presetWebFonts({
       provider: 'google',
       fonts: {
-        dmsans: 'DM Sans'
+        dmsans: {
+          name: 'DM Sans',
+          weights: ['300', '400', '500', '700', '800']
+        }
       }
     }),
     presetIcons({
@@ -27,4 +30,4 @@ export default defineConfig({
       }
     })
   ]
-})
+});
