@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import {  User } from "@supabase/supabase-js";
+import { User } from '@supabase/supabase-js'
+import { useEffect, useState } from 'react'
 
-import { CTA } from "./components/CTA";
-import { Information } from "./components/Information";
-import { Carousel } from "./components/Carousel";
-import { Ticket } from "./components/Ticket";
-import { Footer } from "./components/Footer";
-import { Background } from "./components/Hero/Background";
-import { Hero } from "./components/Hero";
+import { CTA } from './components/CTA'
+import { Carousel } from './components/Carousel'
+import { Footer } from './components/Footer'
+import { Hero } from './components/Hero'
+import { Background } from './components/Hero/Background'
+import { Information } from './components/Information'
+import { Ticket } from './components/Ticket'
 
 // const supabase = createClient(
 // import.meta.env.VITE_PROJECT_URL,
@@ -15,15 +15,15 @@ import { Hero } from "./components/Hero";
 // );
 
 function App() {
-  const [userSession,] = useState<User | null>(null);
+  const [userSession] = useState<User | null>(null)
 
   useEffect(() => {
     // supabase.auth.onAuthStateChange((_event, session) => {
     // setUserSession(session?.user ?? null);
     // });
-  }, []);
+  }, [])
 
-  console.log(userSession);
+  console.log(userSession)
 
   // function signInWithDiscord() {
   //   supabase.auth.signInWithOAuth({
@@ -50,7 +50,7 @@ function App() {
   return (
     <>
       <Background />
-      <main className="w-full overflow-auto gap-y-[72px] font-dmsans flex flex-col text-white items-center">
+      <main className="w-full overflow-auto max-w-7xl mx-auto gap-y-[72px] font-dmsans flex flex-col text-white items-center">
         <Hero />
         <Information />
         <CTA>Para inscribirte inicia sesión con Discord</CTA>
@@ -67,8 +67,7 @@ function App() {
       </div> */}
       </main>
     </>
-
-  );
+  )
 }
 
-export default App;
+export default App
