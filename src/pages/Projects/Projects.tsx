@@ -1,3 +1,3 @@
 export const Projects = () => {
-  return <article id="projects"></article>
-}
+  return <article id="projects"></article>;
+};

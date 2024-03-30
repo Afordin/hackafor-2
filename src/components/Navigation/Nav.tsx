@@ -1,7 +1,6 @@
-import { VARIANT } from '@common'
-import { Button } from '@components'
-import { ROUTE } from '@common'
-import { Link } from 'react-router-dom'
+import { ROUTE, VARIANT } from '@common';
+import { Button } from '@components';
+import { Link } from 'react-router-dom';
 
 export const Nav = () => {
   return (
@@ -16,17 +15,14 @@ export const Nav = () => {
           Proyectos
         </Link>
         <span className="w-[6px] h-[6px] bg-cGray rounded-full inline-block"></span>
-        <Link
-          to={ROUTE.registration}
-          className="cursor-pointer hover:text-white"
-        >
+        <Link to={ROUTE.registration} className="cursor-pointer hover:text-white">
           Registro
         </Link>
         <span className="w-[6px] h-[6px] bg-cGray rounded-full inline-block"></span>
       </div>
       <Button
         onClick={() => {
-          console.log('has clickado')
+          console.log('has clickado');
         }}
         variant={VARIANT.SECONDARY}
         hasBorder
@@ -34,5 +30,5 @@ export const Nav = () => {
         Accede con Discord
       </Button>
     </nav>
-  )
-}
+  );
+};

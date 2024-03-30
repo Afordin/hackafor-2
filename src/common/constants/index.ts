@@ -1,3 +1,3 @@
-export * from './button'
-export * from './general'
-export * from './routes'
+export * from './button';
+export * from './general';
+export * from './routes';

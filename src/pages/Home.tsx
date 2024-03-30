@@ -1,5 +1,5 @@
-import { Carousel, Footer, Background, Nav } from '@components'
-import { Ticket, Hero, Information, CTA } from './_sections'
+import { Background, Carousel, Footer, Nav } from '@components';
+import { CTA, Hero, Information, Ticket } from './_sections';
 
 export const Home = () => {
   return (
@@ -15,5 +15,5 @@ export const Home = () => {
       </main>
       <Footer />
     </>
-  )
-}
+  );
+};

@@ -1,4 +1,4 @@
-import { CTA } from './CTA'
+import { CTA } from './CTA';
 
 export const Hero = () => {
   return (
@@ -14,5 +14,5 @@ export const Hero = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

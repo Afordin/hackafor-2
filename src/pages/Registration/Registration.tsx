@@ -1,3 +1,3 @@
 export const Registration = () => {
-  return <article id="registration"></article>
-}
+  return <article id="registration"></article>;
+};

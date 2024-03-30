@@ -2,16 +2,12 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "baseUrl": ".",
     "paths": {
       "@common": ["./src/common/index.ts"],
       "@components": ["./src/components/index.ts"],
-      "@pages/*": ["./src/pages/*"],
+      "@pages/*": ["./src/pages/*"]
     },
     "allowJs": false,
     "skipLibCheck": true,
@@ -23,16 +19,12 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "types": [
-      "vite/client",
-    ],
+    "types": ["vite/client"],
     "noImplicitAny": false,
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src",
-  ],
+  "include": ["src"],
   "references": [
     {
       "path": "./tsconfig.node.json"

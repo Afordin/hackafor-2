@@ -1,12 +1,13 @@
-import 'atropos/css'
-import { Atropos } from 'atropos/react'
-import { FC } from 'react'
+import 'atropos/css';
+
+import { FC } from 'react';
+import { Atropos } from 'atropos/react';
 
 interface TicketProps {
-  avatar?: string
-  name?: string
-  number?: number
-  username?: string
+  avatar?: string;
+  name?: string;
+  number?: number;
+  username?: string;
 }
 
 export const Ticket: FC<TicketProps> = ({
@@ -18,9 +19,7 @@ export const Ticket: FC<TicketProps> = ({
   return (
     <section>
       <div className="container mx-auto my-20">
-        <h3 className="text-[30px] text-center">
-          Descarga tu ticket y compártelo en redes sociales
-        </h3>
+        <h3 className="text-[30px] text-center">Descarga tu ticket y compártelo en redes sociales</h3>
         <div className="w-full mx-auto mt-15">
           <Atropos
             shadowScale={1.1}
@@ -35,28 +34,16 @@ export const Ticket: FC<TicketProps> = ({
                     alt={`Avatar de ${name}`}
                   />
                   <div className="flex flex-col gap-1 justify-center">
-                    <h3
-                      data-atropos-offset="5"
-                      className={`font-bold text-[35px]`}
-                    >
+                    <h3 data-atropos-offset="5" className={`font-bold text-[35px]`}>
                       {name}
                     </h3>
-                    <span
-                      data-atropos-offset="3"
-                      className={`flex gap-1 items-center`}
-                    >
-                      <img
-                        src="./icons/discord.svg"
-                        className="w-6 aspect-square "
-                      />
+                    <span data-atropos-offset="3" className={`flex gap-1 items-center`}>
+                      <img src="./icons/discord.svg" className="w-6 aspect-square " />
                       <p className="font-bold text-lg">@{username}</p>
                     </span>
                   </div>
                 </div>
-                <div
-                  data-atropos-offset="3"
-                  className="flex justify-between items-end"
-                >
+                <div data-atropos-offset="3" className="flex justify-between items-end">
                   <div className="flex gap-1 items-end gap-2">
                     <p className="flex flex-col items-center text-[28px] leading-tight">
                       <span className="font-100">NOV</span>
@@ -64,9 +51,7 @@ export const Ticket: FC<TicketProps> = ({
                     </p>
                     <div>{/* what circles suposed to be? ?? */}</div>
                   </div>
-                  <p className="text-[28px] leading-none">
-                    #{number.toString().padStart(5, '0')}
-                  </p>
+                  <p className="text-[28px] leading-none">#{number.toString().padStart(5, '0')}</p>
                 </div>
               </div>
 
@@ -83,5 +68,5 @@ export const Ticket: FC<TicketProps> = ({
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

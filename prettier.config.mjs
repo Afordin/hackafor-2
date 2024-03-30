@@ -16,23 +16,16 @@ const config = {
   plugins: ['@ianvs/prettier-plugin-sort-imports'],
   importOrder: [
     '^(react/(.*)$)|^(react$)|^(react-native(.*)$)',
-    '^(next/(.*)$)|^(next$)',
-    '^(expo(.*)$)|^(expo$)',
     '<THIRD_PARTY_MODULES>',
     '^@uiguideline/(.*)$',
-    '^~/utils/(.*)$',
-    '^~/components/(.*)$',
-    '^~/styles/(.*)$',
-    '^~/(.*)$',
+    '^@/utils/(.*)$',
+    '^@/components/(.*)$',
+    '^@/pages/(.*)$',
+    '^@/styles/(.*)$',
+    '^@/(.*)$',
     '^[./]',
     ''
-  ],
-  importOrderSeparation: false,
-  importOrderSortSpecifiers: true,
-  importOrderBuiltinModulesToTop: true,
-  importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
-  importOrderMergeDuplicateImports: true,
-  importOrderCombineTypeAndValueImports: true
-}
+  ]
+};
 
-export default config
+export default config;

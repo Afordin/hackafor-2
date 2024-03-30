@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
-import * as THREE from 'three'
-import HALO from 'vanta/dist/vanta.halo.min'
+import { useEffect, useState } from 'react';
+import * as THREE from 'three';
+import HALO from 'vanta/dist/vanta.halo.min';
 
 export const Background = () => {
-  const [vanta, setVanta] = useState<HTMLDivElement | null>(null)
+  const [vanta, setVanta] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!vanta) return
+    if (!vanta) return;
 
     const vantaEffect: object = HALO({
       el: vanta,
@@ -21,15 +21,15 @@ export const Background = () => {
       backgroundColor: 0x60606,
       baseColor: '#FC1C37',
       color2: '#AD40E1'
-    })
+    });
 
     return () => {
-      if (!(vantaEffect instanceof Object)) return
-      if (!('destroy' in vantaEffect)) return
-      if (typeof vantaEffect.destroy !== 'function') return
-      vantaEffect.destroy()
-    }
-  }, [vanta])
+      if (!(vantaEffect instanceof Object)) return;
+      if (!('destroy' in vantaEffect)) return;
+      if (typeof vantaEffect.destroy !== 'function') return;
+      vantaEffect.destroy();
+    };
+  }, [vanta]);
 
   return (
     <div
@@ -48,10 +48,9 @@ export const Background = () => {
       <div
         className="absolute left-0 bottom-0 w-full h-90"
         style={{
-          background:
-            'linear-gradient(to top, rgba(6, 6, 6, 1), rgba(6, 6, 6, 0.716), rgba(6, 6, 6, 0))'
+          background: 'linear-gradient(to top, rgba(6, 6, 6, 1), rgba(6, 6, 6, 0.716), rgba(6, 6, 6, 0))'
         }}
       ></div>
     </div>
-  )
-}
+  );
+};
