@@ -1,13 +1,10 @@
 import { User } from '@supabase/supabase-js'
 import { useEffect, useState } from 'react'
-
-import { CTA } from './components/CTA'
-import { Carousel } from './components/Carousel'
-import { Footer } from './components/Footer'
-import { Hero } from './components/Hero'
-import { Background } from './components/Hero/Background'
-import { Information } from './components/Information'
-import { Ticket } from './components/Ticket'
+import { Home } from './components/Home'
+import { Registration } from './components/Registration'
+import { Projects } from './components/Projects'
+import { Route, Routes } from 'react-router-dom'
+import { ROUTE } from './constants'
 
 // const supabase = createClient(
 // import.meta.env.VITE_PROJECT_URL,
@@ -47,25 +44,23 @@ function App() {
   //     .then((data) => console.log(data));
   // };
 
+  {
+    /* <div className="flex flex-col gap-8">
+    <button className="p-4" onClick={signInWithDiscord}>
+      Connect Discord
+    </button>
+    <button className="p-4" onClick={sendMessage}>
+      Conectar
+    </button>
+  </div> */
+  }
   return (
     <>
-      <Background />
-      <main className="w-full overflow-auto max-w-7xl mx-auto gap-y-[72px] font-dmsans flex flex-col text-white items-center">
-        <Hero />
-        <Information />
-        <CTA>Para inscribirte inicia sesión con Discord</CTA>
-        <Carousel />
-        <Ticket />
-        <Footer />
-        {/* <div className="flex flex-col gap-8">
-        <button className="p-4" onClick={signInWithDiscord}>
-          Connect Discord
-        </button>
-        <button className="p-4" onClick={sendMessage}>
-          Conectar
-        </button>
-      </div> */}
-      </main>
+      <Routes>
+        <Route path={ROUTE.home} element={<Home />} />
+        <Route path={ROUTE.projects} element={<Projects />} />
+        <Route path={ROUTE.registration} element={<Registration />} />
+      </Routes>
     </>
   )
 }

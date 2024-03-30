@@ -5,5 +5,10 @@ import App from './App'
 import '@unocss/reset/tailwind-compat.css'
 import 'virtual:uno.css'
 import './index.css'
+import { BrowserRouter } from 'react-router-dom'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<App />)
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+)
