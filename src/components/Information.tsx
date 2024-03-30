@@ -1,29 +1,29 @@
-import { Card } from "./common/Card";
-import { MdOutlineGroups2 } from "react-icons/md";
+import { MdOutlineGroups2 } from 'react-icons/md'
+import { Card } from './common/Card'
 
 const InformationCards = [
   {
-    title: "Participantes",
+    title: 'Participantes',
     description: (
       <>
         <MdOutlineGroups2 className="w-10" />
         <span>4</span>
       </>
-    ),
+    )
   },
   {
-    title: "Tematica",
-    description: "TBD",
+    title: 'Tematica',
+    description: 'TBD'
   },
   {
-    title: "Fecha",
-    description: "20 NOV",
-  },
-];
+    title: 'Fecha',
+    description: '20 NOV'
+  }
+]
 
 export function Information() {
   return (
-    <section className="flex flex-col gap-8 mt-10 px-10">
+    <section className="flex flex-col gap-8 mt-10 px-10 ">
       <Card isMainCard>
         <img
           className="w-36 h-48"
@@ -49,5 +49,5 @@ export function Information() {
         ))}
       </ul>
     </section>
-  );
+  )
 }

@@ -1,26 +1,26 @@
 import { User } from '@supabase/supabase-js'
 import { useEffect, useState } from 'react'
-import { Background } from './components/Background'
+
 import { CTA } from './components/CTA'
 import { Carousel } from './components/Carousel'
 import { Footer } from './components/Footer'
-import { Header } from './components/Header'
+import { Hero } from './components/Hero'
+import { Background } from './components/Hero/Background'
 import { Information } from './components/Information'
-import { Nav } from './components/Nav'
 import { Ticket } from './components/Ticket'
 
 // const supabase = createClient(
-//   import.meta.env.VITE_PROJECT_URL,
-//   import.meta.env.VITE_API_KEY,
-// )
+// import.meta.env.VITE_PROJECT_URL,
+// import.meta.env.VITE_API_KEY
+// );
 
 function App() {
-  const [userSession,] = useState<User | null>(null)
+  const [userSession] = useState<User | null>(null)
 
   useEffect(() => {
-		// supabase.auth.onAuthStateChange((_event, session) => {
-			// setUserSession(session?.user ?? null)
-    // })
+    // supabase.auth.onAuthStateChange((_event, session) => {
+    // setUserSession(session?.user ?? null);
+    // });
   }, [])
 
   console.log(userSession)
@@ -48,11 +48,10 @@ function App() {
   // };
 
   return (
-    <div className="grid w-full overflow-auto font-dmsans text-white bg-[#060606]">
-      <main className="z-10 row-start-1 row-end-2 col-start-1 col-end-2 flex flex-col items-center gap-y-[72px]">
-        <Nav />
-        <Header />
-        <CTA>Para inscribirte inicia sesión con Discord</CTA>
+    <>
+      <Background />
+      <main className="w-full overflow-auto max-w-7xl mx-auto gap-y-[72px] font-dmsans flex flex-col text-white items-center">
+        <Hero />
         <Information />
         <CTA>Para inscribirte inicia sesión con Discord</CTA>
         <Carousel />
@@ -60,17 +59,14 @@ function App() {
         <Footer />
         {/* <div className="flex flex-col gap-8">
         <button className="p-4" onClick={signInWithDiscord}>
-        Connect Discord
+          Connect Discord
         </button>
         <button className="p-4" onClick={sendMessage}>
-        Conectar
+          Conectar
         </button>
       </div> */}
       </main>
-      <div className="row-start-1 row-end-2 col-start-1 col-end-2">
-        <Background />
-      </div>
-    </div>
+    </>
   )
 }
 
