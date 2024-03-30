@@ -11,6 +11,7 @@
     "paths": {
       "@common": ["./src/common/index.ts"],
       "@components": ["./src/components/index.ts"],
+      "@pages/*": ["./src/pages/*"],
     },
     "allowJs": false,
     "skipLibCheck": true,
