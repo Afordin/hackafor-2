@@ -16,7 +16,10 @@ export default defineConfig({
     presetWebFonts({
       provider: 'google',
       fonts: {
-        dmsans: 'DM Sans'
+        dmsans: {
+          name: 'DM Sans',
+          weights: ['300', '400', '500', '700', '800']
+        }
       }
     }),
     presetIcons({

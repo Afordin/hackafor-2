@@ -33,20 +33,20 @@ export const Background = () => {
 
   return (
     <div
+      className="h-[1000px]"
       style={{
         position: 'absolute',
         zIndex: 1,
         top: 0,
         left: 0,
         width: '100%',
-        height: '110vh',
         overflow: 'hidden'
       }}
       ref={setVanta}
     >
       {/* bottom gradient */}
       <div
-        className="absolute left-0 bottom-0 w-full h-90 "
+        className="absolute left-0 bottom-0 w-full h-90"
         style={{
           background:
             'linear-gradient(to top, rgba(6, 6, 6, 1), rgba(6, 6, 6, 0.716), rgba(6, 6, 6, 0))'
