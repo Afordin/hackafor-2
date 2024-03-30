@@ -40,7 +40,7 @@ export const Footer = () => {
 
   return (
     <div className="text-cWhite bg-gradient-to-r from-[#19101D] to-[#0D0D0E] py-5 w-full">
-      <div className="max-w-7xl w-full mx-auto text-center">
+      <div className="max-w-7xl w-full mx-auto text-center px-5">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center mb-4 md:mb-0">
             <img src="images/logo.webp" className="w-15 h-15" alt="Logo" />
