@@ -1,12 +1,12 @@
-import { ButtonHTMLAttributes } from 'react'
-import { cn, VARIANT, ButtonSize, HtmlType } from '@common'
+import { ButtonHTMLAttributes } from 'react';
+import { ButtonSize, cn, HtmlType, VARIANT } from '@common';
 
 const Sizes: Record<ButtonSize, string> = {
   [ButtonSize.xs]: 'py-1 px-3 text-xs font-semibold h-6',
   [ButtonSize.sm]: 'py-1.5 px-4 text-sm font-semibold h-8',
   [ButtonSize.base]: 'py-2 px-8 text-sm font-semibold h-10',
   [ButtonSize.lg]: 'py-3 px-6 text-base font-semibold h-12'
-}
+};
 
 const Variants: Record<VARIANT, Array<string>> = {
   [VARIANT.PRIMARY]: [
@@ -31,46 +31,46 @@ const Variants: Record<VARIANT, Array<string>> = {
     'before:rounded-full',
     'before:transition-opacity before:duration-300'
   ]
-}
+};
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Text inside the button.
    */
-  children: string
+  children: string;
 
   /**
    * Optional size (e.g., 'sm', 'md'), affects padding/font size.
    */
-  size?: ButtonSize
+  size?: ButtonSize;
 
   /**
    * Style variant (e.g., 'primary', 'secondary'), defines appearance.
    */
-  variant: VARIANT
+  variant: VARIANT;
 
   /**
    * If true, disables user interaction.
    */
-  isDisabled?: boolean
+  isDisabled?: boolean;
 
   /**
    * If true, button width extends to 100%.
    */
-  isFullWidth?: boolean
+  isFullWidth?: boolean;
 
   /** HTML button type attribute ('button', 'submit', etc.). */
-  htmlType?: HtmlType
+  htmlType?: HtmlType;
 
   /**
    * If true, adds a gradient border.
    */
-  hasBorder?: boolean
+  hasBorder?: boolean;
 
   /**
    * Function to call on button click.
    */
-  onClick: () => void
+  onClick: () => void;
 }
 export const Button = ({
   children,
@@ -92,30 +92,15 @@ export const Button = ({
       ...(!hasBorder ? Variants[variant] : []),
       {
         'w-full': isFullWidth,
-        'h-fit w-fit rounded-full bg-gradient-to-rb from-[#FC1C37] to-[#AD40E1] p-[0.2rem] buttonBgTransitionReset':
-          hasBorder
+        'h-fit w-fit rounded-full bg-gradient-to-rb from-[#FC1C37] to-[#AD40E1] p-[0.2rem] buttonBgTransitionReset': hasBorder
       }
     ),
-    innerContainer: cn(
-      Variants[variant],
-      Sizes[size],
-      'inline-block transition-all duration-300 ease-in-out w-full h-full'
-    )
-  }
+    innerContainer: cn(Variants[variant], Sizes[size], 'inline-block transition-all duration-300 ease-in-out w-full h-full')
+  };
 
   return (
-    <button
-      onClick={onClick}
-      disabled={isDisabled}
-      type={htmlType}
-      className={classes.container}
-      {...restOfProps}
-    >
-      {hasBorder ? (
-        <span className={classes.innerContainer}>{children}</span>
-      ) : (
-        children
-      )}
+    <button onClick={onClick} disabled={isDisabled} type={htmlType} className={classes.container} {...restOfProps}>
+      {hasBorder ? <span className={classes.innerContainer}>{children}</span> : children}
     </button>
-  )
-}
+  );
+};

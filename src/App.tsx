@@ -1,10 +1,10 @@
-import { User } from '@supabase/supabase-js'
-import { useEffect, useState } from 'react'
-import { Home } from './components/Home'
-import { Registration } from './components/Registration'
-import { Projects } from './components/Projects'
-import { Route, Routes } from 'react-router-dom'
-import { ROUTE } from './constants'
+import { useEffect, useState } from 'react';
+import { ROUTE } from '@common';
+import { Home } from '@pages/Home';
+import { Projects } from '@pages/Projects/Projects';
+import { Registration } from '@pages/Registration/Registration';
+import { User } from '@supabase/supabase-js';
+import { Route, Routes } from 'react-router-dom';
 
 // const supabase = createClient(
 // import.meta.env.VITE_PROJECT_URL,
@@ -12,15 +12,15 @@ import { ROUTE } from './constants'
 // );
 
 function App() {
-  const [userSession] = useState<User | null>(null)
+  const [userSession] = useState<User | null>(null);
 
   useEffect(() => {
     // supabase.auth.onAuthStateChange((_event, session) => {
     // setUserSession(session?.user ?? null);
     // });
-  }, [])
+  }, []);
 
-  console.log(userSession)
+  console.log(userSession);
 
   // function signInWithDiscord() {
   //   supabase.auth.signInWithOAuth({
@@ -62,7 +62,7 @@ function App() {
         <Route path={ROUTE.registration} element={<Registration />} />
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

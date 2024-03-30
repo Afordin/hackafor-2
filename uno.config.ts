@@ -1,4 +1,4 @@
-import { defineConfig, presetIcons, presetUno, presetWebFonts } from 'unocss'
+import { defineConfig, presetIcons, presetUno, presetWebFonts } from 'unocss';
 
 export default defineConfig({
   theme: {
@@ -30,4 +30,4 @@ export default defineConfig({
       }
     })
   ]
-})
+});
