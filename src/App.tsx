@@ -50,7 +50,7 @@ function App() {
   return (
     <>
       <Background />
-      <main className="w-full overflow-auto max-w-[1439px] mx-auto gap-y-[72px] font-dmsans flex flex-col text-white items-center">
+      <main className="w-full overflow-auto max-w-7xl mx-auto gap-y-[72px] font-dmsans flex flex-col text-white items-center">
         <Hero />
         <Information />
         <CTA>Para inscribirte inicia sesión con Discord</CTA>
