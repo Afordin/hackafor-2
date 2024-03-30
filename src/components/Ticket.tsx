@@ -21,12 +21,9 @@ export const Ticket: FC<TicketProps> = ({
         Descarga tu ticket y compártelo en redes sociales
       </h3>
       <div className="w-full mx-auto mt-15">
-        <Atropos
-          shadow
-          className="w-[750px] bg-transparent aspect-[16/7] shadow-[0_0px_90px_-10px_#c138b830] rounded-2xl"
-        >
+        <Atropos className="w-[720px] bg-transparent h-[310px] shadow-[0_0px_90px_-10px_#c138b830] rounded-2xl">
           <div className="ticket-bg flex h-full rounded-2xl border-2 border-[#171717]">
-            <div className="  flex flex-col justify-between p-[30px] pb-[17px] w-full rounded-2xl bg-cBlack">
+            <div className="flex flex-col justify-between p-[30px] pb-[17px] w-full rounded-2xl bg-cBlack">
               <div className="flex gap-5">
                 <img
                   className="w-27 aspect-square rounded-full p-[0.1rem] bg-gradient-to-rb from-[#FC1C37] to-[#AD40E1]"
@@ -48,7 +45,7 @@ export const Ticket: FC<TicketProps> = ({
                       src="./icons/discord.svg"
                       className="w-6 aspect-square "
                     />
-                    <p className="font-bold">@{username}</p>
+                    <p className="font-bold text-lg">@{username}</p>
                   </span>
                 </div>
               </div>
@@ -56,20 +53,20 @@ export const Ticket: FC<TicketProps> = ({
                 data-atropos-offset="3"
                 className="flex justify-between items-end"
               >
-                <div className="flex gap-1">
+                <div className="flex gap-1 items-end gap-2">
                   <p className="flex flex-col items-center text-[28px] leading-tight">
                     <span className="font-100">NOV</span>
                     <span className="font-bold">20</span>
                   </p>
                   <div>{/* what circles suposed to be? ?? */}</div>
                 </div>
-                <p className="text-[28px]">
+                <p className="text-[28px] leading-none">
                   #{number.toString().padStart(5, '0')}
                 </p>
               </div>
             </div>
 
-            <div className="w-90 h-full flex items-center justify-center bg-gradient-to-rb from-[#FC1C37] to-[#AD40E1] rounded-2xl rounded-lt-0 rounded-lb-0">
+            <div className="w-80 h-full flex items-center justify-center bg-gradient-to-rb from-[#FC1C37] to-[#AD40E1] rounded-2xl rounded-lt-0 rounded-lb-0">
               <img
                 data-atropos-offset="5"
                 className="w-full p-7 invert-100"
