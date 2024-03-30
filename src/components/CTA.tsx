@@ -1,5 +1,5 @@
-import { VARIANT } from '../types'
-import { Button } from './common/Button'
+import { VARIANT } from '../common'
+import { Button } from '@components'
 
 type CTAProps = {
   children: string

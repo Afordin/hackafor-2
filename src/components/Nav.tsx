@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
-import { VARIANT } from '../types'
-import { Button } from './common/Button'
+import { VARIANT } from '@common'
+import { Button } from '@components'
 import { ROUTE } from '../constants'
+import { Link } from 'react-router-dom'
 
 export const Nav = () => {
   return (
@@ -29,6 +29,7 @@ export const Nav = () => {
           console.log('has clickado')
         }}
         variant={VARIANT.SECONDARY}
+        hasBorder
       >
         Accede con Discord
       </Button>

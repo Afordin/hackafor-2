@@ -1,5 +1,5 @@
+import { Card } from '@components'
 import { MdOutlineGroups2 } from 'react-icons/md'
-import { Card } from './common/Card'
 
 const InformationCards = [
   {

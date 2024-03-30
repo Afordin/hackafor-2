@@ -34,3 +34,16 @@ body {
 .atropos-shadow {
   background: #c138b830;
 }
+
+/************************************************/
+/*                 TRANSITION CLASSES           */
+/************************************************/
+
+.buttonBgTransition {
+  background-position: 0% 0%;
+  background-size: 200% 200%;
+}
+
+.buttonBgTransition:hover{
+  background-position: 100% 100%;
+}
