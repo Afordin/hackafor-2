@@ -5,7 +5,6 @@ import { Projects } from '@pages/Projects/Projects';
 import { Registration } from '@pages/Registration/Registration';
 import { User } from '@supabase/supabase-js';
 import { Route, Routes } from 'react-router-dom';
-import useColorScheme from './hooks/useColorScheme'
 
 // const supabase = createClient(
 // import.meta.env.VITE_PROJECT_URL,
@@ -14,8 +13,6 @@ import useColorScheme from './hooks/useColorScheme'
 
 function App() {
   const [userSession] = useState<User | null>(null);
-
-  useColorScheme({ dark: '/images/logo.webp', light: 'logo.webp' })
 
   useEffect(() => {
     // supabase.auth.onAuthStateChange((_event, session) => {
