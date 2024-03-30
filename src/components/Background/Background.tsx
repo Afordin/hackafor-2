@@ -17,7 +17,7 @@ export const Background = () => {
       minHeight: 300,
       minWidth: 300,
       speed: 0.1,
-      yOffset: 0.05,
+      // yOffset: 0.05,
       backgroundColor: 0x60606,
       baseColor: '#FC1C37',
       color2: '#AD40E1'
@@ -33,7 +33,7 @@ export const Background = () => {
 
   return (
     <div
-      className="h-[1000px]"
+      className="h-[900px]"
       style={{
         position: 'absolute',
         zIndex: 1,
