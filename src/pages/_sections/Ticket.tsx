@@ -23,6 +23,7 @@ export const Ticket: FC<TicketProps> = ({
         <div className="w-full mx-auto mt-15">
           <Atropos
             shadowScale={1.1}
+            innerClassName="rounded-2xl"
             className="w-[720px] bg-transparent mx-auto h-[310px] rounded-2xl shadow-[0_0px_90px_-10px_#c138b830] hover:shadow-none"
           >
             <div className="ticket-bg flex h-full rounded-2xl border-2 border-[#171717]">
