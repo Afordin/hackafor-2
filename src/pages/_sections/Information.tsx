@@ -1,12 +1,11 @@
 import { Card } from '@components';
-import { MdOutlineGroups2 } from 'react-icons/md';
 
 const InformationCards = [
   {
     title: 'Participantes por equipo',
     description: (
       <>
-        <MdOutlineGroups2 className="w-10" />
+        <span className="w-10 i-material-symbols-groups-outline-sharp" />
         <span className="font-bold">4</span>
       </>
     )
