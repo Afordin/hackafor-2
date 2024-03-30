@@ -23,7 +23,7 @@ const InformationCards = [
 
 export function Information() {
   return (
-    <section className="flex flex-col gap-8 mt-56 px-10 ">
+    <section className="flex flex-col gap-8 mt-30 px-10 ">
       <div className="container mx-auto">
         <Card isMainCard>
           <img className="w-36 h-48" src="./images/hackafor_year.webp" alt="Hackafor 2024 Announcement Logo" />

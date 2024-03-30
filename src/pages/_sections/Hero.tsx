@@ -3,15 +3,12 @@ import { CTA } from './CTA';
 export const Hero = () => {
   return (
     <section>
-      <div className="container mx-auto w-full relative z-1 grid place-items-center h-[90svh]">
+      <div className="container mx-auto w-full relative z-1 grid place-items-center h-auto">
         <article className="text-center">
-          <h1 className="text-[180px] mt-30">Hackafor</h1>
-          <p className="text-[38px] mt-[-70px]">Una hackaton de programación</p>
+          <h1 className="text-[180px] mt-35 font-bold">Hackafor</h1>
+          <p className="text-[38px] mt-[-70px] font-semibold">Una hackaton de programación</p>
         </article>
-        {/* TODO: Add className to CTA to delete this div*/}
-        <div className="mt-auto mb-10">
-          <CTA>Para inscribirte inicia sesión con Discord</CTA>
-        </div>
+        <CTA className="mt-40">Para inscribirte inicia sesión con Discord</CTA>
       </div>
     </section>
   );
