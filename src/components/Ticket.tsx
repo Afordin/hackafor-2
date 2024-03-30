@@ -21,7 +21,10 @@ export const Ticket: FC<TicketProps> = ({
         Descarga tu ticket y compártelo en redes sociales
       </h3>
       <div className="w-full mx-auto mt-15">
-        <Atropos className="w-[720px] bg-transparent h-[310px] shadow-[0_0px_90px_-10px_#c138b830] rounded-2xl">
+        <Atropos
+          shadowScale={1.1}
+          className="w-[720px] bg-transparent h-[310px]  rounded-2xl shadow-[0_0px_90px_-10px_#c138b830] hover:shadow-none"
+        >
           <div className="ticket-bg flex h-full rounded-2xl border-2 border-[#171717]">
             <div className="flex flex-col justify-between p-[30px] pb-[17px] w-full rounded-2xl bg-cBlack">
               <div className="flex gap-5">

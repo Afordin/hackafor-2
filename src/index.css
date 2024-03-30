@@ -30,3 +30,7 @@ body {
   background-image: url(https://i.gyazo.com/06d13776d8d6c0a20c29ca337c250cc0.png);
   opacity: 1%;
 }
+
+.atropos-shadow {
+  background: #c138b830;
+}
