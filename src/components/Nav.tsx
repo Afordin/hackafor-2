@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom'
-import { VARIANT } from '../types'
+import { VARIANT } from '../common'
 import { Button } from './common/Button'
 import { ROUTE } from '../constants'
 

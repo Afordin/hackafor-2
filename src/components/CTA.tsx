@@ -1,4 +1,4 @@
-import { VARIANT } from '../types'
+import { VARIANT } from '../common'
 import { Button } from './common/Button'
 
 type CTAProps = {
