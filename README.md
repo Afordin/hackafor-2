@@ -15,78 +15,56 @@ Puedes demostrar tu talento participado solo/a o en equipo y ganar premios crean
 [Diseño de Figma](https://www.figma.com/file/oB8OIzcBcSUIBXDmmp46mb/Variety-Designs?type=design&node-id=1203-960&mode=design&t=MtKYUyZD2jwNeTxp-0) · [Reportar error](https://github.com/Afordin/hackafor-2/issues) 
 </div>
 
-### Capturas de pantalla
+## Capturas de pantalla
 
 ![image](https://github.com/jarrisondev/hackafor-2/assets/62910118/a7091cce-3968-4dc7-9b24-d6ac1a6e9174)
 
 ![image](https://github.com/jarrisondev/hackafor-2/assets/62910118/1186b914-7cec-430a-afc0-46ec3d9f3565)
 
+## Para empezar
+
+1. Clona el repositorio
+
+   ```sh
+   git clone https://github.com/Afordin/hackafor-2.git
+   ```
+
+2. Instala los paquetes NPM
+   ```bash
+   npm install
+   ```
+
+3. Ejecuta el proyecto
+   ```bash
+   npm run dev
+   ```
+4. abre tu navegador
+
+   [http://localhost:5173 🌺](http://localhost:5173)
 
 
-## Authors
+
+## Autora
 <a href="https://github.com/afordigital">
    <img width="50px" src="https://avatars.githubusercontent.com/u/43246362?v=4" />
 </a>
 
-## Contributors
+### Contribuir desde Stackblitz
 
-<a href="https://github.com/Afordin/hackafor-2/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Afordin/hackafor-2" />
-</a>
+Si quieres contribuir de una manera mas sencilla, puedes iniciar este proyecto desde _Stackblitz_ usando tu cuenta de GitHub:
 
-## Getting Started
+[![Abrir en Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/Afordin/hackafor-2)
 
-1. Clone or fork the repository:
+**¡Gracias a todos los colaboradores que han hecho posible este proyecto!**
 
-```bash
-  https://github.com/Afordin/hackafor-2.git
-```
+[![Contribuidores](https://contrib.rocks/image?repo=Afordin/hackafor-2)](https://github.com/Afordin/hackafor-2/graphs/contributors)
 
-2. Install dependencies with your favorite package manager:
+## 🛠️ Stack
 
-```bash
-# with npm:
-npm install
+[![Vite][vite-badge]][vite-url] 
+[![React][react-badge]][react-url]
+[![UnoCSS][unocss-badge]][unocss-url]
 
-# with pnpm:
-pnpm install
-
-# with yarn:
-yarn install
-
-# with ultra:
-ultra install
-```
-
-3. Run in your terminal:
-
-```bash
-# with npm:
-npm run dev
-
-# with pnpm:
-pnpm run dev
-
-# with yarn:
-yarn dev
-
-# with ultra:
-ultra dev
-```
-
-and open http://localhost:3000 🌺.
-
-## Stack
-
-- Vite > v4.4
-- React > v18.2
-- UnoCSS > v0.56
-- Forms - Zod and RHF
-- Icons - Lucide React
-
-## Figma
-
-https://www.figma.com/file/oB8OIzcBcSUIBXDmmp46mb/Variety-Designs?type=design&node-id=1203-960&mode=design&t=MtKYUyZD2jwNeTxp-0
 
 
 
@@ -98,3 +76,9 @@ https://www.figma.com/file/oB8OIzcBcSUIBXDmmp46mb/Variety-Designs?type=design&no
 [stars-url]: https://github.com/Afordin/hackafor-2/stargazers
 [issues-shield]: https://img.shields.io/github/issues/Afordin/hackafor-2.svg?style=for-the-badge
 [issues-url]: https://github.com/Afordin/hackafor-2/issues
+[vite-url]: https://vitejs.dev/
+[react-url]: https://reactjs.org/
+[unocss-url]: https://unocss.dev/
+[vite-badge]: https://img.shields.io/badge/Vite-fff?style=for-the-badge&logo=vite&logoColor=333
+[react-badge]: https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=333
+[unocss-badge]: https://img.shields.io/badge/UnoCSS-fff?style=for-the-badge&logo=unocss&logoColor=333
