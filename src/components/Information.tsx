@@ -3,17 +3,17 @@ import { Card } from './common/Card'
 
 const InformationCards = [
   {
-    title: 'Participantes',
+    title: 'Participantes por equipo',
     description: (
       <>
         <MdOutlineGroups2 className="w-10" />
-        <span>4</span>
+        <span className="font-bold">4</span>
       </>
     )
   },
   {
-    title: 'Tematica',
-    description: 'TBD'
+    title: 'Temática',
+    description: 'Por definir'
   },
   {
     title: 'Fecha',
@@ -41,7 +41,7 @@ export function Information() {
           <li key={title} className="w-full">
             <Card>
               <p className="md:text-lg">{title}</p>
-              <div className="flex items-center gap-1 text-3xl">
+              <div className="flex items-center font-bold gap-1 text-3xl">
                 {description}
               </div>
             </Card>
