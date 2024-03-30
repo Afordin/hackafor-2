@@ -1,26 +1,26 @@
+import { User } from '@supabase/supabase-js'
 import { useEffect, useState } from 'react'
-import { createClient, User } from '@supabase/supabase-js'
-import { Nav } from './components/Nav'
-import { Header } from './components/Header'
-import { CTA } from './components/CTA'
-import { Information } from './components/Information'
-import { Carousel } from './components/Carousel'
-import { Ticket } from './components/Ticket'
-import { Footer } from './components/Footer'
 import { Background } from './components/Background'
+import { CTA } from './components/CTA'
+import { Carousel } from './components/Carousel'
+import { Footer } from './components/Footer'
+import { Header } from './components/Header'
+import { Information } from './components/Information'
+import { Nav } from './components/Nav'
+import { Ticket } from './components/Ticket'
 
-const supabase = createClient(
-  import.meta.env.VITE_PROJECT_URL,
-  import.meta.env.VITE_API_KEY,
-)
+// const supabase = createClient(
+//   import.meta.env.VITE_PROJECT_URL,
+//   import.meta.env.VITE_API_KEY,
+// )
 
 function App() {
-  const [userSession, setUserSession] = useState<User | null>(null)
+  const [userSession,] = useState<User | null>(null)
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setUserSession(session?.user ?? null)
-    })
+		// supabase.auth.onAuthStateChange((_event, session) => {
+			// setUserSession(session?.user ?? null)
+    // })
   }, [])
 
   console.log(userSession)

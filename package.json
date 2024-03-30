@@ -15,6 +15,7 @@
     "@supabase/supabase-js": "^2.41.1",
     "@types/three": "0.163.0",
     "@unocss/reset": "^0.56.5",
+    "atropos": "^2.0.2",
     "express": "^4.19.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
