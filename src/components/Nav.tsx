@@ -6,7 +6,7 @@ import { ROUTE } from '../constants'
 export const Nav = () => {
   return (
     <nav className="mx-auto flex px-[24px] py-[12px] text-[16px] h-fit border-[0.2px] border-cBorder rounded-full items-center gap-[42px] text-cGray bg-cBackground">
-      <img src="./images/logo.png" width={35} height={32}></img>
+      <img src="./images/logo.webp" width={35} height={32}></img>
       <div className="flex items-center gap-3">
         <Link to={ROUTE.home} className="cursor-pointer hover:text-white">
           Inicio
