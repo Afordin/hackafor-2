@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { FaDiscord, FaGithub, FaInstagram, FaTwitch, FaXTwitter } from 'react-icons/fa6';
 
 interface SocialIcon {
   icon: JSX.Element;
@@ -7,11 +6,11 @@ interface SocialIcon {
 }
 
 const socialIcons: SocialIcon[] = [
-  { icon: <FaDiscord />, url: 'https://discord.com/invite/ke48ZgXcdU' },
-  { icon: <FaTwitch />, url: 'https://www.twitch.tv/afor_digital' },
-  { icon: <FaInstagram />, url: 'https://www.instagram.com/afor_digital' },
-  { icon: <FaGithub />, url: 'https://github.com/Afordin' },
-  { icon: <FaXTwitter />, url: 'https://twitter.com/afor_digital' }
+  { icon: <span className="i-bi-discord" />, url: 'https://discord.com/invite/ke48ZgXcdU' },
+  { icon: <span className="i-bi-twitch" />, url: 'https://www.twitch.tv/afor_digital' },
+  { icon: <span className="i-bi-instagram" />, url: 'https://www.instagram.com/afor_digital' },
+  { icon: <span className="i-bi-github" />, url: 'https://github.com/Afordin' },
+  { icon: <span className="i-bi-twitter-x" />, url: 'https://twitter.com/afor_digital' }
 ];
 
 interface Contributor {
@@ -44,11 +43,17 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center mb-4 md:mb-0">
             <img src="images/logo.webp" className="w-15 h-15" alt="Logo" />
-            <div className="ml-3 flex flex-col space-y-3">
+            <div className="ml-3 flex flex-col gap-y-3">
               <label className="text-sm text-start">Más información del evento</label>
-              <div className="flex space-x-5 text-2xl">
+              <div className="flex gap-x-5 text-2xl">
                 {socialIcons.map((socialIcon, index) => (
-                  <a key={index} href={socialIcon.url} className="hover:text-gray-500" target="_blank" rel="noopener noreferrer">
+                  <a
+                    key={index}
+                    href={socialIcon.url}
+                    className="hover:text-gray-500 inline-flex"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {socialIcon.icon}
                   </a>
                 ))}
