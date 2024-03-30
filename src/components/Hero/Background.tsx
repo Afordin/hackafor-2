@@ -20,7 +20,7 @@ export const Background = () => {
       size: 0.6,
       scale: 1,
       scaleMobile: 1,
-      backgroundColor: '#060606',
+      backgroundColor: 0x60606,
       baseColor: '#AD40E1'
     })
 
