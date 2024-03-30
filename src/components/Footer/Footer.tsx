@@ -45,7 +45,7 @@ export const Footer = () => {
   }, [])
 
   return (
-    <div className="bg-gradient-to-r from-[#19101D] to-[#0D0D0E] text-center px-20 pb-5 pt-7 w-full">
+    <div className="text-cWhite bg-gradient-to-r from-[#19101D] to-[#0D0D0E] text-center px-20 pb-5 pt-7 w-full">
       <div className="flex flex-col md:flex-row justify-between items-center">
         <div className="flex items-center mb-4 md:mb-0">
           <img src="images/logo.webp" className="w-15 h-15" alt="Logo" />
