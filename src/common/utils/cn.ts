@@ -2,7 +2,7 @@ import { ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
 /**
- * Combines and merges Tailwind CSS classes using twMerge and clsx utility functions.
+ * Combines and merges Tailwind/UNO CSS classes using twMerge and clsx utility functions.
  * twMerge is used to handle conflicts between classes effectively.
  *
  * @param {...ClassValue} inputs - An array of class values to be combined and merged.

@@ -99,7 +99,7 @@ export const Button = ({
     innerContainer: cn(
       Variants[variant],
       Sizes[size],
-      'inline-block transition-all duration-300 ease-in-out'
+      'inline-block transition-all duration-300 ease-in-out w-full h-full'
     )
   }
 
