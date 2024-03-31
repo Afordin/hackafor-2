@@ -59,7 +59,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    */
   isFullWidth?: boolean;
 
-  /** HTML button type attribute ('button', 'submit', etc.). */
+  /**
+   * HTML button type attribute ('button', 'submit', etc.).
+   */
   htmlType?: HtmlType;
 
   /**
