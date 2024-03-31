@@ -47,3 +47,14 @@ body {
 .buttonBgTransition:hover{
   background-position: 100% 100%;
 }
+/************************************************/
+/*                 BURGER MENU                  */
+/************************************************/
+
+.burger span::before {
+  transition-property: top, transform;
+}
+
+.burger span::after {
+  transition-property: bottom, transform;
+}
