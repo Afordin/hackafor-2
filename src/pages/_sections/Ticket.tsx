@@ -20,7 +20,7 @@ export const Ticket: FC<TicketProps> = ({
     <section>
       <div className="container mx-auto my-20">
         <h3 className="text-[30px] text-center">Descarga tu ticket y compártelo en redes sociales</h3>
-        <div className="w-full mx-auto mt-15">
+        <div className="flex justify-center md:w-full mx-auto mt-15">
           <Atropos
             shadowScale={1.1}
             innerClassName="rounded-2xl"
@@ -35,12 +35,12 @@ export const Ticket: FC<TicketProps> = ({
                     alt={`Avatar de ${name}`}
                   />
                   <div className="flex flex-col gap-1 justify-center">
-                    <h3 data-atropos-offset="5" className={`font-bold text-[35px]`}>
+                    <h3 data-atropos-offset="5" className={`font-bold text-3xl  md:text-4xl`}>
                       {name}
                     </h3>
                     <span data-atropos-offset="3" className={`flex gap-1 items-center`}>
                       <span className="i-bi-discord w-6 aspect-square " />
-                      <p className="font-bold text-lg">@{username}</p>
+                      <p className="font-bold text-base  md:text-lg">@{username}</p>
                     </span>
                   </div>
                 </div>
