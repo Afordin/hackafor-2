@@ -1,11 +1,12 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { ButtonSize, cn, HtmlType, VARIANT } from '@common';
 
 const Sizes: Record<ButtonSize, string> = {
   [ButtonSize.xs]: 'py-1 px-3 text-xs font-semibold h-6',
   [ButtonSize.sm]: 'py-1.5 px-4 text-sm font-semibold h-8',
   [ButtonSize.base]: 'py-2 px-8 text-sm font-semibold h-10',
-  [ButtonSize.lg]: 'py-3 px-6 text-base font-semibold h-12'
+  [ButtonSize.lg]: 'py-3 px-6 text-base font-semibold h-12',
+  [ButtonSize.xl]: 'py-3 px-6 text-lg font-semibold h-14'
 };
 
 const Variants: Record<VARIANT, Array<string>> = {
@@ -37,7 +38,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Text inside the button.
    */
-  children: string;
+  children: ReactNode | Array<ReactNode> | string;
 
   /**
    * Optional size (e.g., 'sm', 'md'), affects padding/font size.
