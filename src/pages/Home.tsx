@@ -1,6 +1,5 @@
 import { Background, Footer, Nav } from '@components';
-import { CTA, Hero, Information, Ticket } from './_sections';
-import { FeatureProjects } from './_sections/FeatureProjects';
+import { CTA, FeatureProjects, Hero, Information, Ticket } from './_sections';
 
 export const Home = () => {
   return (
