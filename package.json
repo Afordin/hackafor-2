@@ -5,6 +5,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite",
+    "clean": "git clean -xdf node_modules",
     "format": "prettier --check \"**/*.{js,cjs,mjs,ts,tsx,md,json}\"",
     "format:fix": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,md,mdx,json}\"",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
