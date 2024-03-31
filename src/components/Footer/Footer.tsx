@@ -1,4 +1,4 @@
-import { useContributors } from '@common';
+import { cn, useContributors } from '@common';
 
 interface SocialIcon {
   icon: JSX.Element;
@@ -15,6 +15,14 @@ const socialIcons: SocialIcon[] = [
 
 export const Footer = () => {
   const { contributors, isLoading } = useContributors();
+  const classes = {
+    container: cn('text-cWhite bg-gradient-to-r from-[#19101D] to-[#0D0D0E] py-5 w-full font-dmsans'),
+    innerContainer: cn(
+      'max-w-7xl w-full mx-auto text-center px-5 container relative pb-10 flex flex-col md:flex-row justify-between items-center'
+    ),
+    socialIcon: cn('hover:text-gray-500 inline-flex'),
+    copyRight: cn('text-sm mt-5 absolute inset-x-0 bottom-2')
+  };
 
   const renderContributors = () =>
     contributors.map((contributor) => (
@@ -29,12 +37,7 @@ export const Footer = () => {
         {isLoading ? (
           <div className="w-12 h-12 bg-cGray" />
         ) : (
-          <img
-            key={contributor.username}
-            src={contributor.avatarUrl}
-            className="rounded-full mr-[-10px] overflow-auto"
-            alt={contributor.username}
-          />
+          <img key={contributor.username} src={contributor.avatarUrl} alt={contributor.username} />
         )}
       </a>
     ));
@@ -44,7 +47,7 @@ export const Footer = () => {
       <a
         key={index}
         href={socialIcon.url}
-        className="hover:text-gray-500 inline-flex"
+        className={classes.socialIcon}
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Link to ${socialIcon.url}`}
@@ -54,8 +57,8 @@ export const Footer = () => {
     ));
 
   return (
-    <footer className="text-cWhite bg-gradient-to-r from-[#19101D] to-[#0D0D0E] py-5 w-full font-dmsans">
-      <div className="max-w-7xl w-full mx-auto text-center px-5 container relative pb-10 flex flex-col md:flex-row justify-between items-center">
+    <footer className={classes.container}>
+      <div className={classes.innerContainer}>
         {/* Social Sections */}
         <section aria-labelledby="event-info-heading" className="flex items-center mb-4 md:mb-0">
           <img src="images/logo.webp" className="w-15 h-15" alt="Event Logo" aria-label="Event Logo Hackafor 2024" />
@@ -65,7 +68,7 @@ export const Footer = () => {
               Más información del evento
             </h4>
             <nav aria-label="Social media links" className="flex gap-x-5 text-2xl">
-              {renderSocialIcons()} {/* Ensure renderSocialIcons returns accessible links/buttons */}
+              {renderSocialIcons()}
             </nav>
           </div>
         </section>
@@ -79,7 +82,7 @@ export const Footer = () => {
         </section>
 
         {/* Copyrights */}
-        <div className="text-sm mt-5 absolute inset-x-0 bottom-2">© 2024 Designed by Ana Rangel Developed by aforcita</div>
+        <div className={classes.copyRight}>© 2024 Designed by Ana Rangel Developed by aforcita</div>
       </div>
     </footer>
   );
