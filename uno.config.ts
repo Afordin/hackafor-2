@@ -8,7 +8,33 @@ export default defineConfig({
       cBorder: '#51546E',
       cWhite: '#FAFAFA',
       cBlack: '#0A0A0A',
-      pBorder: '#262626'
+      pBorder: '#262626',
+      primary: {
+        50: '#fff0f2',
+        100: '#ffdde1',
+        200: '#ffc1c8',
+        300: '#ff96a3',
+        400: '#ff596d',
+        500: '#ff2640',
+        600: '#fc1c37',
+        700: '#d4011a',
+        800: '#af0519',
+        900: '#900c1c',
+        950: '#4f000a'
+      },
+      secondary: {
+        50: '#fbf5fe',
+        100: '#f5eafd',
+        200: '#ebd3fb',
+        300: '#deb0f7',
+        400: '#cd82f0',
+        500: '#ad40e1',
+        600: '#9a32c7',
+        700: '#8226a5',
+        800: '#6b2187',
+        900: '#5c206f',
+        950: '#3a0949'
+      }
     }
   },
   presets: [

@@ -12,7 +12,7 @@ const Sizes: Record<ButtonSize, string> = {
 const Variants: Record<VARIANT, Array<string>> = {
   [VARIANT.PRIMARY]: [
     'rounded-full',
-    'bg-gradient-to-rb from-[#FC1C37] via-[#AD40E1] to-white text-cWhite',
+    'bg-gradient-to-rb from-primary-600 via-secondary-500 to-white text-cWhite',
     'hover:text-cBlack hover:to-100%',
     'buttonBgTransition'
   ],
@@ -27,7 +27,7 @@ const Variants: Record<VARIANT, Array<string>> = {
     'bg-black rounded-full relative ',
     'before:absolute before:inset-0 before:-z-1',
     'before:content-[""]',
-    'before:bg-gradient-to-rb before:from-[#FC1C37]/10 before:to-[#AD40E1]/10',
+    'before:bg-gradient-to-rb before:from-primary-600/10 before:to-secondary-500/10',
     'before:opacity-0 before:hover:opacity-100',
     'before:rounded-full',
     'before:transition-opacity before:duration-300'
@@ -95,8 +95,8 @@ export const Button = ({
       ...(!hasBorder ? Variants[variant] : []),
       {
         'w-full': isFullWidth,
-        'h-fit w-fit rounded-full bg-gradient-to-rb from-[#FC1C37] to-[#AD40E1] p-[0.2rem] buttonBgTransitionReset': hasBorder
-      }
+        'h-fit w-fit rounded-full bg-gradient-to-rb from-primary-600 to-secondary-500 p-[0.2rem] buttonBgTransitionReset': hasBorder
+      },
     ),
     innerContainer: cn(Variants[variant], Sizes[size], 'inline-block transition-all duration-300 ease-in-out w-full h-full')
   };
