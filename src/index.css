@@ -92,7 +92,6 @@ body {
   }
 }
 
-
 /************************************************/
 /*                 BURGER MENU                  */
 /************************************************/
@@ -103,4 +102,42 @@ body {
 
 .burger span::after {
   transition-property: bottom, transform;
+}
+
+/************************************************/
+/*             CAROUSEL COMPONENT               */
+/************************************************/
+
+@supports selector(:has(+ *)) {
+  .animate-carousel:hover+a,
+  .animate-carousel:has(a:hover) {
+    animation-play-state: paused;
+  }
+}
+
+.animate-carousel {
+ animation: mobileCarousel 40s linear infinite;
+ @media (min-width: 768px) {
+    animation: desktopCarousel 40s linear infinite;
+  }
+}
+
+@keyframes mobileCarousel {
+  0%{
+    transform: translateX(0px);
+  }
+
+  100% {
+    transform: translateX(-76.3rem);
+  }
+}
+
+@keyframes desktopCarousel {
+  0%{
+    transform: translateX(0px);
+  }
+
+  100% {
+    transform: translateX(-101.3rem);
+  }
 }
