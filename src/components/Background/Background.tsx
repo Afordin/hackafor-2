@@ -17,10 +17,10 @@ export const Background = () => {
       minHeight: 300,
       minWidth: 300,
       speed: 0.1,
-      // yOffset: 0.05,
       backgroundColor: 0x60606,
-      baseColor: '#FC1C37',
-      color2: '#AD40E1'
+      amplitudeFactor: 1.3,
+      baseColor: '#390a8b',
+      color2: '#e7e7e7'
     });
 
     return () => {

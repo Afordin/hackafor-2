@@ -39,7 +39,7 @@ export const Ticket: FC<TicketProps> = ({
                       {name}
                     </h3>
                     <span data-atropos-offset="3" className={`flex gap-1 items-center`}>
-                      <img src="./icons/discord.svg" className="w-6 aspect-square " />
+                      <span className="i-bi-discord w-6 aspect-square " />
                       <p className="font-bold text-lg">@{username}</p>
                     </span>
                   </div>
