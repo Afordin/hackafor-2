@@ -38,7 +38,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Text inside the button.
    */
-  children: ReactNode | Array<ReactNode> | string;
+  children: string;
+
+  /**
+   * Specify an optional className to be added to the component
+   */
+  className?: string;
 
   /**
    * Optional size (e.g., 'sm', 'md'), affects padding/font size.
@@ -63,6 +68,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * HTML button type attribute ('button', 'submit', etc.).
    */
+  /**
+   * HTML button type attribute ('button', 'submit', etc.).
+   */
   htmlType?: HtmlType;
 
   /**
@@ -77,6 +85,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 export const Button = ({
   children,
+  className,
   onClick,
   size = ButtonSize.base,
   variant = VARIANT.PRIMARY,
@@ -97,6 +106,7 @@ export const Button = ({
         'w-full': isFullWidth,
         'h-fit w-fit rounded-full bg-gradient-to-rb from-primary-600 to-secondary-500 p-[0.2rem] buttonBgTransitionReset': hasBorder
       },
+      className
     ),
     innerContainer: cn(Variants[variant], Sizes[size], 'inline-block transition-all duration-300 ease-in-out w-full h-full')
   };

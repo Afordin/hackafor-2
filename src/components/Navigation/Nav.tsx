@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { cn, ROUTE, useContributors, VARIANT } from '@common';
+import { ButtonSize, cn, ROUTE, useBreakpoint, useContributors, VARIANT } from '@common';
 import { BurgerButton, Button } from '@components';
 import { Link } from 'react-router-dom';
 
@@ -12,6 +12,8 @@ interface NavProps {
 export const Nav = ({ className }: NavProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { contributors, isLoading } = useContributors();
+  const { isMobile } = useBreakpoint();
+  const handleButtonSize = isMobile ? ButtonSize.xl : ButtonSize.base;
 
   const classes = {
     container: cn(
@@ -123,6 +125,7 @@ export const Nav = ({ className }: NavProps) => {
               }}
               variant={VARIANT.SECONDARY}
               hasBorder
+              size={handleButtonSize}
             >
               Accede con Discord
             </Button>
