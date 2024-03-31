@@ -1,5 +1,6 @@
-import { Background, Carousel, Footer, Nav } from '@components';
+import { Background, Footer, Nav } from '@components';
 import { CTA, Hero, Information, Ticket } from './_sections';
+import { FeatureProjects } from './_sections/FeatureProjects';
 
 export const Home = () => {
   return (
@@ -10,7 +11,7 @@ export const Home = () => {
         <Hero />
         <Information />
         <CTA className="mt-20">Para inscribirte inicia sesión con Discord</CTA>
-        <Carousel />
+        <FeatureProjects />
         <Ticket />
       </main>
       <Footer />
