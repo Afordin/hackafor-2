@@ -29,10 +29,8 @@ export const Footer = () => {
       <a
         href={`https://github.com/${contributor.username}`}
         key={contributor.username}
-        target="_blank"
         className="contributor"
         aria-label={`Contributor: ${contributor.username}`}
-        role="link"
       >
         {isLoading ? (
           <div className="w-12 h-12 bg-cGray" />

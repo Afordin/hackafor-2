@@ -54,10 +54,8 @@ export const Nav = ({ className }: NavProps) => {
       <a
         href={`https://github.com/${contributor.username}`}
         key={contributor.username}
-        target="_blank"
         className="contributor"
         aria-label={`Contributor: ${contributor.username}`}
-        role="link"
       >
         {isLoading ? (
           <div className="w-12 h-12 bg-cGray" />
@@ -76,7 +74,7 @@ export const Nav = ({ className }: NavProps) => {
 
   return (
     <header className={classes.container}>
-      <Link to={ROUTE.home} className="w-10 h-10" aria-label="Event Logo Hackafor 2024">
+      <Link to={ROUTE.home} className="w-10 h-10" aria-label="Volver al inicio">
         {/* TODO: Create a component Icon to work with this SVG */}
         <svg
           width="36"
