@@ -8,54 +8,55 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-La hackafor es un evento de programación hecha para desarrolladores. 
+The hackafor is a programming event made for developers.
 <br />
-Puedes demostrar tu talento participado solo/a o en equipo y ganar premios creando las aplicaciones del futuro.
+You can demonstrate your talent by participating alone or as a team and win prizes by creating the applications of the future.
 
-[Diseño de Figma](https://www.figma.com/file/oB8OIzcBcSUIBXDmmp46mb/Variety-Designs?type=design&node-id=1203-960&mode=design&t=MtKYUyZD2jwNeTxp-0) · [Reportar error](https://github.com/Afordin/hackafor-2/issues) 
+[Figma Design
+](https://www.figma.com/file/oB8OIzcBcSUIBXDmmp46mb/Variety-Designs?type=design&node-id=1203-960&mode=design&t=MtKYUyZD2jwNeTxp-0) · [Report bug](https://github.com/Afordin/hackafor-2/issues) 
 </div>
 
-## Capturas de pantalla
+## Screenshots
 
 ![image](https://github.com/jarrisondev/hackafor-2/assets/62910118/a7091cce-3968-4dc7-9b24-d6ac1a6e9174)
 
 ![image](https://github.com/jarrisondev/hackafor-2/assets/62910118/1186b914-7cec-430a-afc0-46ec3d9f3565)
 
-## Para empezar
+## Getting started
 
-1. Clona el repositorio
+1. clone or fork this repository
 
    ```sh
    git clone https://github.com/Afordin/hackafor-2.git
    ```
 
-2. Instala los paquetes NPM
+2. install dependencies 
    ```bash
    npm install
    ```
 
-3. Ejecuta el proyecto
+3. run the project
    ```bash
    npm run dev
    ```
-4. abre tu navegador
+4. Open your browser and visit
 
    [http://localhost:5173 🌺](http://localhost:5173)
 
 
 
-## Autora
+## Authors
 <a href="https://github.com/afordigital">
    <img width="50px" src="https://avatars.githubusercontent.com/u/43246362?v=4" />
 </a>
 
-### Contribuir desde Stackblitz
+### Contribution from Stackblitz
 
-Si quieres contribuir de una manera mas sencilla, puedes iniciar este proyecto desde _Stackblitz_ usando tu cuenta de GitHub:
+If you want to contribute in a simpler way, you can start this project from _Stackblitz_ using your GitHub account:
 
-[![Abrir en Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/Afordin/hackafor-2)
+[![Open in Stackblitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/Afordin/hackafor-2)
 
-**¡Gracias a todos los colaboradores que han hecho posible este proyecto!**
+**Thanks to all the contributors who have made this project possible!**
 
 [![Contribuidores](https://contrib.rocks/image?repo=Afordin/hackafor-2)](https://github.com/Afordin/hackafor-2/graphs/contributors)
 
