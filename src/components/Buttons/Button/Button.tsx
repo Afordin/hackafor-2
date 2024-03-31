@@ -38,7 +38,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Text inside the button.
    */
-  children: string;
+  children: ReactNode | Array<ReactNode> | string;
 
   /**
    * Specify an optional className to be added to the component
