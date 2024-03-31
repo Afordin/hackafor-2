@@ -13,7 +13,7 @@ const socialIcons: SocialIcon[] = [
   { icon: <span className="i-bi-twitter-x" />, url: 'https://twitter.com/afor_digital' }
 ];
 
-interface Contributor {
+export interface Contributor {
   username: string;
   avatarUrl: string;
 }
