@@ -14,6 +14,10 @@ interface CarouselProps {
 }
 
 export const Carousel = ({ className, children }: CarouselProps) => {
+  /**
+   * TODO: Implement isMobile from PR #37 to disable on mobile
+   * reference: https://github.com/Afordin/hackafor-2/pull/37
+   */
   useCarouselEffect('carousel-container', CAROUSEL_CONFIG);
 
   const classes = {
@@ -21,10 +25,10 @@ export const Carousel = ({ className, children }: CarouselProps) => {
       'carousel-container',
       'h-[30rem] mx-auto max-md:max-w-[35rem] md:w-full',
       'grid place-items-center',
-      'relative overflow-hidden ',
+      'relative overflow-hidden',
 
       // Left Fade Out
-      'before:absolute before:top-0 before:left-0 ',
+      'before:absolute before:top-0 before:left-0',
       'before:h-full before:w-1/6 before:z-10 before:pointer-events-none',
       'before:bg-gradient-to-r before:content-[""]',
       'before:from-cBackground before:via-transparent before:to-transparent',
@@ -43,6 +47,11 @@ export const Carousel = ({ className, children }: CarouselProps) => {
   const logos = Children.toArray(children);
   const renderChildren = logos.map((logo, index) => <Fragment key={index}>{logo}</Fragment>);
 
+  /**
+   * Carousel component
+   * @author Samuel Llibre Santos<dev@zyruks.com>
+   * Created at 2024-03-31
+   */
   return (
     <div id="carousel-container" className={classes.container}>
       <div className={classes.innerContainer}>
