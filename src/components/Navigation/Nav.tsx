@@ -45,7 +45,7 @@ export const Nav = ({ className }: NavProps) => {
       'bg-cBackground/80 backdrop-blur-lg md:bg-transparent md:backdrop-blur-0',
       'max-md:w-[100svw] max-md:h-[100svh]'
     ),
-    listItem: ({ isActive }) =>
+    listItem: (isActive: boolean) =>
       cn('cursor-pointer hover:text-white transition-colors w-fit', {
         'bg-gradient-to-rb from-primary-600 to-secondary-500 text-transparent bg-clip-text': isActive
       }),
@@ -100,7 +100,7 @@ export const Nav = ({ className }: NavProps) => {
       <nav className={classes.nav}>
         <ul className={classes.list}>
           <li>
-            <NavLink className={classes.listItem} to={ROUTE.home}>
+            <NavLink className={({ isActive }) => classes.listItem(isActive)} to={ROUTE.home}>
               Inicio
             </NavLink>
           </li>
@@ -109,7 +109,7 @@ export const Nav = ({ className }: NavProps) => {
           </li>
 
           <li>
-            <NavLink to={ROUTE.projects} className={classes.listItem}>
+            <NavLink to={ROUTE.projects} className={({ isActive }) => classes.listItem(isActive)}>
               Proyectos
             </NavLink>
           </li>
@@ -118,7 +118,7 @@ export const Nav = ({ className }: NavProps) => {
           </li>
 
           <li>
-            <NavLink to={ROUTE.registration} className={classes.listItem}>
+            <NavLink to={ROUTE.registration} className={({ isActive }) => classes.listItem(isActive)}>
               Registro
             </NavLink>
           </li>
