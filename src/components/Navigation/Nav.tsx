@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ButtonSize, cn, ROUTE, useBreakpoint, useContributors, VARIANT } from '@common';
 import { BurgerButton, Button, Logo } from '@components';
 import { Link } from 'react-router-dom';
@@ -50,18 +50,6 @@ export const Nav = ({ className }: NavProps) => {
   };
 
   // TODO: Implement a lock when isOpen on Mobile
-  // Add useEffect to toggle scroll lock on mobile
-  useEffect(() => {
-    if (isMobile) {
-      if (isOpen) {
-        // Lock the scroll bar when the menu is open
-        document.body.style.overflow = 'hidden';
-      } else {
-        // Restore the scroll bar when the menu is closed
-        document.body.style.overflow = 'auto';
-      }
-    }
-  }, [isOpen, isMobile]);
 
   const renderContributors = () =>
     contributors.map((contributor) => (
@@ -84,7 +72,12 @@ export const Nav = ({ className }: NavProps) => {
       </a>
     ));
 
-  const handleClick = () => setIsOpen(!isOpen);
+  const handleClick = () => {
+    if (isMobile) {
+      document.body.style.overflow = isOpen ? 'auto' : 'hidden';
+    }
+    setIsOpen(!isOpen);
+  };
 
   return (
     <header className={classes.container}>
