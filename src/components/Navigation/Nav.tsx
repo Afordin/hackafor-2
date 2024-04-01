@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { cn, ROUTE, VARIANT } from '@common';
-import { BurgerButton, Button, type Contributor } from '@components';
+import { useState } from 'react';
+import { cn, ROUTE, useContributors, VARIANT } from '@common';
+import { BurgerButton, Button } from '@components';
 import { Link } from 'react-router-dom';
 
 interface NavProps {
@@ -11,7 +11,7 @@ interface NavProps {
 }
 export const Nav = ({ className }: NavProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [contributors, setContributors] = useState<Array<Contributor>>([]);
+  const { contributors, isLoading } = useContributors();
 
   const classes = {
     container: cn(
@@ -47,34 +47,26 @@ export const Nav = ({ className }: NavProps) => {
     dots: cn('hidden md:block', 'h-1 w-1', 'cursor-pointer select-none cursor-default', 'bg-cGray rounded-full')
   };
 
-  // TODO: Move this fetch to a hook
-  useEffect(() => {
-    fetch('https://api.github.com/repos/Afordin/hackafor-2/contributors')
-      .then((response) => response.json())
-      .then((data) => {
-        const contributorsData: Contributor[] = data.map((contributor: any) => {
-          return {
-            username: contributor.login,
-            avatarUrl: contributor.avatar_url
-          };
-        });
-        contributorsData.sort((a, b) => a.username.localeCompare(b.username));
-        setContributors(contributorsData);
-      })
-      .catch((error) => console.error('Error fetching contributors:', error));
-  }, []);
-
   // TODO: Implement a lock when isOpen on Mobile
 
   const renderContributors = () =>
     contributors.map((contributor) => (
-      <a href={`https://github.com/${contributor.username}`} key={contributor.username} target="_blank" className="contributor">
-        <img
-          key={contributor.username}
-          src={contributor.avatarUrl}
-          className="rounded-full mr-[-10px] overflow-auto"
-          alt={contributor.username}
-        />
+      <a
+        href={`https://github.com/${contributor.username}`}
+        key={contributor.username}
+        className="contributor"
+        aria-label={`Contributor: ${contributor.username}`}
+      >
+        {isLoading ? (
+          <div className="w-12 h-12 bg-cGray" />
+        ) : (
+          <img
+            key={contributor.username}
+            src={contributor.avatarUrl}
+            className="rounded-full mr-[-10px] overflow-auto"
+            alt={contributor.username}
+          />
+        )}
       </a>
     ));
 
@@ -82,7 +74,7 @@ export const Nav = ({ className }: NavProps) => {
 
   return (
     <header className={classes.container}>
-      <Link to={ROUTE.home} className="w-10 h-10">
+      <Link to={ROUTE.home} className="w-10 h-10" aria-label="Volver al inicio">
         {/* TODO: Create a component Icon to work with this SVG */}
         <svg
           width="36"
