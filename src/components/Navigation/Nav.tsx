@@ -20,7 +20,7 @@ export const Nav = ({ className }: NavProps) => {
       'h-20 relative',
       'bg-cBackground/80 backdrop-blur-lg',
       'md:absolute md:top-6 z-20 md:inset-x-0',
-      'md:bg-cBackground text-cGray',
+      'md:bg-cBackground text-gray-400',
       'md:max-w-7xl mx-auto px-6 py-2',
       'flex items-center gap-6',
       'border-b',

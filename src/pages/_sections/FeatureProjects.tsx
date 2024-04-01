@@ -17,7 +17,7 @@ export const FeatureProjects = ({ className }: FeatureProjectsProps) => {
     featureProjectsData.map(({ title, description, url }) => (
       <a key={title} href={url} className="hover:scale-110 transition-transform duration-300">
         <SimpleCard className="p-8 lg:p-8 relative | carousel-custom-border">
-          <h3 className="text-xl font-bold">{title}</h3>
+          <h1 className="text-xl font-bold">{title}</h1>
           <p>{description}</p>
           <div className="carousel-glows"></div>
         </SimpleCard>
