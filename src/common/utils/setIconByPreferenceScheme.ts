@@ -1,10 +1,12 @@
-/**
- * Interface of the images Urls
- */
 interface Images {
-  /** Image Url when color scheme preference is dark  */
+  /**
+   * Image Url when color scheme preference is dark
+   */
   dark: string;
-  /** Image Url when color scheme preference is ligth */
+
+  /**
+   * Image Url when color scheme preference is light
+   */
   light: string;
 }
 /**
@@ -12,7 +14,7 @@ interface Images {
  * @param images An object that contains the Urls of the image of each preference
  * @returns A function that handle the remove listener of the event
  */
-export default function setIconByPreferenceScheme({ dark, light }: Images) {
+export const setIconByPreferenceScheme = ({ dark, light }: Images) => {
   if (!dark || !light) throw new Error('Both image URLs for dark and light schemes must be provided.');
 
   /**Get the media query of prefers-color-scheme */
@@ -36,13 +38,13 @@ export default function setIconByPreferenceScheme({ dark, light }: Images) {
   handleColorScheme(darkSchemaMediaQuery);
 
   /**Add the event change of the color-scheme and
-   * handle the prefers-color-shceme if this changes
+   * handle the prefers-color-scheme if this changes
    */
   darkSchemaMediaQuery.addEventListener('change', handleColorScheme);
 
   /**
    * Removes the event
-   * This return it is not neccesary at all, but is returned just in case
+   * This return it is not necessary at all, but is returned just in case
    */
   return () => darkSchemaMediaQuery.removeEventListener('change', handleColorScheme);
-}
+};
