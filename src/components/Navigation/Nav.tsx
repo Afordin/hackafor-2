@@ -45,8 +45,10 @@ export const Nav = ({ className }: NavProps) => {
       'bg-cBackground/80 backdrop-blur-lg md:bg-transparent md:backdrop-blur-0',
       'max-md:w-[100svw] max-md:h-[100svh]'
     ),
-    listItem: cn('cursor-pointer hover:text-white transition-colors w-fit'),
-    listItemActive: cn('bg-gradient-to-rb from-primary-600 to-secondary-500 text-transparent bg-clip-text'),
+    listItem: (isActive: boolean) =>
+      cn('cursor-pointer hover:text-white transition-colors w-fit', {
+        'bg-gradient-to-rb from-primary-600 to-secondary-500 text-transparent bg-clip-text': isActive
+      }),
     dots: cn('hidden md:block', 'h-1 w-1', 'cursor-pointer select-none cursor-default', 'bg-cGray rounded-full')
   };
 
@@ -75,8 +77,6 @@ export const Nav = ({ className }: NavProps) => {
 
   const handleClick = () => setIsOpen(!isOpen);
 
-  const isActiveLink = ({ isActive }) => (isActive ? classes.listItemActive : '');
-
   return (
     <header className={classes.container}>
       <Link to={ROUTE.home} className="w-10 h-10" aria-label="Volver al inicio">
@@ -99,8 +99,8 @@ export const Nav = ({ className }: NavProps) => {
       {/* Navigation Section */}
       <nav className={classes.nav}>
         <ul className={classes.list}>
-          <li className={classes.listItem}>
-            <NavLink className={isActiveLink} to={ROUTE.home}>
+          <li>
+            <NavLink className={({ isActive }) => classes.listItem(isActive)} to={ROUTE.home}>
               Inicio
             </NavLink>
           </li>
@@ -108,8 +108,8 @@ export const Nav = ({ className }: NavProps) => {
             <span className={classes.dots}></span>
           </li>
 
-          <li className={classes.listItem}>
-            <NavLink to={ROUTE.projects} className={isActiveLink}>
+          <li>
+            <NavLink to={ROUTE.projects} className={({ isActive }) => classes.listItem(isActive)}>
               Proyectos
             </NavLink>
           </li>
@@ -117,8 +117,8 @@ export const Nav = ({ className }: NavProps) => {
             <span className={classes.dots}></span>
           </li>
 
-          <li className={classes.listItem}>
-            <NavLink to={ROUTE.registration} className={isActiveLink}>
+          <li>
+            <NavLink to={ROUTE.registration} className={({ isActive }) => classes.listItem(isActive)}>
               Registro
             </NavLink>
           </li>
