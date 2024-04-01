@@ -25,7 +25,7 @@ interface SimpleCardProps {
 export const SimpleCard = ({ children, className, orientation = ORIENTATION.VERTICAL }: SimpleCardProps) => {
   const classes = {
     container: cn('lg:px-10', className),
-    innerContainer: cn('flex gap-4 md:gap-10 items-center ', Orientations[orientation])
+    innerContainer: cn('flex gap-4 md:gap-10 items-center', Orientations[orientation])
   };
 
   return (
