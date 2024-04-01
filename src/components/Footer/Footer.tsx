@@ -10,7 +10,10 @@ const socialIcons: SocialIcon[] = [
   { icon: <span className="i-bi-twitch" />, url: 'https://www.twitch.tv/afor_digital' },
   { icon: <span className="i-bi-instagram" />, url: 'https://www.instagram.com/afor_digital' },
   { icon: <span className="i-bi-github" />, url: 'https://github.com/Afordin' },
-  { icon: <span className="i-bi-twitter-x" />, url: 'https://twitter.com/afor_digital' }
+  {
+    icon: <span className="i-bi-twitter-x" />,
+    url: 'https://twitter.com/afor_digital'
+  }
 ];
 
 export const Footer = () => {
@@ -20,7 +23,7 @@ export const Footer = () => {
     innerContainer: cn(
       'max-w-7xl w-full mx-auto text-center px-5 container relative pb-10 flex flex-col md:flex-row justify-between items-center'
     ),
-    socialIcon: cn('hover:text-gray-500 inline-flex'),
+    socialIcon: cn('inline-flex hover:text-primary-500 transition-all duration-300'),
     copyRight: cn('text-sm mt-5 absolute inset-x-0 bottom-2')
   };
 
