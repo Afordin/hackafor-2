@@ -1,3 +1,23 @@
+:root {
+  /* Carousel config start */
+
+  --blur: 20;
+  --border: rgba(38, 38, 38, );
+  --color: hsl(240 18% 80%);
+  --border-width: 2px;
+  --border-radius: 12px;
+  --gradient: conic-gradient(
+    from 180deg at 50% 70%,
+      hsla(353, 97%, 45%, 1) 0deg,
+      hsla(353, 97%, 55%, 1) 72deg,
+      hsla(281, 73%, 47%, 1) 144deg,
+      hsla(281, 73%, 57%, 1) 216deg,
+      hsla(281, 73%, 67%, 1) 288deg,
+      hsla(353, 97%, 45%, 1) 1turn);
+
+  /* Carousel config end */
+}
+
 * {
   box-sizing: border-box;
 }
@@ -49,7 +69,7 @@ body {
 }
 
 /************************************************/
-/*                 CONTRIBUTORS CLASSES         */
+/*            CONTRIBUTORS CLASSES              */
 /************************************************/
 
 .contributors {
@@ -140,4 +160,72 @@ body {
   100% {
     transform: translateX(-101.3rem);
   }
+}
+
+.carousel-custom-border::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: var(--border);
+  background-attachment: fixed;
+  border: var(--border-width) solid transparent;
+  border-radius: var(--border-radius);
+  opacity: var(--active);
+  transition: opacity 1s;
+  pointer-events: none;
+  mask:
+    linear-gradient(#0000, #0000),
+    conic-gradient(from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 1.5)) * 1deg),
+      hsl(0 0% 100% / 0.15) 0deg,
+      white,
+      hsl(0 0% 100% / 0.15) calc(var(--spread) * 2.5deg));
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+}
+
+.carousel-custom-border::after {
+  --alpha: 0;
+  --bg-size: 100%;
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: var(--gradient);
+  background-attachment: fixed;
+  border: var(--border-width) solid transparent;
+  border-radius: var(--border-radius);
+  opacity: var(--active, 0);
+  transition: opacity 1s;
+  pointer-events: none;
+  filter: brightness(1.5);
+  mask:
+    linear-gradient(#0000, #0000),
+    conic-gradient(from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 0.5)) * 1deg), #0000 0deg, #fff, #0000 calc(var(--spread) * 0.5deg));
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+}
+
+.carousel-glows {
+  position: absolute;
+  inset: 0;
+	filter: blur(calc(var(--blur) * 1px));
+  pointer-events: none;
+}
+
+.carousel-glows::after,
+.carousel-glows::before {
+  --alpha: 0;
+  content: "";
+  position: absolute;
+  inset: -5px;
+  background: var(--gradient);
+  background-attachment: fixed;
+  border: 10px solid transparent;
+  border-radius: var(--border-radius);
+  opacity: var(--active);
+  transition: opacity 1s;
+  mask:
+    linear-gradient(#0000, #0000),
+    conic-gradient(from calc((var(--start) - (var(--spread) * 0.5)) * 1deg), #000 0deg, #fff, #0000 calc(var(--spread) * 1deg));
+  mask-composite: intersect;
+  mask-clip: padding-box, border-box;
 }
