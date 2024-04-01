@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ButtonSize, cn, ROUTE, useBreakpoint, useContributors, VARIANT } from '@common';
 import { BurgerButton, Button } from '@components';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 interface NavProps {
   /**
@@ -14,7 +14,6 @@ export const Nav = ({ className }: NavProps) => {
   const { contributors, isLoading } = useContributors();
   const { isMobile } = useBreakpoint();
   const handleButtonSize = isMobile ? ButtonSize.xl : ButtonSize.base;
-  const location = useLocation();
 
   const classes = {
     container: cn(
@@ -76,10 +75,7 @@ export const Nav = ({ className }: NavProps) => {
 
   const handleClick = () => setIsOpen(!isOpen);
 
-  const getActive = (path: string) => {
-    if (location.pathname === path) return classes.listItemActive;
-    return '';
-  };
+  const isActiveLink = ({ isActive }) => (isActive ? classes.listItemActive : '');
 
   return (
     <header className={classes.container}>
@@ -103,22 +99,28 @@ export const Nav = ({ className }: NavProps) => {
       {/* Navigation Section */}
       <nav className={classes.nav}>
         <ul className={classes.list}>
-          <li className={cn(classes.listItem, getActive(ROUTE.home))}>
-            <Link to={ROUTE.home}>Inicio</Link>
+          <li className={classes.listItem}>
+            <NavLink className={isActiveLink} to={ROUTE.home}>
+              Inicio
+            </NavLink>
           </li>
           <li>
             <span className={classes.dots}></span>
           </li>
 
-          <li className={cn(classes.listItem, getActive(ROUTE.projects))}>
-            <Link to={ROUTE.projects}>Proyectos</Link>
+          <li className={classes.listItem}>
+            <NavLink to={ROUTE.projects} className={isActiveLink}>
+              Proyectos
+            </NavLink>
           </li>
           <li>
             <span className={classes.dots}></span>
           </li>
 
-          <li className={cn(classes.listItem, getActive(ROUTE.registration))}>
-            <Link to={ROUTE.registration}>Registro</Link>
+          <li className={classes.listItem}>
+            <NavLink to={ROUTE.registration} className={isActiveLink}>
+              Registro
+            </NavLink>
           </li>
 
           <li>
