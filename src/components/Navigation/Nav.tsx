@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ButtonSize, cn, ROUTE, useBreakpoint, useContributors, VARIANT } from '@common';
 import { BurgerButton, Button } from '@components';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 interface NavProps {
   /**
@@ -46,6 +46,7 @@ export const Nav = ({ className }: NavProps) => {
       'max-md:w-[100svw] max-md:h-[100svh]'
     ),
     listItem: cn('cursor-pointer hover:text-white transition-colors w-fit'),
+    listItemActive: cn('bg-gradient-to-rb from-primary-600 to-secondary-500 text-transparent bg-clip-text'),
     dots: cn('hidden md:block', 'h-1 w-1', 'cursor-pointer select-none cursor-default', 'bg-cGray rounded-full')
   };
 
@@ -74,6 +75,8 @@ export const Nav = ({ className }: NavProps) => {
 
   const handleClick = () => setIsOpen(!isOpen);
 
+  const isActiveLink = ({ isActive }) => (isActive ? classes.listItemActive : '');
+
   return (
     <header className={classes.container}>
       <Link to={ROUTE.home} className="w-10 h-10" aria-label="Volver al inicio">
@@ -97,21 +100,27 @@ export const Nav = ({ className }: NavProps) => {
       <nav className={classes.nav}>
         <ul className={classes.list}>
           <li className={classes.listItem}>
-            <Link to={ROUTE.home}>Inicio</Link>
+            <NavLink className={isActiveLink} to={ROUTE.home}>
+              Inicio
+            </NavLink>
           </li>
           <li>
             <span className={classes.dots}></span>
           </li>
 
           <li className={classes.listItem}>
-            <Link to={ROUTE.projects}>Proyectos</Link>
+            <NavLink to={ROUTE.projects} className={isActiveLink}>
+              Proyectos
+            </NavLink>
           </li>
           <li>
             <span className={classes.dots}></span>
           </li>
 
           <li className={classes.listItem}>
-            <Link to={ROUTE.registration}>Registro</Link>
+            <NavLink to={ROUTE.registration} className={isActiveLink}>
+              Registro
+            </NavLink>
           </li>
 
           <li>
