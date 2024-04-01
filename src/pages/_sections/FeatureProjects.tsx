@@ -36,7 +36,7 @@ export const FeatureProjects = ({ className }: FeatureProjectsProps) => {
               <span>Ver todos los proyectos</span>
 
               {/* icon */}
-              <div className="i-lucide:arrow-up-right  w-8 h-8 bg-gradient-to-rb from-[#FC1C37] to-[#AD40E1]" />
+              <div className="i-lucide:arrow-up-right  w-8 h-8 bg-gradient-to-rb from-primary-600 to-secondary-500" />
             </Link>
           </Button>
         </div>
