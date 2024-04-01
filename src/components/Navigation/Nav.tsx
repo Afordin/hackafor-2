@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ButtonSize, cn, ROUTE, useBreakpoint, useContributors, VARIANT } from '@common';
 import { BurgerButton, Button } from '@components';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 interface NavProps {
   /**
@@ -14,6 +14,7 @@ export const Nav = ({ className }: NavProps) => {
   const { contributors, isLoading } = useContributors();
   const { isMobile } = useBreakpoint();
   const handleButtonSize = isMobile ? ButtonSize.xl : ButtonSize.base;
+  const location = useLocation();
 
   const classes = {
     container: cn(
@@ -46,6 +47,7 @@ export const Nav = ({ className }: NavProps) => {
       'max-md:w-[100svw] max-md:h-[100svh]'
     ),
     listItem: cn('cursor-pointer hover:text-white transition-colors w-fit'),
+    listItemActive: cn('bg-gradient-to-rb from-primary-600 to-secondary-500 text-transparent bg-clip-text'),
     dots: cn('hidden md:block', 'h-1 w-1', 'cursor-pointer select-none cursor-default', 'bg-cGray rounded-full')
   };
 
@@ -74,6 +76,11 @@ export const Nav = ({ className }: NavProps) => {
 
   const handleClick = () => setIsOpen(!isOpen);
 
+  const getActive = (path: string) => {
+    if (location.pathname === path) return classes.listItemActive;
+    return '';
+  };
+
   return (
     <header className={classes.container}>
       <Link to={ROUTE.home} className="w-10 h-10" aria-label="Volver al inicio">
@@ -96,21 +103,21 @@ export const Nav = ({ className }: NavProps) => {
       {/* Navigation Section */}
       <nav className={classes.nav}>
         <ul className={classes.list}>
-          <li className={classes.listItem}>
+          <li className={cn(classes.listItem, getActive(ROUTE.home))}>
             <Link to={ROUTE.home}>Inicio</Link>
           </li>
           <li>
             <span className={classes.dots}></span>
           </li>
 
-          <li className={classes.listItem}>
+          <li className={cn(classes.listItem, getActive(ROUTE.projects))}>
             <Link to={ROUTE.projects}>Proyectos</Link>
           </li>
           <li>
             <span className={classes.dots}></span>
           </li>
 
-          <li className={classes.listItem}>
+          <li className={cn(classes.listItem, getActive(ROUTE.registration))}>
             <Link to={ROUTE.registration}>Registro</Link>
           </li>
 
