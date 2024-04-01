@@ -53,7 +53,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Style variant (e.g., 'primary', 'secondary'), defines appearance.
    */
-  variant: VARIANT;
+  variant?: VARIANT;
 
   /**
    * If true, disables user interaction.
@@ -81,12 +81,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Function to call on button click.
    */
-  onClick: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 export const Button = ({
   children,
   className,
-  onClick,
+  onClick = () => {},
   size = ButtonSize.base,
   variant = VARIANT.PRIMARY,
   isDisabled = false,
