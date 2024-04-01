@@ -73,8 +73,9 @@ body {
 /************************************************/
 
 .contributors {
-  --contributor-count: 11;
-  --contributor-size: 50px;
+  /* NOTE: The contributor-count should increase as the number of contributors increases */
+  --contributor-count: 20;
+  --contributor-size: 3.125rem;
   --column-size: calc(var(--contributor-size) / 2);
 
   display: grid;
@@ -102,7 +103,7 @@ body {
 .contributor {
   width: var(--contributor-size);
   border-radius: 100vw;
-  border: 2px solid white;
+  border:0.125rem solid white;
   box-shadow: 0.25rem 0.25rem 0.5rem hsl(0 0% 0% / 0.2);
   overflow: hidden;
   transition: scale 500ms;

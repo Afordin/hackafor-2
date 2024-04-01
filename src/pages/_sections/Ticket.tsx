@@ -30,7 +30,7 @@ export const Ticket: FC<TicketProps> = ({
               <div className="flex flex-col justify-between p-4 sm:p-[30px] sm:pb-[17px] w-full rounded-2xl bg-cBlack">
                 <div className="flex gap-5">
                   <img
-                    className="w-12 sm:w-27 aspect-square rounded-full p-[0.1rem] bg-gradient-to-rb from-[#FC1C37] to-[#AD40E1]"
+                    className="w-12 sm:w-27 aspect-square rounded-full p-[0.1rem] bg-gradient-to-rb from-primary-600 to-secondary-500"
                     src={avatar}
                     alt={`Avatar de ${name}`}
                   />
@@ -56,7 +56,7 @@ export const Ticket: FC<TicketProps> = ({
                 </div>
               </div>
 
-              <div className="w-35 sm:w-80 h-full flex items-center justify-center bg-gradient-to-rb from-[#FC1C37] to-[#AD40E1] rounded-2xl rounded-lt-0 rounded-lb-0">
+              <div className="w-35 sm:w-80 h-full flex items-center justify-center bg-gradient-to-rb from-primary-600 to-secondary-500 rounded-2xl rounded-lt-0 rounded-lb-0">
                 <img
                   data-atropos-offset="5"
                   className="w-full p-3 sm:p-7 invert-100"

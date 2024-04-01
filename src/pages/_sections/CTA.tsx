@@ -1,5 +1,5 @@
+import { VARIANT } from '@common';
 import { Button } from '@components';
-import { VARIANT } from '../../common';
 
 type CTAProps = {
   children: string;
@@ -16,7 +16,10 @@ export const CTA = ({ children, className }: CTAProps) => {
         }}
         variant={VARIANT.PRIMARY}
       >
-        Accede con Discord
+        <div className="flex gap-2 items-center">
+          <span className="i-bi-discord"></span>
+          <span>Accede con Discord</span>
+        </div>
       </Button>
     </article>
   );
