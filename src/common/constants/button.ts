@@ -2,7 +2,8 @@ export enum ButtonSize {
   xs = 'xs',
   sm = 'sm',
   base = 'base',
-  lg = 'lg'
+  lg = 'lg',
+  xl = 'xl'
 }
 
 export enum HtmlType {
