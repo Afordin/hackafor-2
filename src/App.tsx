@@ -5,6 +5,7 @@ import { Projects } from '@pages/Projects/Projects';
 import { Registration } from '@pages/Registration/Registration';
 import { User } from '@supabase/supabase-js';
 import { Route, Routes } from 'react-router-dom';
+import { Nav } from './components/Navigation/Nav';
 
 // const supabase = createClient(
 // import.meta.env.VITE_PROJECT_URL,
@@ -56,6 +57,7 @@ function App() {
   }
   return (
     <>
+      <Nav />
       <Routes>
         <Route path={ROUTE.home} element={<Home />} />
         <Route path={ROUTE.projects} element={<Projects />} />

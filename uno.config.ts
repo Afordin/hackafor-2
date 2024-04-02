@@ -9,6 +9,7 @@ export default defineConfig({
       cWhite: '#FAFAFA',
       cBlack: '#0A0A0A',
       pBorder: '#262626',
+      cField: '#A8A8A8',
       primary: {
         50: '#fff0f2',
         100: '#ffdde1',

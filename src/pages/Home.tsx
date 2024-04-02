@@ -1,10 +1,9 @@
-import { Background, Footer, Nav } from '@components';
+import { Background, Footer } from '@components';
 import { CTA, FeatureProjects, Hero, Information, Ticket } from './_sections';
 
 export const Home = () => {
   return (
     <>
-      <Nav />
       <Background />
       <main className="relative z-2 w-full max-w-7xl mx-auto gap-y-[72px] font-dmsans text-white px-5">
         <Hero />

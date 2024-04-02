@@ -1,20 +1,15 @@
 // import { useEffect } from 'react';
-// import { createClient } from '@supabase/supabase-js';
 
-// const supabase = createClient(import.meta.env.VITE_PROJECT_URL, import.meta.env.VITE_API_KEY);
+import { HtmlType, VARIANT } from '@common';
+import { Button } from '@components';
+import { createClient } from '@supabase/supabase-js';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-// const fetchProjects = () => {
-//   return supabase.from('Project').select();
-// };
+const supabase = createClient(import.meta.env.VITE_PROJECT_URL, import.meta.env.VITE_API_KEY);
 
-// const createProject = (project: any) => {
-//   return supabase.from('Project').insert(project);
-// };
-
-// const updateProject = (project: any) => {
-//   return supabase.from('Project').update(project).eq('id', project.id);
-// };
-
+const postProject = (project) => {
+  return supabase.from('Project').insert(project);
+};
 // const defaultProject = {
 //   name: 'default name',
 //   description: 'default description',
@@ -24,42 +19,62 @@
 //   status: 'PENDING'
 // };
 
+type InputsProject = {
+  title: string;
+  description: string;
+};
 export const Registration = () => {
-  // const [projects, setProjects] = useState([]);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<InputsProject>();
+  const onSubmit: SubmitHandler<InputsProject> = ({ title, description }) => {
+    const newProject = {
+      name: title,
+      description,
+      members: [],
+      administrator: {},
+      required_roles: {},
+      status: 'PENDING'
+    };
+    postProject(newProject).then((result) => console.log(result));
+  };
 
-  // useEffect(() => {
-  //   fetchProjects().then((data) => {
-  //     console.log(data);
-  //     // setProjects(data.data);
-  //   });
-  // }, []);
+  return (
+    <article id="registration" className=" w-full h-screen text-white flex flex-colum items-center justify-center ">
+      <form onSubmit={handleSubmit(onSubmit)} className=" w-10/12">
+        <div className="mb-5 w">
+          <label htmlFor="title" className="block mb-2 text-sm font-medium">
+            Titulo del proyecto*
+          </label>
+          <input
+            type="text"
+            placeholder="Introduce el título del proyecto"
+            {...register('title', { required: true })}
+            className="border border-cBorder text-sm text-cField rounded-lg  block w-full p-2.5 bg-transparent"
+          />
+          {errors.title && <span className="text-secondary-400">El campo titulo del proyecto es requerido</span>}
+        </div>
 
-  return <h1>Hola</h1>;
-  //     <article id="registration" className="w-full h-screen flex items-center justify-center">
-  //       {/* <form
-  //         onSubmit={(event) => {
-  //           event.preventDefault();
-  //           createProject(defaultProject).then((data) => console.log(data));
-  //         }}
-  //       >
-  //         <Button htmlType={HtmlType.submit}>Añadir proyecto</Button>
-  //       </form> */}
-  //       <div className="text-white flex flex-col">
-  //         {/* {projects.map((project) => (
-  //           <form
-  //             onSubmit={(event) => {
-  //               event.preventDefault();
-  //               updateProject({ ...project, members: [...project.members, { name: 'marcos', role: 'back-end' }] })
-  //                 .then((data) => console.log(data))
-  //                 .catch((error) => console.error(error));
-  //             }}
-  //           >
-  //             <div>{project.name}</div>
-  //             <div>{project.description}</div>
-  //             <Button htmlType={HtmlType.submit}>Update Project</Button>
-  //           </form>
-  //         ))} */}
-  //       </div>
-  //     </article>
-  //   );
+        <div className="mb-5">
+          <label htmlFor="description" className="block mb-2 text-sm font-medium">
+            Decripción del proyecto*
+          </label>
+          <input
+            type="text"
+            placeholder="Indroduce una breve descripción del proyecto"
+            {...register('description', { required: true })}
+            className="border border-cBorder text-sm text-cField rounded-lg  block w-full p-2.5 bg-transparent"
+          />
+          {errors.title && <span className="text-secondary-400">El campo description del proyecto es requerido</span>}
+        </div>
+
+        <Button variant={VARIANT.PRIMARY} htmlType={HtmlType.submit} className="mt-6">
+          {' '}
+          Registar proyecto{' '}
+        </Button>
+      </form>
+    </article>
+  );
 };
