@@ -4,19 +4,14 @@
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
-    "dev": "vite",
     "clean": "git clean -xdf node_modules",
+    "dev": "vite",
     "format": "prettier --check \"**/*.{js,cjs,mjs,ts,tsx,md,json}\"",
     "format:fix": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,md,mdx,json}\"",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "prepare": "husky",
     "preview": "vite preview"
-  },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "npx eslint --fix",
-      "prettier --write"
-    ]
   },
   "dependencies": {
     "@supabase/auth-ui-react": "^0.4.7",
@@ -37,6 +32,9 @@
     "vite-plugin-ssr": "^0.4.142"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
+    "@commitlint/types": "^19.0.3",
     "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
     "@iconify-json/bi": "^1.1.23",
     "@iconify-json/lucide": "^1.1.178",
@@ -50,7 +48,7 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "husky": "^9.0.7",
+    "husky": "^9.0.11",
     "lint-staged": "^15.2.0",
     "typescript": "^5.3.2",
     "unocss": "^0.56.5",
