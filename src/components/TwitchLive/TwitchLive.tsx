@@ -32,6 +32,7 @@ export const TwitchLive = ({ className }: TwitchLiveProps) => {
     content: cn(
       'flex h-full items-center mx-auto bg-[#9146FF] w-fit px-3 py-1 rounded-[0.4rem] hover:bg-[#6441A4] transition-all duration-300 shadow-2xl'
     ),
+    text: cn('text-white text-lg font-600'),
     liveBox: cn(' rounded-[0.4rem] px-2 ml-3 font-600 bg-[#EB0400] animate-pulse')
   };
 
@@ -39,7 +40,7 @@ export const TwitchLive = ({ className }: TwitchLiveProps) => {
     <div className={classes.container}>
       {isLive && (
         <a className={classes.content} href="https://www.twitch.tv/afor_digital" target="_blank">
-          <span className="text-white text-lg font-600">twitch.tv/afor_digital</span>
+          <span className={classes.text}>twitch.tv/afor_digital</span>
           <div className={classes.liveBox}>LIVE</div>
         </a>
       )}
