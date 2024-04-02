@@ -10,7 +10,7 @@ interface LogoProps {
 
 export const Logo = ({ width, height }: LogoProps) => {
   const classes = {
-    logo: cn('fill-white', 'hover:fill-primary-500', 'transition-all duration-300')
+    logo: cn('fill-white', 'hover:fill-neutral-400', 'transition-all duration-300')
   };
 
   return (
