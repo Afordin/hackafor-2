@@ -12,9 +12,9 @@
 
 ## Issue
 
-<!-- E.G #50 -->
+- Numero de Issue
 
-- Número de Asunto
+<!-- E.G #50 -->
 
 ## Visuales (Opcional)
 
