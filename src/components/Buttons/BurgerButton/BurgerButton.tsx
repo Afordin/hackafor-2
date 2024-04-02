@@ -27,7 +27,7 @@ export const BurgerButton = ({ className, isOpen, onClick }: BurgerButtonProps) 
     ),
     span: cn(
       // Center Line of the Burger Menu
-      'absolute top-[30px] left-4 right-4',
+      'absolu ate top-[30px] left-4 right-4',
       'h-[3px] rounded-[15px]',
       'block bg-cWhite',
       'transition-all duration-200',
