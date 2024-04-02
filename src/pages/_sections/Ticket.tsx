@@ -19,7 +19,7 @@ export const Ticket: FC<TicketProps> = ({
   return (
     <section>
       <div className="container mx-auto my-20">
-        <h3 className="text-[30px] text-center">Descarga tu ticket y compártelo en redes sociales</h3>
+        <h2 className="text-[30px] text-center">Descarga tu ticket y compártelo en redes sociales</h2>
         <div className="flex justify-center md:w-full mx-auto mt-15">
           <Atropos
             shadowScale={1.1}
