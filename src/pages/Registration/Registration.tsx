@@ -34,7 +34,7 @@ export const Registration = () => {
   //   });
   // }, []);
 
-  return;
+  return <h1>Hola</h1>;
   //     <article id="registration" className="w-full h-screen flex items-center justify-center">
   //       {/* <form
   //         onSubmit={(event) => {
