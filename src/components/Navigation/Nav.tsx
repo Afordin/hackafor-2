@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ButtonSize, cn, ROUTE, useBreakpoint, useContributors, VARIANT } from '@common';
 import { BurgerButton, Button, Logo } from '@components';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 interface NavProps {
   /**
@@ -20,7 +20,7 @@ export const Nav = ({ className }: NavProps) => {
       'h-20 relative',
       'bg-cBackground/80 backdrop-blur-lg',
       'md:absolute md:top-6 z-20 md:inset-x-0',
-      'md:bg-cBackground text-cGray',
+      'md:bg-cBackground text-gray-400',
       'md:max-w-7xl mx-auto px-6 py-2',
       'flex items-center gap-6',
       'border-b',
@@ -45,7 +45,10 @@ export const Nav = ({ className }: NavProps) => {
       'bg-cBackground/80 backdrop-blur-lg md:bg-transparent md:backdrop-blur-0',
       'max-md:w-[100svw] max-md:h-[100svh]'
     ),
-    listItem: cn('cursor-pointer hover:text-white transition-colors duration-300 w-fit'),
+    listItem: (isActive: boolean) =>
+      cn('cursor-pointer hover:text-white transition-all ease-in-out duration-300 w-fit', {
+        'bg-gradient-to-rb from-primary-600 to-secondary-500 text-transparent bg-clip-text': isActive
+      }),
     dots: cn('hidden md:block', 'h-1 w-1', 'cursor-pointer select-none cursor-default', 'bg-cGray rounded-full')
   };
 
@@ -89,22 +92,28 @@ export const Nav = ({ className }: NavProps) => {
       {/* Navigation Section */}
       <nav className={classes.nav}>
         <ul className={classes.list}>
-          <li className={classes.listItem}>
-            <Link to={ROUTE.home}>Inicio</Link>
+          <li>
+            <NavLink className={({ isActive }) => classes.listItem(isActive)} to={ROUTE.home}>
+              Inicio
+            </NavLink>
           </li>
           <li>
             <span className={classes.dots}></span>
           </li>
 
-          <li className={classes.listItem}>
-            <Link to={ROUTE.projects}>Proyectos</Link>
+          <li>
+            <NavLink to={ROUTE.projects} className={({ isActive }) => classes.listItem(isActive)}>
+              Proyectos
+            </NavLink>
           </li>
           <li>
             <span className={classes.dots}></span>
           </li>
 
-          <li className={classes.listItem}>
-            <Link to={ROUTE.registration}>Registro</Link>
+          <li>
+            <NavLink to={ROUTE.registration} className={({ isActive }) => classes.listItem(isActive)}>
+              Registro
+            </NavLink>
           </li>
 
           <li>
