@@ -18,14 +18,19 @@ interface SimpleCardProps {
   className?: string;
 
   /**
+   * Specify an optional className to be added to the inner container
+   */
+  innerContainerClassName?: string;
+
+  /**
    *  Specify an optional orientation of the card
    */
   orientation?: ORIENTATION;
 }
-export const SimpleCard = ({ children, className, orientation = ORIENTATION.VERTICAL }: SimpleCardProps) => {
+export const SimpleCard = ({ children, className, innerContainerClassName, orientation = ORIENTATION.VERTICAL }: SimpleCardProps) => {
   const classes = {
     container: cn('lg:px-10', className),
-    innerContainer: cn('flex gap-4 md:gap-10 items-center', Orientations[orientation])
+    innerContainer: cn('flex gap-4 md:gap-10 items-center', Orientations[orientation], innerContainerClassName)
   };
 
   return (
