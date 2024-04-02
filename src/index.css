@@ -254,3 +254,14 @@ body {
   mask-composite: intersect;
   mask-clip: padding-box, border-box;
 }
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #dddddd;
+  border-radius: 7px;
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: #676766;
+}
