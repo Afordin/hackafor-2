@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ButtonSize, cn, ROUTE, useBreakpoint, useContributors, VARIANT } from '@common';
+import { ButtonSize, cn, ROUTE, useBreakpoint, useContributors, useNavAnimation, VARIANT } from '@common';
 import { BurgerButton, Button, Logo } from '@components';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -13,19 +13,23 @@ export const Nav = ({ className }: NavProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { contributors, isLoading } = useContributors();
   const { isMobile } = useBreakpoint();
+  const { isAtTop, isHidden } = useNavAnimation();
   const handleButtonSize = isMobile ? ButtonSize.xl : ButtonSize.base;
 
   const classes = {
     container: cn(
-      'h-20 relative',
+      'h-20 fixed',
       'bg-cBackground/80 backdrop-blur-lg',
-      'md:absolute md:top-6 z-20 md:inset-x-0',
-      'md:bg-cBackground text-gray-400',
+      'md:fixed md:top-6 z-20 md:inset-x-0',
+      'text-gray-400',
       'md:max-w-7xl mx-auto px-6 py-2',
       'flex items-center gap-6',
       'border-b',
       'md:border-[0.2px] border-cBorder md:rounded-full',
       'w-full md:w-fit mx-auto h-fit',
+      'transition-all ease-in-out duration-300',
+      isAtTop ? 'bg-cBackground/80 md:bg-cBackground' : 'bg-cBackground/60 md:bg-cBackground/80',
+      !isAtTop && isHidden && 'translate-y-[-100%] opacity-0',
       className
     ),
     nav: cn(
@@ -42,7 +46,7 @@ export const Nav = ({ className }: NavProps) => {
       'py-5 px-6 md:py-0 md:px-0',
       'flex flex-col gap-6 font-bold',
       'md:flex-row md:items-center',
-      'bg-cBackground/80 backdrop-blur-lg md:bg-transparent md:backdrop-blur-0',
+      'bg-cBackground/80 backdrop-blur-lg md:bg-transparent md:backdrop-filter-none',
       'max-md:w-[100svw] max-md:h-[100svh]'
     ),
     listItem: (isActive: boolean) =>
