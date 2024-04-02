@@ -1,14 +1,27 @@
+import { cn } from '@common';
 import { CTA } from './CTA';
 
-export const Hero = () => {
+interface HeroProps {
+  /**
+   * Specify an optional className to be added to the component
+   */
+  className?: string;
+}
+export const Hero = ({ className }: HeroProps) => {
+  const classes = {
+    container: cn(className),
+    innerContainer: cn('relative z-1', 'container mx-auto', 'grid md:grid-rows-[1fr_0.5fr]', 'w-full min-h-[100svh]')
+  };
+
   return (
-    <section>
-      <div className="container mx-auto w-full relative z-1 grid place-items-center h-auto">
-        <article className="text-center">
-          <h1 className="text-[20vw] mt-24 md:text-[180px] md:mt-35 font-bold">Hackafor</h1>
-          <p className="text-[6vw] mt-1 md:text-[38px] md:mt-[-70px] font-semibold">Una hackaton de programación</p>
+    <section className={classes.container}>
+      <div className={classes.innerContainer}>
+        <article className="text-center self-end pb-20">
+          <h1 className="text-fluid-title font-bold leading-none text-shadow-md">Hackafor</h1>
+          <p className="max-sm:text-fluid-base text-fluid-lg font-semibold text-shadow-sm">Una hackaton de programación</p>
         </article>
-        <CTA className="mt-32 text-center md:mt-80">Para inscribirte inicia sesión con Discord</CTA>
+
+        <CTA className="text-center text-shadow-sm md:self-center">Para inscribirte inicia sesión con Discord</CTA>
       </div>
     </section>
   );
