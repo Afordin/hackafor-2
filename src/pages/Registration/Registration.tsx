@@ -24,42 +24,42 @@
 //   status: 'PENDING'
 // };
 
-// export const Registration = () => {
-// const [projects, setProjects] = useState([]);
+export const Registration = () => {
+  // const [projects, setProjects] = useState([]);
 
-// useEffect(() => {
-//   fetchProjects().then((data) => {
-//     console.log(data);
-//     // setProjects(data.data);
-//   });
-// }, []);
+  // useEffect(() => {
+  //   fetchProjects().then((data) => {
+  //     console.log(data);
+  //     // setProjects(data.data);
+  //   });
+  // }, []);
 
-//   return (
-//     <article id="registration" className="w-full h-screen flex items-center justify-center">
-//       {/* <form
-//         onSubmit={(event) => {
-//           event.preventDefault();
-//           createProject(defaultProject).then((data) => console.log(data));
-//         }}
-//       >
-//         <Button htmlType={HtmlType.submit}>Añadir proyecto</Button>
-//       </form> */}
-//       <div className="text-white flex flex-col">
-//         {/* {projects.map((project) => (
-//           <form
-//             onSubmit={(event) => {
-//               event.preventDefault();
-//               updateProject({ ...project, members: [...project.members, { name: 'marcos', role: 'back-end' }] })
-//                 .then((data) => console.log(data))
-//                 .catch((error) => console.error(error));
-//             }}
-//           >
-//             <div>{project.name}</div>
-//             <div>{project.description}</div>
-//             <Button htmlType={HtmlType.submit}>Update Project</Button>
-//           </form>
-//         ))} */}
-//       </div>
-//     </article>
-//   );
-// };
+  return;
+  //     <article id="registration" className="w-full h-screen flex items-center justify-center">
+  //       {/* <form
+  //         onSubmit={(event) => {
+  //           event.preventDefault();
+  //           createProject(defaultProject).then((data) => console.log(data));
+  //         }}
+  //       >
+  //         <Button htmlType={HtmlType.submit}>Añadir proyecto</Button>
+  //       </form> */}
+  //       <div className="text-white flex flex-col">
+  //         {/* {projects.map((project) => (
+  //           <form
+  //             onSubmit={(event) => {
+  //               event.preventDefault();
+  //               updateProject({ ...project, members: [...project.members, { name: 'marcos', role: 'back-end' }] })
+  //                 .then((data) => console.log(data))
+  //                 .catch((error) => console.error(error));
+  //             }}
+  //           >
+  //             <div>{project.name}</div>
+  //             <div>{project.description}</div>
+  //             <Button htmlType={HtmlType.submit}>Update Project</Button>
+  //           </form>
+  //         ))} */}
+  //       </div>
+  //     </article>
+  //   );
+};
