@@ -4,3 +4,4 @@ export * from './Cards';
 export * from './Carousel/Carousel';
 export * from './Footer/Footer';
 export * from './Navigation/Nav';
+export * from './Logo/Logo';
