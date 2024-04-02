@@ -15,7 +15,7 @@ interface CardWrapperProps {
 
 export const CardWrapper = ({ children, className }: CardWrapperProps) => {
   const classes = {
-    container: cn('bg-cBlack', 'border-px border-neutral-800', 'p-18 rounded-2xl', className)
+    container: cn('bg-cBlack', 'border-px border-neutral-800', 'p-[32px] rounded-2xl', className)
   };
   return <article className={classes.container}>{children}</article>;
 };

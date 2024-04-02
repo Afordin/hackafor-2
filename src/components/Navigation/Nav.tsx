@@ -40,7 +40,7 @@ export const Nav = ({ className }: NavProps) => {
     ),
     list: cn(
       'py-5 px-6 md:py-0 md:px-0',
-      'flex flex-col gap-6',
+      'flex flex-col gap-6 font-bold',
       'md:flex-row md:items-center',
       'bg-cBackground/80 backdrop-blur-lg md:bg-transparent md:backdrop-blur-0',
       'max-md:w-[100svw] max-md:h-[100svh]'

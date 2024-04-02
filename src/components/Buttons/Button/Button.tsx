@@ -34,6 +34,7 @@ const Variants: Record<VARIANT, Array<string>> = {
   ]
 };
 
+// TODO: Export types outside
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Text inside the button.
@@ -83,6 +84,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    */
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
+
 export const Button = ({
   children,
   className,
