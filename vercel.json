@@ -4,5 +4,6 @@
       "source": "/(.*)",
       "destination": "/"
     }
-  ]
+  ],
+  "devCommand": "pnpm run dev"
 }
