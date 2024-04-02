@@ -35,6 +35,18 @@ export default defineConfig({
         900: '#5c206f',
         950: '#3a0949'
       }
+    },
+    fontSize: {
+      'fluid-xs': 'var(--fluid-xs)',
+      'fluid-sm': 'var(--fluid-sm)',
+      'fluid-base': 'var(--fluid-base)',
+      'fluid-lg': 'var(--fluid-lg)',
+      'fluid-xl': 'var(--fluid-xl)',
+      'fluid-2xl': 'var(--fluid-2xl)',
+      'fluid-3xl': 'var(--fluid-3xl)',
+      'fluid-4xl': 'var(--fluid-4xl)',
+      'fluid-5xl': 'var(--fluid-5xl)',
+      'fluid-title': 'var(--fluid-title)'
     }
   },
   presets: [

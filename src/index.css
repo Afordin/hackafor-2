@@ -1,4 +1,20 @@
 :root {
+  /* Fluid font sizes start*/
+
+  --fluid-xs: clamp(0.7813rem, 0.6388rem + 0.7125vi, 1.28rem);
+  --fluid-sm: clamp(0.9375rem, 0.7482rem + 0.9464vi, 1.6rem);
+  --fluid-base: clamp(1.125rem, 0.875rem + 1.25vi, 2rem);
+  --fluid-lg: clamp(1.35rem, 1.0214rem + 1.6429vi, 2.5rem);
+  --fluid-xl: clamp(1.62rem, 1.19rem + 2.15vi, 3.125rem);
+  --fluid-2xl: clamp(1.944rem, 1.3834rem + 2.8032vi, 3.9063rem);
+  --fluid-3xl: clamp(2.3328rem, 1.6042rem + 3.6429vi, 4.8828rem);
+  --fluid-4xl: clamp(2.7994rem, 1.8553rem + 4.7202vi, 6.1035rem);
+
+  /* Custom fluid font sizes */
+  --fluid-title: clamp(4rem, 18vi, 12.5rem);
+
+  /* Fluid font sizes end*/
+
   /* Carousel config start */
 
   --blur: 20;

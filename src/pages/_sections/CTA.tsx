@@ -1,4 +1,4 @@
-import { VARIANT } from '@common';
+import { ButtonSize, cn, useBreakpoint, VARIANT } from '@common';
 import { Button } from '@components';
 
 type CTAProps = {
@@ -7,14 +7,22 @@ type CTAProps = {
 };
 
 export const CTA = ({ children, className }: CTAProps) => {
+  const { isMobile } = useBreakpoint();
+  const handleButtonSize = isMobile ? ButtonSize.lg : ButtonSize.xl;
+
+  const classes = {
+    container: cn('relative z-10', className)
+  };
   return (
-    <article className={`relative z-10 flex flex-col gap-5 w-full h-full items-center ${className}`}>
-      <p className="text-[5vw] md:text-[32px]">{children}</p>
+    <article className={classes.container}>
+      <p className="max-sm:text-fluid-sm text-fluid-base">{children}</p>
       <Button
         onClick={() => {
           console.log('');
         }}
         variant={VARIANT.PRIMARY}
+        size={handleButtonSize}
+        className="mt-6"
       >
         <div className="flex gap-2 items-center">
           <span className="i-bi-discord"></span>
