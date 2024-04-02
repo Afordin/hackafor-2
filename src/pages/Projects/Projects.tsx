@@ -17,7 +17,7 @@ export enum PROJECT_PAGE_STATUS {
 
 export const Projects = () => {
   const [status, setStatus] = useState(PROJECT_PAGE_STATUS.ACTIVE);
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<Project[] | null>([]);
 
   console.log(projects);
 
@@ -60,7 +60,7 @@ export const Projects = () => {
 
           {status === PROJECT_PAGE_STATUS.ACTIVE ? (
             <div className="grid grid-cols-3 gap-6 pt-40">
-              {projects.map((project) => (
+              {projects?.map((project) => (
                 <CardWrapper key={project.id} className="flex flex-col gap-8">
                   <h1 className="font-bold text-[32px]">{project.name}</h1>
                   <p className="text-[16px] text-balance ">{project.description}</p>
