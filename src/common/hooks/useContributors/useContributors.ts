@@ -20,11 +20,12 @@ export const useContributors = () => {
         }
 
         const contributorsData: Array<Contributor> = data
-          .map(({ login, avatar_url }) => ({
+          .map(({ login, avatar_url, contributions }) => ({
             username: login,
-            avatarUrl: avatar_url
+            avatarUrl: avatar_url,
+            contributions
           }))
-          .sort((a, b) => a.username.localeCompare(b.username));
+          .sort((a, b) => b.contributions - a.contributions);
 
         setContributors(contributorsData);
       } catch (error) {
