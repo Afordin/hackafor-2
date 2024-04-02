@@ -7,12 +7,12 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-The hackafor is a programming event made for developers.
+Hackafor is a programming event made for developers by developers.
 <br />
 You can demonstrate your talent by participating alone or as a team and win prizes by creating the applications of the future.
 
 [Figma Design
-](https://www.figma.com/file/oB8OIzcBcSUIBXDmmp46mb/Variety-Designs?type=design&node-id=1203-960&mode=design&t=MtKYUyZD2jwNeTxp-0) · [Report bug](https://github.com/Afordin/hackafor-2/issues)
+](https://www.figma.com/file/oB8OIzcBcSUIBXDmmp46mb/Variety-Designs?type=design&node-id=1203-960&mode=design&t=MtKYUyZD2jwNeTxp-0) · [Report a bug](https://github.com/Afordin/hackafor-2/issues)
 
 </div>
 
@@ -70,7 +70,7 @@ If you want to contribute in a simpler way, you can start this project from _Sta
 
 **Thanks to all the contributors who have made this project possible!**
 
-[![Contribuidores](https://contrib.rocks/image?repo=Afordin/hackafor-2)](https://github.com/Afordin/hackafor-2/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=Afordin/hackafor-2)](https://github.com/Afordin/hackafor-2/graphs/contributors)
 
 ## 🛠️ Stack
 
