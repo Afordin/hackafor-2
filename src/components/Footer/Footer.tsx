@@ -25,7 +25,8 @@ export const Footer = () => {
     container: cn('text-cWhite bg-gradient-to-r from-[#19101D] to-[#0D0D0E] py-5 w-full font-dmsans'),
     innerContainer: cn('max-w-7xl w-full mx-auto text-center mb-10 flex flex-col justify-between items-center'),
     socialIcon: cn('inline-flex transition-all duration-300'),
-    copyRight: cn('text-sm mt-5 absolute inset-x-0 bottom-2')
+    copyRight: cn('text-sm mt-5 absolute inset-x-0 bottom-2'),
+    innerCopyRight: cn('custom-underline')
   };
 
   const renderSocialIcons = () =>
@@ -62,7 +63,16 @@ export const Footer = () => {
         </section>
 
         {/* Copyrights */}
-        <div className={classes.copyRight}>© 2024 Designed by Ana Rangel Developed by aforcita</div>
+        <div className={classes.copyRight}>
+          © 2024 Designed by{' '}
+          <a href="https://www.twitch.tv/uxanarangel" className={classes.innerCopyRight}>
+            Ana Rangel
+          </a>{' '}
+          Developed by{' '}
+          <a href="https://www.twitch.tv/afor_digital" className={classes.innerCopyRight}>
+            aforcita
+          </a>
+        </div>
       </div>
     </footer>
   );
