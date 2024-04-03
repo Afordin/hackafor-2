@@ -285,3 +285,29 @@ body {
 ::-webkit-scrollbar-thumb:active {
   background-color: #676766;
 }
+
+/************************************************/
+/*             FOOTER COMPONENT                 */
+/************************************************/
+
+.custom-underline {
+  position: relative;
+}
+
+.custom-underline::before {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  right: 0;
+  bottom: 0;
+  content: '';
+  left: 0;
+  border-radius: 30%;
+  transform: scaleX(0);
+  background-color: #fff;
+  transition: transform 0.3s ease-out;
+}
+
+.custom-underline:hover::before {
+  transform: scaleX(1);
+}
