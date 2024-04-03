@@ -8,7 +8,7 @@ export const Contributors = () => {
   };
 
   return (
-    <section className="text-center mt-40 mb-30">
+    <section className="text-center mt-40 mb-20">
       <h4 className="text-[30px]">Quienes han contribuido en el desarrollo</h4>
       <div className={cn('contributors', classes.contributors)}>
         {contributors.map((contributor) => (
