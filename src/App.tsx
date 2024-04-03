@@ -1,32 +1,19 @@
-import { useEffect, useState } from 'react';
-import { ROUTE } from '@common';
+import { useEffect } from 'react';
+import { ROUTE, supabase } from '@common';
 import { Home } from '@pages/Home';
 import { Projects } from '@pages/Projects/Projects';
 import { Registration } from '@pages/Registration/Registration';
-import { User } from '@supabase/supabase-js';
 import { Route, Routes } from 'react-router-dom';
-
-// const supabase = createClient(
-// import.meta.env.VITE_PROJECT_URL,
-// import.meta.env.VITE_API_KEY
-// );
+import { useUserStore } from './store/useUserStore';
 
 function App() {
-  const [userSession] = useState<User | null>(null);
+  const setUser = useUserStore((state) => state.setUser);
 
   useEffect(() => {
-    // supabase.auth.onAuthStateChange((_event, session) => {
-    // setUserSession(session?.user ?? null);
-    // });
-  }, []);
-
-  console.log(userSession);
-
-  // function signInWithDiscord() {
-  //   supabase.auth.signInWithOAuth({
-  //     provider: "discord",
-  //   });
-  // }
+    supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) setUser(session.user);
+    });
+  }, [setUser]);
 
   // const sendMessage = () => {
   //   fetch(`${import.meta.env.VITE_BASE_API_URL}/message`, {
