@@ -21,6 +21,7 @@ interface Props {
 export const Avatar: FC<Props> = ({ avatar, className, size = 'sm' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { signOut } = useAuth();
+  // TODO: add responsive design
 
   const classes = {
     container: ` flex w-fit h-full items-center relative gap-4 ${className} text-white`,
