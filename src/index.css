@@ -101,8 +101,8 @@ body {
   transition: 500ms;
   transition-delay: 500ms;
 
-  padding-inline: 1rem;
-  padding-block: 1rem;
+  padding-inline: 2rem;
+  padding-block: 2rem;
 
   /* Hide scrollbar */
   -ms-overflow-style: none;
