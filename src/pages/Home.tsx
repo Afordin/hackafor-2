@@ -1,6 +1,7 @@
 import { Background, Footer, Nav } from '@components';
 import { useUserStore } from '@store';
 import { CTA, FeatureProjects, Hero, Information, Ticket } from './_sections';
+import { Contributors } from './_sections/Contributors';
 
 export const Home = () => {
   const user = useUserStore((state) => state.user);
@@ -15,6 +16,7 @@ export const Home = () => {
         <CTA className="mt-20 text-center" />
         <FeatureProjects />
         <Ticket avatar={user?.user_metadata.avatar_url} name={user?.user_metadata.full_name} />
+        <Contributors />
       </main>
       <Footer />
     </>
