@@ -55,9 +55,16 @@ export const useNavAnimation = (): NavAnimationReturn => {
       lastScrollTop.current = currentScrollTop;
     }
 
-    window.addEventListener('scroll', handleScroll);
+    /**
+     * Add a delay to avoid triggering the scroll event when going back
+     * from another page.
+     */
+    const timeoutId = setTimeout(() => {
+      window.addEventListener('scroll', handleScroll);
+    }, 100);
 
     return () => {
+      clearTimeout(timeoutId);
       window.removeEventListener('scroll', handleScroll);
     };
   }, [navState]);
