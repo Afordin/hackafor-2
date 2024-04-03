@@ -12,7 +12,7 @@ interface TicketProps {
 const sponsors = [
   {
     name: 'Afordin',
-    logo: '/images/sponsors/afordin.png'
+    logo: '/images/sponsors/afordin.webp'
   }
 ];
 
