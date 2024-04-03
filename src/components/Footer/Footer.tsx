@@ -1,4 +1,4 @@
-import { cn, useContributors } from '@common';
+import { cn } from '@common';
 
 interface SocialIcon {
   icon: JSX.Element;
@@ -17,31 +17,12 @@ const socialIcons: SocialIcon[] = [
 ];
 
 export const Footer = () => {
-  const { contributors, isLoading } = useContributors();
   const classes = {
     container: cn('text-cWhite bg-gradient-to-r from-[#19101D] to-[#0D0D0E] py-5 w-full font-dmsans'),
-    innerContainer: cn(
-      'max-w-7xl w-full mx-auto text-center px-5 container relative pb-10 flex flex-col md:flex-row justify-between items-center'
-    ),
+    innerContainer: cn('max-w-7xl w-full mx-auto text-center mb-10 flex flex-col justify-between items-center'),
     socialIcon: cn('inline-flex hover:text-primary-500 transition-all duration-300'),
     copyRight: cn('text-sm mt-5 absolute inset-x-0 bottom-2')
   };
-
-  const renderContributors = () =>
-    contributors.map((contributor) => (
-      <a
-        href={`https://github.com/${contributor.username}`}
-        key={contributor.username}
-        className="contributor"
-        aria-label={`Contributor: ${contributor.username}`}
-      >
-        {isLoading ? (
-          <div className="w-12 h-12 bg-cGray" />
-        ) : (
-          <img key={contributor.username} src={contributor.avatarUrl} alt={contributor.username} />
-        )}
-      </a>
-    ));
 
   const renderSocialIcons = () =>
     socialIcons.map((socialIcon, index) => (
@@ -61,7 +42,7 @@ export const Footer = () => {
     <footer className={classes.container}>
       <div className={classes.innerContainer}>
         {/* Social Sections */}
-        <section aria-labelledby="event-info-heading" className="flex items-center mb-4 md:mb-0">
+        <section aria-labelledby="event-info-heading" className="flex items-center">
           <img src="images/logo.webp" className="w-15 h-15" alt="Event Logo" aria-label="Event Logo Hackafor 2024" />
 
           <div className="ml-3 flex flex-col gap-y-3">
@@ -72,14 +53,6 @@ export const Footer = () => {
               {renderSocialIcons()}
             </nav>
           </div>
-        </section>
-
-        {/* Contributors Section */}
-        <section aria-labelledby="contributors-heading">
-          <div className="contributors overflow-x-scroll w-84">{renderContributors()}</div>
-          <h4 id="contributors-heading" className="text-sm">
-            Quienes han contribuido en el desarrollo
-          </h4>
         </section>
 
         {/* Copyrights */}

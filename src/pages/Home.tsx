@@ -1,5 +1,6 @@
 import { Background, Footer, Nav } from '@components';
 import { CTA, FeatureProjects, Hero, Information, Ticket } from './_sections';
+import { Contributors } from './_sections/Contributors';
 
 export const Home = () => {
   return (
@@ -12,6 +13,7 @@ export const Home = () => {
         <CTA className="mt-20 text-center">Para inscribirte inicia sesión con Discord</CTA>
         <FeatureProjects />
         <Ticket />
+        <Contributors />
       </main>
       <Footer />
     </>

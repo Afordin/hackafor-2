@@ -18,18 +18,19 @@
   /* Carousel config start */
 
   --blur: 20;
-  --border: rgba(38, 38, 38, );
+  --border: rgba(38, 38, 38);
   --color: hsl(240 18% 80%);
   --border-width: 2px;
   --border-radius: 12px;
   --gradient: conic-gradient(
     from 180deg at 50% 70%,
-      hsla(353, 97%, 45%, 1) 0deg,
-      hsla(353, 97%, 55%, 1) 72deg,
-      hsla(281, 73%, 47%, 1) 144deg,
-      hsla(281, 73%, 57%, 1) 216deg,
-      hsla(281, 73%, 67%, 1) 288deg,
-      hsla(353, 97%, 45%, 1) 1turn);
+    hsla(353, 97%, 45%, 1) 0deg,
+    hsla(353, 97%, 55%, 1) 72deg,
+    hsla(281, 73%, 47%, 1) 144deg,
+    hsla(281, 73%, 57%, 1) 216deg,
+    hsla(281, 73%, 67%, 1) 288deg,
+    hsla(353, 97%, 45%, 1) 1turn
+  );
 
   /* Carousel config end */
 }
@@ -80,7 +81,7 @@ body {
   background-size: 200% 200%;
 }
 
-.buttonBgTransition:hover{
+.buttonBgTransition:hover {
   background-position: 100% 100%;
 }
 
@@ -90,21 +91,36 @@ body {
 
 .contributors {
   /* NOTE: The contributor-count should increase as the number of contributors increases */
-  --contributor-count: 20;
+  --contributor-count: 17;
   --contributor-size: 3.125rem;
-  --column-size: calc(var(--contributor-size) / 2);
+  --column-size: calc(var(--contributor-size) / 1.5);
 
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(var(--contributor-count), var(--column-size));
   transition: 500ms;
   transition-delay: 500ms;
 
-  padding-inline: 2rem;
-  padding-block: 2rem;
+  padding-inline: 1rem;
+  padding-block: 1rem;
 
   /* Hide scrollbar */
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+@media (max-width: 768px) {
+  .contributors {
+    justify-content: start;
+    --contributor-count: 9;
+  }
+}
+
+@media (max-width: 480px) {
+  .contributors {
+    justify-content: start;
+    --contributor-count: 7;
+  }
 }
 
 .contributors::-webkit-scrollbar {
@@ -112,14 +128,14 @@ body {
 }
 
 .contributors:hover {
-  --column-size: calc(var(--contributor-size) * 1.1);
+  --column-size: calc(var(--contributor-size) * 1);
   transition-delay: 0ms;
 }
 
 .contributor {
   width: var(--contributor-size);
   border-radius: 100vw;
-  border:0.125rem solid white;
+  border: 0.125rem solid white;
   box-shadow: 0.25rem 0.25rem 0.5rem hsl(0 0% 0% / 0.2);
   overflow: hidden;
   transition: scale 500ms;
@@ -131,9 +147,9 @@ body {
 }
 
 @supports selector(:has(+ *)) {
-  .contributor:hover+.contributor,
+  .contributor:hover + .contributor,
   .contributor:has(+ .contributor:hover) {
-    scale: 1.2;
+    scale: 1.1;
   }
 }
 
@@ -154,21 +170,21 @@ body {
 /************************************************/
 
 @supports selector(:has(+ *)) {
-  .animate-carousel:hover+a,
+  .animate-carousel:hover + a,
   .animate-carousel:has(a:hover) {
     animation-play-state: paused;
   }
 }
 
 .animate-carousel {
- animation: mobileCarousel 40s linear infinite;
- @media (min-width: 768px) {
+  animation: mobileCarousel 40s linear infinite;
+  @media (min-width: 768px) {
     animation: desktopCarousel 40s linear infinite;
   }
 }
 
 @keyframes mobileCarousel {
-  0%{
+  0% {
     transform: translateX(0px);
   }
 
@@ -178,7 +194,7 @@ body {
 }
 
 @keyframes desktopCarousel {
-  0%{
+  0% {
     transform: translateX(0px);
   }
 
@@ -190,7 +206,7 @@ body {
 .carousel-custom-border::before {
   position: absolute;
   inset: 0;
-  content: "";
+  content: '';
   background: var(--border);
   background-attachment: fixed;
   border: var(--border-width) solid transparent;
@@ -198,12 +214,13 @@ body {
   opacity: var(--active);
   transition: opacity 1s;
   pointer-events: none;
-  mask:
-    linear-gradient(#0000, #0000),
-    conic-gradient(from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 1.5)) * 1deg),
+  mask: linear-gradient(#0000, #0000),
+    conic-gradient(
+      from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 1.5)) * 1deg),
       hsl(0 0% 100% / 0.15) 0deg,
       white,
-      hsl(0 0% 100% / 0.15) calc(var(--spread) * 2.5deg));
+      hsl(0 0% 100% / 0.15) calc(var(--spread) * 2.5deg)
+    );
   mask-clip: padding-box, border-box;
   mask-composite: intersect;
 }
@@ -213,7 +230,7 @@ body {
   --bg-size: 100%;
   position: absolute;
   inset: 0;
-  content: "";
+  content: '';
   background: var(--gradient);
   background-attachment: fixed;
   border: var(--border-width) solid transparent;
@@ -222,9 +239,13 @@ body {
   transition: opacity 1s;
   pointer-events: none;
   filter: brightness(1.5);
-  mask:
-    linear-gradient(#0000, #0000),
-    conic-gradient(from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 0.5)) * 1deg), #0000 0deg, #fff, #0000 calc(var(--spread) * 0.5deg));
+  mask: linear-gradient(#0000, #0000),
+    conic-gradient(
+      from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 0.5)) * 1deg),
+      #0000 0deg,
+      #fff,
+      #0000 calc(var(--spread) * 0.5deg)
+    );
   mask-clip: padding-box, border-box;
   mask-composite: intersect;
 }
@@ -232,14 +253,14 @@ body {
 .carousel-glows {
   position: absolute;
   inset: 0;
-	filter: blur(calc(var(--blur) * 1px));
+  filter: blur(calc(var(--blur) * 1px));
   pointer-events: none;
 }
 
 .carousel-glows::after,
 .carousel-glows::before {
   --alpha: 0;
-  content: "";
+  content: '';
   position: absolute;
   inset: -5px;
   background: var(--gradient);
@@ -248,8 +269,7 @@ body {
   border-radius: var(--border-radius);
   opacity: var(--active);
   transition: opacity 1s;
-  mask:
-    linear-gradient(#0000, #0000),
+  mask: linear-gradient(#0000, #0000),
     conic-gradient(from calc((var(--start) - (var(--spread) * 0.5)) * 1deg), #000 0deg, #fff, #0000 calc(var(--spread) * 1deg));
   mask-composite: intersect;
   mask-clip: padding-box, border-box;
