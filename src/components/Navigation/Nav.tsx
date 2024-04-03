@@ -33,7 +33,7 @@ export const Nav = ({ className }: NavProps) => {
       'w-full md:w-fit mx-auto h-fit',
       'transition-all ease-in-out duration-300',
       isAtTop ? 'bg-cBackground/80 md:bg-cBackground' : 'bg-cBackground/60 md:bg-cBackground/80',
-      !isAtTop && isHidden && 'translate-y-[-100%] opacity-0',
+      !isAtTop && isHidden && '-translate-y-full opacity-0',
       className
     ),
     nav: cn(
