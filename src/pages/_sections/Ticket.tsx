@@ -1,7 +1,11 @@
 import 'atropos/css';
 
-import { FC } from 'react';
+import { FC, RefObject, useRef } from 'react';
+import { VARIANT } from '@common';
+import { Button } from '@components';
+import { useUserStore } from '@store';
 import { Atropos } from 'atropos/react';
+import { toPng } from 'html-to-image';
 
 interface TicketProps {
   avatar?: string;
@@ -16,11 +20,49 @@ const sponsors = [
   }
 ];
 
+const downloadTicket = async (elementRef: RefObject<HTMLElement>) => {
+  // TODO: Send Generated Image to Supabase
+  if (elementRef.current) {
+    try {
+      const dataUrl = await toPng(elementRef.current);
+      const link = document.createElement('a');
+      link.download = 'hackafor-ticket.png';
+      link.href = dataUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Could not capture image:', error);
+    }
+  }
+};
+
+const shareTwitter = async (providerId: string | null) => {
+  if (!providerId) {
+    console.log('No providerId', providerId);
+    return; // TODO: Handle correctly
+  }
+
+  const url = `${import.meta.env.VITE_PROJECT_URL}/api/og?providerId=${providerId}`;
+  navigator.clipboard.writeText(url); // TODO: Alert so user know it was copied to clipboard
+
+  const text = encodeURIComponent('Estoy participando en la Hackafor!');
+  const encodedUrl = encodeURIComponent(url);
+  const hashtags = encodeURIComponent('Hackafor,Afordin');
+
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${encodedUrl}&hashtags=${hashtags}`;
+
+  window.open(twitterUrl, '_blank');
+};
+
 export const Ticket: FC<TicketProps> = ({
   name = 'tpicj aforcita',
   number = 1,
   avatar = 'https://www.figma.com/file/oB8OIzcBcSUIBXDmmp46mb/image/553aae256d49bfd7691b401b30ec005149d24fd6'
 }) => {
+  const user = useUserStore((state) => state.user);
+  const ticketRef = useRef<HTMLDivElement>(null);
+
   return (
     <section>
       <div className="container mx-auto my-20">
@@ -31,13 +73,14 @@ export const Ticket: FC<TicketProps> = ({
             innerClassName="rounded-2xl"
             className="h-[175px] w-[720px] bg-transparent mx-auto sm:h-[310px] rounded-2xl shadow-[0_0px_90px_-10px_#c138b830] hover:shadow-none"
           >
-            <div className="ticket-bg w-full flex h-full rounded-2xl border-2 border-[#171717]">
+            <div className="ticket-bg w-full flex h-full rounded-2xl border-2 border-[#171717]" id="ticket" ref={ticketRef}>
               <div className="flex flex-col col-span-6 justify-between p-4 sm:p-[30px] sm:pb-[17px] w-full rounded-2xl bg-cBlack rounded-tr-0 rounded-rb-0">
                 <div className="flex gap-5 items-center">
                   <img
                     data-atropos-offset="2"
                     className="w-14 sm:w-27 aspect-square rounded-full p-[0.1rem] bg-gradient-to-rb from-primary-600 to-secondary-500"
                     src={avatar}
+                    id="avatar"
                     alt={`Avatar de ${name}`}
                   />
                   <div className="flex flex-col gap-3 justify-center">
@@ -86,6 +129,32 @@ export const Ticket: FC<TicketProps> = ({
             </div>
           </Atropos>
         </div>
+        {!user ? null : (
+          <div className="flex justify-center gap-x-5 mt-10">
+            <Button
+              onClick={() => {
+                shareTwitter(user?.id);
+              }}
+              variant={VARIANT.SECONDARY}
+            >
+              <div className="flex gap-2 items-center">
+                <span className="i-bi-x"></span>
+                <span>Compartir</span>
+              </div>
+            </Button>
+            <Button
+              onClick={() => {
+                downloadTicket(ticketRef);
+              }}
+              variant={VARIANT.GHOST}
+            >
+              <div className="flex gap-2 items-center">
+                <span className="i-bi-download"></span>
+                <span>Descargar</span>
+              </div>
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );
