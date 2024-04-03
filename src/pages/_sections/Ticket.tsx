@@ -41,7 +41,11 @@ export const Ticket: FC<TicketProps> = ({
                     alt={`Avatar de ${name}`}
                   />
                   <div className="flex flex-col gap-3 justify-center">
-                    <h3 title={name} data-atropos-offset="3" className={`flex font-bold text-lg sm:text-3xl md:text-4xl`}>
+                    <h3
+                      title={name}
+                      data-atropos-offset="3"
+                      className={`flex font-bold text-lg sm:text-3xl md:${name.length > 15 ? 'text-2xl' : 'text-4xl'}`}
+                    >
                       {name}
                     </h3>
                     <span data-atropos-offset="4" className={`flex gap-1 items-center`}>
