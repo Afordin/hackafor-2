@@ -23,7 +23,7 @@ export const Hero = ({ className }: HeroProps) => {
           <TwitchLive />
         </article>
 
-        <CTA className="text-center text-shadow-sm md:self-center">Para inscribirte inicia sesión con Discord</CTA>
+        <CTA className="text-center text-shadow-sm md:self-center" />
       </div>
     </section>
   );
