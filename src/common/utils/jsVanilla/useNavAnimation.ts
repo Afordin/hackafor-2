@@ -24,6 +24,36 @@ export const useNavAnimation = (): NavAnimationReturn => {
   });
 
   useEffect(() => {
+    /**
+     * Handle the scroll event when the page is loaded to
+     * update the state of the navigation bar.
+     */
+    function handleScrollOnLoad() {
+      setNavState((prevState) => ({
+        ...prevState,
+        isAtTop: window.scrollY === 0
+      }));
+
+      lastScrollTop.current = window.scrollY;
+    }
+
+    window.addEventListener('scroll', handleScrollOnLoad);
+
+    /**
+     * Remove the event listener after a delay since we only
+     * want to trigger it once.
+     */
+    const timeoutId = setTimeout(() => {
+      window.removeEventListener('scroll', handleScrollOnLoad);
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      document.removeEventListener('scroll', handleScrollOnLoad);
+    };
+  }, []);
+
+  useEffect(() => {
     function handleScroll(): void {
       /**
        * Only update the state if the values have changed.
@@ -56,7 +86,7 @@ export const useNavAnimation = (): NavAnimationReturn => {
     }
 
     /**
-     * Add a delay to avoid triggering the scroll event when going back
+     * Add a delay to avoid triggering this scroll event when going back
      * from another page.
      */
     const timeoutId = setTimeout(() => {
