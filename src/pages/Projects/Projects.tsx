@@ -45,9 +45,10 @@ export const Projects = () => {
 
   return (
     <RootLayout>
-      <main>
-        {/* TODO: Change to FIGMA element */}
-        <section id="projects" className="relative z-2 w-full py-40 max-w-7xl mx-auto gap-y-16 font-dmsans text-white px-5">
+      <main id="projects">
+        <div className="container mx-auto relative z-2 w-full py-40 max-w-7xl mx-auto gap-y-16 font-dmsans text-white px-5">
+          {/* TODO: Change to FIGMA element */}
+
           <div className="grid gap-8 text-white">
             <ToggleButtonGroup isActive={isActive} setIsActive={setIsActive} className="mx-auto" />
             <p className="mt-4 text-fluid-sm text-center">
@@ -57,20 +58,20 @@ export const Projects = () => {
           </div>
 
           {/* TODO: Implement the filter */}
-          <div className="flex items-center justify-center gap-4 mt-12 flex-wrap">
+          <section className="flex items-center justify-center gap-4 mt-12 flex-wrap">
             <span className="i-lucide-filter"></span>
             <Tag variant={TagVariant.neutral}>Front-end</Tag>
             <Tag variant={TagVariant.neutral}>Back-end</Tag>
             <Tag variant={TagVariant.neutral}>Full-stack</Tag>
             <Tag variant={TagVariant.neutral}>Diseñador(a)</Tag>
             <Tag variant={TagVariant.neutral}>Otros</Tag>
-          </div>
+          </section>
 
           {/* TODO: add the grid-cols arbitrary to UNOCSS config */}
-          <article className="grid sm:grid-cols-[repeat(auto-fit,_minmax(390px,1fr))] gap-6 pt-12">
+          <section className="grid sm:grid-cols-[repeat(auto-fit,_minmax(390px,1fr))] gap-6 pt-12">
             {isActive ? renderProjects(activeProjects) : renderProjects(closedProjects)}
-          </article>
-        </section>
+          </section>
+        </div>
       </main>
     </RootLayout>
   );

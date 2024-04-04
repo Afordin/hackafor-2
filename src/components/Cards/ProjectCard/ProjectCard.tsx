@@ -21,9 +21,13 @@ export const ProjectCard = ({ className, name, description, administrator, membe
     return description;
   };
   const renderParticipantsTag = () => {
-    return members.map((member, index) => {
+    return members.map((member) => {
       if (member.role === undefined) return null;
-      return <Tag key={index}>{member.role}</Tag>;
+      return (
+        <li key={member.name}>
+          <Tag>{member.role}</Tag>
+        </li>
+      );
     });
   };
 
@@ -31,7 +35,11 @@ export const ProjectCard = ({ className, name, description, administrator, membe
   const renderRequiredRolesTag = () => {
     return Object.entries(required_roles)
       .filter(([, quantity]) => quantity > 0)
-      .map(([role]) => <Tag key={role}>{role}</Tag>);
+      .map(([role]) => (
+        <li key={role}>
+          <Tag>{role}</Tag>
+        </li>
+      ));
   };
 
   return (
