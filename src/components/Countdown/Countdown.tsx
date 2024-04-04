@@ -29,7 +29,7 @@ export const Countdown = () => {
   };
 
   return (
-    <article className="flex flex-wrap justify-center items-center gap-24">
+    <>
       <section className="text-center">
         <p className="mb-4 text-2xl">Días</p>
         <span className="font-bold text-6xl">{formatNumber(timeLeft.days)}</span>
