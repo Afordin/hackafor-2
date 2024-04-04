@@ -1,5 +1,5 @@
 import { ORIENTATION } from '@common';
-import { SimpleCard } from '@components';
+import { Countdown, SimpleCard } from '@components';
 
 const InformationCards = [
   {
@@ -48,6 +48,11 @@ export function Information() {
           ))}
         </ul>
       </div>
+      <SimpleCard>
+        <section className="mx-auto">
+          <Countdown />
+        </section>
+      </SimpleCard>
     </section>
   );
 }
