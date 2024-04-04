@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { VARIANT } from '@common';
+import { ButtonSize, cn, useBreakpoint, VARIANT } from '@common';
 import { Button } from '@components';
 
 interface ToggleButtonGroupProps {
@@ -20,15 +20,30 @@ interface ToggleButtonGroupProps {
 }
 
 export const ToggleButtonGroup = ({ className, isActive, setIsActive }: ToggleButtonGroupProps) => {
+  const classes = {
+    container: cn('max-sm:grid max-sm:gap-4 ', className)
+  };
+  const { isMobile } = useBreakpoint();
+  const handleButtonSize = isMobile ? ButtonSize.xl : ButtonSize.xl;
   const handleActive = (isActive) => setIsActive(isActive);
   const handleButtonVariant = (isActive: boolean): VARIANT => (isActive ? VARIANT.PRIMARY : VARIANT.SECONDARY);
 
   return (
-    <div className={className}>
-      <Button onClick={() => handleActive(true)} variant={handleButtonVariant(isActive)} className="rounded-r-none">
+    <div className={classes.container}>
+      <Button
+        size={handleButtonSize}
+        onClick={() => handleActive(true)}
+        variant={handleButtonVariant(isActive)}
+        className="sm:rounded-r-none max-sm:w-full"
+      >
         Activos
       </Button>
-      <Button onClick={() => handleActive(false)} className="rounded-l-none" variant={handleButtonVariant(!isActive)}>
+      <Button
+        size={handleButtonSize}
+        onClick={() => handleActive(false)}
+        className="sm:rounded-l-none max-sm:w-full"
+        variant={handleButtonVariant(!isActive)}
+      >
         Cerrados
       </Button>
     </div>
