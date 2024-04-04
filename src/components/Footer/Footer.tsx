@@ -62,7 +62,16 @@ export const Footer = () => {
         </section>
 
         {/* Copyrights */}
-        <div className={classes.copyRight}>© 2024 Designed by Ana Rangel Developed by aforcita</div>
+        <div className={classes.copyRight}>
+          © 2024 Designed by{' '}
+          <a href="https://www.twitch.tv/uxanarangel" className="custom-underline">
+            Ana Rangel
+          </a>{' '}
+          Developed by{' '}
+          <a href="https://www.twitch.tv/afor_digital" className="custom-underline">
+            aforcita
+          </a>
+        </div>
       </div>
     </footer>
   );
