@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { cn, VARIANT } from '@common';
+import { VARIANT } from '@common';
 import { Button } from '@components';
 
 interface ToggleButtonGroupProps {
@@ -20,19 +20,15 @@ interface ToggleButtonGroupProps {
 }
 
 export const ToggleButtonGroup = ({ className, isActive, setIsActive }: ToggleButtonGroupProps) => {
-  const classes = {
-    container: cn(className)
-  };
-
   const handleActive = (isActive) => setIsActive(isActive);
-  const handleVariant = (isActive: boolean): VARIANT => (isActive ? VARIANT.PRIMARY : VARIANT.SECONDARY);
+  const handleButtonVariant = (isActive: boolean): VARIANT => (isActive ? VARIANT.PRIMARY : VARIANT.SECONDARY);
 
   return (
-    <div className={classes.container}>
-      <Button onClick={() => handleActive(true)} variant={handleVariant(isActive)} className="rounded-r-none">
+    <div className={className}>
+      <Button onClick={() => handleActive(true)} variant={handleButtonVariant(isActive)} className="rounded-r-none">
         Activos
       </Button>
-      <Button onClick={() => handleActive(false)} className="rounded-l-none" variant={handleVariant(!isActive)}>
+      <Button onClick={() => handleActive(false)} className="rounded-l-none" variant={handleButtonVariant(!isActive)}>
         Cerrados
       </Button>
     </div>
