@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { VARIANT } from '@common';
-import { Button, CardWrapper, Footer, Nav, Tag } from '@components';
+import { Button, CardWrapper, Tag } from '@components';
+import { RootLayout } from '@layouts';
 import { createClient } from '@supabase/supabase-js';
 import { Project } from './types';
 
@@ -27,11 +28,8 @@ export const Projects = () => {
     });
   }, []);
 
-  // TODO: Create a Layout
-
   return (
-    <>
-      <Nav />
+    <RootLayout>
       {/* TODO: Change to FIGMA element */}
 
       {/* Projects */}
@@ -81,7 +79,7 @@ export const Projects = () => {
                       {Object.entries(project.required_roles)
                         .filter(([, quantity]) => quantity > 0)
                         .map(([role]) => (
-                          <Tag>{role}</Tag>
+                          <Tag key={role}>{role}</Tag>
                         ))}
                     </ul>
                   </div>
@@ -95,8 +93,7 @@ export const Projects = () => {
             <p>Proyectos cerrados</p>
           )}
         </main>
-        <Footer />
       </article>
-    </>
+    </RootLayout>
   );
 };

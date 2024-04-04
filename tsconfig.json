@@ -18,6 +18,7 @@
       "@data": [
         "./src/data/index.ts"
       ],
+      "@layouts": ["./src/layouts/index.ts"],
       "@pages/*": [
         "./src/pages/*"
       ],
