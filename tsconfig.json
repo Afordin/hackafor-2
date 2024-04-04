@@ -25,6 +25,9 @@
       "@store": [
         "./src/store/index.ts"
       ],
+      "@utils": [
+        "./src/utils/index.ts"
+      ],
     },
     "allowJs": false,
     "skipLibCheck": true,
