@@ -48,8 +48,8 @@ export function Information() {
           ))}
         </ul>
       </div>
-      <SimpleCard className="mx-auto flex flex-wrap justify-center items-center gap-24">
-          <Countdown />
+      <SimpleCard orientation={ORIENTATION.HORIZONTAL} innerContainerClassName="grid grid-cols-2 md:grid-cols-4 place-items-center">
+        <Countdown />
       </SimpleCard>
     </section>
   );
