@@ -5,6 +5,7 @@ import { RootLayout } from '@layouts';
 import { createClient } from '@supabase/supabase-js';
 import { Project, ProjectStatus } from './types';
 
+// TODO: Implement a controller to fetch projects
 const supabase = createClient(import.meta.env.VITE_PROJECT_URL, import.meta.env.VITE_API_KEY);
 
 export const fetchProjects = () => {
@@ -25,7 +26,8 @@ export const Projects = () => {
   const closedProjects = projects?.filter((project) => project.status === ProjectStatus.CLOSED);
 
   const renderProjects = (projects: Project[] | undefined | null) =>
-    projects?.map((project) => {
+    projects?.map((project, index) => {
+      const animateDelay = index * 0.05;
       return (
         <ProjectCard
           key={project.id}
@@ -35,6 +37,8 @@ export const Projects = () => {
           members={project.members}
           required_roles={project.required_roles}
           status={project.status}
+          className={`animate-fade-up-custom`}
+          style={{ '--animate-delay': `${animateDelay}s` } as any}
         />
       );
     });
@@ -43,8 +47,6 @@ export const Projects = () => {
     <RootLayout>
       <main>
         {/* TODO: Change to FIGMA element */}
-
-        {/* Projects */}
         <section id="projects" className="relative z-2 w-full py-40 max-w-7xl mx-auto gap-y-16 font-dmsans text-white px-5">
           <div className="grid gap-8 text-white">
             <ToggleButtonGroup isActive={isActive} setIsActive={setIsActive} className="mx-auto" />

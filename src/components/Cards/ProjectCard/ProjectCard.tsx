@@ -1,15 +1,16 @@
+import { HTMLAttributes } from 'react';
 import { cn } from '@common';
 import { Button, CardWrapper, Tag } from '@components';
 import { Project } from '@pages/Projects/types';
 
-interface ProjectCardProps extends Omit<Project, 'id' | 'created_at' | 'repository_url'> {
+interface ProjectCardProps extends Omit<Project, 'id' | 'created_at' | 'repository_url'>, HTMLAttributes<HTMLDivElement> {
   /**
    * Specify an optional className to be added to the component
    */
   className?: string;
 }
 
-export const ProjectCard = ({ className, name, description, administrator, members, required_roles }: ProjectCardProps) => {
+export const ProjectCard = ({ className, name, description, administrator, members, required_roles, ...restOfProps }: ProjectCardProps) => {
   const classes = {
     container: cn('grid gap-8 max-w-md w-full max-xl:mx-auto', className),
     subTitle: cn('text-4 font-bold'),
@@ -34,7 +35,7 @@ export const ProjectCard = ({ className, name, description, administrator, membe
   };
 
   return (
-    <CardWrapper className={classes.container}>
+    <CardWrapper {...restOfProps} className={classes.container}>
       {/*  Header */}
       <header className="grid gap-4">
         <h3 className="font-bold text-8">{name}</h3>
