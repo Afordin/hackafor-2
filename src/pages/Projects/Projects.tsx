@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { VARIANT } from '@common';
-import { Button, CardWrapper, Tag } from '@components';
+import { Button, CardWrapper, Tag, ToggleButtonGroup } from '@components';
 import { RootLayout } from '@layouts';
 import { createClient } from '@supabase/supabase-js';
 import { Project } from './types';
@@ -11,13 +10,8 @@ export const fetchProjects = () => {
   return supabase.from('Project').select();
 };
 
-export enum PROJECT_PAGE_STATUS {
-  ACTIVE = 'Active',
-  CLOSED = 'Closed'
-}
-
 export const Projects = () => {
-  const [status, setStatus] = useState(PROJECT_PAGE_STATUS.ACTIVE);
+  const [isActive, setIsActive] = useState(true);
   const [projects, setProjects] = useState<Project[] | null>([]);
 
   console.log(projects);
@@ -36,28 +30,13 @@ export const Projects = () => {
       <article id="projects">
         <main className="relative  z-2 w-full max-w-7xl mx-auto gap-y-[72px] font-dmsans text-white px-5">
           <div className="flex w-full justify-center pt-40 gap-8 text-white">
-            <Button
-              onClick={() => {
-                setStatus(PROJECT_PAGE_STATUS.ACTIVE);
-              }}
-              variant={status === PROJECT_PAGE_STATUS.ACTIVE ? VARIANT.PRIMARY : VARIANT.SECONDARY}
-            >
-              Activos
-            </Button>
-            <Button
-              onClick={() => {
-                setStatus(PROJECT_PAGE_STATUS.CLOSED);
-              }}
-              variant={status === PROJECT_PAGE_STATUS.CLOSED ? VARIANT.PRIMARY : VARIANT.SECONDARY}
-            >
-              Cerrados
-            </Button>
+            <ToggleButtonGroup isActive={isActive} setIsActive={setIsActive} />
           </div>
 
           {/* TODO: Mostrar proyectos activos o cerrados en base a un filter */}
 
-          {status === PROJECT_PAGE_STATUS.ACTIVE ? (
-            <div className="grid grid-cols-3 gap-6 pt-40">
+          {isActive ? (
+            <div className="grid grid-cols-3 gap-6 pt-24">
               {projects?.map((project) => (
                 <CardWrapper key={project.id} className="flex flex-col gap-8">
                   <h1 className="font-bold text-[32px]">{project.name}</h1>
