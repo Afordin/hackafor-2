@@ -7,8 +7,14 @@ export type Project = {
   name: string;
   repository_url: string | null;
   required_roles: RequiredRoles;
-  status: string;
+  status: ProjectStatus;
 };
+
+export enum ProjectStatus {
+  OPEN = 'OPEN',
+  CLOSED = 'CLOSED',
+  PENDING = 'PENDING'
+}
 
 export type User = {
   name: string;
