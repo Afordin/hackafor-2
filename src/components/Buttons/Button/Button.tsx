@@ -106,7 +106,7 @@ export const Button = ({
       ...(!hasBorder ? Variants[variant] : []),
       {
         'w-full': isFullWidth,
-        'h-fit w-fit rounded-full bg-gradient-to-rb from-primary-600 to-secondary-500 p-[0.2rem] buttonBgTransitionReset': hasBorder
+        'h-fit w-fit rounded-full bg-gradient-to-rb from-primary-600 to-secondary-500 p-px buttonBgTransitionReset': hasBorder
       },
       className
     ),

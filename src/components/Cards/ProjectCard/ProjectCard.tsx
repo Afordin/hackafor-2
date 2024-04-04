@@ -24,7 +24,7 @@ export const ProjectCard = ({ className, name, description, administrator, membe
       if (member.role === undefined) return null;
       return (
         <li key={member.name}>
-          <Tag>{member.role}</Tag>
+          <Tag className="capitalize">{member.role}</Tag>
         </li>
       );
     });
@@ -36,7 +36,7 @@ export const ProjectCard = ({ className, name, description, administrator, membe
       .filter(([, quantity]) => quantity > 0)
       .map(([role]) => (
         <li key={role}>
-          <Tag>{role}</Tag>
+          <Tag className="capitalize">{role}</Tag>
         </li>
       ));
   };
@@ -56,7 +56,7 @@ export const ProjectCard = ({ className, name, description, administrator, membe
         </h4>
         <ul className={classes.list}>
           <li>
-            <Tag>{administrator.role}</Tag>
+            <Tag className="capitalize">{administrator.role}</Tag>
           </li>
           {renderParticipantsTag()}
         </ul>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Project, ProjectStatus, TagVariant, useProjects } from '@common';
-import { ProjectCard, Tag, ToggleButtonGroup } from '@components';
+import { Project, ProjectStatus, TagVariant, useProjects, VARIANT } from '@common';
+import { Button, ProjectCard, Tag, ToggleButtonGroup } from '@components';
 import { RootLayout } from '@layouts';
 
 export const Projects = () => {
@@ -10,8 +10,19 @@ export const Projects = () => {
   const activeProjects = projects?.filter((project) => project.status === ProjectStatus.pending);
   const closedProjects = projects?.filter((project) => project.status === ProjectStatus.closed);
 
+  console.log(activeProjects);
+
+  const [filter, setFilter] = useState<string[]>([]);
+
+  // TODO: Unificar filters
+
+  const filterBy = (projects: Project[], roles: string[]) => {
+    if (roles?.length === 0) return projects;
+    return projects.filter((project) => roles?.some((role) => project.requiredRoles[role] > 0));
+  };
+
   const renderProjects = (projects: Project[] | undefined | null) =>
-    projects?.map((project, index) => {
+    filterBy(projects ?? [], filter).map((project, index) => {
       const animateDelay = index * 0.05;
       return (
         <ProjectCard
@@ -28,6 +39,10 @@ export const Projects = () => {
       );
     });
 
+  const updateFilter = (updatedRole: string) => {
+    setFilter((prev) => (prev.includes(updatedRole) ? prev.filter((role) => role !== updatedRole) : [...prev, updatedRole]));
+  };
+
   return (
     <RootLayout>
       <main id="projects">
@@ -43,13 +58,46 @@ export const Projects = () => {
           </div>
 
           {/* TODO: Implement the filter */}
-          <section className="flex items-center justify-center gap-4 mt-12 flex-wrap">
+          <section className="flex items-center justify-center gap-x-4 mt-12 flex-wrap">
             <span className="i-lucide-filter"></span>
-            <Tag variant={TagVariant.neutral}>Front-end</Tag>
-            <Tag variant={TagVariant.neutral}>Back-end</Tag>
-            <Tag variant={TagVariant.neutral}>Full-stack</Tag>
-            <Tag variant={TagVariant.neutral}>Diseñador(a)</Tag>
-            <Tag variant={TagVariant.neutral}>Otros</Tag>
+            <Button
+              variant={VARIANT.GHOST}
+              onClick={() => {
+                updateFilter('front-end');
+              }}
+              //TODO: Update strings with constants
+              className={`p-0 ${filter.includes('front-end') ? 'p-2 bg-red' : ''} `}
+            >
+              {/* // TODO: Add hover to tag */}
+              <Tag variant={TagVariant.neutral}>Front-end</Tag>
+            </Button>
+            <Button
+              variant={VARIANT.GHOST}
+              onClick={() => {
+                updateFilter('back-end');
+              }}
+              className={`p-0 ${filter.includes('back-end') ? 'p-2 bg-red' : ''} `}
+            >
+              <Tag variant={TagVariant.neutral}>Back-end</Tag>
+            </Button>
+            <Button
+              variant={VARIANT.GHOST}
+              onClick={() => {
+                updateFilter('full-stack');
+              }}
+              className={`p-0 ${filter.includes('full-stack') ? 'p-2 bg-red' : ''} `}
+            >
+              <Tag variant={TagVariant.neutral}>Full-Stack</Tag>
+            </Button>
+            <Button
+              variant={VARIANT.GHOST}
+              onClick={() => {
+                updateFilter('designer');
+              }}
+              className={`p-0 ${filter.includes('designer') ? 'p-2 bg-red' : ''} `}
+            >
+              <Tag variant={TagVariant.neutral}>Diseñador(a)</Tag>
+            </Button>
           </section>
 
           {/* TODO: add the grid-cols arbitrary to UNOCSS config */}

@@ -139,10 +139,11 @@ export const Ticket: FC<TicketProps> = ({
               onClick={() => {
                 shareTwitter(user?.id);
               }}
+              hasBorder
               variant={VARIANT.SECONDARY}
             >
               <div className="flex gap-2 items-center">
-                <span className="i-bi-x"></span>
+                <span className="i-bi-twitter-x"></span>
                 <span>Compartir</span>
               </div>
             </Button>
@@ -153,8 +154,8 @@ export const Ticket: FC<TicketProps> = ({
               variant={VARIANT.GHOST}
             >
               <div className="flex gap-2 items-center">
-                <span className="i-bi-download"></span>
-                <span>Descargar</span>
+                <span className="i-lucide-arrow-down bg-gradient-to-b from-secondary-500 to-primary-600"></span>
+                <span>Descargar Ticket</span>
               </div>
             </Button>
           </div>
