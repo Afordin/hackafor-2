@@ -36,7 +36,7 @@ export const Projects = () => {
           {/* TODO: Mostrar proyectos activos o cerrados en base a un filter */}
 
           {isActive ? (
-            <div className="grid grid-cols-3 gap-6 pt-40">
+            <div className="grid grid-cols-3 gap-6 pt-24">
               {projects?.map((project) => (
                 <CardWrapper key={project.id} className="flex flex-col gap-8">
                   <h1 className="font-bold text-[32px]">{project.name}</h1>
