@@ -46,6 +46,6 @@ export const Countdown = () => {
         <p className="mb-4 text-2xl">Segundos</p>
         <span className="font-bold text-6xl">{formatNumber(timeLeft.seconds)}</span>
       </section>
-    </article>
+    </>
   );
 };
