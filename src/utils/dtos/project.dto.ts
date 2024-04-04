@@ -1,4 +1,5 @@
 import { Project, ProjectStatus } from '@common';
+import { ProjectDataType } from '@utils';
 
 /**
  * Converts a project status from uppercase to lowercase enum value.
@@ -20,7 +21,7 @@ const convertStatus = (status: string): ProjectStatus => {
  * @param rawProject The project data directly from Supabase.
  * @returns A formatted project object.
  */
-export const projectDTO = (rawProject): Project => {
+export const projectDTO = (rawProject: ProjectDataType): Project => {
   return {
     administrator: rawProject.administrator,
     createdAt: rawProject.created_at,
