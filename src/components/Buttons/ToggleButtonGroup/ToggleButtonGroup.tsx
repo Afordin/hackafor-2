@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { ButtonSize, cn, useBreakpoint, VARIANT } from '@common';
+import { ButtonSize, cn, VARIANT } from '@common';
 import { Button } from '@components';
 
 interface ToggleButtonGroupProps {
@@ -23,15 +23,14 @@ export const ToggleButtonGroup = ({ className, isActive, setIsActive }: ToggleBu
   const classes = {
     container: cn('max-sm:grid max-sm:gap-4 ', className)
   };
-  const { isMobile } = useBreakpoint();
-  const handleButtonSize = isMobile ? ButtonSize.xl : ButtonSize.xl;
+
   const handleActive = (isActive) => setIsActive(isActive);
   const handleButtonVariant = (isActive: boolean): VARIANT => (isActive ? VARIANT.PRIMARY : VARIANT.SECONDARY);
 
   return (
     <div className={classes.container}>
       <Button
-        size={handleButtonSize}
+        size={ButtonSize.xl}
         onClick={() => handleActive(true)}
         variant={handleButtonVariant(isActive)}
         className="sm:rounded-r-none max-sm:w-full"
@@ -39,7 +38,7 @@ export const ToggleButtonGroup = ({ className, isActive, setIsActive }: ToggleBu
         Activos
       </Button>
       <Button
-        size={handleButtonSize}
+        size={ButtonSize.xl}
         onClick={() => handleActive(false)}
         className="sm:rounded-l-none max-sm:w-full"
         variant={handleButtonVariant(!isActive)}
