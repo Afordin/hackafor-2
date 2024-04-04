@@ -34,7 +34,7 @@ export const Countdown = () => {
         <p className="mb-4 text-2xl">Días</p>
         <span className="font-bold text-6xl">{formatNumber(timeLeft.days)}</span>
       </section>
-      <section>
+      <section className="text-center">
         <p className="mb-4 text-2xl">Horas</p>
         <span className="font-bold text-6xl">{formatNumber(timeLeft.hours)}</span>
       </section>
