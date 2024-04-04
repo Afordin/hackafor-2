@@ -48,10 +48,8 @@ export function Information() {
           ))}
         </ul>
       </div>
-      <SimpleCard>
-        <section className="mx-auto">
+      <SimpleCard className="mx-auto flex flex-wrap justify-center items-center gap-24">
           <Countdown />
-        </section>
       </SimpleCard>
     </section>
   );
