@@ -1,29 +1,14 @@
-import { useEffect, useState } from 'react';
-import { TagVariant } from '@common';
+import { useState } from 'react';
+import { Project, ProjectStatus, TagVariant, useProjects } from '@common';
 import { ProjectCard, Tag, ToggleButtonGroup } from '@components';
 import { RootLayout } from '@layouts';
-import { createClient } from '@supabase/supabase-js';
-import { Project, ProjectStatus } from './types';
-
-// TODO: Implement a controller to fetch projects
-const supabase = createClient(import.meta.env.VITE_PROJECT_URL, import.meta.env.VITE_API_KEY);
-
-export const fetchProjects = () => {
-  return supabase.from('Project').select();
-};
 
 export const Projects = () => {
+  // TODO: Implement a Loading State
+  const { projects } = useProjects();
   const [isActive, setIsActive] = useState(true);
-  const [projects, setProjects] = useState<Project[] | null>([]);
-
-  useEffect(() => {
-    fetchProjects().then((data) => {
-      setProjects(data.data);
-    });
-  }, []);
-
-  const activeProjects = projects?.filter((project) => project.status === ProjectStatus.PENDING);
-  const closedProjects = projects?.filter((project) => project.status === ProjectStatus.CLOSED);
+  const activeProjects = projects?.filter((project) => project.status === ProjectStatus.pending);
+  const closedProjects = projects?.filter((project) => project.status === ProjectStatus.closed);
 
   const renderProjects = (projects: Project[] | undefined | null) =>
     projects?.map((project, index) => {
@@ -35,7 +20,7 @@ export const Projects = () => {
           description={project.description}
           administrator={project.administrator}
           members={project.members}
-          required_roles={project.required_roles}
+          requiredRoles={project.requiredRoles}
           status={project.status}
           className={`animate-fade-up-custom`}
           style={{ '--animate-delay': `${animateDelay}s` } as any}
