@@ -30,20 +30,20 @@ export const Countdown = () => {
 
   return (
     <article className="flex flex-wrap justify-center items-center gap-24">
-      <section>
-        <p className="mb-4 text-center text-2xl">Días</p>
+      <section className="text-center">
+        <p className="mb-4 text-2xl">Días</p>
         <span className="font-bold text-6xl">{formatNumber(timeLeft.days)}</span>
       </section>
       <section>
-        <p className="mb-4 text-center text-2xl">Horas</p>
+        <p className="mb-4 text-2xl">Horas</p>
         <span className="font-bold text-6xl">{formatNumber(timeLeft.hours)}</span>
       </section>
-      <section>
-        <p className="mb-4 text-center text-2xl">Minutos</p>
+      <section className="text-center">
+        <p className="mb-4 text-2xl">Minutos</p>
         <span className="font-bold text-6xl">{formatNumber(timeLeft.minutes)}</span>
       </section>
-      <section>
-        <p className="mb-4 text-center text-2xl">Segundos</p>
+      <section className="text-center">
+        <p className="mb-4 text-2xl">Segundos</p>
         <span className="font-bold text-6xl">{formatNumber(timeLeft.seconds)}</span>
       </section>
     </article>
