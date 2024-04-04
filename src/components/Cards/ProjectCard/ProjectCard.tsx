@@ -1,16 +1,15 @@
 import { HTMLAttributes } from 'react';
-import { cn } from '@common';
+import { cn, Project } from '@common';
 import { Button, CardWrapper, Tag } from '@components';
-import { Project } from '@pages/Projects/types';
 
-interface ProjectCardProps extends Omit<Project, 'id' | 'created_at' | 'repository_url'>, HTMLAttributes<HTMLDivElement> {
+interface ProjectCardProps extends Omit<Project, 'id' | 'createdAt' | 'repositoryUrl'>, HTMLAttributes<HTMLDivElement> {
   /**
    * Specify an optional className to be added to the component
    */
   className?: string;
 }
 
-export const ProjectCard = ({ className, name, description, administrator, members, required_roles, ...restOfProps }: ProjectCardProps) => {
+export const ProjectCard = ({ className, name, description, administrator, members, requiredRoles, ...restOfProps }: ProjectCardProps) => {
   const classes = {
     container: cn('grid gap-8 max-w-md w-full max-xl:mx-auto', className),
     subTitle: cn('text-4 font-bold'),
@@ -33,7 +32,7 @@ export const ProjectCard = ({ className, name, description, administrator, membe
 
   /* TODO: Filtrar si está buscando antes del texto */
   const renderRequiredRolesTag = () => {
-    return Object.entries(required_roles)
+    return Object.entries(requiredRoles)
       .filter(([, quantity]) => quantity > 0)
       .map(([role]) => (
         <li key={role}>
