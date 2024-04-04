@@ -35,12 +35,12 @@ You can demonstrate your talent by participating alone or as a team and win priz
 2. install dependencies
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. run the project
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 4. Open your browser and visit
 
