@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { cn, useAuth } from '@common';
 
 interface Props {
@@ -22,6 +22,25 @@ export const Avatar: FC<Props> = ({ avatar, className, size = 'sm' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { signOut } = useAuth();
   // TODO: add responsive design
+  const modalRef = useRef<HTMLDivElement | null>(null);
+
+  //! usehooks-ts useOnClickOutside would be good here
+  useEffect(() => {
+    const clickOutsideModal = (e: MouseEvent) => {
+      if (!modalRef.current) {
+        return;
+      }
+      if (e.currentTarget !== modalRef.current) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', clickOutsideModal);
+
+    return () => {
+      document.removeEventListener('mousedown', clickOutsideModal);
+    };
+  }, []);
 
   const classes = {
     container: ` flex w-fit h-full items-center relative gap-4 ${className} text-white`,
@@ -35,12 +54,13 @@ export const Avatar: FC<Props> = ({ avatar, className, size = 'sm' }) => {
   };
 
   return (
-    <div className={classes.container}>
+    <div className={classes.container} ref={modalRef}>
       <span
         className="relative cursor-pointer"
         onClick={() => {
           setIsOpen(!isOpen);
         }}
+        onMouseDown={(e) => e.stopPropagation()}
       >
         <span className={cn('i-material-symbols-expand-more', classes.imageIcon, isOpen && 'text-yellow')} />
         <img className={cn(classes[size], classes.image)} src={avatar} alt="avatar" />
@@ -48,7 +68,7 @@ export const Avatar: FC<Props> = ({ avatar, className, size = 'sm' }) => {
       {/* modal */}
       {isOpen && (
         <div className={classes.modal}>
-          <p className={classes.text} onClick={signOut}>
+          <p className={classes.text} onMouseDown={(e) => e.stopPropagation()} onClick={signOut}>
             <span className="i-material-symbols-exit-to-app-rounded" />
             Cerrar sesión
           </p>
