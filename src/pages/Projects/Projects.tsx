@@ -65,7 +65,7 @@ export const Projects = () => {
             </p>
           </div>
 
-          <section className="flex items-center justify-center gap-x-4 mt-12 flex-wrap">
+          <section className="flex items-center justify-center gap-4 mt-12 flex-wrap">
             <Button
               className="px-3 ring-1 ring-neutral-800 h-8"
               variant={VARIANT.GHOST}
