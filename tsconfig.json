@@ -2,32 +2,16 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "baseUrl": ".",
     "paths": {
-      "@common": [
-        "./src/common/index.ts"
-      ],
-      "@components": [
-        "./src/components/index.ts"
-      ],
-      "@data": [
-        "./src/data/index.ts"
-      ],
+      "@common": ["./src/common/index.ts"],
+      "@components": ["./src/components/index.ts"],
+      "@data": ["./src/data/index.ts"],
       "@layouts": ["./src/layouts/index.ts"],
-      "@pages/*": [
-        "./src/pages/*"
-      ],
-      "@store": [
-        "./src/store/index.ts"
-      ],
-      "@utils": [
-        "./src/utils/index.ts"
-      ],
+      "@pages/*": ["./src/pages/*"],
+      "@store": ["./src/store/index.ts"],
+      "@utils": ["./src/utils/index.ts"]
     },
     "allowJs": false,
     "skipLibCheck": true,
@@ -39,16 +23,12 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "types": [
-      "vite/client"
-    ],
+    "types": ["vite/client"],
     "noImplicitAny": false,
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "references": [
     {
       "path": "./tsconfig.node.json"

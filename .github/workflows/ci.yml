@@ -1,0 +1,44 @@
+name: Hackafor Project CI
+
+on:
+  pull_request:
+    branches: ['*']
+  push:
+    branches: ['main']
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (v18)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
+
+      - name: Cache pnpm Store
+        uses: actions/cache@v4
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Check Code Formatting
+        run: pnpm run format
+
+      - name: Lint Code
+        run: pnpm run lint
+
+      - name: Build Project
+        run: pnpm run build

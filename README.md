@@ -22,8 +22,6 @@ You can demonstrate your talent by participating alone or as a team and win priz
 
 ![image](https://github.com/jarrisondev/hackafor-2/assets/62910118/19e32117-2118-4a26-908e-469e3a478755)
 
-
-
 ## Getting started
 
 1. clone or fork this repository
