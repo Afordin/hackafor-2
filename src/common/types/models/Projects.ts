@@ -9,6 +9,14 @@ export type User = {
   role: string;
 };
 
+export enum ProjectRoles {
+  frontEnd = 'front-end',
+  backEnd = 'back-end',
+  fullStack = 'full-stack',
+  designer = 'designer',
+  any = 'any'
+}
+
 export type RequiredRoles = {
   'front-end': number;
   'back-end': number;
