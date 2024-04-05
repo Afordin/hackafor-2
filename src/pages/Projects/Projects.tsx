@@ -16,11 +16,6 @@ export const Projects = () => {
 
   // TODO: Unificar filters
 
-  const filterBy = (projects: Project[], roles: string[]) => {
-    if (roles?.length === 0) return projects;
-    return projects.filter((project) => roles?.some((role) => project.requiredRoles[role] > 0));
-  };
-
   const renderProjects = (projects: Project[] | undefined | null) =>
     filterBy(projects ?? [], filter).map((project, index) => {
       const animateDelay = index * 0.05;
