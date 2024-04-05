@@ -21,6 +21,8 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
+        with:
+          version: latest
 
       - name: Cache pnpm Store
         uses: actions/cache@v4
