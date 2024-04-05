@@ -7,16 +7,31 @@ interface ProjectCardProps extends Omit<Project, 'id' | 'createdAt' | 'repositor
    * Specify an optional className to be added to the component
    */
   className?: string;
+
+  /**
+   * Specify if the project is active
+   */
+  isActive: boolean;
 }
 
-export const ProjectCard = ({ className, name, description, administrator, members, requiredRoles, ...restOfProps }: ProjectCardProps) => {
+export const ProjectCard = ({
+  isActive,
+  className,
+  name,
+  description,
+  administrator,
+  members,
+  requiredRoles,
+  ...restOfProps
+}: ProjectCardProps) => {
   const classes = {
     container: cn('grid gap-8 max-w-md w-full max-xl:mx-auto', className),
     subTitle: cn('text-4 font-bold'),
-    list: cn('flex flex-wrap gap-4 mt-4 text-3.5')
+    list: cn('flex flex-wrap gap-x-4 gap-y-2 mt-2 text-3.5')
   };
+
   const handleDescription = () => {
-    if (description.length > 175) return `${description.slice(0, 130)}...`;
+    if (description.length > 210) return `${description.slice(0, 210)}...`;
     return description;
   };
   const renderParticipantsTag = () => {
@@ -46,11 +61,11 @@ export const ProjectCard = ({ className, name, description, administrator, membe
       {/*  Header */}
       <header className="grid gap-4">
         <h3 className="font-bold text-8">{name}</h3>
-        <p className="text-4 h-24 text-balance truncate">{handleDescription()}</p>
+        <p className="text-4 h-24 text-balance ">{handleDescription()}</p>
       </header>
 
       {/* Participants Section */}
-      <section aria-labelledby="participants-title">
+      <section aria-labelledby="participants-title" className="py-4">
         <h4 id="participants-title" className={classes.subTitle}>
           Participantes
         </h4>
@@ -62,17 +77,20 @@ export const ProjectCard = ({ className, name, description, administrator, membe
         </ul>
       </section>
 
-      {/* Roles Section */}
-      <section aria-labelledby="roles-title">
-        <h4 id="roles-title" className={classes.subTitle}>
-          Estamos buscando
-        </h4>
-        <ul className={classes.list}>{renderRequiredRolesTag()}</ul>
-      </section>
+      {isActive && (
+        <>
+          <section aria-labelledby="roles-title">
+            <h4 id="roles-title" className={classes.subTitle}>
+              Estamos buscando
+            </h4>
+            <ul className={classes.list}>{renderRequiredRolesTag()}</ul>
+          </section>
 
-      <footer className="mx-auto">
-        <Button>Contactar</Button>
-      </footer>
+          <footer className="mx-auto">
+            <Button>Contactar</Button>
+          </footer>
+        </>
+      )}
     </CardWrapper>
   );
 };

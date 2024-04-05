@@ -4,8 +4,6 @@ import { Button, ProjectCard, ToggleButtonGroup } from '@components';
 import { RootLayout } from '@layouts';
 import { filterBy } from './utils/filterBy';
 
-// TODO: Work in a implementation where the card never leave the DOM for better animations
-
 export const Projects = () => {
   // TODO: Implement a Loading State
   const { projects } = useProjects();
@@ -37,6 +35,7 @@ export const Projects = () => {
           status={project.status}
           className={`animate-fade-up-custom`}
           style={{ '--animate-delay': `${animateDelay}s` } as any}
+          isActive={isActive}
         />
       );
     });
