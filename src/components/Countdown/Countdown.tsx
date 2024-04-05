@@ -51,8 +51,8 @@ export const Countdown = () => {
     <>
       {time.map(({ name, label }, index) => (
         <section key={index} className="text-center text-shadow-sm">
-          <p className="mb-4 text-2xl">{label}</p>
           <span className="font-bold text-6xl">{formatNumber(timeLeft[name])}</span>
+          <p className="mb-4 text-2xl">{label}</p>
         </section>
       ))}
     </>
