@@ -120,7 +120,7 @@ export const Projects = () => {
           </section>
 
           {/* TODO: add the grid-cols arbitrary to UNOCSS config */}
-          <section className="grid sm:grid-cols-[repeat(auto-fit,_minmax(390px,1fr))] gap-6 pt-12">
+          <section className="grid sm:grid-cols-[repeat(auto-fit,_minmax(390px,1fr))] gap-6 pt-12 justify-items-center">
             {isActive ? renderProjects(activeProjects) : renderProjects(closedProjects)}
           </section>
         </div>
