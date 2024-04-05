@@ -1,0 +1,30 @@
+name: labeler
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - '.github/labels.yml'
+      - '.github/workflows/labels.yml'
+
+jobs:
+  labeler:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run Labeler
+        if: success()
+        uses: crazy-max/ghaction-github-labeler@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          yaml-file: .github/labels.yml
+          skip-delete: false
+          dry-run: false
+          exclude: |
+            help*
+            *issue
+
+# How to use this action https://github.com/crazy-max/ghaction-github-labeler
