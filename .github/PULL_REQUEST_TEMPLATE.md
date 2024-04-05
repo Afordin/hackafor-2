@@ -1,27 +1,25 @@
-## Cambios Realizados 🎉
+## Changes Made 🎉
 
-<!-- Agregar, actualizar o eliminar de abajo -->
+<!-- Add, update or remove from below -->
 
-- [ ] feat: agregada nueva característica para mejorar la experiencia del usuario
-- [ ] fix: corregido un error con la funcionalidad de inicio de sesión
-- [ ] refactor: mejorada la legibilidad y organización del código
-- [ ] docs: actualizado el README con nuevas instrucciones
-- [ ] chore: actualizadas las dependencias y archivos de configuración
+- [ ] feat: added new feature to improve user experience
+- [ ] fix: corrected a bug with login functionality
+- [ ] refactor: improved code readability and organization
+- [ ] docs: updated README with new instructions
+- [ ] chore: updated dependencies and configuration files
 
-## Describir Cambios
+### Describe Changes
 
-## Issue
+## Related Issue(s)
 
-- Numero de Issue
+- Issue Number
 
-<!-- E.G #50 -->
+## Visuals (Optional)
 
-## Visuales (Opcional)
+<!--- Add video or images showcasing the changes or demonstrating the functionality --->
 
-<!--- Agregar vídeo o imágenes que muestren los cambios o demuestren la funcionalidad --->
+## Checklist ✅
 
-## Lista de Verificación ✅
-
-- [ ] Mi código sigue el estilo de código de este proyecto.
-- [ ] Mi cambio requiere una modificación de la documentación.
-- [ ] He actualizado la documentación según corresponda.
+- [ ] My code follows the code style of this project.
+- [ ] My change requires a change to the documentation.
+- [ ] I have updated the documentation accordingly.
