@@ -1,25 +1,25 @@
 import { useState } from 'react';
-import { Project, ProjectStatus, TagVariant, useProjects, VARIANT } from '@common';
-import { Button, ProjectCard, Tag, ToggleButtonGroup } from '@components';
+import { ButtonSize, cn, Project, ProjectRoles, ProjectStatus, useProjects, VARIANT } from '@common';
+import { Button, ProjectCard, ToggleButtonGroup } from '@components';
 import { RootLayout } from '@layouts';
+import { filterBy } from './utils/filterBy';
 
 export const Projects = () => {
   // TODO: Implement a Loading State
   const { projects } = useProjects();
+  const [filter, setFilter] = useState<string[]>([]);
   const [isActive, setIsActive] = useState(true);
   const activeProjects = projects?.filter((project) => project.status === ProjectStatus.pending);
   const closedProjects = projects?.filter((project) => project.status === ProjectStatus.closed);
 
-  console.log(activeProjects);
-
-  const [filter, setFilter] = useState<string[]>([]);
+  const classes = {
+    tag: (role: ProjectRoles) =>
+      cn('ring-1 ring-neutral-800 px-2.5', {
+        'bg-gradient-to-rb from-primary-600 to-secondary-500 ': filter.includes(role)
+      })
+  };
 
   // TODO: Unificar filters
-
-  const filterBy = (projects: Project[], roles: string[]) => {
-    if (roles?.length === 0) return projects;
-    return projects.filter((project) => roles?.some((role) => project.requiredRoles[role] > 0));
-  };
 
   const renderProjects = (projects: Project[] | undefined | null) =>
     filterBy(projects ?? [], filter).map((project, index) => {
@@ -35,12 +35,19 @@ export const Projects = () => {
           status={project.status}
           className={`animate-fade-up-custom`}
           style={{ '--animate-delay': `${animateDelay}s` } as any}
+          isActive={isActive}
         />
       );
     });
 
-  const updateFilter = (updatedRole: string) => {
-    setFilter((prev) => (prev.includes(updatedRole) ? prev.filter((role) => role !== updatedRole) : [...prev, updatedRole]));
+  const resetFilter = () => setFilter([]);
+  const toggleFilterRole = (roleToToggle: string) => {
+    setFilter((currentFilters) => {
+      const isRoleActive = currentFilters.includes(roleToToggle);
+      if (isRoleActive) {
+        return currentFilters.filter((role) => role !== roleToToggle);
+      } else return [...currentFilters, roleToToggle];
+    });
   };
 
   return (
@@ -50,58 +57,70 @@ export const Projects = () => {
           {/* TODO: Change to FIGMA element */}
 
           <div className="grid gap-8 text-white">
-            <ToggleButtonGroup isActive={isActive} setIsActive={setIsActive} className="mx-auto" />
+            <ToggleButtonGroup isActive={isActive} setIsActive={setIsActive} setFilter={setFilter} className="mx-auto" />
             <p className="mt-4 text-fluid-sm text-center">
               Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor
               sit amet consectetur. Dolor sit amet.
             </p>
           </div>
 
-          {/* TODO: Implement the filter */}
-          <section className="flex items-center justify-center gap-x-4 mt-12 flex-wrap">
-            <span className="i-lucide-filter"></span>
+          <section className="flex items-center justify-center gap-4 mt-12 flex-wrap">
             <Button
+              className="px-3 ring-1 ring-neutral-800 h-8"
               variant={VARIANT.GHOST}
-              onClick={() => {
-                updateFilter('front-end');
-              }}
-              //TODO: Update strings with constants
-              className={`p-0 ${filter.includes('front-end') ? 'p-2 bg-red' : ''} `}
+              onClick={resetFilter}
+              disabled={isActive === false}
             >
-              {/* // TODO: Add hover to tag */}
-              <Tag variant={TagVariant.neutral}>Front-end</Tag>
+              <span className="i-lucide-filter block "></span>
             </Button>
             <Button
+              className={classes.tag(ProjectRoles.frontEnd)}
               variant={VARIANT.GHOST}
+              size={ButtonSize.sm}
+              disabled={isActive === false}
               onClick={() => {
-                updateFilter('back-end');
+                toggleFilterRole(ProjectRoles.frontEnd);
               }}
-              className={`p-0 ${filter.includes('back-end') ? 'p-2 bg-red' : ''} `}
             >
-              <Tag variant={TagVariant.neutral}>Back-end</Tag>
+              Front-end
             </Button>
             <Button
+              className={classes.tag(ProjectRoles.backEnd)}
               variant={VARIANT.GHOST}
+              size={ButtonSize.sm}
+              disabled={isActive === false}
               onClick={() => {
-                updateFilter('full-stack');
+                toggleFilterRole(ProjectRoles.backEnd);
               }}
-              className={`p-0 ${filter.includes('full-stack') ? 'p-2 bg-red' : ''} `}
             >
-              <Tag variant={TagVariant.neutral}>Full-Stack</Tag>
+              Back-end
             </Button>
             <Button
+              className={classes.tag(ProjectRoles.fullStack)}
               variant={VARIANT.GHOST}
+              size={ButtonSize.sm}
+              disabled={isActive === false}
               onClick={() => {
-                updateFilter('designer');
+                toggleFilterRole(ProjectRoles.fullStack);
               }}
-              className={`p-0 ${filter.includes('designer') ? 'p-2 bg-red' : ''} `}
             >
-              <Tag variant={TagVariant.neutral}>Diseñador(a)</Tag>
+              Full-Stack
+            </Button>
+            <Button
+              className={classes.tag(ProjectRoles.designer)}
+              variant={VARIANT.GHOST}
+              size={ButtonSize.sm}
+              disabled={isActive === false}
+              onClick={() => {
+                toggleFilterRole(ProjectRoles.designer);
+              }}
+            >
+              Diseñador(a)
             </Button>
           </section>
 
           {/* TODO: add the grid-cols arbitrary to UNOCSS config */}
-          <section className="grid sm:grid-cols-[repeat(auto-fit,_minmax(390px,1fr))] gap-6 pt-12">
+          <section className="grid sm:grid-cols-[repeat(auto-fit,_minmax(390px,1fr))] gap-6 pt-12 justify-items-center">
             {isActive ? renderProjects(activeProjects) : renderProjects(closedProjects)}
           </section>
         </div>

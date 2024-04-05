@@ -17,14 +17,23 @@ interface ToggleButtonGroupProps {
    * Sets the state of the button
    */
   setIsActive: Dispatch<boolean>;
+
+  /**
+   * Sets the state of the Filter
+   */
+  setFilter: Dispatch<string[]>;
 }
 
-export const ToggleButtonGroup = ({ className, isActive, setIsActive }: ToggleButtonGroupProps) => {
+export const ToggleButtonGroup = ({ className, isActive, setIsActive, setFilter }: ToggleButtonGroupProps) => {
   const classes = {
     container: cn('max-sm:grid max-sm:gap-4 ', className)
   };
 
-  const handleActive = (isActive) => setIsActive(isActive);
+  const handleActive = (isActive: boolean) => {
+    setFilter([]);
+    setIsActive(isActive);
+  };
+
   const handleButtonVariant = (isActive: boolean): VARIANT => (isActive ? VARIANT.PRIMARY : VARIANT.SECONDARY);
 
   return (
