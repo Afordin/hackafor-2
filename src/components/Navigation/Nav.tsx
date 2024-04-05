@@ -26,7 +26,7 @@ export const Nav = ({ className }: NavProps) => {
       'bg-cBackground/80 backdrop-blur-lg',
       'md:fixed md:top-6 z-20 md:inset-x-0',
       'text-gray-400',
-      'md:max-w-7xl mx-auto px-6 py-2',
+      'md:max-w-7xl mx-auto pl-6 py-2 pr-2',
       'flex items-center gap-6',
       'border-b',
       'md:border-[0.2px] border-cBorder md:rounded-full',
