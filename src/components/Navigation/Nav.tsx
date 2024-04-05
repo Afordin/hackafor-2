@@ -23,7 +23,7 @@ export const Nav = ({ className }: NavProps) => {
   const classes = {
     container: cn(
       'h-20 fixed',
-      'bg-cBackground/80 backdrop-blur-lg',
+      'bg-neutral-950 md:bg-cBackground',
       'md:fixed md:top-6 z-20 md:inset-x-0',
       'text-gray-400',
       'md:max-w-7xl mx-auto px-6 py-2',
@@ -32,7 +32,6 @@ export const Nav = ({ className }: NavProps) => {
       'md:border-[0.2px] border-cBorder md:rounded-full',
       'w-full md:w-fit mx-auto h-fit',
       'transition-all ease-in-out duration-300',
-      isAtTop ? 'bg-cBackground/80 md:bg-cBackground' : 'bg-cBackground/60 md:bg-cBackground/80',
       !isAtTop && isHidden && '-translate-y-full opacity-0',
       className
     ),
@@ -47,7 +46,7 @@ export const Nav = ({ className }: NavProps) => {
       }
     ),
     list: cn(
-      'py-5 px-6 md:py-0 md:px-0',
+      'py-5 px-6 md:py-0 md:px-0 backdrop-blur-2xl',
       'flex flex-col gap-6 font-bold',
       'md:flex-row md:items-center',
       'bg-cBackground/80 backdrop-blur-lg md:bg-transparent md:backdrop-filter-none',
@@ -146,9 +145,11 @@ export const Nav = ({ className }: NavProps) => {
           </li>
 
           {/* Contributor Section */}
-          <li className="md:hidden absolute inset-x-0 bottom-40">
-            <div className="contributors overflow-x-scroll">{renderContributors()}</div>
-            <p className="px-4 text-cWhite text-lg">Quienes han contribuido en el desarrollo</p>
+          <li className="md:hidden mt-auto mb-8">
+            <p className="px-4 text-cWhite text-lg text-center">Quienes han contribuido en el desarrollo</p>
+            <div className="contributors overflow-x-scroll" style={{ '--contributor-count': 6 } as any}>
+              {renderContributors()}
+            </div>
           </li>
         </ul>
       </nav>
