@@ -7,15 +7,15 @@ interface SocialIcon {
 }
 
 const socialIcons: SocialIcon[] = [
-  { icon: <span className="i-bi-discord hover:text-[#5864F2]" />, url: 'https://discord.com/invite/ke48ZgXcdU' },
-  { icon: <span className="i-bi-twitch hover:text-[#A96FFF]" />, url: 'https://www.twitch.tv/afor_digital' },
+  { icon: <span className="i-bi-discord hover:text-[#5864F2] transition-colors" />, url: 'https://discord.com/invite/ke48ZgXcdU' },
+  { icon: <span className="i-bi-twitch hover:text-[#A96FFF] transition-colors" />, url: 'https://www.twitch.tv/afor_digital' },
   {
-    icon: <span className="i-bi-instagram hover:text-warmGray" />,
+    icon: <span className="i-bi-instagram hover:text-warmGray transition-colors" />,
     url: 'https://www.instagram.com/afor_digital'
   },
-  { icon: <span className="i-bi-github hover:text-gray-7" />, url: 'https://github.com/Afordin' },
+  { icon: <span className="i-bi-github hover:text-gray-7 transition-colors" />, url: 'https://github.com/Afordin' },
   {
-    icon: <span className="i-bi-twitter-x hover:text-neutral-400" />,
+    icon: <span className="i-bi-twitter-x hover:text-neutral-400 transition-colors" />,
     url: 'https://twitter.com/afor_digital'
   }
 ];
@@ -24,7 +24,7 @@ export const Footer = () => {
   const classes = {
     container: cn('text-cWhite bg-gradient-to-r from-[#19101D] to-[#0D0D0E] py-5 w-full font-dmsans'),
     innerContainer: cn('max-w-7xl w-full mx-auto text-center mb-10 flex flex-col justify-between items-center'),
-    socialIcon: cn('inline-flex transition-all duration-300'),
+    socialIcon: cn('inline-flex'),
     copyRight: cn('text-sm mt-5 absolute inset-x-0 bottom-2')
   };
 
@@ -63,11 +63,11 @@ export const Footer = () => {
 
         {/* Copyrights */}
         <div className={classes.copyRight}>
-          © 2024 Designed by{' '}
+          © 2024 Designed by
           <a href="https://www.twitch.tv/uxanarangel" className="custom-underline">
             Ana Rangel
-          </a>{' '}
-          Developed by{' '}
+          </a>
+          Developed by
           <a href="https://discord.com/invite/comuafor" className="custom-underline">
             Comuafor
           </a>
