@@ -31,10 +31,15 @@ const Variants: Record<VARIANT, Array<string>> = {
     'before:opacity-0 before:hover:opacity-100',
     'before:rounded-full',
     'before:transition-opacity before:duration-300'
+  ],
+  [VARIANT.twitch]: [
+    'rounded-full',
+    'bg-gradient-to-rb from-[#4b2a88] via-[#7b4dda] to-[#2e195c] text-cWhite',
+    'hover:to-100%',
+    'buttonBgTransition'
   ]
 };
 
-// TODO: Export types outside
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Text inside the button.
@@ -66,9 +71,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    */
   isFullWidth?: boolean;
 
-  /**
-   * HTML button type attribute ('button', 'submit', etc.).
-   */
   /**
    * HTML button type attribute ('button', 'submit', etc.).
    */
