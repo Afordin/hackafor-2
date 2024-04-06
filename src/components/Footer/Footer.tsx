@@ -15,7 +15,7 @@ const socialIcons: SocialIcon[] = [
   },
   { icon: <span className="i-bi-github hover:text-gray-7" />, url: 'https://github.com/Afordin' },
   {
-    icon: <span className="i-bi-twitter-x hover:text-gray-8" />,
+    icon: <span className="i-bi-twitter-x hover:text-neutral-400" />,
     url: 'https://twitter.com/afor_digital'
   }
 ];
@@ -68,8 +68,8 @@ export const Footer = () => {
             Ana Rangel
           </a>{' '}
           Developed by{' '}
-          <a href="https://www.twitch.tv/afor_digital" className="custom-underline">
-            aforcita
+          <a href="https://discord.com/invite/comuafor" className="custom-underline">
+            Comuafor
           </a>
         </div>
       </div>
