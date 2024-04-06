@@ -15,6 +15,21 @@ export const Hero = ({ className }: HeroProps) => {
     innerContainer: cn('relative z-1', 'container mx-auto', 'grid md:grid-rows-[1fr_0.5fr]', 'w-full min-h-[100svh]')
   };
 
+  const renderTwitchButton = () => {
+    if (isLive) {
+      return (
+        <a href="https://www.twitch.tv/afor_digital" target="_blank">
+          <Button variant={Variant.twitch} className="mt-4 flex items-center gap-4 mx-auto" size={ButtonSize.xl}>
+            <span>twitch.tv/afor_digital</span>
+            <div className="rounded-full px-2 bg-primary-600 animate-pulse relative before:content-[''] before:inset-0 before:absolute before:w-full before:h-full before:bg-primary-600 before:rounded-full before:animate-ping before:animate-duration-2000 ">
+              LIVE
+            </div>
+          </Button>
+        </a>
+      );
+    }
+  };
+
   return (
     <section className={classes.container}>
       <div className={classes.innerContainer}>
@@ -36,6 +51,7 @@ export const Hero = ({ className }: HeroProps) => {
             </a>
           )}
         </article>
+        {renderTwitchButton()}
         <CTA className="text-center text-shadow-sm md:self-center" />
       </div>
     </section>
