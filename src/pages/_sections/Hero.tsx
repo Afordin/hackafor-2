@@ -1,5 +1,5 @@
-import { cn } from '@common';
-import { Countdown, TwitchLive } from '@components';
+import { ButtonSize, cn, useTwitchStatus, VARIANT } from '@common';
+import { Button, Countdown } from '@components';
 import { CTA } from './CTA';
 
 interface HeroProps {
@@ -9,6 +9,7 @@ interface HeroProps {
   className?: string;
 }
 export const Hero = ({ className }: HeroProps) => {
+  const { isLive } = useTwitchStatus();
   const classes = {
     container: cn(className),
     innerContainer: cn('relative z-1', 'container mx-auto', 'grid md:grid-rows-[1fr_0.5fr]', 'w-full min-h-[100svh]')
@@ -23,7 +24,17 @@ export const Hero = ({ className }: HeroProps) => {
           <article className="flex flex-wrap justify-center gap-18 mt-8">
             <Countdown />
           </article>
-          <TwitchLive />
+
+          {isLive && (
+            <a href="https://www.twitch.tv/afor_digital" target="_blank">
+              <Button variant={VARIANT.twitch} className="mt-4 flex items-center gap-4 mx-auto" size={ButtonSize.xl}>
+                <span>twitch.tv/afor_digital</span>
+                <div className="rounded-full px-2 bg-primary-600 animate-pulse relative before:content-[''] before:inset-0 before:absolute before:w-full before:h-full before:bg-primary-600 before:rounded-full before:animate-ping before:animate-duration-2000 ">
+                  LIVE
+                </div>
+              </Button>
+            </a>
+          )}
         </article>
         <CTA className="text-center text-shadow-sm md:self-center" />
       </div>
