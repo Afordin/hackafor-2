@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { ROUTE, supabase } from '@common';
+import { ROUTE } from '@common';
 import { Home } from '@pages/Home';
 import { Projects } from '@pages/Projects/Projects';
 import { Registration } from '@pages/Registration/Registration';
+import { supabase } from '@utils';
 import { Route, Routes } from 'react-router-dom';
 import { useUserStore } from './store/useUserStore';
 
