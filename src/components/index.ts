@@ -1,3 +1,4 @@
+export * from './Avatar/Avatar';
 export * from './Background/Background';
 export * from './Buttons';
 export * from './Cards';
