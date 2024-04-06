@@ -1,1 +1,1 @@
-export * from './FeatureProjects';
+export * from './legacy/FeatureProjects';
