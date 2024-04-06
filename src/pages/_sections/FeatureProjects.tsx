@@ -17,8 +17,8 @@ export const FeatureProjects = ({ className }: FeatureProjectsProps) => {
   };
 
   const renderProject = () =>
-    projectsSlice.map(({ name, description, repositoryUrl }, index) => (
-      <a key={`${name}-${index}`} href={repositoryUrl as string} className="hover:scale-110 transition-transform duration-300 ">
+    projectsSlice.map(({ id, name, description, repositoryUrl }) => (
+      <a key={id} href={repositoryUrl as string} className="hover:scale-110 transition-transform duration-300 ">
         <SimpleCard className="p-8 lg:p-8 relative | carousel-custom-border">
           <h2 className="text-xl font-bold">{name}</h2>
           <p>{description}</p>
