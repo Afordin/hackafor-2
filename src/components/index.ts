@@ -5,7 +5,6 @@ export * from './Carousel/Carousel';
 export * from './Footer/Footer';
 export * from './Navigation/Nav';
 export * from './Logo/Logo';
-export * from './TwitchLive/TwitchLive';
 export * from './Tag/Tag';
 export * from './Countdown/Countdown';
 export * from './Avatar/Avatar';
