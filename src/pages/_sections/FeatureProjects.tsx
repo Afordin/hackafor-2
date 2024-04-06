@@ -1,6 +1,5 @@
-import { ButtonSize, cn, ROUTE, Variant } from '@common';
-import { Button, Carousel, SimpleCard } from '@components';
-import { featureProjectsData } from '@data';
+import { ButtonSize, cn, ROUTE, useProjects, Variant } from '@common';
+import { Button, Carousel, SimpleCard, Spinner } from '@components';
 import { Link } from 'react-router-dom';
 
 interface FeatureProjectsProps {
@@ -10,24 +9,37 @@ interface FeatureProjectsProps {
   className?: string;
 }
 export const FeatureProjects = ({ className }: FeatureProjectsProps) => {
+  const { projects, isLoading } = useProjects();
+
+  const projectsSlice = projects.sort(() => 0.5 - Math.random()).slice(0, 4);
   const classes = {
     container: cn('my-20', className)
   };
+
   const renderProject = () =>
-    featureProjectsData.map(({ title, description, url }) => (
-      <a key={title} href={url} className="hover:scale-110 transition-transform duration-300">
+    projectsSlice.map(({ name, description, repositoryUrl }, index) => (
+      <a key={`${name}-${index}`} href={repositoryUrl as string} className="hover:scale-110 transition-transform duration-300 ">
         <SimpleCard className="p-8 lg:p-8 relative | carousel-custom-border">
-          <h2 className="text-xl font-bold">{title}</h2>
+          <h2 className="text-xl font-bold">{name}</h2>
           <p>{description}</p>
           <div className="carousel-glows"></div>
         </SimpleCard>
       </a>
     ));
 
+  const renderLoading = () => {
+    return (
+      <div className="absolute inset-0 mx-auto mt-20 grid place-items-center gap-4">
+        <p>Cargando...</p>
+        <Spinner className="" />
+      </div>
+    );
+  };
+
   return (
     <section className={classes.container}>
       <div className="container mx-auto">
-        <Carousel>{renderProject()}</Carousel>
+        {isLoading ? renderLoading() : <Carousel>{renderProject()}</Carousel>}
 
         <div className="w-full flex justify-center mt-8">
           {/* TODO: Ghost button styles reset if you use the className Props, fix this */}
