@@ -23,13 +23,14 @@
   --border-width: 2px;
   --border-radius: 12px;
   --gradient: conic-gradient(
-    from 180deg at 50% 70%,
-    hsla(353, 97%, 45%, 1) 0deg,
-    hsla(353, 97%, 55%, 1) 72deg,
-    hsla(281, 73%, 47%, 1) 144deg,
-    hsla(281, 73%, 57%, 1) 216deg,
-    hsla(281, 73%, 67%, 1) 288deg,
-    hsla(353, 97%, 45%, 1) 1turn
+    from 0deg at 90% 0%,
+    hsla(353, 97%, 65%, 1) 0deg,
+    hsla(353, 97%, 55%, 1) 120deg,
+    hsla(353, 97%, 45%, 1) 180deg,
+    hsla(281, 73%, 47%, 1) 240deg,
+    hsla(281, 73%, 57%, 1) 300deg,
+    hsla(281, 73%, 67%, 1)1turn
+
   );
 
   /* Carousel config end */
