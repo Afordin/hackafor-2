@@ -1,5 +1,5 @@
-import { FC, useEffect, useRef, useState } from 'react';
-import { cn, useAuth } from '@common';
+import { FC, useRef, useState } from 'react';
+import { cn, useAuth, useOnClickOutside } from '@common';
 
 interface Props {
   /**
@@ -24,23 +24,7 @@ export const Avatar: FC<Props> = ({ avatar, className, size = 'sm' }) => {
   // TODO: add responsive design
   const modalRef = useRef<HTMLDivElement | null>(null);
 
-  //! usehooks-ts useOnClickOutside would be good here
-  useEffect(() => {
-    const clickOutsideModal = (e: MouseEvent) => {
-      if (!modalRef.current) {
-        return;
-      }
-      if (e.currentTarget !== modalRef.current) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', clickOutsideModal);
-
-    return () => {
-      document.removeEventListener('mousedown', clickOutsideModal);
-    };
-  }, []);
+  useOnClickOutside(modalRef, () => setIsOpen(false));
 
   const classes = {
     container: ` flex w-fit h-full items-center relative gap-4 ${className} text-white`,
