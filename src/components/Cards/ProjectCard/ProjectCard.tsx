@@ -1,6 +1,7 @@
 import { HTMLAttributes } from 'react';
 import { cn, Project } from '@common';
 import { Button, CardWrapper, Tag } from '@components';
+import { useUserStore } from '@store';
 
 interface ProjectCardProps extends Omit<Project, 'id' | 'createdAt' | 'repositoryUrl'>, HTMLAttributes<HTMLDivElement> {
   /**
@@ -45,6 +46,8 @@ export const ProjectCard = ({
     });
   };
 
+  const user = useUserStore((state) => state.user);
+
   /* TODO: Filtrar si está buscando antes del texto */
   const renderRequiredRolesTag = () => {
     return Object.entries(requiredRoles)
@@ -85,10 +88,11 @@ export const ProjectCard = ({
             </h4>
             <ul className={classes.list}>{renderRequiredRolesTag()}</ul>
           </section>
-
-          <footer className="mx-auto">
-            <Button>Contactar</Button>
-          </footer>
+          {user && (
+            <footer className="mx-auto">
+              <Button>Contactar</Button>
+            </footer>
+          )}
         </>
       )}
     </CardWrapper>
