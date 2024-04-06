@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavAnimation, VARIANT } from '@common';
+import { ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavAnimation, Variant } from '@common';
 import { BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
 import { Link, NavLink } from 'react-router-dom';
@@ -133,7 +133,7 @@ export const Nav = ({ className }: NavProps) => {
               onClick={() => {
                 signInWithDiscord();
               }}
-              variant={VARIANT.SECONDARY}
+              variant={Variant.secondary}
               hasBorder
               size={handleButtonSize}
             >

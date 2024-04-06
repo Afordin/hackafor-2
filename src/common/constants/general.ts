@@ -1,7 +1,7 @@
-export enum VARIANT {
-  PRIMARY = 'Primary',
-  SECONDARY = 'Secondary',
-  GHOST = 'Ghost',
+export enum Variant {
+  primary = 'primary',
+  secondary = 'secondary',
+  ghost = 'ghost',
   twitch = 'twitch'
 }
 

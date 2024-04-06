@@ -1,7 +1,7 @@
 import 'atropos/css';
 
 import { FC, RefObject, useRef } from 'react';
-import { VARIANT } from '@common';
+import { Variant } from '@common';
 import { Button } from '@components';
 import { useUserStore } from '@store';
 import { Atropos } from 'atropos/react';
@@ -140,7 +140,7 @@ export const Ticket: FC<TicketProps> = ({
                 shareTwitter(user?.id);
               }}
               hasBorder
-              variant={VARIANT.SECONDARY}
+              variant={Variant.secondary}
             >
               <div className="flex gap-2 items-center">
                 <span className="i-bi-twitter-x"></span>
@@ -151,7 +151,7 @@ export const Ticket: FC<TicketProps> = ({
               onClick={() => {
                 downloadTicket(ticketRef);
               }}
-              variant={VARIANT.GHOST}
+              variant={Variant.ghost}
             >
               <div className="flex gap-2 items-center">
                 <span className="i-lucide-arrow-down bg-gradient-to-b from-secondary-500 to-primary-600"></span>

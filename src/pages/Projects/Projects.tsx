@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ButtonSize, cn, Project, ProjectRoles, ProjectStatus, useProjects, VARIANT } from '@common';
+import { ButtonSize, cn, Project, ProjectRoles, ProjectStatus, useProjects, Variant } from '@common';
 import { Button, ProjectCard, ToggleButtonGroup } from '@components';
 import { RootLayout } from '@layouts';
 import { filterBy } from './utils/filterBy';
@@ -67,7 +67,7 @@ export const Projects = () => {
           <section className="flex items-center justify-center gap-4 mt-12 flex-wrap">
             <Button
               className="px-3 ring-1 ring-neutral-800 h-8"
-              variant={VARIANT.GHOST}
+              variant={Variant.ghost}
               onClick={resetFilter}
               disabled={isActive === false}
             >
@@ -75,7 +75,7 @@ export const Projects = () => {
             </Button>
             <Button
               className={classes.tag(ProjectRoles.frontEnd)}
-              variant={VARIANT.GHOST}
+              variant={Variant.ghost}
               size={ButtonSize.sm}
               disabled={isActive === false}
               onClick={() => {
@@ -86,7 +86,7 @@ export const Projects = () => {
             </Button>
             <Button
               className={classes.tag(ProjectRoles.backEnd)}
-              variant={VARIANT.GHOST}
+              variant={Variant.ghost}
               size={ButtonSize.sm}
               disabled={isActive === false}
               onClick={() => {
@@ -97,7 +97,7 @@ export const Projects = () => {
             </Button>
             <Button
               className={classes.tag(ProjectRoles.fullStack)}
-              variant={VARIANT.GHOST}
+              variant={Variant.ghost}
               size={ButtonSize.sm}
               disabled={isActive === false}
               onClick={() => {
@@ -108,7 +108,7 @@ export const Projects = () => {
             </Button>
             <Button
               className={classes.tag(ProjectRoles.designer)}
-              variant={VARIANT.GHOST}
+              variant={Variant.ghost}
               size={ButtonSize.sm}
               disabled={isActive === false}
               onClick={() => {

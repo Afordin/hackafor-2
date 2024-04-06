@@ -1,4 +1,4 @@
-import { ButtonSize, cn, ROUTE, VARIANT } from '@common';
+import { ButtonSize, cn, ROUTE, Variant } from '@common';
 import { Button, Carousel, SimpleCard } from '@components';
 import { featureProjectsData } from '@data';
 import { Link } from 'react-router-dom';
@@ -31,7 +31,7 @@ export const FeatureProjects = ({ className }: FeatureProjectsProps) => {
 
         <div className="w-full flex justify-center mt-8">
           {/* TODO: Ghost button styles reset if you use the className Props, fix this */}
-          <Button size={ButtonSize.xl} variant={VARIANT.GHOST} onClick={() => console.log('Clicked')}>
+          <Button size={ButtonSize.xl} variant={Variant.ghost} onClick={() => console.log('Clicked')}>
             <Link to={ROUTE.projects} className="flex gap-2 items-center">
               <span>Ver todos los proyectos</span>
 

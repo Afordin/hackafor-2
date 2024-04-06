@@ -1,4 +1,4 @@
-import { ButtonSize, cn, useTwitchStatus, VARIANT } from '@common';
+import { ButtonSize, cn, useTwitchStatus, Variant } from '@common';
 import { Button, Countdown } from '@components';
 import { CTA } from './CTA';
 
@@ -27,7 +27,7 @@ export const Hero = ({ className }: HeroProps) => {
 
           {isLive && (
             <a href="https://www.twitch.tv/afor_digital" target="_blank">
-              <Button variant={VARIANT.twitch} className="mt-4 flex items-center gap-4 mx-auto" size={ButtonSize.xl}>
+              <Button variant={Variant.twitch} className="mt-4 flex items-center gap-4 mx-auto" size={ButtonSize.xl}>
                 <span>twitch.tv/afor_digital</span>
                 <div className="rounded-full px-2 bg-primary-600 animate-pulse relative before:content-[''] before:inset-0 before:absolute before:w-full before:h-full before:bg-primary-600 before:rounded-full before:animate-ping before:animate-duration-2000 ">
                   LIVE
