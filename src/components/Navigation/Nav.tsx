@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavAnimation, Variant } from '@common';
-import { BurgerButton, Button, Logo } from '@components';
+import { Avatar, BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
 import { Link, NavLink } from 'react-router-dom';
 import { LoggedUser } from './LoggedUser';
