@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavAnimation, Variant } from '@common';
+import { AvatarSize, ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavAnimation, Variant } from '@common';
 import { Avatar, BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
 import { Link, NavLink } from 'react-router-dom';
@@ -19,6 +19,7 @@ export const Nav = ({ className }: NavProps) => {
   const { isAtTop, isHidden } = useNavAnimation();
   const user = useUserStore((state) => state.user);
   const handleButtonSize = isMobile ? ButtonSize.xl : ButtonSize.base;
+  const handleAvatarSize = isMobile ? AvatarSize.md : AvatarSize.sm;
 
   const classes = {
     container: cn(
@@ -126,20 +127,22 @@ export const Nav = ({ className }: NavProps) => {
             <span className={classes.dots}></span>
           </li>
 
-          {user ? (
-            <LoggedUser user={user} />
-          ) : (
-            <Button
-              onClick={() => {
-                signInWithDiscord();
-              }}
-              variant={Variant.secondary}
-              hasBorder
-              size={handleButtonSize}
-            >
-              Accede con Discord
-            </Button>
-          )}
+          <li>
+            {user ? (
+              <Avatar avatar={user.user_metadata.avatar_url} size={handleAvatarSize} />
+            ) : (
+              <Button
+                onClick={() => {
+                  signInWithDiscord();
+                }}
+                variant={Variant.secondary}
+                hasBorder
+                size={handleButtonSize}
+              >
+                Accede con Discord
+              </Button>
+            )}
+          </li>
 
           {/* Contributor Section */}
           <li className="md:hidden mt-auto mb-8">
