@@ -14,10 +14,6 @@ interface CarouselProps {
 }
 
 export const Carousel = ({ className, children }: CarouselProps) => {
-  /**
-   * TODO: Implement isMobile from PR #37 to disable on mobile
-   * reference: https://github.com/Afordin/hackafor-2/pull/37
-   */
   useCarouselEffect('carousel-container', CAROUSEL_CONFIG);
 
   const classes = {
