@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { cn } from '@common';
 
-interface Props {
+interface AvatarProps {
   /**
    * Specify an optional className to be added to the component
    */
@@ -10,7 +10,7 @@ interface Props {
   /**
    * Specify the size of the avatar
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: AvatarSize;
 
   /**
    * Specify the avatar
