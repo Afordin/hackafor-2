@@ -11,7 +11,7 @@ interface FeatureProjectsProps {
 export const FeatureProjects = ({ className }: FeatureProjectsProps) => {
   const { projects, isLoading } = useProjects();
 
-  const projectsSlice = projects.sort(() => 0.5 - Math.random()).slice(0, 4);
+  const projectsSlice = [...projects].sort(() => 0.5 - Math.random()).slice(0, 4);
   const classes = {
     container: cn('my-20', className)
   };
