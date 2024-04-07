@@ -141,12 +141,9 @@ body {
   transition-delay: 0ms;
 }
 
-
 .contributors::-webkit-scrollbar {
   display: none;
 }
-
-
 
 .contributor {
   width: var(--contributor-size);
@@ -178,7 +175,7 @@ body {
 
   @supports selector(:has(+ *)) {
     .contributor:hover,
-    .contributor:hover+.contributor,
+    .contributor:hover + .contributor,
     .contributor:has(+ .contributor:hover) {
       scale: 1;
     }
@@ -351,17 +348,20 @@ body {
   fill-opacity: 0;
   stroke-dasharray: 1300;
   stroke-dashoffset: 1300;
-  animation: dash 2s ease-in forwards;
+  animation: dash 30s ease-in infinite;
 }
 
 @keyframes dash {
-  70% {
-    fill-opacity: 0;
-  }
-
-  100% {
+  4% {
     fill-opacity: 100%;
     stroke-dashoffset: 0;
     stroke-width: 1;
+  }
+  95% {
+    fill-opacity: 100%;
+  }
+  99% {
+    fill-opacity: 0;
+    stroke-dashoffset: 1300;
   }
 }
