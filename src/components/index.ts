@@ -10,4 +10,5 @@ export * from './Navigation/Nav';
 export * from './Spinner/Spinner';
 export * from './Tag/Tag';
 export * from './Countdown/Countdown';
+export * from './Popover/Popover';
 export * from './Avatar/Avatar';
