@@ -18,11 +18,11 @@ export const FeatureProjects = ({ className }: FeatureProjectsProps) => {
 
   const renderProject = () =>
     projectsSlice.map(({ id, name, description, repositoryUrl }) => (
-      <a key={id} href={repositoryUrl as string} className="hover:scale-110 transition-transform duration-300 ">
-        <SimpleCard className="p-8 lg:p-8 relative | carousel-custom-border">
+      <a key={id} href={repositoryUrl as string} className="hover:scale-110 transition-transform duration-300">
+        <SimpleCard className="p-8 lg:p-8 relative | carousel-custom-border  min-w-sm min-h-xs">
           <h2 className="text-xl font-bold">{name}</h2>
           <p>{description}</p>
-          <div className="carousel-glows"></div>
+          <div className="carousel-glows" />
         </SimpleCard>
       </a>
     ));
@@ -31,7 +31,7 @@ export const FeatureProjects = ({ className }: FeatureProjectsProps) => {
     return (
       <div className="absolute inset-0 mx-auto mt-20 grid place-items-center gap-4">
         <p>Cargando...</p>
-        <Spinner className="" />
+        <Spinner />
       </div>
     );
   };

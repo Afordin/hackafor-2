@@ -222,7 +222,7 @@ body {
   }
 
   100% {
-    transform: translateX(-76.3rem);
+    transform: translateX(-79.3rem);
   }
 }
 
@@ -232,7 +232,7 @@ body {
   }
 
   100% {
-    transform: translateX(-101.3rem);
+    transform: translateX(-106.5rem);
   }
 }
 @media (min-width: 768px) {
