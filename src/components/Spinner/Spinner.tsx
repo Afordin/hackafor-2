@@ -41,5 +41,5 @@ export const Spinner = ({ className, variant = SpinnerVariant.neutral, size = Sp
     )
   };
 
-  return <div aria-label="spinner" role="status" className={classes.spinner}></div>;
+  return <div aria-label="Loading" role="progressbar" className={classes.spinner}></div>;
 };
