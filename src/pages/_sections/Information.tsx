@@ -1,5 +1,5 @@
 import { ORIENTATION } from '@common';
-import { Countdown, SimpleCard } from '@components';
+import { SimpleCard } from '@components';
 
 const InformationCards = [
   {
@@ -48,12 +48,6 @@ export function Information() {
           ))}
         </ul>
       </div>
-      <SimpleCard
-        orientation={ORIENTATION.HORIZONTAL}
-        innerContainerClassName="grid grid-cols-2 place-items-center gap-y-18 md:gap-0 md:grid-cols-4"
-      >
-        <Countdown />
-      </SimpleCard>
     </section>
   );
 }

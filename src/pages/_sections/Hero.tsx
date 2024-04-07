@@ -1,5 +1,5 @@
 import { cn } from '@common';
-import { TwitchLive } from '@components';
+import { Countdown, TwitchLive } from '@components';
 import { CTA } from './CTA';
 
 interface HeroProps {
@@ -20,9 +20,11 @@ export const Hero = ({ className }: HeroProps) => {
         <article className="text-center self-end pb-20">
           <h1 className="text-fluid-title font-bold leading-none text-shadow-md">Hackafor</h1>
           <p className="max-sm:text-fluid-base text-fluid-lg font-semibold text-shadow-sm">Una hackaton de programación</p>
+          <article className="flex flex-wrap justify-center gap-18 mt-8">
+            <Countdown />
+          </article>
           <TwitchLive />
         </article>
-
         <CTA className="text-center text-shadow-sm md:self-center" />
       </div>
     </section>

@@ -1,6 +1,25 @@
 import { useEffect, useState } from 'react';
 
 export const Countdown = () => {
+  const time = [
+    {
+      name: 'days',
+      label: 'Días'
+    },
+    {
+      name: 'hours',
+      label: 'Horas'
+    },
+    {
+      name: 'minutes',
+      label: 'Minutos'
+    },
+    {
+      name: 'seconds',
+      label: 'Segundos'
+    }
+  ];
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -30,22 +49,12 @@ export const Countdown = () => {
 
   return (
     <>
-      <section className="text-center">
-        <p className="mb-4 text-2xl">Días</p>
-        <span className="font-bold text-6xl">{formatNumber(timeLeft.days)}</span>
-      </section>
-      <section className="text-center">
-        <p className="mb-4 text-2xl">Horas</p>
-        <span className="font-bold text-6xl">{formatNumber(timeLeft.hours)}</span>
-      </section>
-      <section className="text-center">
-        <p className="mb-4 text-2xl">Minutos</p>
-        <span className="font-bold text-6xl">{formatNumber(timeLeft.minutes)}</span>
-      </section>
-      <section className="text-center">
-        <p className="mb-4 text-2xl">Segundos</p>
-        <span className="font-bold text-6xl">{formatNumber(timeLeft.seconds)}</span>
-      </section>
+      {time.map(({ name, label }, index) => (
+        <section key={index} className="text-center text-shadow-sm">
+          <span className="font-bold text-6xl">{formatNumber(timeLeft[name])}</span>
+          <p className="mb-4 text-2xl">{label}</p>
+        </section>
+      ))}
     </>
   );
 };
