@@ -46,9 +46,6 @@ export const NotFound = () => {
           </article>
         </section>
       </main>
-      
-      Better html structure, and fix a problem with the hamster animation
-      </main>
     </RootLayout>
   );
 };
