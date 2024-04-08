@@ -1,162 +1,140 @@
-import React, { forwardRef, HTMLProps, ReactNode, useContext, useMemo } from 'react';
-import {
-  autoUpdate,
-  flip,
-  FloatingPortal,
-  offset,
-  Placement,
-  shift,
-  useClick,
-  useDismiss,
-  useFloating,
-  useInteractions,
-  useMergeRefs,
-  useRole
-} from '@floating-ui/react';
+import { Children, cloneElement, ReactElement, ReactNode, RefObject, useEffect, useRef, useState } from 'react';
+import { cn, hasProp, PopoverPlacement, PopoverVariant, useOnClickOutside } from '@common';
+import { Portal } from '@components';
+import { usePopper } from 'react-popper';
 
-interface PopoverProps {
-  initialOpen?: boolean;
+const PopoverVariants: Record<PopoverVariant, string> = {
+  [PopoverVariant.primary]: 'border border-primary-900 bg-primary-950/50 backdrop-blur-md',
+  [PopoverVariant.ghost]: 'border border-neutral-700 bg-neutral-950/50 backdrop-blur-md'
+};
+
+export interface PopoverProps {
+  /**
+   * The content displayed inside the popover.
+   */
+  content: ReactNode;
+
+  /**
+   * When true, the popover is manually shown.
+   */
+  isOpen?: boolean;
+
+  /**
+   * The position (relative to the target) at which the popover should appear.
+   */
+  placement?: PopoverPlacement;
+
+  /**
+   * Specify an optional className to be added to the menu component
+   */
   className?: string;
-  placement?: Placement;
-  modal?: boolean;
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
+
+  /**
+   * Whether the float menu has the same trigger's width
+   */
+  menuFullWidth?: boolean;
+
+  /**
+   * Specify the role of the popover in order to improve accessibility
+   */
+  role?: string;
+
+  /**
+   * Elements to display inside the Navbar.
+   */
+  children?: ReactNode;
+
+  /**
+   * Style Variant (e.g., 'primary', 'secondary'), defines appearance.
+   */
+  variant?: PopoverVariant;
 }
 
-interface PopoverTriggerProps {
-  children: React.ReactNode;
-  asChild?: boolean;
-}
+export const Popover = ({
+  content,
+  isOpen = false,
+  placement = PopoverPlacement.bottom,
+  role = 'menu',
+  className,
+  menuFullWidth = false,
+  children,
+  variant = PopoverVariant.ghost
+}: PopoverProps) => {
+  const [popoverElement, setPopoverElement] = useState<RefObject<HTMLElement> | HTMLElement | null>(null);
+  const refTriggerNode = useRef<HTMLSpanElement>(null);
+  const [open, setOpen] = useState<boolean>(isOpen);
+  const popoverMenuRef = useRef<HTMLDivElement>(null);
+  useOnClickOutside(popoverMenuRef, () => setOpen(false));
 
-// eslint-disable-next-line react-refresh/only-export-components
-export function usePopover({
-  initialOpen,
-  placement = 'bottom',
-  modal,
-  open: controlledOpen,
-  onOpenChange: setControlledOpen
-}: PopoverProps = {}) {
-  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
-  const [labelId, setLabelId] = React.useState<string | undefined>();
-  const [descriptionId, setDescriptionId] = React.useState<string | undefined>();
+  const classes = {
+    menu: cn(
+      'shadow-lg z-50',
+      'rounded-md',
+      'p-2 text-sm',
+      'transition-all',
+      {
+        'opacity-0 invisible': !open,
+        'opacity-100 animate-fade-in animate-duration-200': open
+      },
+      PopoverVariants[variant],
+      className
+    )
+  };
 
-  const open = controlledOpen ?? uncontrolledOpen;
-  const setOpen = setControlledOpen ?? setUncontrolledOpen;
-
-  const floatingData = useFloating({
-    whileElementsMounted: autoUpdate,
-    open,
-    onOpenChange: setOpen,
+  /* Popper config */
+  const { styles, attributes, forceUpdate } = usePopper(refTriggerNode.current, popoverElement as HTMLElement, {
     placement,
-    middleware: [
-      offset(10),
-      flip({
-        fallbackAxisSideDirection: 'end',
-        padding: 5
-      }),
-      shift({ padding: 5 })
+    modifiers: [
+      { name: 'offset', options: { offset: [0, 8] } },
+      {
+        name: 'flip',
+        options: {
+          fallbackPlacements: ['top', 'right']
+        }
+      }
     ]
   });
 
-  const floatingContext = floatingData.context;
+  const menuStyles = menuFullWidth
+    ? {
+        ...styles.popper,
+        minWidth: refTriggerNode.current?.scrollWidth,
+        maxWidth: refTriggerNode.current?.scrollWidth
+      }
+    : { ...styles.popper };
 
-  const click = useClick(floatingContext);
-  const dismiss = useDismiss(floatingContext);
-  const role = useRole(floatingContext);
-  const interactions = useInteractions([click, dismiss, role]);
+  const handleForceUpdate = () => {
+    let timeout: ReturnType<typeof setTimeout>;
+    if (forceUpdate) timeout = setTimeout(() => forceUpdate());
+    return () => clearTimeout(timeout);
+  };
 
-  return useMemo(
-    () => ({
-      open,
-      setOpen,
-      ...interactions,
-      ...floatingData,
-      modal,
-      labelId,
-      descriptionId,
-      setLabelId,
-      setDescriptionId
-    }),
-    [open, setOpen, interactions, floatingData, modal, labelId, descriptionId]
-  );
-}
+  useEffect(() => {
+    setOpen(isOpen);
+    handleForceUpdate();
+  }, [isOpen]);
 
-type ContextType =
-  | (ReturnType<typeof usePopover> & {
-      setLabelId: React.Dispatch<React.SetStateAction<string | undefined>>;
-      setDescriptionId: React.Dispatch<React.SetStateAction<string | undefined>>;
-    })
-  | null;
+  useEffect(() => {
+    handleForceUpdate();
+  }, [open]);
 
-const PopoverContext = React.createContext<ContextType>(null);
+  const handleTriggerClick = (): void => setOpen(!open);
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const usePopOverContext = () => {
-  const context = useContext(PopoverContext);
+  const child = Children.only(children) as ReactElement;
 
-  if (!context) {
-    throw new Error('Compontes must be wrapped in <Popover />');
-  }
-
-  return context;
-};
-
-export const Popover = ({
-  children,
-  modal = false,
-  ...restOptions
-}: {
-  children: ReactNode;
-} & PopoverProps) => {
-  const popover = usePopover({ modal, ...restOptions });
-  return <PopoverContext.Provider value={popover}>{children}</PopoverContext.Provider>;
-};
-
-export const PopoverTrigger = React.forwardRef<HTMLElement, React.HTMLProps<HTMLElement> & PopoverTriggerProps>(function PopoverTrigger(
-  { children, asChild, ...props },
-  propRef
-) {
-  const context = usePopOverContext();
-  const childrenRef = (children as any).ref;
-  const ref = useMergeRefs([context.refs.setReference, propRef, childrenRef]);
-
-  // `asChild` allows passing any element as the anchor
-  if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(
-      children,
-      context.getReferenceProps({
-        ref,
-        ...props,
-        ...children.props,
-        'data-state': context.open ? 'open' : 'closed'
-      })
-    );
-  }
+  /* Append handle to the trigger component */
+  const element = hasProp(child.props, 'onClick')
+    ? cloneElement(child, { ref: refTriggerNode })
+    : cloneElement(child, { ref: refTriggerNode, onClick: handleTriggerClick });
 
   return (
-    <button ref={ref} type="button" data-state={context.open ? 'open' : 'closed'} {...context.getReferenceProps(props)}>
-      {children}
-    </button>
+    <>
+      {element}
+      <Portal>
+        <div role={role} className={classes.menu} ref={setPopoverElement} style={menuStyles} {...attributes.popper}>
+          <div ref={popoverMenuRef}>{content}</div>
+        </div>
+      </Portal>
+    </>
   );
-});
-
-export const PopoverContent = forwardRef<HTMLDivElement, HTMLProps<HTMLDivElement>>(function PopoverContent({ style, ...props }, propRef) {
-  const { context: fltContext, ...context } = usePopOverContext();
-  const ref = useMergeRefs([context.refs.setFloating, propRef]);
-
-  if (!fltContext.open) return null;
-
-  return (
-    <FloatingPortal>
-      <div
-        ref={ref}
-        style={{ ...context.floatingStyles, ...style }}
-        aria-labelledby={context.labelId}
-        aria-describedby={context.descriptionId}
-        {...context.getFloatingProps(props)}
-      >
-        {props.children}
-      </div>
-    </FloatingPortal>
-  );
-});
+};
