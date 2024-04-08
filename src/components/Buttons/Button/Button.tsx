@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
-import { ButtonSize, cn, HtmlType, VARIANT } from '@common';
+import { ButtonSize, cn, HtmlType, Variant } from '@common';
 
 const Sizes: Record<ButtonSize, string> = {
   [ButtonSize.xs]: 'py-1 px-3 text-xs font-semibold h-6',
@@ -9,21 +9,21 @@ const Sizes: Record<ButtonSize, string> = {
   [ButtonSize.xl]: 'py-3 px-6 text-lg font-semibold h-14'
 };
 
-const Variants: Record<VARIANT, Array<string>> = {
-  [VARIANT.PRIMARY]: [
+const Variants: Record<Variant, Array<string>> = {
+  [Variant.primary]: [
     'rounded-full',
     'bg-gradient-to-rb from-primary-600 via-secondary-500 to-white text-cWhite',
     'hover:text-cBlack hover:to-100%',
     'buttonBgTransition'
   ],
-  [VARIANT.SECONDARY]: [
+  [Variant.secondary]: [
     'text-cWhite',
     'bg-gradient-to-rb bg-gradient-to-rb from-black via-[#331e22] to-[#2c2130]',
     'from-100% hover:from-0%',
     'rounded-full',
     'buttonBgTransition'
   ],
-  [VARIANT.GHOST]: [
+  [Variant.ghost]: [
     'bg-black rounded-full relative ',
     'before:absolute before:inset-0 before:-z-1',
     'before:content-[""]',
@@ -31,10 +31,15 @@ const Variants: Record<VARIANT, Array<string>> = {
     'before:opacity-0 before:hover:opacity-100',
     'before:rounded-full',
     'before:transition-opacity before:duration-300'
+  ],
+  [Variant.twitch]: [
+    'rounded-full',
+    'bg-gradient-to-rb from-[#4b2a88] via-[#7b4dda] to-[#2e195c] text-cWhite',
+    'hover:to-100%',
+    'buttonBgTransition'
   ]
 };
 
-// TODO: Export types outside
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Text inside the button.
@@ -52,9 +57,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
 
   /**
-   * Style variant (e.g., 'primary', 'secondary'), defines appearance.
+   * Style Variant (e.g., 'primary', 'secondary'), defines appearance.
    */
-  variant?: VARIANT;
+  variant?: Variant;
 
   /**
    * If true, disables user interaction.
@@ -66,9 +71,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    */
   isFullWidth?: boolean;
 
-  /**
-   * HTML button type attribute ('button', 'submit', etc.).
-   */
   /**
    * HTML button type attribute ('button', 'submit', etc.).
    */
@@ -90,7 +92,7 @@ export const Button = ({
   className,
   onClick = () => {},
   size = ButtonSize.base,
-  variant = VARIANT.PRIMARY,
+  variant = Variant.primary,
   isDisabled = false,
   hasBorder = false,
   htmlType = HtmlType.button,

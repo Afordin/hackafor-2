@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { ButtonSize, cn, Project, ProjectRoles, ProjectStatus, useProjects, VARIANT } from '@common';
-import { Button, ProjectCard, ToggleButtonGroup } from '@components';
+import { ButtonSize, cn, Project, ProjectRoles, ProjectStatus, useProjects, Variant } from '@common';
+import { Button, ProjectCard, Spinner, ToggleButtonGroup } from '@components';
 import { RootLayout } from '@layouts';
 import { filterBy } from './utils/filterBy';
 
 export const Projects = () => {
-  // TODO: Implement a Loading State
-  const { projects } = useProjects();
+  const { projects, isLoading } = useProjects();
   const [filter, setFilter] = useState<string[]>([]);
   const [isActive, setIsActive] = useState(true);
   const activeProjects = projects?.filter((project) => project.status === ProjectStatus.pending);
@@ -39,6 +38,14 @@ export const Projects = () => {
         />
       );
     });
+  const renderLoading = () => {
+    return (
+      <div className="absolute inset-0 mx-auto mt-20 grid place-items-center gap-4">
+        <p>Cargando...</p>
+        <Spinner className="" />
+      </div>
+    );
+  };
 
   const resetFilter = () => setFilter([]);
   const toggleFilterRole = (roleToToggle: string) => {
@@ -52,7 +59,7 @@ export const Projects = () => {
 
   return (
     <RootLayout>
-      <main id="projects">
+      <main id="projects" className="min-h-[90svh]">
         <div className="container mx-auto relative z-2 w-full py-40 max-w-7xl mx-auto gap-y-16 font-dmsans text-white px-5">
           {/* TODO: Change to FIGMA element */}
 
@@ -67,7 +74,7 @@ export const Projects = () => {
           <section className="flex items-center justify-center gap-4 mt-12 flex-wrap">
             <Button
               className="px-3 ring-1 ring-neutral-800 h-8"
-              variant={VARIANT.GHOST}
+              variant={Variant.ghost}
               onClick={resetFilter}
               disabled={isActive === false}
             >
@@ -75,7 +82,7 @@ export const Projects = () => {
             </Button>
             <Button
               className={classes.tag(ProjectRoles.frontEnd)}
-              variant={VARIANT.GHOST}
+              variant={Variant.ghost}
               size={ButtonSize.sm}
               disabled={isActive === false}
               onClick={() => {
@@ -86,7 +93,7 @@ export const Projects = () => {
             </Button>
             <Button
               className={classes.tag(ProjectRoles.backEnd)}
-              variant={VARIANT.GHOST}
+              variant={Variant.ghost}
               size={ButtonSize.sm}
               disabled={isActive === false}
               onClick={() => {
@@ -97,7 +104,7 @@ export const Projects = () => {
             </Button>
             <Button
               className={classes.tag(ProjectRoles.fullStack)}
-              variant={VARIANT.GHOST}
+              variant={Variant.ghost}
               size={ButtonSize.sm}
               disabled={isActive === false}
               onClick={() => {
@@ -108,7 +115,7 @@ export const Projects = () => {
             </Button>
             <Button
               className={classes.tag(ProjectRoles.designer)}
-              variant={VARIANT.GHOST}
+              variant={Variant.ghost}
               size={ButtonSize.sm}
               disabled={isActive === false}
               onClick={() => {
@@ -120,7 +127,8 @@ export const Projects = () => {
           </section>
 
           {/* TODO: add the grid-cols arbitrary to UNOCSS config */}
-          <section className="grid sm:grid-cols-[repeat(auto-fit,_minmax(390px,1fr))] gap-6 pt-12 justify-items-center">
+          <section className="grid sm:grid-cols-[repeat(auto-fit,_minmax(390px,1fr))] gap-6 pt-12 justify-items-center relative h-full w-full">
+            {isLoading && renderLoading()}
             {isActive ? renderProjects(activeProjects) : renderProjects(closedProjects)}
           </section>
         </div>

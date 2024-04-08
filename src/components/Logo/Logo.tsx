@@ -2,9 +2,12 @@ import { cn } from '@common';
 
 interface LogoProps {
   /**
-   * Specify a width and height for the logo size
+   * Specify a width for the logo size
    */
   width: number;
+  /**
+   * Specify a height for the logo size
+   */
   height: number;
 }
 
