@@ -55,10 +55,9 @@ interface TagProps {
 }
 
 export const Tag = ({ children, variant = TagVariant.primary, size = TagSize.sm, className, borderSize = TagSize.xs }: TagProps) => {
-  const isAnElement = React.isValidElement(children);
   const classes = {
     container: cn('flex items-center justify-center rounded-full w-fit', TagContainerVariants[variant], BorderSizes[borderSize], className),
-    tag: cn('rounded-full py-px px-2 capitalize', TagVariants[variant], Sizes[size], { 'pl-2 pr-1': isAnElement })
+    tag: cn('rounded-full py-px px-2', TagVariants[variant], Sizes[size])
   };
 
   return (
