@@ -7,8 +7,22 @@ interface ProjectCardProps extends Omit<Project, 'id' | 'createdAt' | 'repositor
    * Specify an optional className to be added to the component
    */
   className?: string;
+
+  /**
+   * Specifies if the card is active
+   */
+  isActive?: boolean;
 }
-export const ProjectCard = ({ className, name, description, administrator, members, requiredRoles, ...restOfProps }: ProjectCardProps) => {
+export const ProjectCard = ({
+  className,
+  name,
+  description,
+  administrator,
+  members,
+  requiredRoles,
+  isActive,
+  ...restOfProps
+}: ProjectCardProps) => {
   const classes = {
     container: cn('grid gap-8 max-w-md w-full max-xl:mx-auto', className),
     subTitle: cn('text-4 font-bold'),
@@ -84,16 +98,20 @@ export const ProjectCard = ({ className, name, description, administrator, membe
       </section>
 
       {/* Roles Section */}
-      <section aria-labelledby="roles-title">
-        <h4 id="roles-title" className={classes.subTitle}>
-          Estamos buscando
-        </h4>
-        <ul className={classes.list}>{renderRequiredRolesTag()}</ul>
-      </section>
+      {isActive && (
+        <>
+          <section aria-labelledby="roles-title">
+            <h4 id="roles-title" className={classes.subTitle}>
+              Estamos buscando
+            </h4>
+            <ul className={classes.list}>{renderRequiredRolesTag()}</ul>
+          </section>
 
-      <footer className="mx-auto">
-        <Button>Contactar</Button>
-      </footer>
+          <footer className="mx-auto">
+            <Button>Contactar</Button>
+          </footer>
+        </>
+      )}
     </CardWrapper>
   );
 };
