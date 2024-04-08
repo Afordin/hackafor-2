@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import { ButtonSize, cn, VARIANT } from '@common';
+import { ButtonSize, cn, Variant } from '@common';
 import { Button } from '@components';
 
 interface ToggleButtonGroupProps {
@@ -34,7 +34,7 @@ export const ToggleButtonGroup = ({ className, isActive, setIsActive, setFilter 
     setIsActive(isActive);
   };
 
-  const handleButtonVariant = (isActive: boolean): VARIANT => (isActive ? VARIANT.PRIMARY : VARIANT.SECONDARY);
+  const handleButtonVariant = (isActive: boolean): Variant => (isActive ? Variant.primary : Variant.secondary);
 
   return (
     <div className={classes.container}>

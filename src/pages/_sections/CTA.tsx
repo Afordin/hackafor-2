@@ -1,4 +1,4 @@
-import { ButtonSize, cn, ROUTE, useAuth, useBreakpoint, VARIANT } from '@common';
+import { ButtonSize, cn, ROUTE, useAuth, useBreakpoint, Variant } from '@common';
 import { Button } from '@components';
 import { useUserStore } from '@store';
 import { useNavigate } from 'react-router-dom';
@@ -39,7 +39,7 @@ export const CTA = ({ className }: CTAProps) => {
           }
           signInWithDiscord();
         }}
-        variant={VARIANT.PRIMARY}
+        variant={Variant.primary}
         size={handleButtonSize}
         className="mt-6"
       >

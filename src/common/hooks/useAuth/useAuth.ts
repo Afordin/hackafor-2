@@ -1,4 +1,4 @@
-import { supabase } from '@common';
+import { supabase } from '@utils';
 
 export const useAuth = () => {
   function signInWithDiscord() {

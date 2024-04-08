@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavAnimation, VARIANT } from '@common';
-import { BurgerButton, Button, Logo } from '@components';
+import { AvatarSize, ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavAnimation, Variant } from '@common';
+import { Avatar, BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
 import { Link, NavLink } from 'react-router-dom';
-import { Avatar } from './Avatar';
 
 interface NavProps {
   /**
@@ -19,6 +18,7 @@ export const Nav = ({ className }: NavProps) => {
   const { isAtTop, isHidden } = useNavAnimation();
   const user = useUserStore((state) => state.user);
   const handleButtonSize = isMobile ? ButtonSize.xl : ButtonSize.base;
+  const handleAvatarSize = isMobile ? AvatarSize.md : AvatarSize.sm;
 
   const classes = {
     container: cn(
@@ -92,7 +92,6 @@ export const Nav = ({ className }: NavProps) => {
   return (
     <header className={classes.container}>
       <Link to={ROUTE.home} className="w-10 h-10" aria-label="Volver al inicio">
-        {/* TODO: Create a component Icon to work with this SVG */}
         <Logo width={36} height={33} />
       </Link>
 
@@ -129,13 +128,13 @@ export const Nav = ({ className }: NavProps) => {
 
           <li>
             {user ? (
-              <Avatar avatar={user.user_metadata.avatar_url} />
+              <Avatar avatar={user.user_metadata.avatar_url} size={handleAvatarSize} />
             ) : (
               <Button
                 onClick={() => {
                   signInWithDiscord();
                 }}
-                variant={VARIANT.SECONDARY}
+                variant={Variant.secondary}
                 hasBorder
                 size={handleButtonSize}
               >
