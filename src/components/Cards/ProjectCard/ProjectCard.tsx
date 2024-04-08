@@ -14,14 +14,14 @@ interface ProjectCardProps extends Omit<Project, 'id' | 'createdAt' | 'repositor
   isActive: boolean;
 
   /**
-   * Specify if the button is visible
+   * Function to call on button click.
    */
-  isShowedButton: boolean;
+  actionButton: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const ProjectCard = ({
   isActive,
-  isShowedButton,
+  actionButton,
   className,
   name,
   description,
@@ -91,11 +91,9 @@ export const ProjectCard = ({
             </h4>
             <ul className={classes.list}>{renderRequiredRolesTag()}</ul>
           </section>
-          {isShowedButton && (
-            <footer className="mx-auto">
-              <Button>Contactar</Button>
-            </footer>
-          )}
+          <footer className="mx-auto">
+            <Button onClick={actionButton}>Contactar</Button>
+          </footer>
         </>
       )}
     </CardWrapper>

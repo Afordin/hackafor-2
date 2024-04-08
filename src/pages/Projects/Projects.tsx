@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ButtonSize, cn, Project, ProjectRoles, ProjectStatus, useProjects, VARIANT } from '@common';
+import { ButtonSize, cn, Project, ProjectRoles, ProjectStatus, useAuth, useProjects, VARIANT } from '@common';
 import { Button, ProjectCard, ToggleButtonGroup } from '@components';
 import { RootLayout } from '@layouts';
 import { useUserStore } from '@store';
@@ -12,6 +12,7 @@ export const Projects = () => {
   const [isActive, setIsActive] = useState(true);
   const activeProjects = projects?.filter((project) => project.status === ProjectStatus.pending);
   const closedProjects = projects?.filter((project) => project.status === ProjectStatus.closed);
+  const { signInWithDiscord } = useAuth();
   const user = useUserStore((state) => state.user);
 
   const classes = {
@@ -38,7 +39,13 @@ export const Projects = () => {
           className={`animate-fade-up-custom`}
           style={{ '--animate-delay': `${animateDelay}s` } as any}
           isActive={isActive}
-          isShowedButton={user != null}
+          actionButton={
+            user == null
+              ? signInWithDiscord
+              : () => {
+                  // TODO: contact with the group
+                }
+          }
         />
       );
     });
