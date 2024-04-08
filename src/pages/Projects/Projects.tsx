@@ -38,6 +38,16 @@ export const Projects = () => {
         />
       );
     });
+
+  const renderNoProjectsFound = () => {
+    return (
+      <div className={`animate-fade-up-custom text-center text-gray`}>
+        <p>Lo sentimos...</p>
+        <p>No se ha encontrado ningún proyecto.</p>
+      </div>
+    );
+  };
+
   const renderLoading = () => {
     return (
       <div className="absolute inset-0 mx-auto mt-20 grid place-items-center gap-4">
@@ -130,6 +140,7 @@ export const Projects = () => {
           <section className="grid sm:grid-cols-[repeat(auto-fit,_minmax(390px,1fr))] gap-6 pt-12 justify-items-center relative h-full w-full">
             {isLoading && renderLoading()}
             {isActive ? renderProjects(activeProjects) : renderProjects(closedProjects)}
+            {(renderProjects(activeProjects) || renderProjects(closedProjects)).length === 0 && !isLoading && renderNoProjectsFound()}
           </section>
         </div>
       </main>
