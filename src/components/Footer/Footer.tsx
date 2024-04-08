@@ -65,9 +65,9 @@ export const Footer = () => {
         <div className={classes.copyRight}>
           © 2024 Designed by
           <a href="https://www.twitch.tv/uxanarangel" className="custom-underline">
-            Ana Rangel&ensp;
+            &ensp;Ana Rangel
           </a>
-          Developed by&ensp;
+          &ensp;Developed by&ensp;
           <a href="https://discord.com/invite/comuafor" className="custom-underline">
             Comuafor
           </a>
