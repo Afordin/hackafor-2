@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react';
 import { cn, groupParticipantsByRole, Project } from '@common';
-import { Button, CardWrapper, Popover, PopoverContent, PopoverTrigger, Tag } from '@components';
+import { Button, CardWrapper, Popover, Tag } from '@components';
 
 interface ProjectCardProps extends Omit<Project, 'id' | 'createdAt' | 'repositoryUrl'>, HTMLAttributes<HTMLDivElement> {
   /**
@@ -12,15 +12,12 @@ export const ProjectCard = ({ className, name, description, administrator, membe
   const classes = {
     container: cn('grid gap-8 max-w-md w-full max-xl:mx-auto', className),
     subTitle: cn('text-4 font-bold'),
-    list: cn('flex flex-wrap gap-4 mt-4 text-3.5')
+    list: cn('flex flex-wrap gap-4 mt-4 text-3.5'),
+    popoverTrigger: cn(
+      'bg-gradient-to-rb from-primary-600 to-secondary-500 w-5 h-5 rounded-full text-xs flex items-center justify-center cursor-pointer select-none'
+    )
   };
 
-  const popoverclasses = {
-    trigger: cn('bg-secondary-600 w-5 h-5 rounded-full text-xs flex items-center justify-center cursor-pointer'),
-    ulContainer: cn('border border-pBorder p-2 rounded-md text-sm bg-secondary-950/50 backdrop-blur-md'),
-    liElement: cn('text-cWhite capitalize px-1 py-0.5 flex gap-1'),
-    admin: cn('text-secondary-600')
-  };
   const handleDescription = () => {
     if (description.length > 175) return `${description.slice(0, 130)}...`;
     return description;
@@ -37,32 +34,22 @@ export const ProjectCard = ({ className, name, description, administrator, membe
     const participantList = participantsByRole[role].map((participant, idx) => {
       const isAdmin = Object.values(administrator).includes(participant.name);
       return (
-        <li className={popoverclasses.liElement} key={participant.name + idx}>
-          {participant.name} <span className={popoverclasses.admin}>{isAdmin && '(Admin)'}</span>
+        <li className="text-cWhite capitalize px-1 py-0.5 flex gap-1" key={participant.name + idx}>
+          {participant.name}
+          {isAdmin && <span className="text-secondary-600">{'(Adm)'}</span>}
         </li>
       );
     });
 
-    const popOver = () => {
-      return (
-        <Popover placement="bottom">
-          <PopoverTrigger asChild={true}>
-            <span className={popoverclasses.trigger}>{groupLength}</span>
-          </PopoverTrigger>
-          <PopoverContent role="tooltip" className="z-10">
-            <ul className={popoverclasses.ulContainer}>{participantList}</ul>
-          </PopoverContent>
-        </Popover>
-      );
-    };
-
     return (
       <li key={role + idx}>
-        {/** TODO: change key later */}
+        {/** TODO: change key later 😒 Why later?*/}
         <Tag>
           <div className="flex items-center gap-2">
             {role}
-            {popOver()}
+            <Popover content={<ul>{participantList}</ul>}>
+              <span className={classes.popoverTrigger}>{groupLength}</span>
+            </Popover>
           </div>
         </Tag>
       </li>
