@@ -19,7 +19,7 @@ export const NotFound = () => {
               ¡Hola! Lo sentimos, pero no pudimos encontrar lo que buscabas. Verifica que la dirección URL sea correcta
             </p>
           </section>
-          <section className="flex justify-center mt-8">
+          <section className="mt-8">
             <Button size={ButtonSize.xl} variant={Variant.ghost} onClick={() => {}}>
               <Link to={ROUTE.home} className="flex gap-2 items-center">
                 <span>IR A INICIO</span>
