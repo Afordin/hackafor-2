@@ -63,9 +63,9 @@ export const Footer = () => {
 
         {/* Copyrights */}
         <div className={classes.copyRight}>
-          © 2024 Designed by
+          © 2024 Designed by&ensp;
           <a href="https://www.twitch.tv/uxanarangel" className="custom-underline">
-            &ensp;Ana Rangel
+            Ana Rangel
           </a>
           &ensp;Developed by&ensp;
           <a href="https://discord.com/invite/comuafor" className="custom-underline">
