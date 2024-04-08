@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { ROUTE } from '@common';
 import { Home } from '@pages/Home';
+import { NotFound } from '@pages/NotFound/NotFound';
 import { Projects } from '@pages/Projects/Projects';
 import { Registration } from '@pages/Registration/Registration';
 import { supabase } from '@utils';
@@ -48,6 +49,7 @@ function App() {
         <Route path={ROUTE.home} element={<Home />} />
         <Route path={ROUTE.projects} element={<Projects />} />
         <Route path={ROUTE.registration} element={<Registration />} />
+        <Route path={ROUTE.notFound} element={<NotFound />} />
       </Routes>
     </>
   );
