@@ -3,7 +3,7 @@ import { ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavA
 import { BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
 import { Link, NavLink } from 'react-router-dom';
-import { Avatar } from './Avatar';
+import { LoggedUser } from './LoggedUser';
 
 interface NavProps {
   /**
@@ -92,7 +92,6 @@ export const Nav = ({ className }: NavProps) => {
   return (
     <header className={classes.container}>
       <Link to={ROUTE.home} className="w-10 h-10" aria-label="Volver al inicio">
-        {/* TODO: Create a component Icon to work with this SVG */}
         <Logo width={36} height={33} />
       </Link>
 
@@ -127,22 +126,20 @@ export const Nav = ({ className }: NavProps) => {
             <span className={classes.dots}></span>
           </li>
 
-          <li>
-            {user ? (
-              <Avatar avatar={user.user_metadata.avatar_url} />
-            ) : (
-              <Button
-                onClick={() => {
-                  signInWithDiscord();
-                }}
-                variant={VARIANT.SECONDARY}
-                hasBorder
-                size={handleButtonSize}
-              >
-                Accede con Discord
-              </Button>
-            )}
-          </li>
+          {user ? (
+            <LoggedUser user={user} />
+          ) : (
+            <Button
+              onClick={() => {
+                signInWithDiscord();
+              }}
+              variant={VARIANT.SECONDARY}
+              hasBorder
+              size={handleButtonSize}
+            >
+              Accede con Discord
+            </Button>
+          )}
 
           {/* Contributor Section */}
           <li className="md:hidden mt-auto mb-8">
