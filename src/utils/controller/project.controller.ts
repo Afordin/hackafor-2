@@ -1,8 +1,8 @@
 import { Project } from '@common';
-import { projectDTO, supabase } from '@utils';
+import { apiClient, projectDTO } from '@utils';
 
 export const getProjects = async (): Promise<Project[]> => {
-  const { data: projectsData, error } = await supabase.from('Project').select();
+  const { data: projectsData, error } = await apiClient.from('Project').select();
 
   if (error) {
     throw new Error(error.message);
