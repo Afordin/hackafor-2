@@ -1,5 +1,4 @@
-import { FC } from 'react';
-import { cn } from '@common';
+import { AvatarSize, cn } from '@common';
 
 interface AvatarProps {
   /**
@@ -18,7 +17,7 @@ interface AvatarProps {
   avatar: string;
 }
 
-export const Avatar: FC<Props> = ({ avatar, className, size = 'sm' }) => {
+export const Avatar = ({ avatar, className, size = AvatarSize.md }: AvatarProps) => {
   const classes = {
     sm: 'w-8 h-8',
     md: 'w-10 h-10',

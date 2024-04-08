@@ -3,7 +3,6 @@ import { AvatarSize, ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContribut
 import { Avatar, BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
 import { Link, NavLink } from 'react-router-dom';
-import { LoggedUser } from './LoggedUser';
 
 interface NavProps {
   /**
