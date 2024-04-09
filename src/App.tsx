@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { ROUTE } from '@common';
 import { Home } from '@pages/Home';
+import { NotFound } from '@pages/NotFound/NotFound';
 import { Projects } from '@pages/Projects/Projects';
-import { Registration } from '@pages/Registration/Registration';
-import { supabase } from '@utils';
+import { Registration } from '@pages/Registration';
+import { apiClient } from '@utils';
 import { Route, Routes } from 'react-router-dom';
 import { useUserStore } from './store/useUserStore';
 
@@ -11,8 +12,9 @@ function App() {
   const setUser = useUserStore((state) => state.setUser);
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((_event, session) => {
-      if (session?.user) setUser(session.user);
+    apiClient.auth.onAuthStateChange((_event, session) => {
+      if (!session?.user) return;
+      setUser(session.user);
     });
   }, [setUser]);
 
@@ -32,22 +34,23 @@ function App() {
   //     .then((data) => console.log(data));
   // };
 
-  {
-    /* <div className="flex flex-col gap-8">
-    <button className="p-4" onClick={signInWithDiscord}>
-      Connect Discord
-    </button>
-    <button className="p-4" onClick={sendMessage}>
-      Conectar
-    </button>
-  </div> */
-  }
   return (
     <>
+      {/*
+        <div className="flex flex-col gap-8">
+          <button className="p-4" onClick={signInWithDiscord}>
+            Connect Discord
+          </button>
+          <button className="p-4" onClick={sendMessage}>
+            Conectar
+          </button>
+        </div>
+      */}
       <Routes>
         <Route path={ROUTE.home} element={<Home />} />
         <Route path={ROUTE.projects} element={<Projects />} />
         <Route path={ROUTE.registration} element={<Registration />} />
+        <Route path={ROUTE.notFound} element={<NotFound />} />
       </Routes>
     </>
   );

@@ -23,14 +23,14 @@ const convertStatus = (status: string): ProjectStatus => {
  */
 export const projectDTO = (rawProject: ProjectDataType): Project => {
   return {
-    administrator: rawProject.administrator,
-    createdAt: rawProject.created_at,
-    description: rawProject.description,
     id: rawProject.id,
-    members: rawProject.members,
     name: rawProject.name,
+    description: rawProject.description,
+    administrator: rawProject.administrator,
+    members: rawProject.members,
     repositoryUrl: rawProject.repository_url,
     requiredRoles: rawProject.required_roles,
-    status: convertStatus(rawProject.status)
+    status: convertStatus(rawProject.status),
+    createdAt: rawProject.created_at
   };
 };

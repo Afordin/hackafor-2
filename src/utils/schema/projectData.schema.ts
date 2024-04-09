@@ -5,6 +5,10 @@ const UserSchema = z.object({
   role: z.string()
 });
 
+const AdministratorSchema = UserSchema.extend({
+  provider_id: z.string()
+});
+
 const RequiredRolesSchema = z.object({
   'front-end': z.number(),
   'back-end': z.number(),
@@ -14,15 +18,26 @@ const RequiredRolesSchema = z.object({
 });
 
 export const ProjectSchema = z.object({
-  administrator: UserSchema,
-  created_at: z.string(),
-  description: z.string(),
   id: z.number(),
-  members: z.array(UserSchema),
   name: z.string(),
-  repository_url: z.string().nullable(),
+  description: z.string(),
+  administrator: AdministratorSchema,
+  members: z.array(UserSchema),
+  repository_url: z.string().url().nullable(),
   required_roles: RequiredRolesSchema,
-  status: z.enum(['OPEN', 'CLOSED', 'PENDING'])
+  status: z.enum(['OPEN', 'CLOSED', 'PENDING']),
+  created_at: z.string()
 });
 
 export type ProjectDataType = z.infer<typeof ProjectSchema>;
+
+const UpsertUserSchema = UserSchema.extend({
+  id: z.string().uuid()
+});
+
+export const UpsertProjectSchema = ProjectSchema.extend({
+  id: z.number().optional(),
+  members: z.array(UpsertUserSchema).max(3, 'El número máximo de participantes es 4')
+});
+
+export type UpsertProjectType = z.infer<typeof UpsertProjectSchema>;

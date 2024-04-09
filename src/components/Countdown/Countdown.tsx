@@ -3,19 +3,19 @@ import { useEffect, useState } from 'react';
 export const Countdown = () => {
   const time = [
     {
-      name: 'days',
+      key: 'days',
       label: 'Días'
     },
     {
-      name: 'hours',
+      key: 'hours',
       label: 'Horas'
     },
     {
-      name: 'minutes',
+      key: 'minutes',
       label: 'Minutos'
     },
     {
-      name: 'seconds',
+      key: 'seconds',
       label: 'Segundos'
     }
   ];
@@ -43,16 +43,16 @@ export const Countdown = () => {
     }, 1000);
   }, []);
 
-  const formatNumber = (number) => {
+  const formatNumber = (number: number) => {
     return number < 10 ? `0${number}` : number;
   };
 
   return (
     <>
-      {time.map(({ name, label }, index) => (
+      {time.map(({ key, label }, index) => (
         <section key={index} className="text-center text-shadow-sm">
-          <span className="font-bold text-6xl">{formatNumber(timeLeft[name])}</span>
-          <p className="text-2xl">{label}</p>
+          <span className="font-bold text-3xl xl:text-6xl">{formatNumber(timeLeft[key])}</span>
+          <p className="text-lg xl:text-2xl">{label}</p>
         </section>
       ))}
     </>

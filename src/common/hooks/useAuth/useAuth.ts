@@ -1,14 +1,14 @@
-import { supabase } from '@utils';
+import { apiClient } from '@utils';
 
 export const useAuth = () => {
   function signInWithDiscord() {
-    supabase.auth.signInWithOAuth({
+    apiClient.auth.signInWithOAuth({
       provider: 'discord'
     });
   }
 
   function signOut() {
-    supabase.auth
+    apiClient.auth
       .signOut()
       .then(() => {
         window.location.reload();
