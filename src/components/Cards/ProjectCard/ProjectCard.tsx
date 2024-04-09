@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react';
-import { cn, Project } from '@common';
-import { Button, CardWrapper, Tag } from '@components';
+import { cn, groupParticipantsByRole, Project } from '@common';
+import { Button, CardWrapper, Popover, Tag } from '@components';
 
 interface ProjectCardProps extends Omit<Project, 'id' | 'createdAt' | 'repositoryUrl'>, HTMLAttributes<HTMLDivElement> {
   /**
@@ -9,41 +9,66 @@ interface ProjectCardProps extends Omit<Project, 'id' | 'createdAt' | 'repositor
   className?: string;
 
   /**
-   * Specify if the project is active
+   * Specifies if the card is active
    */
-  isActive: boolean;
+  isActive?: boolean;
 }
-
 export const ProjectCard = ({
-  isActive,
   className,
   name,
   description,
   administrator,
   members,
   requiredRoles,
+  isActive,
   ...restOfProps
 }: ProjectCardProps) => {
   const classes = {
     container: cn('grid gap-8 max-w-md w-full max-xl:mx-auto', className),
     subTitle: cn('text-4 font-bold'),
-    list: cn('flex flex-wrap gap-x-4 gap-y-2 mt-2 text-3.5')
+    list: cn('flex flex-wrap gap-4 mt-4 text-3.5'),
+    popoverTrigger: cn(
+      'bg-gradient-to-rb from-primary-600 to-secondary-500 w-5 h-5 rounded-full text-xs flex items-center justify-center cursor-pointer select-none'
+    )
   };
 
   const handleDescription = () => {
-    if (description.length > 210) return `${description.slice(0, 210)}...`;
+    if (description.length > 175) return `${description.slice(0, 130)}...`;
     return description;
   };
-  const renderParticipantsTag = () => {
-    return members.map((member) => {
-      if (member.role === undefined) return null;
+
+  /**
+   * Concat the admin and parse the Array of members
+   */
+  const participantsByRole = groupParticipantsByRole(members, administrator);
+
+  const renderParticipantsTag = Object.keys(participantsByRole).map((role, idx) => {
+    const groupLength = participantsByRole[role].length;
+
+    const participantList = participantsByRole[role].map((participant, idx) => {
+      const isAdmin = Object.values(administrator).includes(participant.name);
       return (
-        <li key={member.name}>
-          <Tag className="capitalize">{member.role}</Tag>
+        <li className="text-cWhite capitalize px-1 py-0.5 flex gap-1" key={participant.name + idx}>
+          {participant.name}
+          {isAdmin && <span className="text-secondary-600">{'(Adm)'}</span>}
         </li>
       );
     });
-  };
+
+    return (
+      <li key={role + idx}>
+        {/** TODO: change key later 😒 Why later?*/}
+        <Tag>
+          <div className="flex items-center gap-2">
+            {role}
+            <Popover content={<ul>{participantList}</ul>}>
+              <span className={classes.popoverTrigger}>{groupLength}</span>
+            </Popover>
+          </div>
+        </Tag>
+      </li>
+    );
+  });
 
   /* TODO: Filtrar si está buscando antes del texto */
   const renderRequiredRolesTag = () => {
@@ -61,22 +86,18 @@ export const ProjectCard = ({
       {/*  Header */}
       <header className="grid gap-4">
         <h3 className="font-bold text-8">{name}</h3>
-        <p className="text-4 h-24 text-balance ">{handleDescription()}</p>
+        <p className="text-4 h-24 text-balance truncate">{handleDescription()}</p>
       </header>
 
       {/* Participants Section */}
-      <section aria-labelledby="participants-title" className="py-4">
+      <section aria-labelledby="participants-title">
         <h4 id="participants-title" className={classes.subTitle}>
           Participantes
         </h4>
-        <ul className={classes.list}>
-          <li>
-            <Tag className="capitalize">{administrator.role}</Tag>
-          </li>
-          {renderParticipantsTag()}
-        </ul>
+        <ul className={classes.list}>{renderParticipantsTag}</ul>
       </section>
 
+      {/* Roles Section */}
       {isActive && (
         <>
           <section aria-labelledby="roles-title">
