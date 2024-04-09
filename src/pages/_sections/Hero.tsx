@@ -36,7 +36,7 @@ export const Hero = ({ className }: HeroProps) => {
         <article className="text-center self-end ">
           <h1 className="text-fluid-title font-bold leading-none text-shadow-md">Hackafor</h1>
           <p className="max-sm:text-fluid-base text-fluid-lg font-semibold text-shadow-sm">Una hackaton de programación</p>
-          <div className="flex flex-wrap justify-center gap-18 mt-8">
+          <div className="flex justify-center mb-4 gap-4 mt-4 xl:mt-8 xl:mb-0 xl:gap-18">
             <Countdown />
           </div>
           {renderTwitchButton()}
