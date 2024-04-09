@@ -14,6 +14,11 @@ interface ProjectCardProps extends Omit<Project, 'id' | 'createdAt' | 'repositor
   isActive: boolean;
 
   /**
+   * Button title.
+   */
+  buttonTitle: string;
+
+  /**
    * Function to call on button click.
    */
   actionButton: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -22,6 +27,7 @@ interface ProjectCardProps extends Omit<Project, 'id' | 'createdAt' | 'repositor
 export const ProjectCard = ({
   isActive,
   actionButton,
+  buttonTitle,
   className,
   name,
   description,
@@ -92,7 +98,7 @@ export const ProjectCard = ({
             <ul className={classes.list}>{renderRequiredRolesTag()}</ul>
           </section>
           <footer className="mx-auto">
-            <Button onClick={actionButton}>Contactar</Button>
+            <Button onClick={actionButton}>{buttonTitle}</Button>
           </footer>
         </>
       )}

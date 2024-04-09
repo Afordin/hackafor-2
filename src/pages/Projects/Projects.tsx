@@ -38,6 +38,7 @@ export const Projects = () => {
           className={`animate-fade-up-custom`}
           style={{ '--animate-delay': `${animateDelay}s` } as any}
           isActive={isActive}
+          buttonTitle={user == null ? 'Log in to contact' : 'Contact'}
           actionButton={
             user == null
               ? signInWithDiscord
