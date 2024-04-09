@@ -1,6 +1,6 @@
 import { ForwardedRef, forwardRef } from 'react';
-import { HtmlType } from '@common';
-import { Button } from '@components';
+import { HtmlType, Variant } from '@common';
+import { Button, Tag } from '@components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RootLayout } from '@layouts';
 import { useUserStore } from '@store';
@@ -77,7 +77,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
     <RootLayout>
       <article id="registration" className="w-full h-screen flex flex-col gap-y-[48px] items-center justify-center text-cWhite">
         <p className="text-[32px]">Lorem ipsum dolor sit amet consectetur.</p>
-        <form className="flex flex-col w-full max-w-6xl mx-auto gap-y-6" onSubmit={handleSubmit(handleSave, handleError)}>
+        <form className="flex flex-col w-full items-center max-w-6xl mx-auto gap-y-6" onSubmit={handleSubmit(handleSave, handleError)}>
           <FormField
             id="project-name"
             label="Título del proyecto*"
@@ -95,69 +95,88 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
             {...register('description')}
           />
 
-          <fieldset className="flex flex-col gap-y-4">
-            <legend className="text-2xl">Introduce a los participantes</legend>
-
-            <fieldset className="flex items-center gap-x-4">
-              <legend>Administrador</legend>
-
+          <fieldset className="flex flex-col gap-y-6 w-full">
+            <div className="flex justify-center items-center gap-x-4 w-full">
+              <p className="text-8 text-center text-regular">Introduce a los participantes</p>
+              <Button
+                variant={Variant.secondary}
+                hasBorder
+                onClick={() => {
+                  appendMember({
+                    id: crypto.randomUUID(),
+                    name: '',
+                    role: ''
+                  });
+                }}
+              >
+                Añadir Miembro
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 items-center gap-x-4 w-full">
               <FormField
                 id={`administrator-name`}
-                label="Administrator Name"
+                label="Nombre del administrador*"
+                placeholder="Nombre del administrador"
                 error={errors[`administrator.name`]}
                 {...register(`administrator.name`)}
               />
+              <div className="w-full flex gap-y-2 flex-col justify-center">
+                <p className="text-[20px] font-bold">Rol del participante*</p>
+                <div className="flex gap-x-4 ">
+                  <Tag>Front-end</Tag>
+                  <Tag>Back-end</Tag>
+                  <Tag>Full-Stack</Tag>
+                  <Tag>Diseñador(a)</Tag>
+                  <Tag>Otros</Tag>
+                </div>
+              </div>
 
-              <FormField
+              {/* <FormField
                 id={`administrator-role`}
                 label="Administrator Role"
                 error={errors[`administrator.role`]}
                 {...register(`administrator.role`)}
-              />
-            </fieldset>
+              /> */}
+            </div>
 
             {members.map((member, index) => (
-              <fieldset key={member.id} className="flex items-center gap-x-4">
-                <legend>Member {index}</legend>
+              <fieldset key={member.id} className="grid grid-cols-2 items-center gap-x-4">
+                {/* TODO: Change this style to red button */}
+                <div className="flex gap-x-4 items-center">
+                  <Button
+                    onClick={() => {
+                      removeMember(index);
+                    }}
+                    className="i-lucide-circle-minus mt-8 text-red-6"
+                  >
+                    Delete
+                  </Button>
+                  <FormField
+                    id={`member-${index}-name`}
+                    label="Nombre del miembro"
+                    placeholder="Introduce el nombre de un miembro"
+                    error={errors[`members.${index}`]}
+                    {...register(`members.${index}.name`)}
+                  />
+                </div>
 
-                <FormField
-                  id={`member-${index}-name`}
-                  label="Participant Name"
-                  error={errors[`members.${index}`]}
-                  {...register(`members.${index}.name`)}
-                />
-
-                <FormField
-                  id={`member-${index}-role`}
-                  label="Participant Role"
-                  error={errors[`members.${index}`]}
-                  {...register(`members.${index}.role`)}
-                />
-
-                <Button
-                  onClick={() => {
-                    removeMember(index);
-                  }}
-                >
-                  &times;
-                </Button>
+                <div className="w-full flex gap-y-2 flex-col justify-center">
+                  <p className="text-[20px] font-bold">Rol del participante*</p>
+                  <div className="flex gap-x-4 ">
+                    <Tag>Front-end</Tag>
+                    <Tag>Back-end</Tag>
+                    <Tag>Full-Stack</Tag>
+                    <Tag>Diseñador(a)</Tag>
+                    <Tag>Otros</Tag>
+                  </div>
+                </div>
               </fieldset>
             ))}
-
-            <Button
-              onClick={() => {
-                appendMember({
-                  id: crypto.randomUUID(),
-                  name: '',
-                  role: ''
-                });
-              }}
-            >
-              Añadir miembro
-            </Button>
           </fieldset>
 
-          <Button htmlType={HtmlType.submit}>Añadir proyecto</Button>
+          <Button htmlType={HtmlType.submit} className="w-fit">
+            Registrar proyecto
+          </Button>
         </form>
       </article>
     </RootLayout>
@@ -168,15 +187,15 @@ type FormFieldProps = { label: string; error?: FieldError; textArea?: boolean } 
 
 const FormField = forwardRef(({ label, error, textArea, ...props }: FormFieldProps, ref: ForwardedRef<HTMLInputElement>) => {
   return (
-    <div className="flex flex-col gap-y-1">
+    <div className="flex flex-col gap-y-1 w-full">
       <label htmlFor={props.id} className="text-[20px] font-bold">
         {label}
       </label>
       {textArea ? (
         // TODO: Change to Textarea
-        <input ref={ref} className="bg-transparent border-1 border-pBorder rounded-3 p-4 text-[24px]" {...props} />
+        <input ref={ref} className="bg-transparent w-full border-1 border-pBorder rounded-3 p-4 text-[24px]" {...props} />
       ) : (
-        <input ref={ref} className="bg-transparent border-1 border-pBorder rounded-3 p-4 text-[24px]" {...props} />
+        <input ref={ref} className="bg-transparent w-full border-1 border-pBorder rounded-3 p-4 text-[24px]" {...props} />
       )}
 
       {error && <p aria-live="assertive">{error.message}</p>}
