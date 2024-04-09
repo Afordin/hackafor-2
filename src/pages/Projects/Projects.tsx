@@ -4,6 +4,7 @@ import { Button, ProjectCard, Spinner, ToggleButtonGroup } from '@components';
 import { RootLayout } from '@layouts';
 import { useUserStore } from '@store';
 import { filterBy } from './utils/filterBy';
+import { sendMessage } from './utils/sendMessage';
 
 export const Projects = () => {
   const { projects, isLoading } = useProjects();
@@ -43,7 +44,7 @@ export const Projects = () => {
             user == null
               ? signInWithDiscord
               : () => {
-                  // TODO: contact with the group
+                  sendMessage(user, user);
                 }
           }
         />

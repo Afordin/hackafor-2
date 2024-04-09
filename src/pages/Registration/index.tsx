@@ -75,11 +75,25 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
 
   return (
     <RootLayout>
-      <article id="registration" className="w-full h-screen flex items-center justify-center text-cWhite">
-        <form className="flex flex-col gap-y-6" onSubmit={handleSubmit(handleSave, handleError)}>
-          <FormField id="project-name" label="Project Name" error={errors.name} {...register('name')} />
+      <article id="registration" className="w-full h-screen flex flex-col gap-y-[48px] items-center justify-center text-cWhite">
+        <p className="text-[32px]">Lorem ipsum dolor sit amet consectetur.</p>
+        <form className="flex flex-col w-full max-w-6xl mx-auto gap-y-6" onSubmit={handleSubmit(handleSave, handleError)}>
+          <FormField
+            id="project-name"
+            label="Título del proyecto*"
+            placeholder="Introduce el título del proyecto"
+            error={errors.name}
+            {...register('name')}
+          />
 
-          <FormField id="project-description" label="Project Description" error={errors.description} {...register('description')} />
+          <FormField
+            id="project-description"
+            label="Descripción del proyecto*"
+            textArea={true}
+            placeholder="Introduce una breve descripción del proyecto"
+            error={errors.description}
+            {...register('description')}
+          />
 
           <fieldset className="flex flex-col gap-y-4">
             <legend className="text-2xl">Introduce a los participantes</legend>
@@ -150,13 +164,21 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
   );
 };
 
-type FormFieldProps = { label: string; error?: FieldError } & React.ComponentProps<'input'>;
+type FormFieldProps = { label: string; error?: FieldError; textArea?: boolean } & React.ComponentProps<'input'>;
 
-const FormField = forwardRef(({ label, error, ...props }: FormFieldProps, ref: ForwardedRef<HTMLInputElement>) => {
+const FormField = forwardRef(({ label, error, textArea, ...props }: FormFieldProps, ref: ForwardedRef<HTMLInputElement>) => {
   return (
-    <div className="flex flex-col gap-y-4">
-      <label htmlFor={props.id}>{label}</label>
-      <input ref={ref} className="text-cBlack" {...props} />
+    <div className="flex flex-col gap-y-1">
+      <label htmlFor={props.id} className="text-[20px] font-bold">
+        {label}
+      </label>
+      {textArea ? (
+        // TODO: Change to Textarea
+        <input ref={ref} className="bg-transparent border-1 border-pBorder rounded-3 p-4 text-[24px]" {...props} />
+      ) : (
+        <input ref={ref} className="bg-transparent border-1 border-pBorder rounded-3 p-4 text-[24px]" {...props} />
+      )}
+
       {error && <p aria-live="assertive">{error.message}</p>}
     </div>
   );
