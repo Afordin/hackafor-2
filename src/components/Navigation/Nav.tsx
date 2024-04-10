@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { AvatarSize, ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavAnimation, Variant } from '@common';
-import { Avatar, BurgerButton, Button, Logo } from '@components';
+import { BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
 import { Link, NavLink } from 'react-router-dom';
+import { LoggedUser } from './LoggedUser';
 
 interface NavProps {
   /**
@@ -128,7 +129,7 @@ export const Nav = ({ className }: NavProps) => {
 
           <li>
             {user ? (
-              <Avatar avatar={user.user_metadata.avatar_url} size={handleAvatarSize} />
+              <LoggedUser user={user} avatarSize={handleAvatarSize} />
             ) : (
               <Button
                 onClick={() => {

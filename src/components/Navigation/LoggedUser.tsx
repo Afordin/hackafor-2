@@ -1,5 +1,5 @@
 import { FC, useRef, useState } from 'react';
-import { cn, useAuth, useBreakpoint, useOnClickOutside } from '@common';
+import { AvatarSize, cn, useAuth, useBreakpoint, useOnClickOutside } from '@common';
 import { User } from '@supabase/supabase-js';
 import { Avatar } from '../Avatar/Avatar';
 
@@ -13,12 +13,19 @@ interface Props {
    * @type User
    */
   user: User;
+
+  /**
+   * Specify the avatar size
+   * @type AvatarSize
+   */
+  avatarSize: AvatarSize;
 }
 
-export const LoggedUser: FC<Props> = ({ className, user }) => {
+export const LoggedUser: FC<Props> = ({ className, user, avatarSize }) => {
   const { signOut } = useAuth();
   const { isMobile } = useBreakpoint();
   const [isOpen, setIsOpen] = useState(false);
+  const modalPositionX = isMobile ? 'left-[-5px]' : 'right-[-5px]';
 
   const modalRef = useRef<HTMLDivElement | null>(null);
 
@@ -28,14 +35,10 @@ export const LoggedUser: FC<Props> = ({ className, user }) => {
     container: ` flex w-fit h-full items-center relative gap-4 text-white ${className}`,
     expandIcon: 'absolute bottom-[-5px] right-[-5px] text-inherit font-bold text-lg',
     text: 'flex text-white hover:text-primary-400 items-center gap-3 text-inherit bg-transparent rounded-lg font-semibold text-sm cursor-pointer',
-    modal: 'absolute top-10  right-[-5px] border-1 border-cBorder rounded-lg px-5 py-2 bg-cBackground w-40 cursor-pointer'
+    modal: `absolute top-12 ${modalPositionX} border-1 border-cBorder rounded-lg px-5 py-2 bg-cBackground w-40 cursor-pointer`
   };
 
-  return isMobile ? (
-    <li className="cursor-pointer" onClick={signOut}>
-      Salir
-    </li>
-  ) : (
+  return (
     <div className={classes.container} ref={modalRef}>
       <span
         className="relative cursor-pointer"
@@ -45,7 +48,7 @@ export const LoggedUser: FC<Props> = ({ className, user }) => {
         onMouseDown={(e) => e.stopPropagation()}
       >
         <span className={cn('i-material-symbols-expand-more', classes.expandIcon, isOpen && 'text-yellow')} />
-        <Avatar avatar={user.user_metadata.avatar_url} />
+        <Avatar avatar={user.user_metadata.avatar_url} size={avatarSize} />
       </span>
       {/* modal */}
       {isOpen && (
