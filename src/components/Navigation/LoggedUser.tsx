@@ -1,5 +1,5 @@
 import { FC, useRef, useState } from 'react';
-import { cn, useAuth, useBreakpoint, useOnClickOutside } from '@common';
+import { AvatarSize, cn, useAuth, useBreakpoint, useOnClickOutside } from '@common';
 import { User } from '@supabase/supabase-js';
 import { Avatar } from '../Avatar/Avatar';
 
@@ -13,9 +13,11 @@ interface Props {
    * @type User
    */
   user: User;
+
+  avatarSize?: AvatarSize;
 }
 
-export const LoggedUser: FC<Props> = ({ className, user }) => {
+export const LoggedUser: FC<Props> = ({ className, user, avatarSize = AvatarSize.md }) => {
   const { signOut } = useAuth();
   const { isMobile } = useBreakpoint();
   const [isOpen, setIsOpen] = useState(false);
@@ -32,9 +34,9 @@ export const LoggedUser: FC<Props> = ({ className, user }) => {
   };
 
   return isMobile ? (
-    <li className="cursor-pointer" onClick={signOut}>
+    <span className="cursor-pointer" onClick={signOut}>
       Salir
-    </li>
+    </span>
   ) : (
     <div className={classes.container} ref={modalRef}>
       <span
@@ -45,7 +47,7 @@ export const LoggedUser: FC<Props> = ({ className, user }) => {
         onMouseDown={(e) => e.stopPropagation()}
       >
         <span className={cn('i-material-symbols-expand-more', classes.expandIcon, isOpen && 'text-yellow')} />
-        <Avatar avatar={user.user_metadata.avatar_url} />
+        <Avatar avatar={user.user_metadata.avatar_url} size={avatarSize} />
       </span>
       {/* modal */}
       {isOpen && (
