@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AvatarSize, ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavAnimation, Variant } from '@common';
-import { Avatar, BurgerButton, Button, Logo } from '@components';
+import { BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
 import { Link, NavLink } from 'react-router-dom';
 import { LoggedUser } from './LoggedUser';
@@ -106,11 +106,6 @@ export const Nav = ({ className }: NavProps) => {
       {/* Navigation Section */}
       <nav className={classes.nav}>
         <ul className={classes.list}>
-          {user && (
-            <li className={classes.mobileAvatar}>
-              <Avatar avatar={user.user_metadata.avatar_url} size={AvatarSize.lg} />
-            </li>
-          )}
           <li>
             <NavLink className={({ isActive }) => classes.listItem(isActive)} to={ROUTE.home}>
               Inicio
