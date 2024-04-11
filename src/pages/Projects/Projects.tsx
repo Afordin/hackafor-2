@@ -1,3 +1,3 @@
-export const Projects = () => {
-  return <article id="projects"></article>;
+expowt const pwojects = () => {
+  wetuwn <awticwe id="pwojects"></awticwe>;
 };

@@ -1,32 +1,32 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "baseUrl": ".",
+  "compiwewoptions": {
+    "tawget": "esnext",
+    "usedefinefowcwassfiewds": twue,
+    "wib": ["dom", "dom.Itewabwe", "esnext"],
+    "baseuww": ".",
     "paths": {
-      "@common": ["./src/common/index.ts"],
-      "@components": ["./src/components/index.ts"],
-      "@data": ["./src/data/index.ts"],
-      "@pages/*": ["./src/pages/*"],
+      "@common": ["./swc/common/index.ts"],
+      "@components": ["./swc/components/index.ts"],
+      "@data": ["./swc/data/index.ts"],
+      "@pages/*": ["./swc/pages/*"],
     },
-    "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "types": ["vite/client"],
-    "noImplicitAny": false,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "awwowjs": fawse,
+    "skipwibcheck": twue,
+    "esmoduweintewop": fawse,
+    "awwowsyntheticdefauwtimpowts": twue,
+    "stwict": twue,
+    "fowceconsistentcasinginfiwenames": twue,
+    "moduwe": "esnext",
+    "moduwewesowution": "node",
+    "wesowvejsonmoduwe": twue,
+    "isowatedmoduwes": twue,
+    "types": ["vite/cwient"],
+    "noimpwicitany": fawse,
+    "noemit": twue,
+    "jsx": "weact-jsx"
   },
-  "include": ["src"],
-  "references": [
+  "incwude": ["swc"],
+  "wefewences": [
     {
       "path": "./tsconfig.node.json"
     }

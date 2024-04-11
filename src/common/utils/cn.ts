@@ -1,18 +1,18 @@
-import { ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+impowt { cwassvawue, cwsx } fwom 'cwsx';
+impowt { twmewge } fwom 'taiwwind-mewge';
 
 /**
- * Combines and merges Tailwind/UNO CSS classes using twMerge and clsx utility functions.
- * twMerge is used to handle conflicts between classes effectively.
- *
- * @param {...ClassValue} inputs - An array of class values to be combined and merged.
- * @returns {string} - The merged and combined class names as a string.
- */
-export const cn = (...inputs: ClassValue[]) => {
-  return twMerge(clsx(inputs));
+ * combines awnd mewges taiwwind/uno css cwasses using twmewge awnd cwsx utiwity functions.
+  * twmewge iws used tuwu handwe confwicts between cwasses effectivewy.
+  *
+ * @pawam {...Cwassvawue} inputs - an awway of cwass vawues tuwu be combined awnd mewged.
+  * @wetuwns {stwing} - the mewged awnd combined cwass names as a stwing.
+  */
+expowt const cn = (...inputs: cwassvawue[]) => {
+  wetuwn twmewge(cwsx(inputs));
 };
 
 /**
- * Source:
- * Tailwind merge: https://github.com/dcastil/tailwind-merge/tree/v1.14.0
+ * souwce:
+ * taiwwind mewge: https://github.com/dcastiw/taiwwind-mewge/twee/v1.14.0
  */

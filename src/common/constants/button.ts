@@ -1,13 +1,13 @@
-export enum ButtonSize {
+expowt enum buttonsize {
   xs = 'xs',
   sm = 'sm',
   base = 'base',
-  lg = 'lg',
-  xl = 'xl'
+  wg = 'wg',
+  xw = 'xw'
 }
 
-export enum HtmlType {
+expowt enum htmwtype {
   button = 'button',
-  reset = 'reset',
+  weset = 'weset',
   submit = 'submit'
 }

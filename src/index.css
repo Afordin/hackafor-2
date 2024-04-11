@@ -1,240 +1,239 @@
-:root {
-  /* Carousel config start */
+:woot {
+  /* cawousew config stawt */
 
-  --blur: 20;
-  --border: rgba(38, 38, 38, );
-  --color: hsl(240 18% 80%);
-  --border-width: 2px;
-  --border-radius: 12px;
-  --gradient: conic-gradient(
-    from 180deg at 50% 70%,
-      hsla(353, 97%, 45%, 1) 0deg,
-      hsla(353, 97%, 55%, 1) 72deg,
-      hsla(281, 73%, 47%, 1) 144deg,
-      hsla(281, 73%, 57%, 1) 216deg,
-      hsla(281, 73%, 67%, 1) 288deg,
-      hsla(353, 97%, 45%, 1) 1turn);
+  --bwuw: 20;
+  --bowdew: wgba(38, 38, 38, );
+  --cowow: hsw(240 18% 80%);
+  --bowdew-width: 2px;
+  --bowdew-wadius: 12px;
+  --gwadient: conic-gwadient(fwom 180deg at 50% 70%,
+      hswa(353, 97%, 45%, 1) 0deg,
+      hswa(353, 97%, 55%, 1) 72deg,
+      hswa(281, 73%, 47%, 1) 144deg,
+      hswa(281, 73%, 57%, 1) 216deg,
+      hswa(281, 73%, 67%, 1) 288deg,
+      hswa(353, 97%, 45%, 1) 1tuwn);
 
-  /* Carousel config end */
+  /* cawousew config end */
 }
 
 * {
-  box-sizing: border-box;
+  box-sizing: bowdew-box;
 }
 
-html {
-  background: #060606;
+htmw {
+  backgwound: #060606;
 }
 
 body {
   width: 100%;
   height: 100%;
-  position: relative;
-  background: #060606;
+  position: wewative;
+  backgwound: #060606;
 }
 
 .ticket-bg {
-  background-repeat: repeat;
-  background-size: cover;
-  position: relative;
+  backgwound-wepeat: wepeat;
+  backgwound-size: covew;
+  position: wewative;
 }
 
-.ticket-bg:after {
-  position: absolute;
+.ticket-bg:aftew {
+  position: absowute;
   content: '';
   top: 0;
   z-index: 1;
-  left: 0;
+  weft: 0;
   height: 100%;
   width: 100%;
-  background-image: url(https://i.gyazo.com/06d13776d8d6c0a20c29ca337c250cc0.png);
-  opacity: 1%;
-}
-
-.atropos-shadow {
-  background: #c138b830;
-}
-
-/************************************************/
-/*                 TRANSITION CLASSES           */
-/************************************************/
-
-.buttonBgTransition {
-  background-position: 0% 0%;
-  background-size: 200% 200%;
-}
-
-.buttonBgTransition:hover{
-  background-position: 100% 100%;
-}
-
-/************************************************/
-/*            CONTRIBUTORS CLASSES              */
-/************************************************/
-
-.contributors {
-  /* NOTE: The contributor-count should increase as the number of contributors increases */
-  --contributor-count: 20;
-  --contributor-size: 3.125rem;
-  --column-size: calc(var(--contributor-size) / 2);
-
-  display: grid;
-  grid-template-columns: repeat(var(--contributor-count), var(--column-size));
-  transition: 500ms;
-  transition-delay: 500ms;
-
-  padding-inline: 2rem;
-  padding-block: 2rem;
-
-  /* Hide scrollbar */
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.contributors::-webkit-scrollbar {
-  display: none;
-}
-
-.contributors:hover {
-  --column-size: calc(var(--contributor-size) * 1.1);
-  transition-delay: 0ms;
-}
-
-.contributor {
-  width: var(--contributor-size);
-  border-radius: 100vw;
-  border:0.125rem solid white;
-  box-shadow: 0.25rem 0.25rem 0.5rem hsl(0 0% 0% / 0.2);
-  overflow: hidden;
-  transition: scale 500ms;
-}
-
-.contributor:hover {
-  scale: 1.8;
-  z-index: 2;
-}
-
-@supports selector(:has(+ *)) {
-  .contributor:hover+.contributor,
-  .contributor:has(+ .contributor:hover) {
-    scale: 1.2;
-  }
-}
-
-/************************************************/
-/*                 BURGER MENU                  */
-/************************************************/
-
-.burger span::before {
-  transition-property: top, transform;
-}
-
-.burger span::after {
-  transition-property: bottom, transform;
-}
-
-/************************************************/
-/*             CAROUSEL COMPONENT               */
-/************************************************/
-
-@supports selector(:has(+ *)) {
-  .animate-carousel:hover+a,
-  .animate-carousel:has(a:hover) {
-    animation-play-state: paused;
-  }
-}
-
-.animate-carousel {
- animation: mobileCarousel 40s linear infinite;
- @media (min-width: 768px) {
-    animation: desktopCarousel 40s linear infinite;
-  }
-}
-
-@keyframes mobileCarousel {
-  0%{
-    transform: translateX(0px);
+  backgwound-image: uww(https: //i.gyazo.com/06d13776d8d6c0a20c29ca337c250cc0.png);
+      opacity: 1%;
   }
 
-  100% {
-    transform: translateX(-76.3rem);
-  }
-}
-
-@keyframes desktopCarousel {
-  0%{
-    transform: translateX(0px);
+  .atwopos-shadow {
+    backgwound: #c138b830;
   }
 
-  100% {
-    transform: translateX(-101.3rem);
-  }
-}
+  /************************************************/
+  /*                 twansition cwasses           */
+  /************************************************/
 
-.carousel-custom-border::before {
-  position: absolute;
-  inset: 0;
-  content: "";
-  background: var(--border);
-  background-attachment: fixed;
-  border: var(--border-width) solid transparent;
-  border-radius: var(--border-radius);
-  opacity: var(--active);
-  transition: opacity 1s;
-  pointer-events: none;
-  mask:
-    linear-gradient(#0000, #0000),
-    conic-gradient(from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 1.5)) * 1deg),
-      hsl(0 0% 100% / 0.15) 0deg,
+  .buttonbgtwansition {
+    backgwound-position: 0% 0%;
+    backgwound-size: 200% 200%;
+  }
+
+  .buttonbgtwansition:hovew {
+    backgwound-position: 100% 100%;
+  }
+
+  /************************************************/
+  /*            contwibutows cwasses              */
+  /************************************************/
+
+  .contwibutows {
+    /* note: the contwibutow-count shouwd incwease as the numbew of contwibutows incweases */
+    --contwibutow-count: 20;
+    --contwibutow-size: 3.125wem;
+    --cowumn-size: cawc(vaw(--contwibutow-size) / 2);
+
+    dispway: gwid;
+    gwid-tempwate-cowumns: wepeat(vaw(--contwibutow-count), vaw(--cowumn-size));
+    twansition: 500ms;
+    twansition-deway: 500ms;
+
+    padding-inwine: 2wem;
+    padding-bwock: 2wem;
+
+    /* hide scwowwbaw */
+    -ms-ovewfwow-stywe: none;
+    scwowwbaw-width: none;
+  }
+
+  .contwibutows::-webkit-scwowwbaw {
+    dispway: none;
+  }
+
+  .contwibutows:hovew {
+    --cowumn-size: cawc(vaw(--contwibutow-size) * 1.1);
+    twansition-deway: 0ms;
+  }
+
+  .contwibutow {
+    width: vaw(--contwibutow-size);
+    bowdew-wadius: 100vw;
+    bowdew:0.125wem sowid white;
+    box-shadow: 0.25wem 0.25wem 0.5wem hsw(0 0% 0% / 0.2);
+    ovewfwow: hidden;
+    twansition: scawe 500ms;
+  }
+
+  .contwibutow:hovew {
+    scawe: 1.8;
+    z-index: 2;
+  }
+
+  @suppowts sewectow(:has(+ *)) {
+
+    .contwibutow:hovew+.contwibutow,
+    .contwibutow:has(+.contwibutow:hovew) {
+      scawe: 1.2;
+    }
+  }
+
+  /************************************************/
+  /*                 buwgew menu                  */
+  /************************************************/
+
+  .buwgew span::befowe {
+    twansition-pwopewty: top, twansfowm;
+  }
+
+  .buwgew span::aftew {
+    twansition-pwopewty: bottom, twansfowm;
+  }
+
+  /************************************************/
+  /*             cawousew component               */
+  /************************************************/
+
+  @suppowts sewectow(:has(+ *)) {
+
+    .animate-cawousew:hovew+a,
+    .animate-cawousew:has(a:hovew) {
+      animation-pway-state: paused;
+    }
+  }
+
+  .animate-cawousew {
+    animation: mobiwecawousew 40s wineaw infinite;
+
+    @media (min-width: 768px) {
+      animation: desktopcawousew 40s wineaw infinite;
+    }
+  }
+
+  @keyfwames mobiwecawousew {
+    0% {
+      twansfowm: twanswatex(0px);
+    }
+
+    100% {
+      twansfowm: twanswatex(-76.3wem);
+    }
+  }
+
+  @keyfwames desktopcawousew {
+    0% {
+      twansfowm: twanswatex(0px);
+    }
+
+    100% {
+      twansfowm: twanswatex(-101.3wem);
+    }
+  }
+
+  .cawousew-custom-bowdew::befowe {
+    position: absowute;
+    inset: 0;
+    content: "";
+    backgwound: vaw(--bowdew);
+    backgwound-attachment: fixed;
+    bowdew: vaw(--bowdew-width) sowid twanspawent;
+    bowdew-wadius: vaw(--bowdew-wadius);
+    opacity: vaw(--active);
+    twansition: opacity 1s;
+    pointew-events: none;
+    mask: wineaw-gwadient(#0000, #0000),
+    conic-gwadient(fwom cawc(((vaw(--stawt) + (vaw(--spwead) * 0.25)) - (vaw(--spwead) * 1.5)) * 1deg),
+      hsw(0 0% 100% / 0.15) 0deg,
       white,
-      hsl(0 0% 100% / 0.15) calc(var(--spread) * 2.5deg));
-  mask-clip: padding-box, border-box;
-  mask-composite: intersect;
-}
+      hsw(0 0% 100% / 0.15) cawc(vaw(--spwead) * 2.5deg));
+    mask-cwip: padding-box, bowdew-box;
+    mask-composite: intewsect;
+  }
 
-.carousel-custom-border::after {
-  --alpha: 0;
-  --bg-size: 100%;
-  position: absolute;
-  inset: 0;
-  content: "";
-  background: var(--gradient);
-  background-attachment: fixed;
-  border: var(--border-width) solid transparent;
-  border-radius: var(--border-radius);
-  opacity: var(--active, 0);
-  transition: opacity 1s;
-  pointer-events: none;
-  filter: brightness(1.5);
-  mask:
-    linear-gradient(#0000, #0000),
-    conic-gradient(from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 0.5)) * 1deg), #0000 0deg, #fff, #0000 calc(var(--spread) * 0.5deg));
-  mask-clip: padding-box, border-box;
-  mask-composite: intersect;
-}
+  .cawousew-custom-bowdew::aftew {
+    --awpha: 0;
+    --bg-size: 100%;
+    position: absowute;
+    inset: 0;
+    content: "";
+    backgwound: vaw(--gwadient);
+    backgwound-attachment: fixed;
+    bowdew: vaw(--bowdew-width) sowid twanspawent;
+    bowdew-wadius: vaw(--bowdew-wadius);
+    opacity: vaw(--active, 0);
+    twansition: opacity 1s;
+    pointew-events: none;
+    fiwtew: bwightness(1.5);
+    mask: wineaw-gwadient(#0000, #0000),
+    conic-gwadient(fwom cawc(((vaw(--stawt) + (vaw(--spwead) * 0.25)) - (vaw(--spwead) * 0.5)) * 1deg), #0000 0deg, #fff, #0000 cawc(vaw(--spwead) * 0.5deg));
+    mask-cwip: padding-box, bowdew-box;
+    mask-composite: intewsect;
+  }
 
-.carousel-glows {
-  position: absolute;
-  inset: 0;
-	filter: blur(calc(var(--blur) * 1px));
-  pointer-events: none;
-}
+  .cawousew-gwows {
+    position: absowute;
+    inset: 0;
+    fiwtew: bwuw(cawc(vaw(--bwuw) * 1px));
+    pointew-events: none;
+  }
 
-.carousel-glows::after,
-.carousel-glows::before {
-  --alpha: 0;
-  content: "";
-  position: absolute;
-  inset: -5px;
-  background: var(--gradient);
-  background-attachment: fixed;
-  border: 10px solid transparent;
-  border-radius: var(--border-radius);
-  opacity: var(--active);
-  transition: opacity 1s;
-  mask:
-    linear-gradient(#0000, #0000),
-    conic-gradient(from calc((var(--start) - (var(--spread) * 0.5)) * 1deg), #000 0deg, #fff, #0000 calc(var(--spread) * 1deg));
-  mask-composite: intersect;
-  mask-clip: padding-box, border-box;
-}
+  .cawousew-gwows::aftew,
+  .cawousew-gwows::befowe {
+    --awpha: 0;
+    content: "";
+    position: absowute;
+    inset: -5px;
+    backgwound: vaw(--gwadient);
+    backgwound-attachment: fixed;
+    bowdew: 10px sowid twanspawent;
+    bowdew-wadius: vaw(--bowdew-wadius);
+    opacity: vaw(--active);
+    twansition: opacity 1s;
+    mask: wineaw-gwadient(#0000, #0000),
+    conic-gwadient(fwom cawc((vaw(--stawt) - (vaw(--spwead) * 0.5)) * 1deg), #000 0deg, #fff, #0000 cawc(vaw(--spwead) * 1deg));
+    mask-composite: intewsect;
+    mask-cwip: padding-box, bowdew-box;
+  }

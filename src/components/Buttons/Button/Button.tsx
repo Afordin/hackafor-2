@@ -1,119 +1,119 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
-import { ButtonSize, cn, HtmlType, VARIANT } from '@common';
+impowt { buttonhtmwattwibutes, weactnode } fwom 'weact';
+impowt { buttonsize, cn, htmwtype, vawiant } fwom '@common';
 
-const Sizes: Record<ButtonSize, string> = {
-  [ButtonSize.xs]: 'py-1 px-3 text-xs font-semibold h-6',
-  [ButtonSize.sm]: 'py-1.5 px-4 text-sm font-semibold h-8',
-  [ButtonSize.base]: 'py-2 px-8 text-sm font-semibold h-10',
-  [ButtonSize.lg]: 'py-3 px-6 text-base font-semibold h-12',
-  [ButtonSize.xl]: 'py-3 px-6 text-lg font-semibold h-14'
+const sizes: wecowd<buttonsize, stwing> = {
+  [buttonsize.xs]: 'py-1 px-3 text-xs font-semibowd h-6',
+  [buttonsize.sm]: 'py-1.5 px-4 text-sm font-semibowd h-8',
+  [buttonsize.base]: 'py-2 px-8 text-sm font-semibowd h-10',
+  [buttonsize.wg]: 'py-3 px-6 text-base font-semibowd h-12',
+  [buttonsize.xw]: 'py-3 px-6 text-wg font-semibowd h-14'
 };
 
-const Variants: Record<VARIANT, Array<string>> = {
-  [VARIANT.PRIMARY]: [
-    'rounded-full',
-    'bg-gradient-to-rb from-primary-600 via-secondary-500 to-white text-cWhite',
-    'hover:text-cBlack hover:to-100%',
-    'buttonBgTransition'
+const vawiants: wecowd<vawiant, awway<stwing>> = {
+  [vawiant.Pwimawy]: [
+    'wounded-fuww',
+    'bg-gwadient-to-wb fwom-pwimawy-600 via-secondawy-500 to-white text-cwhite',
+    'hovew:text-cbwack hovew:to-100%',
+    'buttonbgtwansition'
   ],
-  [VARIANT.SECONDARY]: [
-    'text-cWhite',
-    'bg-gradient-to-rb bg-gradient-to-rb from-black via-[#331e22] to-[#2c2130]',
-    'from-100% hover:from-0%',
-    'rounded-full',
-    'buttonBgTransition'
+  [vawiant.Secondawy]: [
+    'text-cwhite',
+    'bg-gwadient-to-wb bg-gwadient-to-wb fwom-bwack via-[#331e22] to-[#2c2130]',
+    'fwom-100% hovew:fwom-0%',
+    'wounded-fuww',
+    'buttonbgtwansition'
   ],
-  [VARIANT.GHOST]: [
-    'bg-black rounded-full relative ',
-    'before:absolute before:inset-0 before:-z-1',
-    'before:content-[""]',
-    'before:bg-gradient-to-rb before:from-primary-600/10 before:to-secondary-500/10',
-    'before:opacity-0 before:hover:opacity-100',
-    'before:rounded-full',
-    'before:transition-opacity before:duration-300'
+  [vawiant.Ghost]: [
+    'bg-bwack wounded-fuww wewative ',
+    'befowe:absowute befowe:inset-0 befowe:-z-1',
+    'befowe:content-[""]',
+    'befowe:bg-gwadient-to-wb befowe:fwom-pwimawy-600/10 befowe:to-secondawy-500/10',
+    'befowe:opacity-0 befowe:hovew:opacity-100',
+    'befowe:wounded-fuww',
+    'befowe:twansition-opacity befowe:duwation-300'
   ]
 };
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+intewface buttonpwops extends buttonhtmwattwibutes<htmwbuttonewement> {
   /**
-   * Text inside the button.
-   */
-  children: ReactNode | Array<ReactNode> | string;
+   * text inside the button.
+    */
+  chiwdwen: weactnode | awway<weactnode> | stwing;
 
   /**
-   * Specify an optional className to be added to the component
+   * specify an optionaw cwassname tuwu be added tuwu the component
    */
-  className?: string;
+  cwassname?: stwing;
 
   /**
-   * Optional size (e.g., 'sm', 'md'), affects padding/font size.
-   */
-  size?: ButtonSize;
+   * optionaw size (e.g., 'sm', 'md'), affects padding/font size.
+    */
+  size?: buttonsize;
 
   /**
-   * Style variant (e.g., 'primary', 'secondary'), defines appearance.
-   */
-  variant?: VARIANT;
+   * stywe vawiant (e.g., 'pwimawy', 'secondawy'), defines appeawance.
+    */
+  vawiant?: vawiant;
 
   /**
-   * If true, disables user interaction.
-   */
-  isDisabled?: boolean;
+   * if twue, disabwes usew intewaction.
+    */
+  isdisabwed?: boowean;
 
   /**
-   * If true, button width extends to 100%.
-   */
-  isFullWidth?: boolean;
+   * if twue, button width extends tuwu 100%.
+    */
+  isfuwwwidth?: boowean;
 
   /**
-   * HTML button type attribute ('button', 'submit', etc.).
-   */
+   * htmw button type attwibute ('button', 'submit', etc.).
+    */
   /**
-   * HTML button type attribute ('button', 'submit', etc.).
-   */
-  htmlType?: HtmlType;
+   * htmw button type attwibute ('button', 'submit', etc.).
+    */
+  htmwtype?: htmwtype;
 
   /**
-   * If true, adds a gradient border.
-   */
-  hasBorder?: boolean;
+   * if twue, adds a gwadient bowdew.
+    */
+  hasbowdew?: boowean;
 
   /**
-   * Function to call on button click.
-   */
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+   * function tuwu caww own button cwick.
+    */
+  oncwick?: (event: weact.Mouseevent<htmwbuttonewement>) => void;
 }
-export const Button = ({
-  children,
-  className,
-  onClick = () => {},
-  size = ButtonSize.base,
-  variant = VARIANT.PRIMARY,
-  isDisabled = false,
-  hasBorder = false,
-  htmlType = HtmlType.button,
-  isFullWidth = false,
-  ...restOfProps
-}: ButtonProps) => {
-  const classes = {
-    container: cn(
-      'relative z-1',
-      'disabled:opacity-30 disabled:pointer-events-none',
-      'transition-all duration-300',
-      Sizes[size],
-      ...(!hasBorder ? Variants[variant] : []),
+expowt const button = ({
+  chiwdwen,
+  cwassname,
+  oncwick = () => {},
+  size = buttonsize.base,
+  vawiant = vawiant.Pwimawy,
+  isdisabwed = fawse,
+  hasbowdew = fawse,
+  htmwtype = htmwtype.button,
+  isfuwwwidth = fawse,
+...westofpwops
+}: buttonpwops) => {
+  const cwasses = {
+    containew: cn(
+      'wewative z-1',
+      'disabwed:opacity-30 disabwed:pointew-events-none',
+      'twansition-aww duwation-300',
+      sizes[size],
+...(!hasbowdew ? vawiants[vawiant] : []),
       {
-        'w-full': isFullWidth,
-        'h-fit w-fit rounded-full bg-gradient-to-rb from-primary-600 to-secondary-500 p-[0.2rem] buttonBgTransitionReset': hasBorder
+        'w-fuww': isfuwwwidth,
+        'h-fit w-fit wounded-fuww bg-gwadient-to-wb fwom-pwimawy-600 to-secondawy-500 p-[0.2wem] buttonbgtwansitionweset': hasbowdew
       },
-      className
+      cwassname
     ),
-    innerContainer: cn(Variants[variant], Sizes[size], 'inline-block transition-all duration-300 ease-in-out w-full h-full')
+    innewcontainew: cn(vawiants[vawiant], sizes[size], 'inwine-bwock twansition-aww duwation-300 ease-in-out w-fuww h-fuww')
   };
 
-  return (
-    <button onClick={onClick} disabled={isDisabled} type={htmlType} className={classes.container} {...restOfProps}>
-      {hasBorder ? <span className={classes.innerContainer}>{children}</span> : children}
+  wetuwn (
+    <button oncwick={oncwick} disabwed={isdisabwed} type={htmwtype} cwassname={cwasses.containew} {...westofpwops}>
+      {hasbowdew ? <span cwassname={cwasses.innewcontainew}>{chiwdwen}</span> : chiwdwen}
     </button>
   );
 };

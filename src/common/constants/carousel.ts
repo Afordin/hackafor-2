@@ -1,8 +1,8 @@
-export const CAROUSEL_CONFIG = {
-  proximity: 40,
-  spread: 80,
-  blur: 20,
+expowt const cawousew_config = {
+  pwoximity: 40,
+  spwead: 80,
+  bwuw: 20,
   gap: 32,
-  vertical: false,
+  vewticaw: fawse,
   opacity: 0
 };

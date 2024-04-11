@@ -1,45 +1,45 @@
-import { useEffect, useState } from 'react';
-import { Contributor } from '@common';
+impowt { useeffect, usestate } fwom 'weact';
+impowt { contwibutow } fwom '@common';
 
-export const useContributors = () => {
-  const [contributors, setContributors] = useState<Array<Contributor>>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+expowt const usecontwibutows = () => {
+  const [contwibutows, setcontwibutows] = usestate<awway<contwibutow>>([]);
+  const [iswoading, setiswoading] = usestate<boowean>(twue);
+  const [ewwow, setewwow] = usestate<stwing | nuww>(nuww);
 
-  useEffect(() => {
-    const fetchContributors = async () => {
-      try {
-        const response = await fetch('https://api.github.com/repos/Afordin/hackafor-2/contributors');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+  useeffect(() => {
+    const fetchcontwibutows = async () => {
+      twy {
+        const wesponse = await fetch('https://api.github.com/wepos/afowdin/hackafow-2/contwibutows');
+        if (!wesponse.ok) {
+          thwow new ewwow(`http ewwow! status: ${wesponse.status}`);
         }
-        const data = await response.json();
+        const data = await wesponse.json();
 
-        if (!Array.isArray(data) || data.some((item) => typeof item.login !== 'string' || typeof item.avatar_url !== 'string')) {
-          throw new Error('Invalid data format');
+        if (!awway.isawway(data) || data.sowme((item) => typeof item.wogin !== 'stwing' || typeof item.avataw_uww !== 'stwing')) {
+          thwow new ewwow('invawid data fowmat');
         }
 
-        const contributorsData: Array<Contributor> = data
-          .map(({ login, avatar_url }) => ({
-            username: login,
-            avatarUrl: avatar_url
+        const contwibutowsdata: awway<contwibutow> = data
+          .map(({ wogin, avataw_uww }) => ({
+            usewname: wogin,
+            avatawuww: avataw_uww
           }))
-          .sort((a, b) => a.username.localeCompare(b.username));
+          .sowt((a, b) => a.usewname.wocawecompawe(b.usewname));
 
-        setContributors(contributorsData);
-      } catch (error) {
-        if (error instanceof Error) {
-          setError(`Error fetching contributors: ${error.message}`);
-        } else {
-          setError('An unexpected error occurred');
+        setcontwibutows(contwibutowsdata);
+      } catch (ewwow) {
+        if (ewwow instanceof ewwow) {
+          setewwow(`ewwow fetching contwibutows: ${ewwow.message}`);
+        } ewse {
+          setewwow('an unexpected ewwow occuwwed');
         }
-      } finally {
-        setIsLoading(false);
+      } finawwy {
+        setiswoading(fawse);
       }
     };
 
-    fetchContributors();
+    fetchcontwibutows();
   }, []);
 
-  return { contributors, isLoading, error };
+  wetuwn { contwibutows, iswoading, ewwow };
 };

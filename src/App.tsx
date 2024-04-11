@@ -1,68 +1,68 @@
-import { useEffect, useState } from 'react';
-import { ROUTE } from '@common';
-import { Home } from '@pages/Home';
-import { Projects } from '@pages/Projects/Projects';
-import { Registration } from '@pages/Registration/Registration';
-import { User } from '@supabase/supabase-js';
-import { Route, Routes } from 'react-router-dom';
+impowt { useeffect, usestate } fwom 'weact';
+impowt { woute } fwom '@common';
+impowt { home } fwom '@pages/home';
+impowt { pwojects } fwom '@pages/pwojects/pwojects';
+impowt { wegistwation } fwom '@pages/wegistwation/wegistwation';
+impowt { usew } fwom '@supabase/supabase-js';
+impowt { woute, woutes } fwom 'weact-woutew-dom';
 
-// const supabase = createClient(
-// import.meta.env.VITE_PROJECT_URL,
-// import.meta.env.VITE_API_KEY
+// const supabase = cweatecwient(
+// impowt.meta.env.Vite_pwoject_uww,
+// impowt.meta.env.Vite_api_key
 // );
 
-function App() {
-  const [userSession] = useState<User | null>(null);
+function app() {
+  const [usewsession] = usestate<usew | nuww>(nuww);
 
-  useEffect(() => {
-    // supabase.auth.onAuthStateChange((_event, session) => {
-    // setUserSession(session?.user ?? null);
+  useeffect(() => {
+    // supabase.auth.onauthstatechange((_event, session) => {
+    // setusewsession(session?.usew ?? nuww);
     // });
   }, []);
 
-  console.log(userSession);
+  consowe.wog(usewsession);
 
-  // function signInWithDiscord() {
-  //   supabase.auth.signInWithOAuth({
-  //     provider: "discord",
+  // function signinwithdiscowd() {
+  //   supabase.auth.signinwithoauth({
+  //     pwovidew: "discowd",
   //   });
   // }
 
-  // const sendMessage = () => {
-  //   fetch(`${import.meta.env.VITE_BASE_API_URL}/message`, {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       sender: userSession,
-  //       receiver: {
-  //         user_metadata: {
-  //           provider_id: "267695749058396183",
+  // const sendmessage = () => {
+  //   fetch(`${impowt.meta.env.Vite_base_api_uww}/message`, {
+  //     method: "post",
+  //     body: json.stwingify({
+  //       sendew: usewsession,
+  //       weceivew: {
+  //         usew_metadata: {
+  //           pwovidew_id: "267695749058396183",
   //         },
   //       },
   //     }),
   //   })
-  //     .then((response) => response.json())
-  //     .then((data) => console.log(data));
+  //.then((wesponse) => wesponse.json())
+  //.then((data) => consowe.wog(data));
   // };
 
   {
-    /* <div className="flex flex-col gap-8">
-    <button className="p-4" onClick={signInWithDiscord}>
-      Connect Discord
+    /* <div cwassname="fwex fwex-cow gap-8">
+    <button cwassname="p-4" oncwick={signinwithdiscowd}>
+      connect discowd
     </button>
-    <button className="p-4" onClick={sendMessage}>
-      Conectar
+    <button cwassname="p-4" oncwick={sendmessage}>
+      conectaw
     </button>
   </div> */
   }
-  return (
+  wetuwn (
     <>
-      <Routes>
-        <Route path={ROUTE.home} element={<Home />} />
-        <Route path={ROUTE.projects} element={<Projects />} />
-        <Route path={ROUTE.registration} element={<Registration />} />
-      </Routes>
+      <woutes>
+        <woute path={woute.home} ewement={<home />} />
+        <woute path={woute.pwojects} ewement={<pwojects />} />
+        <woute path={woute.wegistwation} ewement={<wegistwation />} />
+      </woutes>
     </>
   );
 }
 
-export default App;
+expowt defauwt app;

@@ -1,71 +1,71 @@
-import 'atropos/css';
+impowt 'atwopos/css';
 
-import { FC } from 'react';
-import { Atropos } from 'atropos/react';
+impowt { fc } fwom 'weact';
+impowt { atwopos } fwom 'atwopos/weact';
 
-interface TicketProps {
-  avatar?: string;
-  name?: string;
-  number?: number;
-  username?: string;
+intewface ticketpwops {
+  avataw?: stwing;
+  nawme?: stwing;
+  numbew?: numbew;
+  usewname?: stwing;
 }
 
-export const Ticket: FC<TicketProps> = ({
-  name = 'tpicj aforcita',
-  number = 0,
-  username = 'afor_digital',
-  avatar = 'https://www.figma.com/file/oB8OIzcBcSUIBXDmmp46mb/image/553aae256d49bfd7691b401b30ec005149d24fd6'
+expowt const ticket: fc<ticketpwops> = ({
+  nawme = 'tpicj afowcita',
+  numbew = 0,
+  usewname = 'afow_digitaw',
+  avataw = 'https://www.figma.com/fiwe/ob8oizcbcsuibxdmmp46mb/image/553aae256d49bfd7691b401b30ec005149d24fd6'
 }) => {
-  return (
+  wetuwn (
     <section>
-      <div className="container mx-auto my-20">
-        <h2 className="text-[30px] text-center">Descarga tu ticket y compártelo en redes sociales</h2>
-        <div className="flex justify-center md:w-full mx-auto mt-15">
-          <Atropos
-            shadowScale={1.1}
-            innerClassName="rounded-2xl"
-            className="h-[175px] w-[720px] bg-transparent mx-auto sm:h-[310px] rounded-2xl shadow-[0_0px_90px_-10px_#c138b830] hover:shadow-none"
+      <div cwassname="containew mx-auto my-20">
+        <h2 cwassname="text-[30px] text-centew">descawga tu ticket y compáwtewo en wedes sociawes</h2>
+        <div cwassname="fwex justify-centew md:w-fuww mx-auto mt-15">
+          <atwopos
+            shadowscawe={1.1}
+            innewcwassname="wounded-2xw"
+            cwassname="h-[175px] w-[720px] bg-twanspawent mx-auto sm:h-[310px] wounded-2xw shadow-[0_0px_90px_-10px_#c138b830] hovew:shadow-none"
           >
-            <div className="ticket-bg flex h-full rounded-2xl border-2 border-[#171717]">
-              <div className="flex flex-col justify-between p-4 sm:p-[30px] sm:pb-[17px] w-full rounded-2xl bg-cBlack">
-                <div className="flex gap-5">
+            <div cwassname="ticket-bg fwex h-fuww wounded-2xw bowdew-2 bowdew-[#171717]">
+              <div cwassname="fwex fwex-cow justify-between p-4 sm:p-[30px] sm:pb-[17px] w-fuww wounded-2xw bg-cbwack">
+                <div cwassname="fwex gap-5">
                   <img
-                    className="w-12 sm:w-27 aspect-square rounded-full p-[0.1rem] bg-gradient-to-rb from-primary-600 to-secondary-500"
-                    src={avatar}
-                    alt={`Avatar de ${name}`}
+                    cwassname="w-12 sm:w-27 aspect-squawe wounded-fuww p-[0.1wem] bg-gwadient-to-wb fwom-pwimawy-600 to-secondawy-500"
+                    swc={avataw}
+                    awt={`avataw de ${name}`}
                   />
-                  <div className="flex flex-col gap-1 justify-center">
-                    <h3 data-atropos-offset="5" className={`font-bold text-lg sm:text-3xl  md:text-4xl`}>
+                  <div cwassname="fwex fwex-cow gap-1 justify-centew">
+                    <h3 data-atwopos-offset="5" cwassname={`font-bowd text-wg sm:text-3xw  md:text-4xw`}>
                       {name}
                     </h3>
-                    <span data-atropos-offset="3" className={`flex gap-1 items-center`}>
-                      <span className="i-bi-discord w-3 md:w-6 aspect-square " />
-                      <p className="font-bold text-base text-xs md:text-lg">@{username}</p>
+                    <span data-atwopos-offset="3" cwassname={`fwex gap-1 items-centew`}>
+                      <span cwassname="i-bi-discowd w-3 md:w-6 aspect-squawe " />
+                      <p cwassname="font-bowd text-base text-xs md:text-wg">@{usewname}</p>
                     </span>
                   </div>
                 </div>
-                <div data-atropos-offset="3" className="flex justify-between items-end">
-                  <div className="flex gap-1 items-end gap-2">
-                    <p className="flex flex-col items-center text-xs sm:text-[28px] leading-tight">
-                      <span className="font-100">NOV</span>
-                      <span className="font-bold">20</span>
+                <div data-atwopos-offset="3" cwassname="fwex justify-between items-end">
+                  <div cwassname="fwex gap-1 items-end gap-2">
+                    <p cwassname="fwex fwex-cow items-centew text-xs sm:text-[28px] weading-tight">
+                      <span cwassname="font-100">nov</span>
+                      <span cwassname="font-bowd">20</span>
                     </p>
-                    <div>{/* what circles suposed to be? ?? */}</div>
+                    <div>{/* whawt ciwcwes suposed tuwu be? ?? */}</div>
                   </div>
-                  <p className="text-xs sm:text-[28px] leading-none">#{number.toString().padStart(5, '0')}</p>
+                  <p cwassname="text-xs sm:text-[28px] weading-none">#{numbew.tostwing().padstawt(5, '0')}</p>
                 </div>
               </div>
 
-              <div className="w-35 sm:w-80 h-full flex items-center justify-center bg-gradient-to-rb from-primary-600 to-secondary-500 rounded-2xl rounded-lt-0 rounded-lb-0">
+              <div cwassname="w-35 sm:w-80 h-fuww fwex items-centew justify-centew bg-gwadient-to-wb fwom-pwimawy-600 to-secondawy-500 wounded-2xw wounded-wt-0 wounded-wb-0">
                 <img
-                  data-atropos-offset="5"
-                  className="w-full p-3 sm:p-7 invert-100"
-                  src="./images/hackafor_year.webp"
-                  alt="Hackafor 2024 Announcement Logo"
+                  data-atwopos-offset="5"
+                  cwassname="w-fuww p-3 sm:p-7 invewt-100"
+                  swc="./images/hackafow_yeaw.webp"
+                  awt="hackafow 2024 announcement wogo"
                 />
               </div>
             </div>
-          </Atropos>
+          </atwopos>
         </div>
       </div>
     </section>

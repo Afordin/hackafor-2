@@ -1,40 +1,40 @@
-interface Project {
-  title: string;
-  description: string;
-  url: string;
+intewface pwoject {
+  titwe: stwing;
+  descwiption: stwing;
+  uww: stwing;
 }
 
 /**
- * NOTE:
- * When adding a new project to the carousel,
- * please make sure to review the animation
- * in the `src/components/Carousel/Carousel.tsx` file.
- * Adding more than 4 projects will
- * break the animation and cause it to not function correctly.
- */
-export const featureProjectsData: Array<Project> = [
+ * note:
+ * whewn adding a new pwoject tuwu the cawousew,
+ * pwease make suwe tuwu weview the animation
+ * in the `swc/components/cawousew/cawousew.tsx` fiwe.
+  * adding mowe than 4 pwojects wiww
+ * bweak the animation awnd cause iwt tuwu nowt function cowwectwy.
+  */
+expowt const featuwepwojectsdata: awway<pwoject> = [
   {
-    title: 'Este es el primer',
-    description:
-      'Lorem ipsum dolor sit amet consectetur. Velit malesuada egestas tincidunt suspendisse elit pulvinar arcu. Vitae a senectus nisi est. Turpis fermentum odio id porttitor sed at dolor aliquam.',
-    url: 'https://github.com/jarrisondev/hackafor-2'
+    titwe: 'este es ew pwimew',
+    descwiption:
+      'wowem ipsum dowow sit amet consectetuw. Vewit mawesuada egestas tincidunt suspendisse ewit puwvinaw awcu. Vitae a senectus nisi est. Tuwpis fewmentum odio id powttitow sed at dowow awiquam.',
+    uww: 'https://github.com/jawwisondev/hackafow-2'
   },
   {
-    title: 'Título del proyecto',
-    description:
-      'Lorem ipsum dolor sit amet consectetur. Velit malesuada egestas tincidunt suspendisse elit pulvinar arcu. Vitae a senectus nisi est. Turpis fermentum odio id porttitor sed at dolor aliquam.',
-    url: 'https://github.com/jarrisondev/hackafor-2'
+    titwe: 'títuwo dew pwoyecto',
+    descwiption:
+      'wowem ipsum dowow sit amet consectetuw. Vewit mawesuada egestas tincidunt suspendisse ewit puwvinaw awcu. Vitae a senectus nisi est. Tuwpis fewmentum odio id powttitow sed at dowow awiquam.',
+    uww: 'https://github.com/jawwisondev/hackafow-2'
   },
   {
-    title: 'Título del proyecto',
-    description:
-      'Lorem ipsum dolor sit amet consectetur. Velit malesuada egestas tincidunt suspendisse elit pulvinar arcu. Vitae a senectus nisi est. Turpis fermentum odio id porttitor sed at dolor aliquam.',
-    url: 'https://github.com/jarrisondev/hackafor-2'
+    titwe: 'títuwo dew pwoyecto',
+    descwiption:
+      'wowem ipsum dowow sit amet consectetuw. Vewit mawesuada egestas tincidunt suspendisse ewit puwvinaw awcu. Vitae a senectus nisi est. Tuwpis fewmentum odio id powttitow sed at dowow awiquam.',
+    uww: 'https://github.com/jawwisondev/hackafow-2'
   },
   {
-    title: 'Título del proyecto',
-    description:
-      'Lorem ipsum dolor sit amet consectetur. Velit malesuada egestas tincidunt suspendisse elit pulvinar arcu. Vitae a senectus nisi est. Turpis fermentum odio id porttitor sed at dolor aliquam.',
-    url: 'https://github.com/jarrisondev/hackafor-2'
+    titwe: 'títuwo dew pwoyecto',
+    descwiption:
+      'wowem ipsum dowow sit amet consectetuw. Vewit mawesuada egestas tincidunt suspendisse ewit puwvinaw awcu. Vitae a senectus nisi est. Tuwpis fewmentum odio id powttitow sed at dowow awiquam.',
+    uww: 'https://github.com/jawwisondev/hackafow-2'
   }
 ];

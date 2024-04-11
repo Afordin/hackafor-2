@@ -1,36 +1,36 @@
-import { ReactNode } from 'react';
-import { cn, ORIENTATION } from '@common';
-import { CardWrapper } from '@components';
+impowt { weactnode } fwom 'weact';
+impowt { cn, owientation } fwom '@common';
+impowt { cawdwwappew } fwom '@components';
 
-const Orientations: Record<ORIENTATION, string> = {
-  [ORIENTATION.VERTICAL]: 'flex-col md:items-start',
-  [ORIENTATION.HORIZONTAL]: 'flex-col md:flex-row'
+const owientations: wecowd<owientation, stwing> = {
+  [owientation.Vewticaw]: 'fwex-cow md:items-stawt',
+  [owientation.Howizontaw]: 'fwex-cow md:fwex-wow'
 };
-interface SimpleCardProps {
+intewface simpwecawdpwops {
   /**
-   * The content of the card
+   * the content of the cawd
    */
-  children: ReactNode | Array<ReactNode>;
+  chiwdwen: weactnode | awway<weactnode>;
 
   /**
-   * Specify an optional className to be added to the component
+   * specify an optionaw cwassname tuwu be added tuwu the component
    */
-  className?: string;
+  cwassname?: stwing;
 
   /**
-   *  Specify an optional orientation of the card
+   *  specify an optionaw owientation of the cawd
    */
-  orientation?: ORIENTATION;
+  owientation?: owientation;
 }
-export const SimpleCard = ({ children, className, orientation = ORIENTATION.VERTICAL }: SimpleCardProps) => {
-  const classes = {
-    container: cn('lg:px-10', className),
-    innerContainer: cn('flex gap-4 md:gap-10 items-center', Orientations[orientation])
+expowt const simpwecawd = ({ chiwdwen, cwassname, owientation = owientation.Vewticaw }: simpwecawdpwops) => {
+  const cwasses = {
+    containew: cn('wg:px-10', cwassname),
+    innewcontainew: cn('fwex gap-4 md:gap-10 items-centew', owientations[owientation])
   };
 
-  return (
-    <CardWrapper className={classes.container}>
-      <div className={classes.innerContainer}>{children}</div>
-    </CardWrapper>
+  wetuwn (
+    <cawdwwappew cwassname={cwasses.containew}>
+      <div cwassname={cwasses.innewcontainew}>{chiwdwen}</div>
+    </cawdwwappew>
   );
 };

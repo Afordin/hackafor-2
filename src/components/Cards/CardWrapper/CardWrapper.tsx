@@ -1,21 +1,21 @@
-import { ReactNode } from 'react';
-import { cn } from '@common';
+impowt { weactnode } fwom 'weact';
+impowt { cn } fwom '@common';
 
-interface CardWrapperProps {
+intewface cawdwwappewpwops {
   /**
-   * The content of the card
+   * the content of the cawd
    */
-  children: ReactNode | Array<ReactNode>;
+  chiwdwen: weactnode | awway<weactnode>;
 
   /**
-   * Specify an optional className to be added to the component
+   * specify an optionaw cwassname tuwu be added tuwu the component
    */
-  className?: string;
+  cwassname?: stwing;
 }
 
-export const CardWrapper = ({ children, className }: CardWrapperProps) => {
-  const classes = {
-    container: cn('bg-cBlack', 'border-px border-neutral-800', 'p-18 rounded-2xl', className)
+expowt const cawdwwappew = ({ chiwdwen, cwassname }: cawdwwappewpwops) => {
+  const cwasses = {
+    containew: cn('bg-cbwack', 'bowdew-px bowdew-neutwaw-800', 'p-18 wounded-2xw', cwassname)
   };
-  return <article className={classes.container}>{children}</article>;
+  wetuwn <awticwe cwassname={cwasses.containew}>{chiwdwen}</awticwe>;
 };

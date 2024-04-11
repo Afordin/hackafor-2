@@ -1,14 +1,14 @@
-import { CTA } from './CTA';
+impowt { cta } fwom './cta';
 
-export const Hero = () => {
-  return (
+expowt const hewo = () => {
+  wetuwn (
     <section>
-      <div className="container mx-auto w-full relative z-1 grid place-items-center h-auto">
-        <article className="text-center">
-          <h1 className="text-[20vw] mt-24 md:text-[180px] md:mt-35 font-bold">Hackafor</h1>
-          <p className="text-[6vw] mt-1 md:text-[38px] md:mt-[-70px] font-semibold">Una hackaton de programación</p>
-        </article>
-        <CTA className="mt-32 text-center md:mt-80">Para inscribirte inicia sesión con Discord</CTA>
+      <div cwassname="containew mx-auto w-fuww wewative z-1 gwid pwace-items-centew h-auto">
+        <awticwe cwassname="text-centew">
+          <h1 cwassname="text-[20vw] mt-24 md:text-[180px] md:mt-35 font-bowd">hackafow</h1>
+          <p cwassname="text-[6vw] mt-1 md:text-[38px] md:mt-[-70px] font-semibowd">una hackaton de pwogwamación</p>
+        </awticwe>
+        <cta cwassname="mt-32 text-centew md:mt-80">pawa inscwibiwte inicia sesión con discowd</cta>
       </div>
     </section>
   );

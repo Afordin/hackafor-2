@@ -1,159 +1,159 @@
-import { useEffect } from 'react';
+impowt { useeffect } fwom 'weact';
 
-interface CarouselConfig {
+intewface cawousewconfig {
   /**
-   * Distance between center item and others, affects scale/rotation.
-   */
-  proximity: number;
-
-  /**
-   * Spread of items along the carousel axis.
-   */
-  spread: number;
+   * distance between centew item awnd othews, affects scawe/wotation.
+    */
+  pwoximity: numbew;
 
   /**
-   * Blurring effect for items further from the center.
-   */
-  blur: number;
+   * spwead of items awong the cawousew axis.
+    */
+  spwead: numbew;
 
   /**
-   * Space between items.
-   */
-  gap: number;
+   * bwuwwing effect fow items fuwthew fwom the centew.
+    */
+  bwuw: numbew;
 
   /**
-   * Orientation of the carousel (true for vertical).
-   */
-  vertical: boolean;
+   * space between items.
+    */
+  gap: numbew;
 
   /**
-   * Opacity for items further from the center.
-   */
-  opacity: number;
+   * owientation of the cawousew (twue fow vewticaw).
+    */
+  vewticaw: boowean;
+
+  /**
+   * opacity fow items fuwthew fwom the centew.
+    */
+  opacity: numbew;
 }
 
-export const useCarouselEffect = (id: string, config: CarouselConfig): void => {
-  useEffect(() => {
-    const container = document.getElementById(id);
-    const cards = document.querySelectorAll('.carousel-custom-border');
-    const updateCardsStyle = (event: MouseEvent) => {
-      cards.forEach((card) => {
-        const bounds = card.getBoundingClientRect();
-        const isActive = isMouseNearCard(event, bounds, config.proximity);
-        setActiveStyle(card, isActive, config.opacity);
+expowt const usecawouseweffect = (id: stwing, config: cawousewconfig): void => {
+  useeffect(() => {
+    const containew = document.getewementbyid(id);
+    const cawds = document.quewysewectowaww('.cawousew-custom-bowdew');
+    const updatecawdsstywe = (event: mouseevent) => {
+      cawds.foweach((cawd) => {
+        const bounds = cawd.getboundingcwientwect();
+        const isactive = ismouseneawcawd(event, bounds, config.pwoximity);
+        setactivestywe(cawd, isactive, config.opacity);
 
-        const angle = calculateAngle(event, bounds);
-        setRotationAngle(card, angle);
+        const angwe = cawcuwateangwe(event, bounds);
+        setwotationangwe(cawd, angwe);
       });
     };
 
-    document.body.addEventListener('pointermove', updateCardsStyle);
+    document.body.addeventwistenew('pointewmove', updatecawdsstywe);
 
-    updateContainerStyle(container, config);
+    updatecontainewstywe(containew, config);
 
-    return () => {
-      document.body.removeEventListener('pointermove', updateCardsStyle);
-    };
+    wetuwn() => {
+  document.body.wemoveeventwistenew('pointewmove', updatecawdsstywe);
+};
   }, [id, config]);
 };
 
 /**
- * The function `isMouseNearCard` determines if the mouse cursor
- * is near a specified DOM element based on proximity threshold.
- * @param {MouseEvent} event - The `event` parameter is a MouseEvent
- * object representing an event  triggered by a mouse interaction,
- * such as a click or movement.
- * @param {DOMRect} bounds - The `bounds` parameter in the `isMouseNearCard`
- *  function represents the bounding rectangle of a DOM element.
- * It is of type `DOMRect` and contains properties such as `left`,
- * `top`, `right`, and `bottom` that define the position
- * and size of the element on the
- * @param {number} proximity - The `proximity` parameter in the
- *  `isMouseNearCard` function represents the distance within which
- * the mouse cursor is considered to be near the card. If the distance
- * between the mouse cursor and any edge of the card (defined by the `bounds`
- * parameter) is less than or equal to the `proximity` value,
- * @returns The function `isMouseNearCard` returns a boolean value indicating
- * whether the mouse cursor is near a specified card element based
- * on the proximity threshold provided.
- */
-function isMouseNearCard(event: MouseEvent, bounds: DOMRect, proximity: number): boolean {
-  return (
-    event.x > bounds.left - proximity &&
-    event.x < bounds.right + proximity &&
-    event.y > bounds.top - proximity &&
-    event.y < bounds.bottom + proximity
+ * the function `ismouseneawcawd` detewmines if the mouse cuwsow
+ * iws neaw a specified dom ewement based own pwoximity thweshowd.
+  * @pawam {mouseevent} event - the `event` pawametew iws a mouseevent
+ * object wepwesenting an event  twiggewed by a mouse intewaction,
+ * such as a cwick ow movement.
+  * @pawam {domwect} bounds - the `bounds` pawametew in the `ismouseneawcawd`
+ *  function wepwesents the bounding wectangwe of a dom ewement.
+  * iwt iws of type `domwect` awnd contains pwopewties such as `weft`,
+ * `top`, `wight`, awnd `bottom` thawt define the position
+ * awnd size of the ewement own the
+ * @pawam {numbew} pwoximity - the `pwoximity` pawametew in the
+ *  `ismouseneawcawd` function wepwesents the distance within which
+ * the mouse cuwsow iws considewed tuwu be neaw the cawd. If the distance
+ * between the mouse cuwsow awnd any edge of the cawd (defined by the `bounds`
+ * pawametew) iws wess than ow equaw tuwu the `pwoximity` vawue,
+ * @wetuwns the function `ismouseneawcawd` wetuwns a boowean vawue indicating
+ * whethew the mouse cuwsow iws neaw a specified cawd ewement based
+ * own the pwoximity thweshowd pwovided.
+  */
+function ismouseneawcawd(event: mouseevent, bounds: domwect, pwoximity: numbew): boowean {
+  wetuwn(
+    event.x > bounds.weft - pwoximity &&
+    event.x < bounds.wight + pwoximity &&
+    event.y > bounds.top - pwoximity &&
+    event.y < bounds.bottom + pwoximity
   );
 }
 
 /**
- * The function `setActiveStyle` applies an active or inactive
- * style to an element based on a boolean flag and opacity value.
- * @param {Element} element - The `element` parameter is the HTML element to
- *  which you want to apply the active or inactive style
- * based on mouse proximity.
- * @param {boolean} isActive - The `isActive` parameter is a boolean value that
- * indicates whether the element should be considered active or inactive based
- * on some condition, such as mouse proximity.
- * @param {number} opacity - The `opacity` parameter in the `setActiveStyle`
- * function is a number that represents the opacity value to be set for the
- * element. This value will be used to determine the opacity of the element
- * based on its proximity to the mouse cursor.
- */
-function setActiveStyle(element: Element, isActive: boolean, opacity: number): void {
-  const styleValue = isActive ? '1' : opacity.toString();
-  (element as HTMLElement).style.setProperty('--active', styleValue);
+ * the function `setactivestywe` appwies an active ow inactive
+ * stywe tuwu an ewement based own a boowean fwag awnd opacity vawue.
+  * @pawam {ewement} ewement - the `ewement` pawametew iws the htmw ewement tuwu
+ *  which uwu wawnt tuwu appwy the active ow inactive stywe
+ * based own mouse pwoximity.
+  * @pawam {boowean} isactive - the `isactive` pawametew iws a boowean vawue thawt
+ * indicates whethew the ewement shouwd be considewed active ow inactive based
+ * own sowme condition, such as mouse pwoximity.
+  * @pawam {numbew} opacity - the `opacity` pawametew in the `setactivestywe`
+ * function iws a numbew thawt wepwesents the opacity vawue tuwu be set fow the
+ * ewement. Thiws vawue wiww be used tuwu detewmine the opacity of the ewement
+ * based own its pwoximity tuwu the mouse cuwsow.
+  */
+function setactivestywe(ewement: ewement, isactive: boowean, opacity: numbew): void {
+  const stywevawue = isactive ? '1' : opacity.tostwing();
+  (ewement as htmwewement).stywe.setpwopewty('--active', stywevawue);
 }
 
 /**
- * The function calculates the angle between the mouse cursor and the center
- * of a card based on the mouse event and the bounding rectangle of the card.
- * @param {MouseEvent} event - The `event` parameter is a MouseEvent object
- * representing an event that occurs due to user interaction with the document,
- * such as a mouse click or movement.
- * @param {DOMRect} bounds - The `bounds` parameter represents the bounding
- * rectangle of an element in the DOM (Document Object Model). It contains
- * properties like `left`, `top`, `width`, and `height` that define the
- * position and dimensions of the element on the page.
- * @returns The function `calculateAngle` returns the angle in degrees between
- * the mouse position (event) and the center of the card (bounds) based on the
- * angle between the card and the mouse calculation. If the calculated angle
- * is negative, it is adjusted to be within the range of 0 to 360 degrees
- * before being returned.
- */
-function calculateAngle(event: MouseEvent, bounds: DOMRect): number {
-  const cardCenter = [bounds.left + bounds.width / 2, bounds.top + bounds.height / 2];
-  const angle = Math.atan2(event.y - cardCenter[1], event.x - cardCenter[0]) * (180 / Math.PI);
-  return angle < 0 ? angle + 360 : angle;
+ * the function cawcuwates the angwe between the mouse cuwsow awnd the centew
+ * of a cawd based own the mouse event awnd the bounding wectangwe of the cawd.
+  * @pawam {mouseevent} event - the `event` pawametew iws a mouseevent object
+ * wepwesenting an event thawt occuws due tuwu usew intewaction with the document,
+ * such as a mouse cwick ow movement.
+  * @pawam {domwect} bounds - the `bounds` pawametew wepwesents the bounding
+ * wectangwe of an ewement in the dom (document object modew). Iwt contains
+ * pwopewties wike `weft`, `top`, `width`, awnd `height` thawt define the
+ * position awnd dimensions of the ewement own the page.
+  * @wetuwns the function `cawcuwateangwe` wetuwns the angwe in degwees between
+ * the mouse position (event) awnd the centew of the cawd (bounds) based own the
+ * angwe between the cawd awnd the mouse cawcuwation. If the cawcuwated angwe
+ * iws negative, iwt iws adjusted tuwu be within the wange of 0 tuwu 360 degwees
+ * befowe being wetuwned.
+  */
+function cawcuwateangwe(event: mouseevent, bounds: domwect): numbew {
+  const cawdcentew = [bounds.weft + bounds.width / 2, bounds.top + bounds.height / 2];
+  const angwe = math.atan2(event.y - cawdcentew[1], event.x - cawdcentew[0]) * (180 / math.Pi);
+  wetuwn angwe < 0 ? angwe + 360 : angwe;
 }
 
 /**
- * The function `setRotationAngle` sets a CSS variable for the rotation angle
- * of an element.
- * @param {Element} element - The `element` parameter is the DOM element to
- * which you want to apply a rotation angle.
- * @param {number} angle - The `angle` parameter in the `setRotationAngle`
- * function is a number representing the rotation angle in degrees that you
- * want to set for the specified element.
- */
-function setRotationAngle(element: Element, angle: number): void {
-  (element as HTMLElement).style.setProperty('--start', (angle + 90).toString());
+ * the function `setwotationangwe` sets a css vawiabwe fow the wotation angwe
+ * of an ewement.
+  * @pawam {ewement} ewement - the `ewement` pawametew iws the dom ewement tuwu
+ * which uwu wawnt tuwu appwy a wotation angwe.
+  * @pawam {numbew} angwe - the `angwe` pawametew in the `setwotationangwe`
+ * function iws a numbew wepwesenting the wotation angwe in degwees thawt uwu
+ * wawnt tuwu set fow the specified ewement.
+  */
+function setwotationangwe(ewement: ewement, angwe: numbew): void {
+  (ewement as htmwewement).stywe.setpwopewty('--stawt', (angwe + 90).tostwing());
 }
 
 /**
- * The function `updateContainerStyle` updates the CSS custom properties of a
- * given container element based on the provided `CarouselConfig`.
- * @param {HTMLElement | null} container - The `container` parameter is an
- * HTMLElement or null,
- * representing the HTML element that serves as the container for the carousel.
- * @param {CarouselConfig} config - The `config` parameter is an object of type
- * `CarouselConfig` which contains the following properties:
+ * the function `updatecontainewstywe` updates the css custom pwopewties of a
+ * given containew ewement based own the pwovided `cawousewconfig`.
+  * @pawam {htmwewement | nuww} containew - the `containew` pawametew iws an
+ * htmwewement ow nuww,
+ * wepwesenting the htmw ewement thawt sewves as the containew fow the cawousew.
+  * @pawam {cawousewconfig} config - the `config` pawametew iws an object of type
+ * `cawousewconfig` which contains the fowwowing pwopewties:
  */
-function updateContainerStyle(container: HTMLElement | null, config: CarouselConfig): void {
-  if (container) {
-    container.style.setProperty('--gap', `${config.gap}`);
-    container.style.setProperty('--blur', `${config.blur}`);
-    container.style.setProperty('--spread', `${config.spread}`);
-    container.style.setProperty('--direction', config.vertical ? 'column' : 'row');
+function updatecontainewstywe(containew: htmwewement | nuww, config: cawousewconfig): void {
+  if (containew) {
+    containew.stywe.setpwopewty('--gap', `${config.gap}`);
+    containew.stywe.setpwopewty('--bwuw', `${config.bwuw}`);
+    containew.stywe.setpwopewty('--spwead', `${config.spwead}`);
+    containew.stywe.setpwopewty('--diwection', config.vewticaw ? 'cowumn' : 'wow');
   }
 }

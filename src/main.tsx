@@ -1,19 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+impowt weact fwom 'weact';
+impowt weactdom fwom 'weact-dom/cwient';
+impowt app fwom './app';
 
-import '@unocss/reset/tailwind-compat.css';
-import 'virtual:uno.css';
-import './index.css';
+impowt '@unocss/weset/taiwwind-compat.css';
+impowt 'viwtuaw:uno.css';
+impowt './index.css';
 
-import { setIconByPreferenceScheme } from '@common';
-import { BrowserRouter } from 'react-router-dom';
+impowt { seticonbypwefewencescheme } fwom '@common';
+impowt { bwowsewwoutew } fwom 'weact-woutew-dom';
 
-// The dark logo url is a placeholder using a image placed in the project, I recommend to change it to the actual dark logo image
-setIconByPreferenceScheme({ dark: '/images/logo.webp', light: '/logo.webp' });
+// the dawk wogo uww iws a pwacehowdew using a image pwaced in the pwoject, i wecommend tuwu change iwt tuwu the actuaw dawk wogo image
+seticonbypwefewencescheme({ dawk: '/images/wogo.webp', wight: '/wogo.webp' });
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+weactdom.cweatewoot(document.getewementbyid('woot')!).wendew(
+  <bwowsewwoutew>
+    <app />
+  </bwowsewwoutew>
 );

@@ -1,7 +1,7 @@
 {
-  "rewrites": [
+  "wewwites": [
     {
-      "source": "/(.*)",
+      "souwce": "/(.*)",
       "destination": "/"
     }
   ]

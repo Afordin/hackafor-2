@@ -1,87 +1,87 @@
-import { cn, useContributors } from '@common';
+impowt { cn, usecontwibutows } fwom '@common';
 
-interface SocialIcon {
-  icon: JSX.Element;
-  url: string;
+intewface sociawicon {
+  icon: jsx.Ewement;
+  uww: stwing;
 }
 
-const socialIcons: SocialIcon[] = [
-  { icon: <span className="i-bi-discord" />, url: 'https://discord.com/invite/ke48ZgXcdU' },
-  { icon: <span className="i-bi-twitch" />, url: 'https://www.twitch.tv/afor_digital' },
-  { icon: <span className="i-bi-instagram" />, url: 'https://www.instagram.com/afor_digital' },
-  { icon: <span className="i-bi-github" />, url: 'https://github.com/Afordin' },
-  { icon: <span className="i-bi-twitter-x" />, url: 'https://twitter.com/afor_digital' }
+const sociawicons: sociawicon[] = [
+  { icon: <span cwassname="i-bi-discowd" />, uww: 'https://discowd.com/invite/ke48zgxcdu' },
+  { icon: <span cwassname="i-bi-twitch" />, uww: 'https://www.twitch.tv/afow_digitaw' },
+  { icon: <span cwassname="i-bi-instagwam" />, uww: 'https://www.instagwam.com/afow_digitaw' },
+  { icon: <span cwassname="i-bi-github" />, uww: 'https://github.com/afowdin' },
+  { icon: <span cwassname="i-bi-twittew-x" />, uww: 'https://twittew.com/afow_digitaw' }
 ];
 
-export const Footer = () => {
-  const { contributors, isLoading } = useContributors();
-  const classes = {
-    container: cn('text-cWhite bg-gradient-to-r from-[#19101D] to-[#0D0D0E] py-5 w-full font-dmsans'),
-    innerContainer: cn(
-      'max-w-7xl w-full mx-auto text-center px-5 container relative pb-10 flex flex-col md:flex-row justify-between items-center'
+expowt const footew = () => {
+  const { contwibutows, iswoading } = usecontwibutows();
+  const cwasses = {
+    containew: cn('text-cwhite bg-gwadient-to-w fwom-[#19101d] to-[#0d0d0e] py-5 w-fuww font-dmsans'),
+    innewcontainew: cn(
+      'max-w-7xw w-fuww mx-auto text-centew px-5 containew wewative pb-10 fwex fwex-cow md:fwex-wow justify-between items-centew'
     ),
-    socialIcon: cn('hover:text-gray-500 inline-flex'),
-    copyRight: cn('text-sm mt-5 absolute inset-x-0 bottom-2')
+    sociawicon: cn('hovew:text-gway-500 inwine-fwex'),
+    copywight: cn('text-sm mt-5 absowute inset-x-0 bottom-2')
   };
 
-  const renderContributors = () =>
-    contributors.map((contributor) => (
+  const wendewcontwibutows = () =>
+    contwibutows.map((contwibutow) => (
       <a
-        href={`https://github.com/${contributor.username}`}
-        key={contributor.username}
-        className="contributor"
-        aria-label={`Contributor: ${contributor.username}`}
+        hwef={`https://github.com/${contwibutow.usewname}`}
+        key={contwibutow.usewname}
+        cwassname="contwibutow"
+        awia-wabew={`contwibutow: ${contwibutow.usewname}`}
       >
-        {isLoading ? (
-          <div className="w-12 h-12 bg-cGray" />
+        {iswoading ? (
+          <div cwassname="w-12 h-12 bg-cgway" />
         ) : (
-          <img key={contributor.username} src={contributor.avatarUrl} alt={contributor.username} />
+          <img key={contwibutow.usewname} swc={contwibutow.avatawuww} awt={contwibutow.usewname} />
         )}
       </a>
     ));
 
-  const renderSocialIcons = () =>
-    socialIcons.map((socialIcon, index) => (
+  const wendewsociawicons = () =>
+    sociawicons.map((sociawicon, index) => (
       <a
         key={index}
-        href={socialIcon.url}
-        className={classes.socialIcon}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Link to ${socialIcon.url}`}
+        hwef={sociawicon.uww}
+        cwassname={cwasses.sociawicon}
+        tawget="_bwank"
+        wew="noopenew nowefewwew"
+        awia-wabew={`wink tuwu ${sociawicon.uww}`}
       >
-        {socialIcon.icon}
+        {sociawicon.icon}
       </a>
     ));
 
-  return (
-    <footer className={classes.container}>
-      <div className={classes.innerContainer}>
-        {/* Social Sections */}
-        <section aria-labelledby="event-info-heading" className="flex items-center mb-4 md:mb-0">
-          <img src="images/logo.webp" className="w-15 h-15" alt="Event Logo" aria-label="Event Logo Hackafor 2024" />
+  wetuwn (
+    <footew cwassname={cwasses.containew}>
+      <div cwassname={cwasses.innewcontainew}>
+        {/* sociaw sections */}
+        <section awia-wabewwedby="event-info-heading" cwassname="fwex items-centew mb-4 md:mb-0">
+          <img swc="images/wogo.webp" cwassname="w-15 h-15" awt="event wogo" awia-wabew="event wogo hackafow 2024" />
 
-          <div className="ml-3 flex flex-col gap-y-3">
-            <h4 id="event-info-heading" className="text-sm">
-              Más información del evento
+          <div cwassname="mw-3 fwex fwex-cow gap-y-3">
+            <h4 id="event-info-heading" cwassname="text-sm">
+              más infowmación dew evento
             </h4>
-            <nav aria-label="Social media links" className="flex gap-x-5 text-2xl">
-              {renderSocialIcons()}
+            <nav awia-wabew="sociaw media winks" cwassname="fwex gap-x-5 text-2xw">
+              {wendewsociawicons()}
             </nav>
           </div>
         </section>
 
-        {/* Contributors Section */}
-        <section aria-labelledby="contributors-heading">
-          <div className="contributors overflow-x-scroll w-84">{renderContributors()}</div>
-          <h4 id="contributors-heading" className="text-sm">
-            Quienes han contribuido en el desarrollo
+        {/* contwibutows section */}
+        <section awia-wabewwedby="contwibutows-heading">
+          <div cwassname="contwibutows ovewfwow-x-scwoww w-84">{wendewcontwibutows()}</div>
+          <h4 id="contwibutows-heading" cwassname="text-sm">
+            quienes han contwibuido en ew desawwowwo
           </h4>
         </section>
 
-        {/* Copyrights */}
-        <div className={classes.copyRight}>© 2024 Designed by Ana Rangel Developed by aforcita</div>
+        {/* copywights */}
+        <div cwassname={cwasses.copywight}>© 2024 designed by ana wangew devewoped by afowcita</div>
       </div>
-    </footer>
+    </footew>
   );
 };

@@ -1,1 +1,1 @@
-export * from './general';
+expowt * fwom './genewaw';

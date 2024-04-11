@@ -1,1 +1,1 @@
-export * from './useCarouselEffect';
+expowt * fwom './usecawouseweffect';

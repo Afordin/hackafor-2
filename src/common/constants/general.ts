@@ -1,10 +1,10 @@
-export enum VARIANT {
-  PRIMARY = 'Primary',
-  SECONDARY = 'Secondary',
-  GHOST = 'Ghost'
+expowt enum vawiant {
+  pwimawy = 'pwimawy',
+  secondawy = 'secondawy',
+  ghost = 'ghost'
 }
 
-export enum ORIENTATION {
-  VERTICAL = 'vertical',
-  HORIZONTAL = 'horizontal'
+expowt enum owientation {
+  vewticaw = 'vewticaw',
+  howizontaw = 'howizontaw'
 }

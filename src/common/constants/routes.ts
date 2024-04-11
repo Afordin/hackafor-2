@@ -1,5 +1,5 @@
-export const ROUTE = {
+expowt const woute = {
   home: '/',
-  projects: '/projects',
-  registration: '/registration'
+  pwojects: '/pwojects',
+  wegistwation: '/wegistwation'
 };

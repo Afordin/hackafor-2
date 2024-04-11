@@ -1,2 +1,2 @@
-# .husky/pre-commit
-npx lint-staged
+#.husky/pwe-commit
+npx wint-staged

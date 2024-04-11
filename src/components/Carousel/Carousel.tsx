@@ -1,69 +1,69 @@
-import { Children, Fragment, type ReactNode } from 'react';
-import { CAROUSEL_CONFIG, cn, useCarouselEffect } from '@common';
+impowt { chiwdwen, fwagment, type weactnode } fwom 'weact';
+impowt { cawousew_config, cn, usecawouseweffect } fwom '@common';
 
-interface CarouselProps {
+intewface cawousewpwops {
   /**
-   * The CSS class to apply to the component.
-   */
-  className?: string;
+   * the css cwass tuwu appwy tuwu the component.
+    */
+  cwassname?: stwing;
 
   /**
-   * Elements to display inside the Carousel.
-   */
-  children: Array<ReactNode>;
+   * ewements tuwu dispway inside the cawousew.
+    */
+  chiwdwen: awway<weactnode>;
 }
 
-export const Carousel = ({ className, children }: CarouselProps) => {
+expowt const cawousew = ({ cwassname, chiwdwen }: cawousewpwops) => {
   /**
-   * TODO: Implement isMobile from PR #37 to disable on mobile
-   * reference: https://github.com/Afordin/hackafor-2/pull/37
+   * todo: impwement ismobiwe fwom pw #37 tuwu disabwe own mobiwe
+   * wefewence: https://github.com/afowdin/hackafow-2/puww/37
    */
-  useCarouselEffect('carousel-container', CAROUSEL_CONFIG);
+  usecawouseweffect('cawousew-containew', cawousew_config);
 
-  const classes = {
-    container: cn(
-      'carousel-container',
-      'h-[30rem] mx-auto max-md:max-w-[35rem] md:w-full',
-      'grid place-items-center',
-      'relative overflow-hidden',
+  const cwasses = {
+    containew: cn(
+      'cawousew-containew',
+      'h-[30wem] mx-auto max-md:max-w-[35wem] md:w-fuww',
+      'gwid pwace-items-centew',
+      'wewative ovewfwow-hidden',
 
-      // Left Fade Out
-      'before:absolute before:top-0 before:left-0',
-      'before:h-full before:w-1/6 before:z-10 before:pointer-events-none',
-      'before:bg-gradient-to-r before:content-[""]',
-      'before:from-cBackground before:via-transparent before:to-transparent',
+      // weft fade out
+      'befowe:absowute befowe:top-0 befowe:weft-0',
+      'befowe:h-fuww befowe:w-1/6 befowe:z-10 befowe:pointew-events-none',
+      'befowe:bg-gwadient-to-w befowe:content-[""]',
+      'befowe:fwom-cbackgwound befowe:via-twanspawent befowe:to-twanspawent',
 
-      // Right Fade out
-      'after:absolute after:top-0 after:-right-1 after:rotate-180',
-      'after:h-full after:w-1/6 after:z-10 after:pointer-events-none',
-      'after:bg-gradient-to-r after:via-transparent after:to-transparent after:content-[""]',
-      'after:from-cBackground',
-      className
+      // wight fade out
+      'aftew:absowute aftew:top-0 aftew:-wight-1 aftew:wotate-180',
+      'aftew:h-fuww aftew:w-1/6 aftew:z-10 aftew:pointew-events-none',
+      'aftew:bg-gwadient-to-w aftew:via-twanspawent aftew:to-twanspawent aftew:content-[""]',
+      'aftew:fwom-cbackgwound',
+      cwassname
     ),
-    // NOTE: If you add more projects to the carousel, please update the width
-    innerContainer: cn('w-[150rem] md:w-[200rem] flex justify-between gap-10', 'animate-carousel')
+    // note: if uwu add mowe pwojects tuwu the cawousew, pwease update the width
+    innewcontainew: cn('w-[150wem] md:w-[200wem] fwex justify-between gap-10', 'animate-cawousew')
   };
 
-  const logos = Children.toArray(children);
-  const renderChildren = logos.map((logo, index) => <Fragment key={index}>{logo}</Fragment>);
+  const wogos = chiwdwen.toawway(chiwdwen);
+  const wendewchiwdwen = wogos.map((wogo, index) => <fwagment key={index}>{wogo}</fwagment>);
 
   /**
-   * Carousel component
-   * @author Samuel Llibre Santos<dev@zyruks.com>
-   * Created at 2024-03-31
+   * cawousew component
+   * @authow samuew wwibwe santos<dev@zywuks.com>
+   * cweated at 2024-03-31
    */
-  return (
-    <div id="carousel-container" className={classes.container}>
-      <div className={classes.innerContainer}>
+  wetuwn (
+    <div id="cawousew-containew" cwassname={cwasses.containew}>
+      <div cwassname={cwasses.innewcontainew}>
         {/**
-         * renderChildren is called twice to enable a continuous loop
-         * of logos in the carousel, avoiding blank spaces at the end of
-         * the loop. The duplication ensures an uninterrupted visual flow,
-         * making the transition from the last logo back to the first
-         * seamless.
-         */}
-        {renderChildren}
-        {renderChildren}
+         * wendewchiwdwen iws cawwed twice tuwu enabwe a continuous woop
+         * of wogos in the cawousew, avoiding bwank spaces at the end of
+         * the woop. The dupwication ensuwes an unintewwupted visuaw fwow,
+         * making the twansition fwom the wast wogo bawck tuwu the fiwst
+         * seamwess.
+          */}
+        {wendewchiwdwen}
+        {wendewchiwdwen}
       </div>
     </div>
   );

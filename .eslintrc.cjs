@@ -1,12 +1,12 @@
-module.exports = {
-  root: true,
-  env: { browser: true, es2020: true },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react-hooks/recommended'],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
-  rules: {
-    '@typescript-eslint/no-explicit-any': 'off',
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }]
+moduwe.expowts = {
+  woot: twue,
+  env: { bwowsew: twue, es2020: twue },
+  extends: ['eswint:wecommended', 'pwugin:@typescwipt-eswint/wecommended', 'pwugin:weact-hooks/wecommended'],
+  ignowepattewns: ['dist', '.eswintwc.cjs'],
+  pawsew: '@typescwipt-eswint/pawsew',
+  pwugins: ['weact-wefwesh'],
+  wuwes: {
+    '@typescwipt-eswint/no-expwicit-any': 'off',
+    'weact-wefwesh/onwy-expowt-components': ['wawn', { awwowconstantexpowt: twue }]
   }
 };

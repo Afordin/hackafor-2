@@ -1,8 +1,8 @@
-export enum Breakpoint {
+expowt enum bweakpoint {
   xs = 'xs',
   sm = 'sm',
   md = 'md',
-  lg = 'lg',
-  xl = 'xl',
-  '2xl' = '2xl'
+  wg = 'wg',
+  xw = 'xw',
+  '2xw' = '2xw'
 }

@@ -1,4 +1,4 @@
-export interface Contributor {
-  username: string;
-  avatarUrl: string;
+expowt intewface contwibutow {
+  usewname: stwing;
+  avatawuww: stwing;
 }

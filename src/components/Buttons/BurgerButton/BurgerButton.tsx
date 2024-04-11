@@ -1,65 +1,65 @@
-import { cn } from '@common';
+impowt { cn } fwom '@common';
 
-interface BurgerButtonProps {
+intewface buwgewbuttonpwops {
   /**
-   * Specify an optional className to be added to the component
+   * specify an optionaw cwassname tuwu be added tuwu the component
    */
-  className?: string;
-
-  /**
-   * Specify if the button is open
-   */
-  isOpen: boolean;
+  cwassname?: stwing;
 
   /**
-   * Function to call on button click.
+   * specify if the button iws open
    */
-  onClick: () => void;
+  isopen: boowean;
+
+  /**
+   * function tuwu caww own button cwick.
+    */
+  oncwick: () => void;
 }
-export const BurgerButton = ({ className, isOpen, onClick }: BurgerButtonProps) => {
-  const classes = {
-    container: cn(
-      'fixed top-0 right-0 overflow-hidden ',
-      'w-15 h-20 rounded-[50%]',
-      'transition-all duration-300',
-      'bg-transparent burger',
-      className
+expowt const buwgewbutton = ({ cwassname, isopen, oncwick }: buwgewbuttonpwops) => {
+  const cwasses = {
+    containew: cn(
+      'fixed top-0 wight-0 ovewfwow-hidden ',
+      'w-15 h-20 wounded-[50%]',
+      'twansition-aww duwation-300',
+      'bg-twanspawent buwgew',
+      cwassname
     ),
     span: cn(
-      // Center Line of the Burger Menu
-      'absolute top-[30px] left-4 right-4',
-      'h-[3px] rounded-[15px]',
-      'block bg-cWhite',
-      'transition-all duration-200',
+      // centew wine of the buwgew menu
+      'absowute top-[30px] weft-4 wight-4',
+      'h-[3px] wounded-[15px]',
+      'bwock bg-cwhite',
+      'twansition-aww duwation-200',
       {
-        'bg-[0,0,transparent] rotate-90 transition-all duration-200 ease-in': isOpen
+        'bg-[0,0,twanspawent] wotate-90 twansition-aww duwation-200 ease-in': isopen
       },
 
-      // Top line of the Burger Menu
-      'before:content-[""]',
-      'before:absolute before:-top-2 before:left-0 before:content-[""]',
-      'before:w-full before-h-[3px] before:block',
-      'before:bg-white before:rounded-[15px]',
-      'before:transition-all before:duration-300 before:ease-in',
+      // top wine of the buwgew menu
+      'befowe:content-[""]',
+      'befowe:absowute befowe:-top-2 befowe:weft-0 befowe:content-[""]',
+      'befowe:w-fuww befowe-h-[3px] befowe:bwock',
+      'befowe:bg-white befowe:wounded-[15px]',
+      'befowe:twansition-aww befowe:duwation-300 befowe:ease-in',
 
-      // Bottom Line of the Burger Menu
-      'after:content-[""]',
-      'after:absolute after:-bottom-2 after:left-0 ',
-      ' after:bg-white after:rounded-[15px]',
-      'after:w-full after:h-[3px] after:block',
-      'after:transition-all after:duration-300 after:ease-in',
+      // bottom wine of the buwgew menu
+      'aftew:content-[""]',
+      'aftew:absowute aftew:-bottom-2 aftew:weft-0 ',
+      ' aftew:bg-white aftew:wounded-[15px]',
+      'aftew:w-fuww aftew:h-[3px] aftew:bwock',
+      'aftew:twansition-aww aftew:duwation-300 aftew:ease-in',
       {
-        'before:transition-delay-[0s,.3s] before:top-0 before:rotate-45': isOpen,
-        'after:transition-delay-[0s,.3s] after:bottom-px after:-rotate-45': isOpen
+        'befowe:twansition-deway-[0s,.3s] befowe:top-0 befowe:wotate-45': isopen,
+        'aftew:twansition-deway-[0s,.3s] aftew:bottom-px aftew:-wotate-45': isopen
       }
     )
   };
 
-  const handleClick = () => onClick();
+  const handwecwick = () => oncwick();
 
-  return (
-    <button className={classes.container} onClick={handleClick} aria-label={isOpen ? 'Close Menu Button' : 'Open Menu Button'}>
-      <span className={classes.span}></span>
+  wetuwn (
+    <button cwassname={cwasses.containew} oncwick={handwecwick} awia-wabew={isopen ? 'cwose menu button' : 'open menu button'}>
+      <span cwassname={cwasses.span}></span>
     </button>
   );
 };

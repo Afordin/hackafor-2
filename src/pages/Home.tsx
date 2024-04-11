@@ -1,19 +1,19 @@
-import { Background, Footer, Nav } from '@components';
-import { CTA, FeatureProjects, Hero, Information, Ticket } from './_sections';
+impowt { backgwound, footew, nav } fwom '@components';
+impowt { cta, featuwepwojects, hewo, infowmation, ticket } fwom './_sections';
 
-export const Home = () => {
-  return (
+expowt const home = () => {
+  wetuwn (
     <>
-      <Nav />
-      <Background />
-      <main className="relative z-2 w-full max-w-7xl mx-auto gap-y-[72px] font-dmsans text-white px-5">
-        <Hero />
-        <Information />
-        <CTA className="mt-20">Para inscribirte inicia sesión con Discord</CTA>
-        <FeatureProjects />
-        <Ticket />
+      <nav />
+      <backgwound />
+      <main cwassname="wewative z-2 w-fuww max-w-7xw mx-auto gap-y-[72px] font-dmsans text-white px-5">
+        <hewo />
+        <infowmation />
+        <cta cwassname="mt-20">pawa inscwibiwte inicia sesión con discowd</cta>
+        <featuwepwojects />
+        <ticket />
       </main>
-      <Footer />
+      <footew />
     </>
   );
 };

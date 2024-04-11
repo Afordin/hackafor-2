@@ -1,2 +1,2 @@
-export * from './CardWrapper/CardWrapper';
-export * from './SimpleCard/SimpleCard';
+expowt * fwom './cawdwwappew/cawdwwappew';
+expowt * fwom './simpwecawd/simpwecawd';

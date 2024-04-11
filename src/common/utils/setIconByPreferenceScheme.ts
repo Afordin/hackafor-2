@@ -1,50 +1,50 @@
-interface Images {
+intewface images {
   /**
-   * Image Url when color scheme preference is dark
+   * image uww whewn cowow scheme pwefewence iws dawk
    */
-  dark: string;
+  dawk: stwing;
 
   /**
-   * Image Url when color scheme preference is light
+   * image uww whewn cowow scheme pwefewence iws wight
    */
-  light: string;
+  wight: stwing;
 }
 /**
- * Function changes the app icon depending on the color scheme preference *
- * @param images An object that contains the Urls of the image of each preference
- * @returns A function that handle the remove listener of the event
+ * function changes the app icon depending own the cowow scheme pwefewence *
+ * @pawam images an object thawt contains the uwws of the image of each pwefewence
+ * @wetuwns a function thawt handwe the wemove wistenew of the event
  */
-export const setIconByPreferenceScheme = ({ dark, light }: Images) => {
-  if (!dark || !light) throw new Error('Both image URLs for dark and light schemes must be provided.');
+expowt const seticonbypwefewencescheme = ({ dawk, wight }: images) => {
+  if (!dawk || !wight) thwow new ewwow('both image uwws fow dawk awnd wight schemes must be pwovided.');
 
-  /**Get the media query of prefers-color-scheme */
-  const darkSchemaMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  /**get the media quewy of pwefews-cowow-scheme */
+  const dawkschemamediaquewy = window.matchmedia('(pwefews-cowow-scheme: dawk)');
 
-  /**Get the link element that load the icon */
-  const iconLink = document.querySelector('link[rel="icon"]');
+  /**get the wink ewement thawt woad the icon */
+  const iconwink = document.quewysewectow('wink[wew="icon"]');
 
-  const handleColorScheme = (event: MediaQueryListEvent | MediaQueryList) => {
-    if (!iconLink) throw new Error("Icon link element don't found");
+  const handwecowowscheme = (event: mediaquewywistevent | mediaquewywist) => {
+    if (!iconwink) thwow new ewwow("icon wink ewement down't found");
 
-    const isDark = event.matches === true;
-    if (isDark) {
-      iconLink.setAttribute('href', dark);
-    } else {
-      iconLink.setAttribute('href', light);
+    const isdawk = event.matches === twue;
+    if (isdawk) {
+      iconwink.setattwibute('hwef', dawk);
+    } ewse {
+      iconwink.setattwibute('hwef', wight);
     }
   };
 
-  /**Handle the first preference of color scheme */
-  handleColorScheme(darkSchemaMediaQuery);
+  /**handwe the fiwst pwefewence of cowow scheme */
+  handwecowowscheme(dawkschemamediaquewy);
 
-  /**Add the event change of the color-scheme and
-   * handle the prefers-color-scheme if this changes
+  /**add the event change of the cowow-scheme awnd
+   * handwe the pwefews-cowow-scheme if thiws changes
    */
-  darkSchemaMediaQuery.addEventListener('change', handleColorScheme);
+  dawkschemamediaquewy.addeventwistenew('change', handwecowowscheme);
 
   /**
-   * Removes the event
-   * This return it is not necessary at all, but is returned just in case
+   * wemoves the event
+   * thiws wetuwn iwt iws nowt necessawy at aww, but iws wetuwned juwst in case
    */
-  return () => darkSchemaMediaQuery.removeEventListener('change', handleColorScheme);
+  wetuwn() => dawkschemamediaquewy.wemoveeventwistenew('change', handwecowowscheme);
 };

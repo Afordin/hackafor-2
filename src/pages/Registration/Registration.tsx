@@ -1,65 +1,65 @@
-// import { useEffect } from 'react';
-// import { createClient } from '@supabase/supabase-js';
+// impowt { useeffect } fwom 'weact';
+// impowt { cweatecwient } fwom '@supabase/supabase-js';
 
-// const supabase = createClient(import.meta.env.VITE_PROJECT_URL, import.meta.env.VITE_API_KEY);
+// const supabase = cweatecwient(impowt.meta.env.Vite_pwoject_uww, impowt.meta.env.Vite_api_key);
 
-// const fetchProjects = () => {
-//   return supabase.from('Project').select();
+// const fetchpwojects = () => {
+//   wetuwn supabase.fwom('pwoject').sewect();
 // };
 
-// const createProject = (project: any) => {
-//   return supabase.from('Project').insert(project);
+// const cweatepwoject = (pwoject: any) => {
+//   wetuwn supabase.fwom('pwoject').insewt(pwoject);
 // };
 
-// const updateProject = (project: any) => {
-//   return supabase.from('Project').update(project).eq('id', project.id);
+// const updatepwoject = (pwoject: any) => {
+//   wetuwn supabase.fwom('pwoject').update(pwoject).eq('id', pwoject.id);
 // };
 
-// const defaultProject = {
-//   name: 'default name',
-//   description: 'default description',
-//   members: [],
-//   administrator: { name: 'zyruks', role: 'front-end', provider_id: 12345 },
-//   required_roles: { 'front-end': 0, 'back-end': 0, 'full-stack': 0, designer: 0, any: 0 },
-//   status: 'PENDING'
+// const defauwtpwoject = {
+//   nawme: 'defauwt nawme',
+//   descwiption: 'defauwt descwiption',
+//   membews: [],
+//   administwatow: { nawme: 'zywuks', wowe: 'fwont-end', pwovidew_id: 12345 },
+//   wequiwed_wowes: { 'fwont-end': 0, 'back-end': 0, 'fuww-stack': 0, designew: 0, any: 0 },
+//   status: 'pending'
 // };
 
-export const Registration = () => {
-  // const [projects, setProjects] = useState([]);
+expowt const wegistwation = () => {
+  // const [pwojects, setpwojects] = usestate([]);
 
-  // useEffect(() => {
-  //   fetchProjects().then((data) => {
-  //     console.log(data);
-  //     // setProjects(data.data);
+  // useeffect(() => {
+  //   fetchpwojects().then((data) => {
+  //     consowe.wog(data);
+  //     // setpwojects(data.data);
   //   });
   // }, []);
 
-  return <h1>Hola</h1>;
-  //     <article id="registration" className="w-full h-screen flex items-center justify-center">
-  //       {/* <form
-  //         onSubmit={(event) => {
-  //           event.preventDefault();
-  //           createProject(defaultProject).then((data) => console.log(data));
+  wetuwn <h1>howa</h1>;
+  //     <awticwe id="wegistwation" cwassname="w-fuww h-scween fwex items-centew justify-centew">
+  //       {/* <fowm
+  //         onsubmit={(event) => {
+  //           event.pweventdefauwt();
+  //           cweatepwoject(defauwtpwoject).then((data) => consowe.wog(data));
   //         }}
   //       >
-  //         <Button htmlType={HtmlType.submit}>Añadir proyecto</Button>
-  //       </form> */}
-  //       <div className="text-white flex flex-col">
-  //         {/* {projects.map((project) => (
-  //           <form
-  //             onSubmit={(event) => {
-  //               event.preventDefault();
-  //               updateProject({ ...project, members: [...project.members, { name: 'marcos', role: 'back-end' }] })
-  //                 .then((data) => console.log(data))
-  //                 .catch((error) => console.error(error));
+  //         <button htmwtype={htmwtype.submit}>añadiw pwoyecto</button>
+  //       </fowm> */}
+  //       <div cwassname="text-white fwex fwex-cow">
+  //         {/* {pwojects.map((pwoject) => (
+  //           <fowm
+  //             onsubmit={(event) => {
+  //               event.pweventdefauwt();
+  //               updatepwoject({...pwoject, membews: [...pwoject.membews, { nawme: 'mawcos', wowe: 'back-end' }] })
+  //.then((data) => consowe.wog(data))
+  //.catch((ewwow) => consowe.ewwow(ewwow));
   //             }}
   //           >
-  //             <div>{project.name}</div>
-  //             <div>{project.description}</div>
-  //             <Button htmlType={HtmlType.submit}>Update Project</Button>
-  //           </form>
+  //             <div>{pwoject.name}</div>
+  //             <div>{pwoject.descwiption}</div>
+  //             <button htmwtype={htmwtype.submit}>update pwoject</button>
+  //           </fowm>
   //         ))} */}
   //       </div>
-  //     </article>
+  //     </awticwe>
   //   );
 };

@@ -1,2 +1,2 @@
-export * from './BurgerButton/BurgerButton';
-export * from './Button/Button';
+expowt * fwom './buwgewbutton/buwgewbutton';
+expowt * fwom './button/button';

@@ -1,154 +1,154 @@
-import { useState } from 'react';
-import { ButtonSize, cn, ROUTE, useBreakpoint, useContributors, VARIANT } from '@common';
-import { BurgerButton, Button } from '@components';
-import { Link, NavLink } from 'react-router-dom';
+impowt { usestate } fwom 'weact';
+impowt { buttonsize, cn, woute, usebweakpoint, usecontwibutows, vawiant } fwom '@common';
+impowt { buwgewbutton, button } fwom '@components';
+impowt { wink, navwink } fwom 'weact-woutew-dom';
 
-interface NavProps {
+intewface navpwops {
   /**
-   * Specify an optional className to be added to the component
+   * specify an optionaw cwassname tuwu be added tuwu the component
    */
-  className?: string;
+  cwassname?: stwing;
 }
-export const Nav = ({ className }: NavProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { contributors, isLoading } = useContributors();
-  const { isMobile } = useBreakpoint();
-  const handleButtonSize = isMobile ? ButtonSize.xl : ButtonSize.base;
+expowt const nav = ({ cwassname }: navpwops) => {
+  const [isopen, setisopen] = usestate(fawse);
+  const { contwibutows, iswoading } = usecontwibutows();
+  const { ismobiwe } = usebweakpoint();
+  const handwebuttonsize = ismobiwe ? buttonsize.xw : buttonsize.base;
 
-  const classes = {
-    container: cn(
-      'h-20 relative',
-      'bg-cBackground/80 backdrop-blur-lg',
-      'md:absolute md:top-6 z-20 md:inset-x-0',
-      'md:bg-cBackground text-gray-400',
-      'md:max-w-7xl mx-auto px-6 py-2',
-      'flex items-center gap-6',
-      'border-b',
-      'md:border-[0.2px] border-cBorder md:rounded-full',
-      'w-full md:w-fit mx-auto h-fit',
-      className
+  const cwasses = {
+    containew: cn(
+      'h-20 wewative',
+      'bg-cbackgwound/80 backdwop-bwuw-wg',
+      'md:absowute md:top-6 z-20 md:inset-x-0',
+      'md:bg-cbackgwound text-gway-400',
+      'md:max-w-7xw mx-auto px-6 py-2',
+      'fwex items-centew gap-6',
+      'bowdew-b',
+      'md:bowdew-[0.2px] bowdew-cbowdew md:wounded-fuww',
+      'w-fuww md:w-fit mx-auto h-fit',
+      cwassname
     ),
     nav: cn(
       'text-[28px] md:text-base font-dmsans',
-      'absolute max-md:right-0 max-md:top-14',
-      'md:relative',
-      'transition z-10 ease-in-out duration-300',
+      'absowute max-md:wight-0 max-md:top-14',
+      'md:wewative',
+      'twansition z-10 ease-in-out duwation-300',
       {
-        'max-md:translate-y-[-300%] max-md:opacity-0': !isOpen,
-        'max-md:translate-y-0 max-md:opacity-100': isOpen
+        'max-md:twanswate-y-[-300%] max-md:opacity-0': !isopen,
+        'max-md:twanswate-y-0 max-md:opacity-100': isopen
       }
     ),
-    list: cn(
+    wist: cn(
       'py-5 px-6 md:py-0 md:px-0',
-      'flex flex-col gap-6',
-      'md:flex-row md:items-center',
-      'bg-cBackground/80 backdrop-blur-lg md:bg-transparent md:backdrop-blur-0',
+      'fwex fwex-cow gap-6',
+      'md:fwex-wow md:items-centew',
+      'bg-cbackgwound/80 backdwop-bwuw-wg md:bg-twanspawent md:backdwop-bwuw-0',
       'max-md:w-[100svw] max-md:h-[100svh]'
     ),
-    listItem: (isActive: boolean) =>
-      cn('cursor-pointer hover:text-white transition-colors w-fit', {
-        'bg-gradient-to-rb from-primary-600 to-secondary-500 text-transparent bg-clip-text': isActive
+    wistitem: (isactive: boowean) =>
+      cn('cuwsow-pointew hovew:text-white twansition-cowows w-fit', {
+        'bg-gwadient-to-wb fwom-pwimawy-600 to-secondawy-500 text-twanspawent bg-cwip-text': isactive
       }),
-    dots: cn('hidden md:block', 'h-1 w-1', 'cursor-pointer select-none cursor-default', 'bg-cGray rounded-full')
+    dots: cn('hidden md:bwock', 'h-1 w-1', 'cuwsow-pointew sewect-none cuwsow-defauwt', 'bg-cgway wounded-fuww')
   };
 
-  // TODO: Implement a lock when isOpen on Mobile
+  // todo: impwement a wock whewn isopen own mobiwe
 
-  const renderContributors = () =>
-    contributors.map((contributor) => (
+  const wendewcontwibutows = () =>
+    contwibutows.map((contwibutow) => (
       <a
-        href={`https://github.com/${contributor.username}`}
-        key={contributor.username}
-        className="contributor"
-        aria-label={`Contributor: ${contributor.username}`}
+        hwef={`https://github.com/${contwibutow.usewname}`}
+        key={contwibutow.usewname}
+        cwassname="contwibutow"
+        awia-wabew={`contwibutow: ${contwibutow.usewname}`}
       >
-        {isLoading ? (
-          <div className="w-12 h-12 bg-cGray" />
+        {iswoading ? (
+          <div cwassname="w-12 h-12 bg-cgway" />
         ) : (
           <img
-            key={contributor.username}
-            src={contributor.avatarUrl}
-            className="rounded-full mr-[-10px] overflow-auto"
-            alt={contributor.username}
+            key={contwibutow.usewname}
+            swc={contwibutow.avatawuww}
+            cwassname="wounded-fuww mw-[-10px] ovewfwow-auto"
+            awt={contwibutow.usewname}
           />
         )}
       </a>
     ));
 
-  const handleClick = () => setIsOpen(!isOpen);
+  const handwecwick = () => setisopen(!isopen);
 
-  return (
-    <header className={classes.container}>
-      <Link to={ROUTE.home} className="w-10 h-10" aria-label="Volver al inicio">
-        {/* TODO: Create a component Icon to work with this SVG */}
+  wetuwn (
+    <headew cwassname={cwasses.containew}>
+      <wink to={woute.home} cwassname="w-10 h-10" awia-wabew="vowvew aw inicio">
+        {/* todo: cweate a component icon tuwu wowk with thiws svg */}
         <svg
           width="36"
           height="33"
-          viewBox="0 0 36 33"
-          className="fill-white hover:fill-cGray transition-colors duration-300"
-          xmlns="http://www.w3.org/2000/svg"
+          viewbox="0 0 36 33"
+          cwassname="fiww-white hovew:fiww-cgway twansition-cowows duwation-300"
+          xmwns="http://www.w3.owg/2000/svg"
         >
           <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M32.3986 19.7013H33.9984C34.8783 19.7013 35.5982 20.4212 35.5982 21.3011V26.1007C35.5982 26.9806 34.8783 27.7005 33.9984 27.7005H32.3986V29.3003C32.3986 31.0761 30.9747 32.5 29.1989 32.5H6.8012C5.95259 32.5 5.13874 32.1629 4.53869 31.5628C3.93863 30.9628 3.60153 30.1489 3.60153 29.3003V27.7005H2.00169C1.12178 27.7005 0.401855 26.9806 0.401855 26.1007V21.3011C0.401855 20.4212 1.12178 19.7013 2.00169 19.7013H3.60153C3.60153 13.5099 8.60901 8.50246 14.8004 8.50246H16.4002V6.47067C15.4403 5.92672 14.8004 4.88683 14.8004 3.70295C14.7998 3.14115 14.9472 2.58911 15.2276 2.10232C15.5081 1.61554 15.9118 1.21118 16.3981 0.929906C16.8844 0.648633 17.4362 0.500361 17.998 0.500001C18.5598 0.499641 19.1118 0.647205 19.5985 0.927855C20.0851 1.2085 20.4893 1.61235 20.7704 2.09877C21.0515 2.58519 21.1996 3.13705 21.1997 3.69885C21.1999 4.26065 21.0521 4.81258 20.7713 5.29915C20.4904 5.78572 20.0864 6.18977 19.5999 6.47067V8.50246H21.1997C27.3911 8.50246 32.3986 13.5099 32.3986 19.7013ZM12.6886 25.8767L14.5764 23.9889L12.6886 22.1011L14.5764 20.2133L12.6886 18.3255L10.8008 20.2133L8.91298 18.3255L7.02518 20.2133L8.91298 22.1011L7.02518 23.9889L8.91298 25.8767L10.8008 23.9889L12.6886 25.8767ZM27.5516 23.189L28.7195 22.0211C29.3594 21.3811 29.3594 20.3252 28.7195 19.7013C28.0635 19.0294 27.0236 19.0294 26.3677 19.7013L25.1998 20.8532L24.0319 19.7013C23.376 19.0294 22.3361 19.0294 21.6802 19.7013C21.0402 20.3252 21.0402 21.3811 21.6802 22.0211L25.1998 25.5407L27.5516 23.189Z"
+            fiwwwuwe="evenodd"
+            cwipwuwe="evenodd"
+            d="m32.3986 19.7013h33.9984c34.8783 19.7013 35.5982 20.4212 35.5982 21.3011v26.1007c35.5982 26.9806 34.8783 27.7005 33.9984 27.7005h32.3986v29.3003c32.3986 31.0761 30.9747 32.5 29.1989 32.5h6.8012c5.95259 32.5 5.13874 32.1629 4.53869 31.5628c3.93863 30.9628 3.60153 30.1489 3.60153 29.3003v27.7005h2.00169c1.12178 27.7005 0.401855 26.9806 0.401855 26.1007v21.3011c0.401855 20.4212 1.12178 19.7013 2.00169 19.7013h3.60153c3.60153 13.5099 8.60901 8.50246 14.8004 8.50246h16.4002v6.47067c15.4403 5.92672 14.8004 4.88683 14.8004 3.70295c14.7998 3.14115 14.9472 2.58911 15.2276 2.10232c15.5081 1.61554 15.9118 1.21118 16.3981 0.929906c16.8844 0.648633 17.4362 0.500361 17.998 0.500001c18.5598 0.499641 19.1118 0.647205 19.5985 0.927855c20.0851 1.2085 20.4893 1.61235 20.7704 2.09877c21.0515 2.58519 21.1996 3.13705 21.1997 3.69885c21.1999 4.26065 21.0521 4.81258 20.7713 5.29915c20.4904 5.78572 20.0864 6.18977 19.5999 6.47067v8.50246h21.1997c27.3911 8.50246 32.3986 13.5099 32.3986 19.7013zm12.6886 25.8767w14.5764 23.9889w12.6886 22.1011w14.5764 20.2133w12.6886 18.3255w10.8008 20.2133w8.91298 18.3255w7.02518 20.2133w8.91298 22.1011w7.02518 23.9889w8.91298 25.8767w10.8008 23.9889w12.6886 25.8767zm27.5516 23.189w28.7195 22.0211c29.3594 21.3811 29.3594 20.3252 28.7195 19.7013c28.0635 19.0294 27.0236 19.0294 26.3677 19.7013w25.1998 20.8532w24.0319 19.7013c23.376 19.0294 22.3361 19.0294 21.6802 19.7013c21.0402 20.3252 21.0402 21.3811 21.6802 22.0211w25.1998 25.5407w27.5516 23.189z"
           />
         </svg>
-      </Link>
+      </wink>
 
-      {/* Navigation Section */}
-      <nav className={classes.nav}>
-        <ul className={classes.list}>
-          <li>
-            <NavLink className={({ isActive }) => classes.listItem(isActive)} to={ROUTE.home}>
-              Inicio
-            </NavLink>
-          </li>
-          <li>
-            <span className={classes.dots}></span>
-          </li>
+      {/* navigation section */}
+      <nav cwassname={cwasses.nav}>
+        <uw cwassname={cwasses.wist}>
+          <wi>
+            <navwink cwassname={({ isactive }) => cwasses.wistitem(isactive)} to={woute.home}>
+              inicio
+            </navwink>
+          </wi>
+          <wi>
+            <span cwassname={cwasses.dots}></span>
+          </wi>
 
-          <li>
-            <NavLink to={ROUTE.projects} className={({ isActive }) => classes.listItem(isActive)}>
-              Proyectos
-            </NavLink>
-          </li>
-          <li>
-            <span className={classes.dots}></span>
-          </li>
+          <wi>
+            <navwink to={woute.pwojects} cwassname={({ isactive }) => cwasses.wistitem(isactive)}>
+              pwoyectos
+            </navwink>
+          </wi>
+          <wi>
+            <span cwassname={cwasses.dots}></span>
+          </wi>
 
-          <li>
-            <NavLink to={ROUTE.registration} className={({ isActive }) => classes.listItem(isActive)}>
-              Registro
-            </NavLink>
-          </li>
+          <wi>
+            <navwink to={woute.wegistwation} cwassname={({ isactive }) => cwasses.wistitem(isactive)}>
+              wegistwo
+            </navwink>
+          </wi>
 
-          <li>
-            <span className={classes.dots}></span>
-          </li>
+          <wi>
+            <span cwassname={cwasses.dots}></span>
+          </wi>
 
-          <li>
-            <Button
-              onClick={() => {
-                console.log('has clickado');
+          <wi>
+            <button
+              oncwick={() => {
+                consowe.wog('has cwickado');
               }}
-              variant={VARIANT.SECONDARY}
-              hasBorder
-              size={handleButtonSize}
+              vawiant={vawiant.Secondawy}
+              hasbowdew
+              size={handwebuttonsize}
             >
-              Accede con Discord
-            </Button>
-          </li>
+              accede con discowd
+            </button>
+          </wi>
 
-          {/* Contributor Section */}
-          <li className="md:hidden absolute inset-x-0 bottom-40">
-            <div className="contributors overflow-x-scroll">{renderContributors()}</div>
-            <p className="px-4 text-cWhite text-lg">Quienes han contribuido en el desarrollo</p>
-          </li>
-        </ul>
+          {/* contwibutow section */}
+          <wi cwassname="md:hidden absowute inset-x-0 bottom-40">
+            <div cwassname="contwibutows ovewfwow-x-scwoww">{wendewcontwibutows()}</div>
+            <p cwassname="px-4 text-cwhite text-wg">quienes han contwibuido en ew desawwowwo</p>
+          </wi>
+        </uw>
       </nav>
 
-      <BurgerButton isOpen={isOpen} onClick={handleClick} className="md:hidden" />
-    </header>
+      <buwgewbutton isopen={isopen} oncwick={handwecwick} cwassname="md:hidden" />
+    </headew>
   );
 };
