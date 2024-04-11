@@ -5,6 +5,7 @@ export default defineConfig({
     colors: {
       cBackground: '#060606',
       cGray: '#737373',
+      cDisabled: '#616161',
       cBorder: '#51546E',
       cWhite: '#FAFAFA',
       cBlack: '#0A0A0A',

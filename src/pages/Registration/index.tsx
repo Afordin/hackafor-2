@@ -1,6 +1,6 @@
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, useState } from 'react';
 import { HtmlType, Variant } from '@common';
-import { Button, Tag } from '@components';
+import { Button, Counter, Tag } from '@components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RootLayout } from '@layouts';
 import { useUserStore } from '@store';
@@ -39,6 +39,25 @@ const DEFAULT_PROJECT = {
 export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertProjectType }) => {
   const { user } = useUserStore();
 
+  const [wantsRoles, setWantsRoles] = useState<boolean>(false);
+  const [wantedRoles, setWantedRoles] = useState({
+    'Front-end': 0,
+    'Back-end': 0,
+    'Full-stack': 0,
+    'Diseñador(a)': 0,
+    Otro: 0
+  });
+
+  const addWantedRole = (role: string) => {
+    if (currentNumberOfMembers < 3) {
+      setWantedRoles((prev) => ({ ...prev, [role]: prev[role] < 3 ? prev[role] + 1 : prev[role] }));
+    }
+  };
+
+  const removeWantedRole = (role: string) => {
+    setWantedRoles((prev) => ({ ...prev, [role]: prev[role] > 0 ? prev[role] - 1 : prev[role] }));
+  };
+
   const {
     register,
     handleSubmit,
@@ -65,6 +84,9 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
     control
   });
 
+  const currentNumberOfMembers = Object.values(wantedRoles).reduce((acc, item) => acc + item, members.length);
+  const rolesDisabled = currentNumberOfMembers >= 3;
+
   const handleSave = (values) => {
     createProject(values);
   };
@@ -75,9 +97,9 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
 
   return (
     <RootLayout>
-      <article id="registration" className="w-full h-screen flex flex-col gap-y-[48px] items-center justify-center text-cWhite">
-        <p className="text-[32px]">Lorem ipsum dolor sit amet consectetur.</p>
-        <form className="flex flex-col w-full items-center max-w-6xl mx-auto gap-y-6" onSubmit={handleSubmit(handleSave, handleError)}>
+      <article id="registration" className="w-full h-screen flex flex-col gap-y-[48px] justify-center text-cWhite">
+        <p className="text-[32px] text-center">Lorem ipsum dolor sit amet consectetur.</p>
+        <form className="flex flex-col w-full  max-w-6xl mx-auto gap-y-6" onSubmit={handleSubmit(handleSave, handleError)}>
           <FormField
             id="project-name"
             label="Título del proyecto*"
@@ -130,13 +152,6 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
                   <Tag>Otros</Tag>
                 </div>
               </div>
-
-              {/* <FormField
-                id={`administrator-role`}
-                label="Administrator Role"
-                error={errors[`administrator.role`]}
-                {...register(`administrator.role`)}
-              /> */}
             </div>
 
             {members.map((member, index) => (
@@ -174,9 +189,40 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
             ))}
           </fieldset>
 
-          <Button htmlType={HtmlType.submit} className="w-fit">
-            Registrar proyecto
-          </Button>
+          <label htmlFor="wanted-roles" className="flex gap-x-2">
+            <input
+              type="checkbox"
+              id="wanted-roles"
+              onChange={() => {
+                setWantsRoles(!wantsRoles);
+              }}
+              className="text-cWhite"
+            />
+            <span className="font-bold text-[20px]"> Estoy buscando a otras personas para mi proyecto</span>
+          </label>
+
+          {wantsRoles && (
+            <article className="flex gap-x-2 justify-between">
+              {Object.entries(wantedRoles).map((wantedRole) => {
+                return (
+                  <Counter
+                    key={wantedRole[0]}
+                    role={wantedRole[0]}
+                    amount={wantedRole[1]}
+                    disabled={rolesDisabled}
+                    increase={addWantedRole}
+                    decrease={removeWantedRole}
+                  />
+                );
+              })}
+            </article>
+          )}
+
+          <div className="flex justify-center">
+            <Button htmlType={HtmlType.submit} className="w-fit">
+              Registrar proyecto
+            </Button>
+          </div>
         </form>
       </article>
     </RootLayout>

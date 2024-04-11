@@ -4,6 +4,7 @@ export * from './Buttons';
 export * from './Cards';
 export * from './Carousel/Carousel';
 export * from './Countdown/Countdown';
+export * from './Counter/Counter';
 export * from './Footer/Footer';
 export * from './Logo/Logo';
 export * from './Navigation/Nav';
