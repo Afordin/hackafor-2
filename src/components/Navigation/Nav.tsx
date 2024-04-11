@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AvatarSize, ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavAnimation, Variant } from '@common';
+import { AvatarSize, ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useNavAnimation, Variant } from '@common';
 import { BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
 import { Link, NavLink } from 'react-router-dom';
@@ -13,7 +13,6 @@ interface NavProps {
 }
 export const Nav = ({ className }: NavProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { contributors, isLoading } = useContributors();
   const { isMobile } = useBreakpoint();
   const { signInWithDiscord } = useAuth();
   const { isAtTop, isHidden } = useNavAnimation();
@@ -62,27 +61,6 @@ export const Nav = ({ className }: NavProps) => {
   };
 
   // TODO: Implement a lock when isOpen on Mobile
-
-  const renderContributors = () =>
-    contributors.map((contributor) => (
-      <a
-        href={`https://github.com/${contributor.username}`}
-        key={contributor.username}
-        className="contributor"
-        aria-label={`Contributor: ${contributor.username}`}
-      >
-        {isLoading ? (
-          <div className="w-12 h-12 bg-cGray" />
-        ) : (
-          <img
-            key={contributor.username}
-            src={contributor.avatarUrl}
-            className="rounded-full mr-[-10px] overflow-auto"
-            alt={contributor.username}
-          />
-        )}
-      </a>
-    ));
 
   /**
    * overflow "hidden" needs to be set when the component isOpen (mounts)
@@ -149,14 +127,6 @@ export const Nav = ({ className }: NavProps) => {
                 Accede con Discord
               </Button>
             )}
-          </li>
-
-          {/* Contributor Section */}
-          <li className="md:hidden mt-auto mb-8">
-            <p className="px-4 text-cWhite text-lg text-center">Quienes han contribuido en el desarrollo</p>
-            <div className="contributors overflow-x-scroll" style={{ '--contributor-count': 6 } as any}>
-              {renderContributors()}
-            </div>
           </li>
         </ul>
       </nav>
