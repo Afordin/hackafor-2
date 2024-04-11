@@ -3,6 +3,7 @@ import { AvatarSize, ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContribut
 import { Avatar, BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
 import { Link, NavLink } from 'react-router-dom';
+import { LoggedUser } from './LoggedUser';
 
 interface NavProps {
   /**
@@ -52,6 +53,7 @@ export const Nav = ({ className }: NavProps) => {
       'bg-cBackground/80 backdrop-blur-lg md:bg-transparent md:backdrop-filter-none',
       'max-md:w-[100svw] max-md:h-[100svh]'
     ),
+    mobileAvatar: cn('md:hidden mb-4'),
     listItem: (isActive: boolean) =>
       cn('cursor-pointer hover:text-white transition-all ease-in-out duration-300 w-fit', {
         'bg-gradient-to-rb from-primary-600 to-secondary-500 text-transparent bg-clip-text': isActive
@@ -104,6 +106,11 @@ export const Nav = ({ className }: NavProps) => {
       {/* Navigation Section */}
       <nav className={classes.nav}>
         <ul className={classes.list}>
+          {user && (
+            <li className={classes.mobileAvatar}>
+              <Avatar avatar={user.user_metadata.avatar_url} size={AvatarSize.lg} />
+            </li>
+          )}
           <li>
             <NavLink className={({ isActive }) => classes.listItem(isActive)} to={ROUTE.home}>
               Inicio
@@ -134,7 +141,7 @@ export const Nav = ({ className }: NavProps) => {
 
           <li>
             {user ? (
-              <Avatar avatar={user.user_metadata.avatar_url} size={handleAvatarSize} />
+              <LoggedUser user={user} avatarSize={handleAvatarSize} />
             ) : (
               <Button
                 onClick={() => {
