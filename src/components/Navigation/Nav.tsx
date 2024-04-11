@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AvatarSize, ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavAnimation, Variant } from '@common';
 import { Avatar, BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
@@ -82,12 +82,18 @@ export const Nav = ({ className }: NavProps) => {
       </a>
     ));
 
-  const handleClick = () => {
-    if (isMobile) {
-      document.body.style.overflow = isOpen ? 'auto' : 'hidden';
+  /**
+   * overflow "hidden" needs to be set when the component isOpen (mounts)
+   * return to "auto" when it (unmonuts)
+   */
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
     }
-    setIsOpen(!isOpen);
-  };
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
 
   return (
     <header className={classes.container}>
@@ -153,7 +159,7 @@ export const Nav = ({ className }: NavProps) => {
         </ul>
       </nav>
 
-      <BurgerButton isOpen={isOpen} onClick={handleClick} className="md:hidden" />
+      <BurgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} className="md:hidden" />
     </header>
   );
 };
