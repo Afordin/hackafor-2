@@ -1,11 +1,13 @@
-import { ForwardedRef, forwardRef, useState } from 'react';
-import { HtmlType, Variant } from '@common';
-import { Button, Counter, Tag } from '@components';
+import { useState } from 'react';
+import { ButtonSize, cn, FormFieldState, HtmlType, Variant } from '@common';
+import { Button, Counter, Textarea, TextInput } from '@components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RootLayout } from '@layouts';
 import { useUserStore } from '@store';
 import { apiClient, UpsertProjectSchema, UpsertProjectType } from '@utils';
-import { FieldError, useFieldArray, useForm } from 'react-hook-form';
+import { Controller, useFieldArray, useForm } from 'react-hook-form';
+import { RoleSelector } from './components';
+import { addWantedRole, removeWantedRole, RoleState } from './utils';
 
 const createProject = (project: UpsertProjectType) => {
   return apiClient.from('Project').insert(project);
@@ -38,9 +40,9 @@ const DEFAULT_PROJECT = {
 
 export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertProjectType }) => {
   const { user } = useUserStore();
-
+  const [submitError, setSubmitError] = useState('');
   const [wantsRoles, setWantsRoles] = useState<boolean>(false);
-  const [wantedRoles, setWantedRoles] = useState({
+  const [wantedRoles, setWantedRoles] = useState<RoleState>({
     'Front-end': 0,
     'Back-end': 0,
     'Full-stack': 0,
@@ -48,28 +50,20 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
     Otro: 0
   });
 
-  const addWantedRole = (role: string) => {
-    if (currentNumberOfMembers < 3) {
-      setWantedRoles((prev) => ({ ...prev, [role]: prev[role] < 3 ? prev[role] + 1 : prev[role] }));
-    }
-  };
-
-  const removeWantedRole = (role: string) => {
-    setWantedRoles((prev) => ({ ...prev, [role]: prev[role] > 0 ? prev[role] - 1 : prev[role] }));
-  };
-
   const {
-    register,
     handleSubmit,
     control,
     formState: { errors }
-  } = useForm({
+  } = useForm<UpsertProjectType>({
     resolver: zodResolver(UpsertProjectSchema),
+    criteriaMode: 'all',
+    mode: 'all',
     defaultValues: {
       ...project,
       administrator: {
         ...project.administrator,
         name: user?.user_metadata.name ?? '',
+        role: user?.user_metadata.role ?? '',
         provider_id: user?.user_metadata.provider_id ?? ''
       }
     }
@@ -84,167 +78,221 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
     control
   });
 
-  const currentNumberOfMembers = Object.values(wantedRoles).reduce((acc, item) => acc + item, members.length);
-  const rolesDisabled = currentNumberOfMembers >= 3;
+  const currentNumberOfMembers = Object.values(wantedRoles).reduce<number>((acc, item) => acc + item, members.length);
+  const isRegistrationFull = currentNumberOfMembers >= 3;
 
-  const handleSave = (values) => {
-    createProject(values);
+  const onSubmit = async (values) => {
+    try {
+      await createProject(values);
+      setSubmitError('');
+    } catch (error) {
+      console.error(error);
+      setSubmitError('Por favor, verifique los campos');
+    }
   };
 
-  const handleError = (error) => {
-    console.error(error);
+  const handleError = (errors) => {
+    setSubmitError('Por favor, verifique los campos');
+    console.error(errors);
   };
+
+  const renderMembers = () =>
+    members.map((member, index) => (
+      <div key={member.id} className="grid grid-cols-2 items-center gap-4 animate-fade-in-down animate-duration-200">
+        <div className="flex gap-4 items-center gap-4">
+          <Button
+            onClick={() => {
+              removeMember(index);
+            }}
+            className="i-lucide-circle-minus mt-6 bg-red-600 hover:bg-red-900 transition-colors"
+            size={ButtonSize.sm}
+          >
+            <span className="invisible opacity-0">Delete</span>
+          </Button>
+          <Controller
+            control={control}
+            name={`members.${index}.name`}
+            render={({ field: { name, value, onChange }, fieldState: { error } }) => (
+              <TextInput
+                label="Nombre del miembro*"
+                name={name}
+                value={value}
+                className="w-full max-w-md"
+                onChange={onChange}
+                assistiveText={error ? error.message : ''}
+                fieldState={error ? FormFieldState.error : FormFieldState.default}
+              />
+            )}
+          />
+        </div>
+
+        <div className="flex gap-y-2 flex-col justify-center">
+          <p className="text-md font-bold">Rol del participante*</p>
+          <div className="flex gap-x-4 ">
+            <Controller
+              control={control}
+              name={`members.${index}.role`}
+              render={({ field, fieldState: { error } }) => (
+                <RoleSelector
+                  roles={['Front-end', 'Back-end', 'Full-Stack', 'Diseñador(a)', 'Otros']}
+                  selectedRole={field.value}
+                  onRoleChange={(role) => field.onChange(role)}
+                  assistiveText={error ? error.message : ''}
+                  fieldState={error ? FormFieldState.error : FormFieldState.default}
+                />
+              )}
+            />
+          </div>
+        </div>
+      </div>
+    ));
 
   return (
     <RootLayout>
-      <article id="registration" className="w-full h-screen flex flex-col gap-y-[48px] justify-center text-cWhite">
-        <p className="text-[32px] text-center">Lorem ipsum dolor sit amet consectetur.</p>
-        <form className="flex flex-col w-full  max-w-6xl mx-auto gap-y-6" onSubmit={handleSubmit(handleSave, handleError)}>
-          <FormField
-            id="project-name"
-            label="Título del proyecto*"
-            placeholder="Introduce el título del proyecto"
-            error={errors.name}
-            {...register('name')}
-          />
+      <main id="registration" className="pt-32 text-cWhite">
+        <div className="container mx-auto max-w-6xl px-4">
+          <h1 className="text-4xl text-center mb-10">Lorem ipsum dolor sit amet consectetur.</h1>
 
-          <FormField
-            id="project-description"
-            label="Descripción del proyecto*"
-            textArea={true}
-            placeholder="Introduce una breve descripción del proyecto"
-            error={errors.description}
-            {...register('description')}
-          />
-
-          <fieldset className="flex flex-col gap-y-6 w-full">
-            <div className="flex justify-center items-center gap-x-4 w-full">
-              <p className="text-8 text-center text-regular">Introduce a los participantes</p>
-              <Button
-                variant={Variant.secondary}
-                hasBorder
-                onClick={() => {
-                  appendMember({
-                    id: crypto.randomUUID(),
-                    name: '',
-                    role: ''
-                  });
-                }}
-              >
-                Añadir Miembro
-              </Button>
-            </div>
-            <div className="grid grid-cols-2 items-center gap-x-4 w-full">
-              <FormField
-                id={`administrator-name`}
-                label="Nombre del administrador*"
-                placeholder="Nombre del administrador"
-                error={errors[`administrator.name`]}
-                {...register(`administrator.name`)}
-              />
-              <div className="w-full flex gap-y-2 flex-col justify-center">
-                <p className="text-[20px] font-bold">Rol del participante*</p>
-                <div className="flex gap-x-4 ">
-                  <Tag>Front-end</Tag>
-                  <Tag>Back-end</Tag>
-                  <Tag>Full-Stack</Tag>
-                  <Tag>Diseñador(a)</Tag>
-                  <Tag>Otros</Tag>
-                </div>
-              </div>
-            </div>
-
-            {members.map((member, index) => (
-              <fieldset key={member.id} className="grid grid-cols-2 items-center gap-x-4">
-                {/* TODO: Change this style to red button */}
-                <div className="flex gap-x-4 items-center">
-                  <Button
-                    onClick={() => {
-                      removeMember(index);
-                    }}
-                    className="i-lucide-circle-minus mt-8 text-red-6"
-                  >
-                    Delete
-                  </Button>
-                  <FormField
-                    id={`member-${index}-name`}
-                    label="Nombre del miembro"
-                    placeholder="Introduce el nombre de un miembro"
-                    error={errors[`members.${index}`]}
-                    {...register(`members.${index}.name`)}
+          <form onSubmit={handleSubmit(onSubmit, handleError)}>
+            {/* PROJECT INFO SECTION */}
+            <fieldset className="grid gap-6">
+              <Controller
+                name="name"
+                control={control}
+                render={({ field: { name, value, onChange } }) => (
+                  <TextInput
+                    label="Título del proyecto"
+                    name={name}
+                    value={value}
+                    onChange={onChange}
+                    placeholder="Introduce el título del proyecto"
+                    assistiveText={errors.name?.message}
+                    fieldState={errors.name ? FormFieldState.error : FormFieldState.default}
                   />
-                </div>
+                )}
+              />
+
+              <Controller
+                name="description"
+                control={control}
+                render={({ field: { name, value, onChange } }) => (
+                  <Textarea
+                    label="Descripción del proyecto"
+                    name={name}
+                    value={value}
+                    onChange={onChange}
+                    placeholder="Introduce una breve descripción del proyecto"
+                    assistiveText={errors.description?.message}
+                    fieldState={errors.description ? FormFieldState.error : FormFieldState.default}
+                  />
+                )}
+              />
+            </fieldset>
+
+            {/* PROJECT MEMBERS SECTION */}
+            <fieldset className="w-full mt-10">
+              <div className="w-full flex items-center justify-center gap-4 flex-wrap">
+                <legend className="text-3xl text-center">Introduce a los participantes</legend>
+                <Button
+                  variant={Variant.secondary}
+                  hasBorder
+                  className="mt-2"
+                  onClick={() => {
+                    appendMember({
+                      id: crypto.randomUUID(),
+                      name: '',
+                      role: ''
+                    });
+                  }}
+                >
+                  Añadir Miembro
+                </Button>
+              </div>
+
+              <div className="flex items-center gap-4 mt-10 flex-col">
+                <Controller
+                  name="administrator.name"
+                  control={control}
+                  render={({ field: { name, value, onChange } }) => (
+                    <TextInput
+                      label="Nombre del administrador*"
+                      name={name}
+                      isFullWidth
+                      value={value}
+                      onChange={onChange}
+                      placeholder="Nombre del administrador"
+                      assistiveText={errors.administrator?.name?.message}
+                      fieldState={errors.administrator ? FormFieldState.error : FormFieldState.default}
+                    />
+                  )}
+                />
 
                 <div className="w-full flex gap-y-2 flex-col justify-center">
-                  <p className="text-[20px] font-bold">Rol del participante*</p>
-                  <div className="flex gap-x-4 ">
-                    <Tag>Front-end</Tag>
-                    <Tag>Back-end</Tag>
-                    <Tag>Full-Stack</Tag>
-                    <Tag>Diseñador(a)</Tag>
-                    <Tag>Otros</Tag>
-                  </div>
-                </div>
-              </fieldset>
-            ))}
-          </fieldset>
-
-          <label htmlFor="wanted-roles" className="flex gap-x-2">
-            <input
-              type="checkbox"
-              id="wanted-roles"
-              onChange={() => {
-                setWantsRoles(!wantsRoles);
-              }}
-              className="text-cWhite"
-            />
-            <span className="font-bold text-[20px]"> Estoy buscando a otras personas para mi proyecto</span>
-          </label>
-
-          {wantsRoles && (
-            <article className="flex gap-x-2 justify-between">
-              {Object.entries(wantedRoles).map((wantedRole) => {
-                return (
-                  <Counter
-                    key={wantedRole[0]}
-                    role={wantedRole[0]}
-                    amount={wantedRole[1]}
-                    disabled={rolesDisabled}
-                    increase={addWantedRole}
-                    decrease={removeWantedRole}
+                  <p className="text-md font-bold">Rol del participante*</p>
+                  <Controller
+                    name="administrator.role"
+                    control={control}
+                    render={({ field }) => (
+                      <RoleSelector
+                        roles={['Front-end', 'Back-end', 'Full-Stack', 'Diseñador(a)', 'Otros']}
+                        selectedRole={field.value}
+                        onRoleChange={(role) => field.onChange(role)}
+                        assistiveText={errors.administrator?.role?.message}
+                        fieldState={errors.administrator ? FormFieldState.error : FormFieldState.default}
+                      />
+                    )}
                   />
-                );
-              })}
-            </article>
-          )}
+                </div>
+              </div>
+            </fieldset>
 
-          <div className="flex justify-center">
-            <Button htmlType={HtmlType.submit} className="w-fit">
-              Registrar proyecto
-            </Button>
-          </div>
-        </form>
-      </article>
+            {/* MEMBERS SECTION */}
+            <fieldset className="grid gap-6 my-8">{renderMembers()}</fieldset>
+
+            {/* WANTED ROLES */}
+            <fieldset>
+              <label htmlFor="wanted-roles" className="flex gap-x-2">
+                <input
+                  type="checkbox"
+                  id="wanted-roles"
+                  onChange={() => {
+                    setWantsRoles(!wantsRoles);
+                  }}
+                  className="text-cWhite"
+                  disabled={isRegistrationFull}
+                />
+                <span className={cn('font-bold text-xl', { 'text-neutral-700': isRegistrationFull })}>
+                  Estoy buscando a otras personas para mi proyecto
+                </span>
+              </label>
+
+              {wantsRoles && (
+                <article className="flex gap-x-2 justify-between my-4 animate-fade-in-down animate-duration-300">
+                  {Object.entries(wantedRoles).map((wantedRole) => {
+                    return (
+                      <Counter
+                        key={wantedRole[0]}
+                        role={wantedRole[0]}
+                        amount={wantedRole[1]}
+                        disabled={isRegistrationFull}
+                        increase={() => addWantedRole(wantedRole[0], currentNumberOfMembers, setWantedRoles)}
+                        decrease={() => removeWantedRole(wantedRole[0], setWantedRoles)}
+                      />
+                    );
+                  })}
+                </article>
+              )}
+            </fieldset>
+
+            <div className="my-16">
+              {submitError && <div className="text-red-500 text-center my-4">{submitError}</div>}
+              <Button htmlType={HtmlType.submit} className="w-full mx-auto ">
+                Registrar proyecto
+              </Button>
+            </div>
+          </form>
+        </div>
+      </main>
     </RootLayout>
   );
 };
-
-type FormFieldProps = { label: string; error?: FieldError; textArea?: boolean } & React.ComponentProps<'input'>;
-
-const FormField = forwardRef(({ label, error, textArea, ...props }: FormFieldProps, ref: ForwardedRef<HTMLInputElement>) => {
-  return (
-    <div className="flex flex-col gap-y-1 w-full">
-      <label htmlFor={props.id} className="text-[20px] font-bold">
-        {label}
-      </label>
-      {textArea ? (
-        // TODO: Change to Textarea
-        <input ref={ref} className="bg-transparent w-full border-1 border-pBorder rounded-3 p-4 text-[24px]" {...props} />
-      ) : (
-        <input ref={ref} className="bg-transparent w-full border-1 border-pBorder rounded-3 p-4 text-[24px]" {...props} />
-      )}
-
-      {error && <p aria-live="assertive">{error.message}</p>}
-    </div>
-  );
-});
