@@ -9,6 +9,8 @@ export type User = {
   role: string;
 };
 
+export type Role = ProjectRoles;
+
 export enum ProjectRoles {
   frontEnd = 'front-end',
   backEnd = 'back-end',
