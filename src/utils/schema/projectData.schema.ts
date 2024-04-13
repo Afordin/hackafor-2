@@ -2,7 +2,8 @@ import { z } from 'zod';
 
 const UserSchema = z.object({
   name: z.string().min(1, 'El nombre es obligatorio'),
-  role: z.string().min(1, 'El rol es obligatorio')
+  role: z.string().min(1, 'El rol es obligatorio'),
+  id: z.string()
 });
 
 const AdministratorSchema = UserSchema.extend({
