@@ -46,7 +46,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         'border-1',
         'h-10',
         'transition-colors duration-300',
-        'rounded-lg px-4',
+        'rounded-lg px-4 py-8',
         {
           'w-full': isFullWidth,
           ['bg-pBorder/50 border-transparent']: isDisabled,
@@ -61,7 +61,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         'w-full',
         'outline-none bg-transparent',
         'placeholder:text-slate-500',
-        'text-base rounded-3 border-pBorder',
+        'text-2xl rounded-3 border-pBorder',
         'disabled:cursor-not-allowed disabled:placeholder:text-slate-600'
       ),
       assistiveText: cn('mt-2 text-xs font-medium', {
@@ -88,7 +88,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     return (
       <div className={classes.container}>
         {label && (
-          <label className="mb-2 block text-sm font-semibold leading-4 text-slate-100" htmlFor={id}>
+          <label className="mb-2 block text-xl font-semibold leading-4 text-slate-100" htmlFor={id}>
             {label}
             {isRequired && <span className="ml-1 text-rose-500">*</span>}
           </label>

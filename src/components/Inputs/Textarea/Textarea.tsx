@@ -42,7 +42,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       textarea: cn(
         'w-full min-h-[11rem]',
         'transition duration-100 ease-out outline-none bg-transparent',
-        'placeholder:text-slate-500 text-base',
+        'placeholder:text-slate-500 text-2xl',
         'disabled:cursor-not-allowed disabled:placeholder:text-slate-500',
         'resize-y'
       ),

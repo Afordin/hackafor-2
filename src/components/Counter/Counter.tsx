@@ -14,7 +14,7 @@ export const Counter = ({ role, amount, disabled, increase, decrease }: Props) =
         className={`flex items-center px-2 py-1 gap-x-2 border border-pBorder rounded-full ${amount > 0 ? 'border-secondary-500' : ''} `}
       >
         <button onClick={() => decrease(role)} className={`i-lucide-minus ${amount === 0 ? 'text-cDisabled' : ''} `}></button>
-        <span>{amount}</span>
+        <span className="text-md">{amount}</span>
         <button onClick={() => increase(role)} className={`i-lucide-plus ${disabled ? 'text-cDisabled' : ''} `}>
           +
         </button>
