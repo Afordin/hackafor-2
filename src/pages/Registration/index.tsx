@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ButtonSize, cn, FormFieldState, HtmlType, Variant } from '@common';
+import { ButtonSize, cn, FormFieldState, HtmlType, ProjectRoles, RequiredRoles, Role, Variant } from '@common';
 import { Button, Counter, Textarea, TextInput } from '@components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RootLayout } from '@layouts';
@@ -7,7 +7,7 @@ import { useUserStore } from '@store';
 import { apiClient, UpsertProjectSchema, UpsertProjectType } from '@utils';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import { RoleSelector } from './components';
-import { addWantedRole, removeWantedRole, RoleState } from './utils';
+import { addWantedRole, removeWantedRole } from './utils';
 
 const createProject = (project: UpsertProjectType) => {
   return apiClient.from('Project').insert(project);
@@ -17,6 +17,8 @@ const createProject = (project: UpsertProjectType) => {
 //   return apiClient.from('Project').update(project).eq('id', project.id);
 // };
 
+type RoleFormNames = `required_roles.${Role}`;
+
 const DEFAULT_PROJECT = {
   name: '',
   description: '',
@@ -24,7 +26,8 @@ const DEFAULT_PROJECT = {
   administrator: {
     name: '',
     role: '',
-    provider_id: ''
+    provider_id: '',
+    id: ''
   },
   members: [],
   required_roles: {
@@ -40,20 +43,16 @@ const DEFAULT_PROJECT = {
 
 export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertProjectType }) => {
   const { user } = useUserStore();
+  const roles = Object.values(ProjectRoles);
   const [submitError, setSubmitError] = useState('');
   const [wantsRoles, setWantsRoles] = useState<boolean>(false);
-  const [wantedRoles, setWantedRoles] = useState<RoleState>({
-    'Front-end': 0,
-    'Back-end': 0,
-    'Full-stack': 0,
-    'Diseñador(a)': 0,
-    Otro: 0
-  });
+  const [wantedRoles, setWantedRoles] = useState<RequiredRoles>(DEFAULT_PROJECT.required_roles);
 
   const {
     handleSubmit,
     control,
-    formState: { errors }
+    formState: { errors },
+    setValue
   } = useForm<UpsertProjectType>({
     resolver: zodResolver(UpsertProjectSchema),
     criteriaMode: 'all',
@@ -81,7 +80,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
   const currentNumberOfMembers = Object.values(wantedRoles).reduce<number>((acc, item) => acc + item, members.length);
   const isRegistrationFull = currentNumberOfMembers >= 3;
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values: UpsertProjectType) => {
     try {
       await createProject(values);
       setSubmitError('');
@@ -98,7 +97,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
 
   const renderMembers = () =>
     members.map((member, index) => (
-      <div key={member.id} className="grid grid-cols-2 items-center gap-4 animate-fade-in-down animate-duration-200">
+      <div key={member.id} className="grid lg:grid-cols-2 gap-4 mt-10 animate-fade-in-down animate-duration-200">
         <div className="flex gap-4 items-center gap-4">
           <Button
             onClick={() => {
@@ -117,27 +116,27 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
                 label="Nombre del miembro*"
                 name={name}
                 value={value}
-                className="w-full max-w-md"
+                className="w-full lg:max-w-md"
                 onChange={onChange}
-                assistiveText={error ? error.message : ''}
+                assistiveText={error && error.message}
                 fieldState={error ? FormFieldState.error : FormFieldState.default}
               />
             )}
           />
         </div>
 
-        <div className="flex gap-y-2 flex-col justify-center">
+        <div className="flex gap-2 flex-col justify-center">
           <p className="text-md font-bold">Rol del participante*</p>
-          <div className="flex gap-x-4 ">
+          <div className="flex gap-4">
             <Controller
               control={control}
               name={`members.${index}.role`}
-              render={({ field, fieldState: { error } }) => (
+              render={({ field: { value, onChange }, fieldState: { error } }) => (
                 <RoleSelector
-                  roles={['Front-end', 'Back-end', 'Full-Stack', 'Diseñador(a)', 'Otros']}
-                  selectedRole={field.value}
-                  onRoleChange={(role) => field.onChange(role)}
-                  assistiveText={error ? error.message : ''}
+                  roles={roles}
+                  selectedRole={value}
+                  onRoleChange={(role: Role) => onChange(role)}
+                  assistiveText={error && error.message}
                   fieldState={error ? FormFieldState.error : FormFieldState.default}
                 />
               )}
@@ -146,6 +145,28 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
         </div>
       </div>
     ));
+
+  const renderWantsRoles = () =>
+    Object.entries(wantedRoles).map(([roleKey, amount]) => {
+      const fieldName = `required_roles.${roleKey}` as RoleFormNames;
+      return (
+        <Controller
+          name={fieldName}
+          control={control}
+          key={roleKey}
+          render={({ field: { onChange } }) => (
+            <Counter
+              role={roleKey}
+              onChange={(role: Role) => onChange(role)}
+              amount={amount}
+              disabled={isRegistrationFull}
+              increase={() => addWantedRole(roleKey, currentNumberOfMembers, setWantedRoles)}
+              decrease={() => removeWantedRole(roleKey, setWantedRoles)}
+            />
+          )}
+        />
+      );
+    });
 
   return (
     <RootLayout>
@@ -196,6 +217,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
                 <Button
                   variant={Variant.secondary}
                   hasBorder
+                  isDisabled={isRegistrationFull}
                   className="mt-2"
                   onClick={() => {
                     appendMember({
@@ -209,7 +231,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
                 </Button>
               </div>
 
-              <div className="flex items-center gap-4 mt-10 flex-col">
+              <div className="grid lg:grid-cols-2 place-items-center gap-4 mt-10">
                 <Controller
                   name="administrator.name"
                   control={control}
@@ -227,16 +249,16 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
                   )}
                 />
 
-                <div className="w-full flex gap-y-2 flex-col justify-center">
+                <div className="w-full flex gap-y-2 flex-col">
                   <p className="text-md font-bold">Rol del participante*</p>
                   <Controller
                     name="administrator.role"
                     control={control}
                     render={({ field }) => (
                       <RoleSelector
-                        roles={['Front-end', 'Back-end', 'Full-Stack', 'Diseñador(a)', 'Otros']}
+                        roles={roles}
                         selectedRole={field.value}
-                        onRoleChange={(role) => field.onChange(role)}
+                        onRoleChange={(role: Role) => field.onChange(role)}
                         assistiveText={errors.administrator?.role?.message}
                         fieldState={errors.administrator ? FormFieldState.error : FormFieldState.default}
                       />
@@ -247,7 +269,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
             </fieldset>
 
             {/* MEMBERS SECTION */}
-            <fieldset className="grid gap-6 my-8">{renderMembers()}</fieldset>
+            <fieldset className="grid gap-10 my-8">{renderMembers()}</fieldset>
 
             {/* WANTED ROLES */}
             <fieldset>
@@ -257,29 +279,22 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
                   id="wanted-roles"
                   onChange={() => {
                     setWantsRoles(!wantsRoles);
+                    if (wantsRoles) setWantedRoles(DEFAULT_PROJECT.required_roles);
+
+                    // NOTE: Reset required_roles to default
+                    setValue('required_roles', DEFAULT_PROJECT.required_roles, { shouldDirty: true, shouldTouch: true });
                   }}
                   className="text-cWhite"
-                  disabled={isRegistrationFull}
+                  disabled={!wantsRoles && isRegistrationFull}
                 />
-                <span className={cn('font-bold text-xl', { 'text-neutral-700': isRegistrationFull })}>
+                <span className={cn('font-bold text-xl transition-colors', { 'text-neutral-400': !wantsRoles && isRegistrationFull })}>
                   Estoy buscando a otras personas para mi proyecto
                 </span>
               </label>
 
               {wantsRoles && (
-                <article className="flex gap-x-2 justify-between my-4 animate-fade-in-down animate-duration-300">
-                  {Object.entries(wantedRoles).map((wantedRole) => {
-                    return (
-                      <Counter
-                        key={wantedRole[0]}
-                        role={wantedRole[0]}
-                        amount={wantedRole[1]}
-                        disabled={isRegistrationFull}
-                        increase={() => addWantedRole(wantedRole[0], currentNumberOfMembers, setWantedRoles)}
-                        decrease={() => removeWantedRole(wantedRole[0], setWantedRoles)}
-                      />
-                    );
-                  })}
+                <article className="flex gap-8 justify-evenly my-4 flex-wrap animate-fade-in-down animate-duration-300">
+                  {renderWantsRoles()}
                 </article>
               )}
             </fieldset>
