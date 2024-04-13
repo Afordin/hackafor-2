@@ -27,7 +27,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       autoComplete = 'off',
       className,
       inputContainerClassName,
-      dataTestId,
       value = '',
       name,
       onChange,
@@ -61,7 +60,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         'w-full',
         'outline-none bg-transparent',
         'placeholder:text-slate-500',
-        'text-2xl rounded-3 border-pBorder',
+        'text-2xl border-pBorder',
         'disabled:cursor-not-allowed disabled:placeholder:text-slate-600'
       ),
       assistiveText: cn('mt-2 text-xs font-medium', {
@@ -96,7 +95,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         <div className={classes.inputContainer}>
           <input
             id={id}
-            data-testid={dataTestId}
             ref={ref}
             name={name}
             className={classes.input}
