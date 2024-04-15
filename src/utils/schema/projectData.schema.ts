@@ -1,8 +1,9 @@
 import { z } from 'zod';
 
 const UserSchema = z.object({
-  name: z.string(),
-  role: z.string()
+  name: z.string().min(1, 'El nombre es obligatorio'),
+  role: z.string().min(1, 'El rol es obligatorio'),
+  id: z.string()
 });
 
 const AdministratorSchema = UserSchema.extend({
@@ -19,8 +20,8 @@ const RequiredRolesSchema = z.object({
 
 export const ProjectSchema = z.object({
   id: z.number(),
-  name: z.string(),
-  description: z.string(),
+  name: z.string().min(1, 'El nombre es obligatorio'),
+  description: z.string().min(1, 'La descripción es obligatoria').max(300, 'La descripción es demasiado larga'),
   administrator: AdministratorSchema,
   members: z.array(UserSchema),
   repository_url: z.string().url().nullable(),

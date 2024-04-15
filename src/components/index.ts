@@ -6,6 +6,7 @@ export * from './Carousel/Carousel';
 export * from './Countdown/Countdown';
 export * from './Counter/Counter';
 export * from './Footer/Footer';
+export * from './Inputs';
 export * from './Logo/Logo';
 export * from './Navigation/Nav';
 export * from './Popover/Popover';
