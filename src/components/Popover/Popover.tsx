@@ -71,7 +71,6 @@ export const Popover = ({
       'shadow-lg z-50',
       'rounded-md',
       'p-2 text-sm',
-      'transition-all',
       {
         'opacity-0 invisible': !open,
         'opacity-100 animate-fade-in animate-duration-200': open
