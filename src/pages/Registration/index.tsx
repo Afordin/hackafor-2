@@ -6,6 +6,7 @@ import { RootLayout } from '@layouts';
 import { useUserStore } from '@store';
 import { apiClient, UpsertProjectSchema, UpsertProjectType } from '@utils';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { RoleSelector } from './components';
 import { addWantedRole, removeWantedRole } from './utils';
 
@@ -47,6 +48,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
   const [submitError, setSubmitError] = useState('');
   const [wantsRoles, setWantsRoles] = useState<boolean>(false);
   const [wantedRoles, setWantedRoles] = useState<RequiredRoles>(DEFAULT_PROJECT.required_roles);
+  const { t } = useTranslation();
 
   const {
     handleSubmit,
@@ -113,7 +115,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
             name={`members.${index}.name`}
             render={({ field: { name, value, onChange }, fieldState: { error } }) => (
               <TextInput
-                label="Nombre del miembro*"
+                label={`${t('registration_participant_section_member_name')}*`}
                 name={name}
                 value={value}
                 className="w-full lg:max-w-md"
@@ -126,7 +128,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
         </div>
 
         <div className="flex gap-2 flex-col justify-center">
-          <p className="text-md font-bold">Rol del participante*</p>
+          <p className="text-md font-bold">{`${t('registration_participant_section_participant_role')}*`}</p>
           <div className="flex gap-4">
             <Controller
               control={control}
@@ -156,7 +158,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
           key={roleKey}
           render={({ field: { onChange } }) => (
             <Counter
-              role={roleKey}
+              role={t(`common_${roleKey}`).toLowerCase()}
               onChange={(role: Role) => onChange(role)}
               amount={amount}
               disabled={isRegistrationFull}
@@ -182,11 +184,11 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
                 control={control}
                 render={({ field: { name, value, onChange } }) => (
                   <TextInput
-                    label="Título del proyecto"
+                    label={t('registration_first_input_title')}
                     name={name}
                     value={value}
                     onChange={onChange}
-                    placeholder="Introduce el título del proyecto"
+                    placeholder={t('registration_first_input_placeholder')}
                     assistiveText={errors.name?.message}
                     fieldState={errors.name ? FormFieldState.error : FormFieldState.default}
                   />
@@ -198,11 +200,11 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
                 control={control}
                 render={({ field: { name, value, onChange } }) => (
                   <Textarea
-                    label="Descripción del proyecto"
+                    label={t('registration_second_input_title')}
                     name={name}
                     value={value}
                     onChange={onChange}
-                    placeholder="Introduce una breve descripción del proyecto"
+                    placeholder={t('registration_second_input_placeholder')}
                     assistiveText={errors.description?.message}
                     fieldState={errors.description ? FormFieldState.error : FormFieldState.default}
                   />
@@ -213,7 +215,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
             {/* PROJECT MEMBERS SECTION */}
             <fieldset className="w-full mt-10">
               <div className="w-full flex items-center justify-center gap-4 flex-wrap">
-                <legend className="text-3xl text-center">Introduce a los participantes</legend>
+                <legend className="text-3xl text-center">{t('registration_third_input_title')}</legend>
                 <Button
                   variant={Variant.secondary}
                   hasBorder
@@ -227,7 +229,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
                     });
                   }}
                 >
-                  Añadir Miembro
+                  {t('registration_first_button')}
                 </Button>
               </div>
 
@@ -237,12 +239,12 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
                   control={control}
                   render={({ field: { name, value, onChange } }) => (
                     <TextInput
-                      label="Nombre del administrador*"
+                      label={`${t('registration_participant_section_admin_name')}*`}
                       name={name}
                       isFullWidth
                       value={value}
                       onChange={onChange}
-                      placeholder="Nombre del administrador"
+                      placeholder={t('registration_participant_section_admin_name')}
                       assistiveText={errors.administrator?.name?.message}
                       fieldState={errors.administrator ? FormFieldState.error : FormFieldState.default}
                     />
@@ -250,7 +252,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
                 />
 
                 <div className="w-full flex gap-y-2 flex-col">
-                  <p className="text-md font-bold">Rol del participante*</p>
+                  <p className="text-md font-bold">{`${t('registration_participant_section_participant_role')}*`}</p>
                   <Controller
                     name="administrator.role"
                     control={control}
@@ -288,7 +290,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
                   disabled={!wantsRoles && isRegistrationFull}
                 />
                 <span className={cn('font-bold text-xl transition-colors', { 'text-neutral-400': !wantsRoles && isRegistrationFull })}>
-                  Estoy buscando a otras personas para mi proyecto
+                  {t('registration_checkbox_text')}
                 </span>
               </label>
 
@@ -302,7 +304,7 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
             <div className="my-16">
               {submitError && <div className="text-red-500 text-center my-4">{submitError}</div>}
               <Button htmlType={HtmlType.submit} className="w-full mx-auto ">
-                Registrar proyecto
+                {t('registration_second_button')}
               </Button>
             </div>
           </form>

@@ -16,13 +16,14 @@
     "common_share": "Compartir",
     "common_download_ticket": "Descargar Ticket",
     "common_contact": "Contactar",
-    "common_front_end": "Front-end",
-    "common_back_end": "Back-end",
-    "common_full_stack": "Full-stack",
+    "common_front-end": "Front-end",
+    "common_back-end": "Back-end",
+    "common_full-stack": "Full-stack",
     "common_designer": "Diseñador(a)",
     "common_active": "Activos",
     "common_closed": "Cerrados",
     "common_admin": "Administrador",
+    "common_any": "Cualquiera",
 
     "page_loading": "Cargando...",
 
@@ -66,10 +67,9 @@
     "registration_third_input_title": "Introduce a los participantes",
     "registration_participant_section_count_member": "Miembro {{count}}",
     "registration_participant_section_admin_name": "Nombre del administrador",
-    "registration_participant_section_admin_role": "Rol del administrador",
-    "registration_participant_section_participant_name": "Nombre del participante",
+    "registration_participant_section_member_name": "Nombre del miembro",
     "registration_participant_section_participant_role": "Rol del participante",
     "registration_first_button": "Añadir miembro",
-    "registration_second_button": "Añadir proyecto"
-
+    "registration_second_button": "Registrar proyecto",
+    "registration_checkbox_text": "Estoy buscando a otras personas para mi proyecto"
 }

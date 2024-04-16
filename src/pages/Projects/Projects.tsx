@@ -113,7 +113,7 @@ export const Projects = () => {
                 toggleFilterRole(ProjectRoles.frontEnd);
               }}
             >
-              {t('common_front_end')}
+              {t('common_front-end')}
             </Button>
             <Button
               className={classes.tag(ProjectRoles.backEnd)}
@@ -124,7 +124,7 @@ export const Projects = () => {
                 toggleFilterRole(ProjectRoles.backEnd);
               }}
             >
-              {t('common_back_end')}
+              {t('common_back-end')}
             </Button>
             <Button
               className={classes.tag(ProjectRoles.fullStack)}
@@ -135,7 +135,7 @@ export const Projects = () => {
                 toggleFilterRole(ProjectRoles.fullStack);
               }}
             >
-              {t('common_full_stack')}
+              {t('common_full-stack')}
             </Button>
             <Button
               className={classes.tag(ProjectRoles.designer)}
