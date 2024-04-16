@@ -16,7 +16,7 @@ export function Information() {
       )
     },
     {
-      title: t('information_first_card_title'),
+      title: t('information_second_card_title'),
       description: t('information_second_card_description')
     },
     {
