@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const Countdown = () => {
+  const { t } = useTranslation();
   const time = [
     {
       key: 'days',
-      label: 'Días'
+      label: t('common_days')
     },
     {
       key: 'hours',
-      label: 'Horas'
+      label: t('common_hours')
     },
     {
       key: 'minutes',
-      label: 'Minutos'
+      label: t('common_minutes')
     },
     {
       key: 'seconds',
-      label: 'Segundos'
+      label: t('common_seconds')
     }
   ];
 

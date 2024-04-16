@@ -1,6 +1,7 @@
 import { HTMLAttributes } from 'react';
 import { cn, groupParticipantsByRole, Project } from '@common';
 import { Button, CardWrapper, Popover, Tag } from '@components';
+import { useTranslation } from 'react-i18next';
 
 interface ProjectCardProps extends Omit<Project, 'id' | 'createdAt' | 'repositoryUrl'>, HTMLAttributes<HTMLDivElement> {
   /**
@@ -43,6 +44,7 @@ export const ProjectCard = ({
       'bg-gradient-to-rb from-primary-600 to-secondary-500 w-5 h-5 rounded-full text-xs flex items-center justify-center cursor-pointer select-none'
     )
   };
+  const { t } = useTranslation();
 
   const handleDescription = () => {
     if (description.length > 175) return `${description.slice(0, 130)}...`;
@@ -104,7 +106,7 @@ export const ProjectCard = ({
       {/* Participants Section */}
       <section aria-labelledby="participants-title">
         <h4 id="participants-title" className={classes.subTitle}>
-          Participantes
+          {t('common_participants')}
         </h4>
         <ul className={classes.list}>{renderParticipantsTag}</ul>
       </section>
@@ -114,7 +116,7 @@ export const ProjectCard = ({
         <>
           <section aria-labelledby="roles-title">
             <h4 id="roles-title" className={classes.subTitle}>
-              Estamos buscando
+              {t('project_card_look_for_role_section_title')}
             </h4>
             <ul className={classes.list}>{renderRequiredRolesTag()}</ul>
           </section>

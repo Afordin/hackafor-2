@@ -1,6 +1,7 @@
 import { ButtonSize, cn, ROUTE, useAuth, useBreakpoint, Variant } from '@common';
 import { Button } from '@components';
 import { useUserStore } from '@store';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 type CTAProps = {
@@ -8,29 +9,21 @@ type CTAProps = {
 };
 
 export const CTA = ({ className }: CTAProps) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { isMobile } = useBreakpoint();
   const { signInWithDiscord } = useAuth();
   const user = useUserStore((state) => state.user);
   const handleButtonSize = isMobile ? ButtonSize.lg : ButtonSize.xl;
 
-  const text = {
-    logged: {
-      message: '¿Quieres participar en la hackaton? ¡Inscríbete!',
-      button: 'Inscribirme ahora'
-    },
-    notLogged: {
-      message: 'Para inscribirte inicia sesión con Discord',
-      button: 'Accede con Discord'
-    }
-  };
-
   const classes = {
     container: cn('relative z-10', className)
   };
   return (
     <article className={classes.container}>
-      <p className="max-sm:text-fluid-sm text-fluid-base">{user ? text.logged.message : text.notLogged.message}</p>
+      <p className="max-sm:text-fluid-sm text-fluid-base">
+        {t(user ? 'home_hackathon_register_title' : 'home_hackathon_register_without_login_title')}
+      </p>
       <Button
         onClick={() => {
           if (user) {
@@ -45,7 +38,7 @@ export const CTA = ({ className }: CTAProps) => {
       >
         <div className="flex gap-2 items-center">
           {user ? <span className="i-bi-link-45deg text-xl"></span> : <span className="i-bi-discord"></span>}
-          <span>{user ? text.logged.button : text.notLogged.button}</span>
+          <span>{t(user ? 'home_hackathon_register_button' : 'home_hackathon_register_without_login_button')}</span>
         </div>
       </Button>
     </article>

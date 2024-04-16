@@ -1,5 +1,6 @@
 import { ButtonSize, cn, ROUTE, useProjects, Variant } from '@common';
 import { Button, Carousel, SimpleCard, Spinner } from '@components';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 interface FeatureProjectsProps {
@@ -10,6 +11,7 @@ interface FeatureProjectsProps {
 }
 export const FeatureProjects = ({ className }: FeatureProjectsProps) => {
   const { projects, isLoading } = useProjects();
+  const { t } = useTranslation();
 
   const projectsSlice = [...projects].sort(() => 0.5 - Math.random()).slice(0, 4);
   const classes = {
@@ -30,7 +32,7 @@ export const FeatureProjects = ({ className }: FeatureProjectsProps) => {
   const renderLoading = () => {
     return (
       <div className="absolute inset-0 mx-auto mt-20 grid place-items-center gap-4">
-        <p>Cargando...</p>
+        <p>{t('page_loading')}</p>
         <Spinner />
       </div>
     );
@@ -45,7 +47,7 @@ export const FeatureProjects = ({ className }: FeatureProjectsProps) => {
           {/* TODO: Ghost button styles reset if you use the className Props, fix this */}
           <Button size={ButtonSize.xl} variant={Variant.ghost} onClick={() => console.log('Clicked')}>
             <Link to={ROUTE.projects} className="flex gap-2 items-center">
-              <span>Ver todos los proyectos</span>
+              <span>{t('feature_projects_button')}</span>
 
               {/* icon */}
               <div className="i-lucide:arrow-up-right  w-8 h-8 bg-gradient-to-rb from-primary-600 to-secondary-500" />

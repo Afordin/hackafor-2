@@ -6,6 +6,7 @@ import { RootLayout } from '@layouts';
 import { useUserStore } from '@store';
 import { apiClient, UpsertProjectSchema, UpsertProjectType } from '@utils';
 import { FieldError, useFieldArray, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 const createProject = (project: UpsertProjectType) => {
   return apiClient.from('Project').insert(project);
@@ -38,6 +39,7 @@ const DEFAULT_PROJECT = {
 
 export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertProjectType }) => {
   const { user } = useUserStore();
+  const { t } = useTranslation();
 
   const {
     register,
@@ -80,37 +82,37 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
         <form className="flex flex-col w-full max-w-6xl mx-auto gap-y-6" onSubmit={handleSubmit(handleSave, handleError)}>
           <FormField
             id="project-name"
-            label="Título del proyecto*"
-            placeholder="Introduce el título del proyecto"
+            label={`${t('registration_first_input_title')}*`}
+            placeholder={t('registration_first_input_placeholder')}
             error={errors.name}
             {...register('name')}
           />
 
           <FormField
             id="project-description"
-            label="Descripción del proyecto*"
+            label={`${t('registration_second_input_title')}*`}
             textArea={true}
-            placeholder="Introduce una breve descripción del proyecto"
+            placeholder={t('registration_second_input_placeholder')}
             error={errors.description}
             {...register('description')}
           />
 
           <fieldset className="flex flex-col gap-y-4">
-            <legend className="text-2xl">Introduce a los participantes</legend>
+            <legend className="text-2xl">{t('registration_third_input_title')}</legend>
 
             <fieldset className="flex items-center gap-x-4">
-              <legend>Administrador</legend>
+              <legend>{t('common_admin')}</legend>
 
               <FormField
                 id={`administrator-name`}
-                label="Administrator Name"
+                label={t('registration_participant_section_admin_name')}
                 error={errors[`administrator.name`]}
                 {...register(`administrator.name`)}
               />
 
               <FormField
                 id={`administrator-role`}
-                label="Administrator Role"
+                label={t('registration_participant_section_admin_role')}
                 error={errors[`administrator.role`]}
                 {...register(`administrator.role`)}
               />
@@ -118,18 +120,22 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
 
             {members.map((member, index) => (
               <fieldset key={member.id} className="flex items-center gap-x-4">
-                <legend>Member {index}</legend>
+                <legend>
+                  {t('registration_participant_section_count_member', {
+                    count: index
+                  })}
+                </legend>
 
                 <FormField
                   id={`member-${index}-name`}
-                  label="Participant Name"
+                  label={t('registration_participant_section_participant_name')}
                   error={errors[`members.${index}`]}
                   {...register(`members.${index}.name`)}
                 />
 
                 <FormField
                   id={`member-${index}-role`}
-                  label="Participant Role"
+                  label={t('registration_participant_section_participant_name')}
                   error={errors[`members.${index}`]}
                   {...register(`members.${index}.role`)}
                 />
@@ -153,11 +159,11 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
                 });
               }}
             >
-              Añadir miembro
+              {t('registration_first_button')}
             </Button>
           </fieldset>
 
-          <Button htmlType={HtmlType.submit}>Añadir proyecto</Button>
+          <Button htmlType={HtmlType.submit}>{t('registration_second_button')}</Button>
         </form>
       </article>
     </RootLayout>

@@ -1,23 +1,23 @@
 import { ButtonSize, ROUTE, Variant } from '@common';
 import { Background, Button } from '@components';
 import { RootLayout } from '@layouts';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 export const NotFound = () => {
+  const { t } = useTranslation();
   return (
     <RootLayout>
       <Background />
       <main className="relative w-full z-10 text-cWhite font-dmsans">
         <section className="container mx-auto px-5 max-w-7xl mx-auto grid md:grid-cols-[1fr_.4fr] place-items-center place-content-center h-[100svh]">
           <article className="grid gap-4 text-shadow-md px-5">
-            <h1 className="text-7xl font-semibold">Error 404</h1>
-            <h2 className="text-4xl font-semibold">PÁGINA NO ENCONTRADA</h2>
-            <p className="text-3xl">
-              ¡Hola! Lo sentimos, pero no pudimos encontrar lo que buscabas. Verifica que la dirección URL sea correcta
-            </p>
+            <h1 className="text-7xl font-semibold">{t('not_found_error_404')}</h1>
+            <h2 className="text-4xl font-semibold">{t('not_found_title').toUpperCase()}</h2>
+            <p className="text-3xl">{t('not_found_subtitle')}</p>
             <Link to={ROUTE.home}>
               <Button size={ButtonSize.xl} variant={Variant.ghost} onClick={() => {}} className="flex gap-2 items-center">
-                <span>IR A INICIO</span>
+                <span>{t('not_found_button').toUpperCase()}</span>
                 <div className="i-lucide:arrow-up-right  w-8 h-8 bg-gradient-to-rb from-primary-600 to-secondary-500" />
               </Button>
             </Link>

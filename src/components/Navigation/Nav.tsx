@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AvatarSize, ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavAnimation, Variant } from '@common';
 import { Avatar, BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
+import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
 
 interface NavProps {
@@ -11,6 +12,7 @@ interface NavProps {
   className?: string;
 }
 export const Nav = ({ className }: NavProps) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const { contributors, isLoading } = useContributors();
   const { isMobile } = useBreakpoint();
@@ -100,7 +102,7 @@ export const Nav = ({ className }: NavProps) => {
         <ul className={classes.list}>
           <li>
             <NavLink className={({ isActive }) => classes.listItem(isActive)} to={ROUTE.home}>
-              Inicio
+              {t('common_home')}
             </NavLink>
           </li>
           <li>
@@ -109,7 +111,7 @@ export const Nav = ({ className }: NavProps) => {
 
           <li>
             <NavLink to={ROUTE.projects} className={({ isActive }) => classes.listItem(isActive)}>
-              Proyectos
+              {t('common_projects')}
             </NavLink>
           </li>
           <li>
@@ -118,7 +120,7 @@ export const Nav = ({ className }: NavProps) => {
 
           <li>
             <NavLink to={ROUTE.registration} className={({ isActive }) => classes.listItem(isActive)}>
-              Registro
+              {t('common_register')}
             </NavLink>
           </li>
 
@@ -138,14 +140,14 @@ export const Nav = ({ className }: NavProps) => {
                 hasBorder
                 size={handleButtonSize}
               >
-                Accede con Discord
+                {t('nav_log_in_button')}
               </Button>
             )}
           </li>
 
           {/* Contributor Section */}
           <li className="md:hidden mt-auto mb-8">
-            <p className="px-4 text-cWhite text-lg text-center">Quienes han contribuido en el desarrollo</p>
+            <p className="px-4 text-cWhite text-lg text-center">{t('nav_who_has_contributed')}</p>
             <div className="contributors overflow-x-scroll" style={{ '--contributor-count': 6 } as any}>
               {renderContributors()}
             </div>

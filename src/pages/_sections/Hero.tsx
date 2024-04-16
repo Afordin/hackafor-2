@@ -1,5 +1,6 @@
 import { ButtonSize, cn, useTwitchStatus, Variant } from '@common';
 import { Button, Countdown } from '@components';
+import { useTranslation } from 'react-i18next';
 import { CTA } from './CTA';
 
 interface HeroProps {
@@ -10,6 +11,7 @@ interface HeroProps {
 }
 export const Hero = ({ className }: HeroProps) => {
   const { isLive } = useTwitchStatus();
+  const { t } = useTranslation();
   const classes = {
     container: cn(className),
     innerContainer: cn('relative z-1', 'container mx-auto', 'grid md:grid-rows-[1fr_0.5fr]', 'w-full min-h-[100svh]')
@@ -22,7 +24,7 @@ export const Hero = ({ className }: HeroProps) => {
           <Button variant={Variant.twitch} className="mt-4 flex items-center gap-4 mx-auto" size={ButtonSize.xl}>
             <span>twitch.tv/afor_digital</span>
             <div className="rounded-full px-2 bg-primary-600 animate-pulse relative before:content-[''] before:inset-0 before:absolute before:w-full before:h-full before:bg-primary-600 before:rounded-full before:animate-ping before:animate-duration-2000 ">
-              LIVE
+              {t('common_live').toUpperCase()}
             </div>
           </Button>
         </a>
@@ -35,7 +37,7 @@ export const Hero = ({ className }: HeroProps) => {
       <div className={classes.innerContainer}>
         <article className="text-center self-end ">
           <h1 className="text-fluid-title font-bold leading-none text-shadow-md">Hackafor</h1>
-          <p className="max-sm:text-fluid-base text-fluid-lg font-semibold text-shadow-sm">Una hackaton de programación</p>
+          <p className="max-sm:text-fluid-base text-fluid-lg font-semibold text-shadow-sm">{t('hero_title')}</p>
           <div className="flex justify-center mb-4 gap-4 mt-4 xl:mt-8 xl:mb-0 xl:gap-18">
             <Countdown />
           </div>
