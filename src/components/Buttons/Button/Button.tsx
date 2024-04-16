@@ -82,6 +82,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   hasBorder?: boolean;
 
   /**
+   * Optional className to be added to the inner button element.
+   */
+  innerClassName?: string;
+
+  /**
    * Function to call on button click.
    */
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -95,6 +100,7 @@ export const Button = ({
   variant = Variant.primary,
   isDisabled = false,
   hasBorder = false,
+  innerClassName,
   htmlType = HtmlType.button,
   isFullWidth = false,
   ...restOfProps
@@ -112,7 +118,7 @@ export const Button = ({
       },
       className
     ),
-    innerContainer: cn(Variants[variant], Sizes[size], 'inline-block transition-all duration-300 ease-in-out w-full h-full')
+    innerContainer: cn(Variants[variant], Sizes[size], 'inline-block transition-all duration-300 ease-in-out w-full h-full', innerClassName)
   };
 
   return (

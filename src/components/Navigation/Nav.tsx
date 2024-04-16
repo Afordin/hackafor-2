@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { AvatarSize, ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useContributors, useNavAnimation, Variant } from '@common';
-import { Avatar, BurgerButton, Button, Logo } from '@components';
+import { useEffect, useState } from 'react';
+import { AvatarSize, ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useNavAnimation, Variant } from '@common';
+import { BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
+import { LoggedUser } from './LoggedUser';
 
 interface NavProps {
   /**
@@ -14,7 +15,6 @@ interface NavProps {
 export const Nav = ({ className }: NavProps) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const { contributors, isLoading } = useContributors();
   const { isMobile } = useBreakpoint();
   const { signInWithDiscord } = useAuth();
   const { isAtTop, isHidden } = useNavAnimation();
@@ -54,6 +54,7 @@ export const Nav = ({ className }: NavProps) => {
       'bg-cBackground/80 backdrop-blur-lg md:bg-transparent md:backdrop-filter-none',
       'max-md:w-[100svw] max-md:h-[100svh]'
     ),
+    mobileAvatar: cn('md:hidden mb-4'),
     listItem: (isActive: boolean) =>
       cn('cursor-pointer hover:text-white transition-all ease-in-out duration-300 w-fit', {
         'bg-gradient-to-rb from-primary-600 to-secondary-500 text-transparent bg-clip-text': isActive
@@ -63,33 +64,18 @@ export const Nav = ({ className }: NavProps) => {
 
   // TODO: Implement a lock when isOpen on Mobile
 
-  const renderContributors = () =>
-    contributors.map((contributor) => (
-      <a
-        href={`https://github.com/${contributor.username}`}
-        key={contributor.username}
-        className="contributor"
-        aria-label={`Contributor: ${contributor.username}`}
-      >
-        {isLoading ? (
-          <div className="w-12 h-12 bg-cGray" />
-        ) : (
-          <img
-            key={contributor.username}
-            src={contributor.avatarUrl}
-            className="rounded-full mr-[-10px] overflow-auto"
-            alt={contributor.username}
-          />
-        )}
-      </a>
-    ));
-
-  const handleClick = () => {
-    if (isMobile) {
-      document.body.style.overflow = isOpen ? 'auto' : 'hidden';
+  /**
+   * overflow "hidden" needs to be set when the component isOpen (mounts)
+   * return to "auto" when it (unmonuts)
+   */
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
     }
-    setIsOpen(!isOpen);
-  };
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
 
   return (
     <header className={classes.container}>
@@ -130,7 +116,7 @@ export const Nav = ({ className }: NavProps) => {
 
           <li>
             {user ? (
-              <Avatar avatar={user.user_metadata.avatar_url} size={handleAvatarSize} />
+              <LoggedUser user={user} avatarSize={handleAvatarSize} />
             ) : (
               <Button
                 onClick={() => {
@@ -144,18 +130,10 @@ export const Nav = ({ className }: NavProps) => {
               </Button>
             )}
           </li>
-
-          {/* Contributor Section */}
-          <li className="md:hidden mt-auto mb-8">
-            <p className="px-4 text-cWhite text-lg text-center">{t('nav_who_has_contributed')}</p>
-            <div className="contributors overflow-x-scroll" style={{ '--contributor-count': 6 } as any}>
-              {renderContributors()}
-            </div>
-          </li>
         </ul>
       </nav>
 
-      <BurgerButton isOpen={isOpen} onClick={handleClick} className="md:hidden" />
+      <BurgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} className="md:hidden" />
     </header>
   );
 };
