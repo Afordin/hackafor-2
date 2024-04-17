@@ -15,7 +15,7 @@ export default defineConfig({
       '@store': path.resolve(__dirname, './src/store/index.ts'),
       '@utils': path.resolve(__dirname, './src/utils/index.ts'),
       '@locales': path.resolve(__dirname, './src/locales'),
-      '@config': path.resolve(__dirname, './src/config'),
+      '@config': path.resolve(__dirname, './src/config')
     }
   }
 });
