@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AvatarSize, ButtonSize, cn, ROUTE, useAuth, useBreakpoint, useNavAnimation, Variant } from '@common';
 import { BurgerButton, Button, Logo } from '@components';
 import { useUserStore } from '@store';
+import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
 import { LoggedUser } from './LoggedUser';
 
@@ -12,6 +13,7 @@ interface NavProps {
   className?: string;
 }
 export const Nav = ({ className }: NavProps) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const { isMobile } = useBreakpoint();
   const { signInWithDiscord } = useAuth();
@@ -86,7 +88,7 @@ export const Nav = ({ className }: NavProps) => {
         <ul className={classes.list}>
           <li>
             <NavLink className={({ isActive }) => classes.listItem(isActive)} to={ROUTE.home}>
-              Inicio
+              {t('common_home')}
             </NavLink>
           </li>
           <li>
@@ -95,7 +97,7 @@ export const Nav = ({ className }: NavProps) => {
 
           <li>
             <NavLink to={ROUTE.projects} className={({ isActive }) => classes.listItem(isActive)}>
-              Proyectos
+              {t('common_projects')}
             </NavLink>
           </li>
           <li>
@@ -104,7 +106,7 @@ export const Nav = ({ className }: NavProps) => {
 
           <li>
             <NavLink to={ROUTE.registration} className={({ isActive }) => classes.listItem(isActive)}>
-              Registro
+              {t('common_register')}
             </NavLink>
           </li>
 
@@ -124,7 +126,7 @@ export const Nav = ({ className }: NavProps) => {
                 hasBorder
                 size={handleButtonSize}
               >
-                Accede con Discord
+                {t('nav_log_in_button')}
               </Button>
             )}
           </li>

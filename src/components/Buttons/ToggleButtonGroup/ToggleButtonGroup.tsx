@@ -1,6 +1,7 @@
 import { Dispatch } from 'react';
 import { ButtonSize, cn, Variant } from '@common';
 import { Button } from '@components';
+import { useTranslation } from 'react-i18next';
 
 interface ToggleButtonGroupProps {
   /**
@@ -25,6 +26,7 @@ interface ToggleButtonGroupProps {
 }
 
 export const ToggleButtonGroup = ({ className, isActive, setIsActive, setFilter }: ToggleButtonGroupProps) => {
+  const { t } = useTranslation();
   const classes = {
     container: cn('max-sm:grid max-sm:gap-4 ', className)
   };
@@ -44,7 +46,7 @@ export const ToggleButtonGroup = ({ className, isActive, setIsActive, setFilter 
         variant={handleButtonVariant(isActive)}
         className="sm:rounded-r-none max-sm:w-full"
       >
-        Activos
+        {t('common_active')}
       </Button>
       <Button
         size={ButtonSize.xl}
@@ -52,7 +54,7 @@ export const ToggleButtonGroup = ({ className, isActive, setIsActive, setFilter 
         className="sm:rounded-l-none max-sm:w-full"
         variant={handleButtonVariant(!isActive)}
       >
-        Cerrados
+        {t('common_closed')}
       </Button>
     </div>
   );

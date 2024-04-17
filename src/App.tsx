@@ -8,6 +8,8 @@ import { apiClient } from '@utils';
 import { Route, Routes } from 'react-router-dom';
 import { useUserStore } from './store/useUserStore';
 
+import '@config/i18n';
+
 function App() {
   const setUser = useUserStore((state) => state.setUser);
 

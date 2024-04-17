@@ -6,6 +6,7 @@ import { Button } from '@components';
 import { useUserStore } from '@store';
 import { Atropos } from 'atropos/react';
 import { toPng } from 'html-to-image';
+import { useTranslation } from 'react-i18next';
 
 interface TicketProps {
   avatar?: string;
@@ -62,11 +63,12 @@ export const Ticket: FC<TicketProps> = ({
 }) => {
   const user = useUserStore((state) => state.user);
   const ticketRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   return (
     <section>
       <div className="container mx-auto my-20">
-        <h2 className="text-[30px] text-center">Descarga tu ticket y compártelo en redes sociales</h2>
+        <h2 className="text-[30px] text-center">{t('home_ticket_title')}</h2>
         <div className="flex justify-center md:w-full mx-auto mt-15 p-2 md:p-0">
           <Atropos
             shadowScale={1.1}
@@ -144,7 +146,7 @@ export const Ticket: FC<TicketProps> = ({
             >
               <div className="flex gap-2 items-center">
                 <span className="i-bi-twitter-x"></span>
-                <span>Compartir</span>
+                <span>{t('common_share')}</span>
               </div>
             </Button>
             <Button
@@ -155,7 +157,7 @@ export const Ticket: FC<TicketProps> = ({
             >
               <div className="flex gap-2 items-center">
                 <span className="i-lucide-arrow-down bg-gradient-to-b from-secondary-500 to-primary-600"></span>
-                <span>Descargar Ticket</span>
+                <span>{t('common_download_ticket')}</span>
               </div>
             </Button>
           </div>

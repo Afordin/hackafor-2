@@ -1,4 +1,5 @@
 import { cn, ROUTE } from '@common';
+import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 interface SocialIcon {
@@ -21,6 +22,8 @@ const socialIcons: SocialIcon[] = [
 ];
 
 export const Footer = () => {
+  const { t } = useTranslation();
+  const currentYear = new Date().getFullYear();
   const classes = {
     container: cn('text-cWhite bg-gradient-to-r from-[#19101D] to-[#0D0D0E] py-5 w-full font-dmsans'),
     innerContainer: cn('max-w-7xl w-full mx-auto text-center mb-10 flex flex-col justify-between items-center'),
@@ -53,7 +56,7 @@ export const Footer = () => {
 
           <div className="ml-3 flex flex-col gap-y-3">
             <h4 id="event-info-heading" className="text-sm">
-              Más información del evento
+              {t('footer_social_networks_title')}
             </h4>
             <nav aria-label="Social media links" className="flex gap-x-5 text-2xl">
               {renderSocialIcons()}
@@ -63,14 +66,11 @@ export const Footer = () => {
 
         {/* Copyrights */}
         <div className={classes.copyRight}>
-          © 2024 Designed&nbsp;
-          <a href="https://www.twitch.tv/uxanarangel" className="custom-underline">
-            Ana Rangel
-          </a>
-          &nbsp;Developed by&nbsp;
-          <a href="https://discord.com/invite/comuafor" className="custom-underline">
-            Comuafor
-          </a>
+          <Trans i18nKey={'footer_title'}>
+            {{ currentYear }}
+            <a href="https://www.twitch.tv/uxanarangel" className="custom-underline"></a>
+            <a href="https://discord.com/invite/comuafor" className="custom-underline"></a>
+          </Trans>
         </div>
       </div>
     </footer>

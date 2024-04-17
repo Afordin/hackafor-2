@@ -1,5 +1,6 @@
 import { cn, FormFieldState, Role, Variant } from '@common';
 import { Button } from '@components';
+import { useTranslation } from 'react-i18next';
 
 interface RoleSelectorProps {
   /**
@@ -37,6 +38,7 @@ export const RoleSelector = ({ roles, selectedRole, onRoleChange, fieldState, as
       'text-green-600': fieldState === FormFieldState.success
     })
   };
+  const { t } = useTranslation();
   return (
     <div className="relative">
       <div className="flex gap-4 flex-wrap">
@@ -49,7 +51,7 @@ export const RoleSelector = ({ roles, selectedRole, onRoleChange, fieldState, as
             innerClassName="px-2 py-1"
             onClick={() => onRoleChange(role)}
           >
-            {role}
+            {t(`common_${role}`)}
           </Button>
         ))}
       </div>

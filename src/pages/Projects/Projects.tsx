@@ -3,6 +3,7 @@ import { ButtonSize, cn, Project, ProjectRoles, ProjectStatus, useAuth, useProje
 import { Button, ProjectCard, Spinner, ToggleButtonGroup } from '@components';
 import { RootLayout } from '@layouts';
 import { useUserStore } from '@store';
+import { useTranslation } from 'react-i18next';
 import { filterBy } from './utils/filterBy';
 import { sendMessage } from './utils/sendMessage';
 
@@ -14,6 +15,7 @@ export const Projects = () => {
   const closedProjects = projects?.filter((project) => project.status === ProjectStatus.closed);
   const { signInWithDiscord } = useAuth();
   const user = useUserStore((state) => state.user);
+  const { t } = useTranslation();
 
   const classes = {
     tag: (role: ProjectRoles) =>
@@ -39,13 +41,13 @@ export const Projects = () => {
           className={`animate-fade-up-custom`}
           style={{ '--animate-delay': `${animateDelay}s` } as any}
           isActive={isActive}
-          buttonTitle={user == null ? 'Log in to contact' : 'Contact'}
+          buttonTitle={t(user ? 'common_contact' : 'project_card_button_whithout_user')}
           actionButton={
-            user == null
-              ? signInWithDiscord
-              : () => {
+            user
+              ? () => {
                   sendMessage(user, user);
                 }
+              : signInWithDiscord
           }
         />
       );
@@ -54,8 +56,8 @@ export const Projects = () => {
   const renderNoProjectsFound = () => {
     return (
       <div className={`animate-fade-up-custom text-center text-gray`}>
-        <p>Lo sentimos...</p>
-        <p>No se ha encontrado ningún proyecto.</p>
+        <p>{t('projects_not_found_title')}</p>
+        <p>{t('projects_not_found_description')}</p>
       </div>
     );
   };
@@ -63,7 +65,7 @@ export const Projects = () => {
   const renderLoading = () => {
     return (
       <div className="absolute inset-0 mx-auto mt-20 grid place-items-center gap-4">
-        <p>Cargando...</p>
+        <p>{t('page_loading')}</p>
         <Spinner className="" />
       </div>
     );
@@ -111,7 +113,7 @@ export const Projects = () => {
                 toggleFilterRole(ProjectRoles.frontEnd);
               }}
             >
-              Front-end
+              {t('common_front-end')}
             </Button>
             <Button
               className={classes.tag(ProjectRoles.backEnd)}
@@ -122,7 +124,7 @@ export const Projects = () => {
                 toggleFilterRole(ProjectRoles.backEnd);
               }}
             >
-              Back-end
+              {t('common_back-end')}
             </Button>
             <Button
               className={classes.tag(ProjectRoles.fullStack)}
@@ -133,7 +135,7 @@ export const Projects = () => {
                 toggleFilterRole(ProjectRoles.fullStack);
               }}
             >
-              Full-Stack
+              {t('common_full-stack')}
             </Button>
             <Button
               className={classes.tag(ProjectRoles.designer)}
@@ -144,7 +146,7 @@ export const Projects = () => {
                 toggleFilterRole(ProjectRoles.designer);
               }}
             >
-              Diseñador(a)
+              {t('common_designer')}
             </Button>
           </section>
 

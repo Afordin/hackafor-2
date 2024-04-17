@@ -1,6 +1,7 @@
 import { FC, useRef, useState } from 'react';
 import { AvatarSize, cn, useAuth, useBreakpoint, useOnClickOutside } from '@common';
 import { User } from '@supabase/supabase-js';
+import { useTranslation } from 'react-i18next';
 import { Avatar } from '../Avatar/Avatar';
 
 interface Props {
@@ -21,6 +22,7 @@ export const LoggedUser: FC<Props> = ({ className, user, avatarSize = AvatarSize
   const { signOut } = useAuth();
   const { isMobile } = useBreakpoint();
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   const modalRef = useRef<HTMLDivElement | null>(null);
 
@@ -54,7 +56,7 @@ export const LoggedUser: FC<Props> = ({ className, user, avatarSize = AvatarSize
         <div className={classes.modal}>
           <p className={classes.text} onMouseDown={(e) => e.stopPropagation()} onClick={signOut}>
             <span className="i-material-symbols-exit-to-app-rounded" />
-            Cerrar sesión
+            {t('common_log_out')}
           </p>
         </div>
       )}
