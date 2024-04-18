@@ -42,7 +42,7 @@ export const Countdown = () => {
   };
 
   useLayoutEffect(() => {
-    // updateCountdown()
+    updateCountdown();
   }, []);
 
   useEffect(() => {
