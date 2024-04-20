@@ -5,7 +5,8 @@ import { Variant } from '@common';
 import { Button } from '@components';
 import { useUserStore } from '@store';
 import { Atropos } from 'atropos/react';
-import { toPng } from 'html-to-image';
+import { toBlob, toPng } from 'html-to-image';
+import { apiClient } from '../../utils/api';
 
 interface TicketProps {
   avatar?: string;
@@ -20,11 +21,20 @@ const sponsors = [
   }
 ];
 
-const downloadTicket = async (elementRef: RefObject<HTMLElement>) => {
+const downloadTicket = async (elementRef: RefObject<HTMLElement>, userId: string | null) => {
   // TODO: Send Generated Image to Supabase
-  if (elementRef.current) {
+  if (elementRef.current && userId) {
     try {
+      const img = await toBlob(elementRef.current);
       const dataUrl = await toPng(elementRef.current);
+
+      const { data, error } = await apiClient.storage.from('Hackafor').upload(`${userId}/ticket-${userId}.png`, img!, {
+        cacheControl: '3600',
+        upsert: true
+      });
+
+      console.log(data, error);
+
       const link = document.createElement('a');
       link.download = 'hackafor-ticket.png';
       link.href = dataUrl;
@@ -149,7 +159,7 @@ export const Ticket: FC<TicketProps> = ({
             </Button>
             <Button
               onClick={() => {
-                downloadTicket(ticketRef);
+                downloadTicket(ticketRef, user.id);
               }}
               variant={Variant.ghost}
             >

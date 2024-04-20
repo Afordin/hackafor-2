@@ -6,17 +6,27 @@ import { Projects } from '@pages/Projects/Projects';
 import { Registration } from '@pages/Registration';
 import { apiClient } from '@utils';
 import { Route, Routes } from 'react-router-dom';
+import { useTicketStore } from './store/useTicketStore';
 import { useUserStore } from './store/useUserStore';
+import { getUserTicket } from './utils/controller/ticket.controller';
 
 function App() {
   const setUser = useUserStore((state) => state.setUser);
+  const setTicket = useTicketStore((state) => state.setTicket);
 
   useEffect(() => {
     apiClient.auth.onAuthStateChange((_event, session) => {
       if (!session?.user) return;
       setUser(session.user);
+      getUserTicket(session.user.id)
+        .then((ticket) => {
+          setTicket(ticket);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
-  }, [setUser]);
+  }, [setUser, setTicket]);
 
   return (
     <>
