@@ -2,9 +2,14 @@ import { RefObject, useEffect, useRef } from 'react';
 
 type Event = MouseEvent | TouchEvent;
 
+type HandlerType = {
+  event: Event;
+  isSameTrigger: boolean;
+};
+
 export const useOnClickOutside = <T extends HTMLElement>(
   ref: RefObject<HTMLElement> | HTMLElement | null,
-  handler: ({ event: Event, isSameTrigger: boolean }) => void
+  handler: (params: HandlerType) => void
 ) => {
   const trigger = useRef<T>(null);
 
@@ -18,7 +23,7 @@ export const useOnClickOutside = <T extends HTMLElement>(
       if (!element) return;
       if (!element || element.contains(target)) return;
 
-      handler({ event, isSameTrigger: trigger.current?.contains(target) });
+      handler({ event, isSameTrigger: Boolean(trigger.current?.contains(target)) });
     };
 
     document.addEventListener('mousedown', listener);
