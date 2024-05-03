@@ -1,13 +1,24 @@
-import { RefObject, useEffect } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 
 type Event = MouseEvent | TouchEvent;
 
-export const useOnClickOutside = (ref: RefObject<HTMLElement>, handler: (event: Event) => void) => {
+export const useOnClickOutside = <T extends HTMLElement>(
+  ref: RefObject<HTMLElement> | HTMLElement | null,
+  handler: ({ event: Event, isSameTrigger: boolean }) => void
+) => {
+  const trigger = useRef<T>(null);
+
   useEffect(() => {
+    if (!ref) return;
+
     const listener = (event: Event) => {
       const target = event.target as Node;
-      if (!ref.current || ref.current.contains(target)) return;
-      handler(event);
+      const element = ref instanceof HTMLElement ? ref : ref.current;
+
+      if (!element) return;
+      if (!element || element.contains(target)) return;
+
+      handler({ event, isSameTrigger: trigger.current?.contains(target) });
     };
 
     document.addEventListener('mousedown', listener);
@@ -17,5 +28,7 @@ export const useOnClickOutside = (ref: RefObject<HTMLElement>, handler: (event: 
       document.removeEventListener('mousedown', listener);
       document.removeEventListener('touchstart', listener);
     };
-  }, [ref, handler]);
+  }, [trigger, ref, handler]);
+
+  return trigger;
 };
