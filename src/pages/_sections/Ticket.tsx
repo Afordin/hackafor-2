@@ -6,7 +6,7 @@ import { Button } from '@components';
 import { useUserStore } from '@store';
 import { Atropos } from 'atropos/react';
 import { toBlob, toPng } from 'html-to-image';
-import { apiClient } from '../../utils/api';
+import { uploadTicket } from '../../utils/controller/ticket.controller';
 
 interface TicketProps {
   avatar?: string;
@@ -21,19 +21,19 @@ const sponsors = [
   }
 ];
 
-const downloadTicket = async (elementRef: RefObject<HTMLElement>, userId: string | null) => {
+const downloadTicket = async (elementRef: RefObject<HTMLElement>, ticketId: string | null, providerId: string | null) => {
   // TODO: Send Generated Image to Supabase
-  if (elementRef.current && userId) {
+  if (elementRef.current && ticketId && providerId) {
     try {
       const img = await toBlob(elementRef.current);
       const dataUrl = await toPng(elementRef.current);
 
-      const { data, error } = await apiClient.storage.from('Hackafor').upload(`${userId}/ticket-${userId}.png`, img!, {
-        cacheControl: '3600',
-        upsert: true
-      });
+      if (!img) {
+        console.error(); // TODO: Alert
+        return;
+      }
 
-      console.log(data, error);
+      await uploadTicket(providerId, ticketId, img);
 
       const link = document.createElement('a');
       link.download = 'hackafor-ticket.png';
@@ -47,22 +47,32 @@ const downloadTicket = async (elementRef: RefObject<HTMLElement>, userId: string
   }
 };
 
-const shareTwitter = async (providerId: string | null) => {
-  if (!providerId) {
-    console.log('No providerId', providerId);
-    return; // TODO: Handle correctly
+const shareTwitter = async (elementRef: RefObject<HTMLElement>, ticketId: string | null, providerId: string | null) => {
+  if (elementRef.current && ticketId && providerId) {
+    try {
+      const img = await toBlob(elementRef.current);
+
+      if (!img) {
+        console.error(); // TODO: Alert
+        return;
+      }
+
+      await uploadTicket(providerId, ticketId, img);
+
+      const url = `${import.meta.env.VITE_PROJECT_URL}/api/og?ticket=${ticketId}`;
+      navigator.clipboard.writeText(url); // TODO: Alert so user know it was copied to clipboard
+
+      const text = encodeURIComponent('Estoy participando en la Hackafor!');
+      const encodedUrl = encodeURIComponent(url);
+      const hashtags = encodeURIComponent('Hackafor,Afordin');
+
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${encodedUrl}&hashtags=${hashtags}`;
+
+      window.open(twitterUrl, '_blank');
+    } catch (error) {
+      console.error('Could not capture image:', error);
+    }
   }
-
-  const url = `${import.meta.env.VITE_PROJECT_URL}/api/og?providerId=${providerId}`;
-  navigator.clipboard.writeText(url); // TODO: Alert so user know it was copied to clipboard
-
-  const text = encodeURIComponent('Estoy participando en la Hackafor!');
-  const encodedUrl = encodeURIComponent(url);
-  const hashtags = encodeURIComponent('Hackafor,Afordin');
-
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${encodedUrl}&hashtags=${hashtags}`;
-
-  window.open(twitterUrl, '_blank');
 };
 
 export const Ticket: FC<TicketProps> = ({
@@ -147,7 +157,7 @@ export const Ticket: FC<TicketProps> = ({
           <div className="flex justify-center gap-x-5 mt-10">
             <Button
               onClick={() => {
-                shareTwitter(user?.id);
+                shareTwitter(ticketRef, number.toString(), user?.id);
               }}
               hasBorder
               variant={Variant.secondary}
@@ -159,7 +169,7 @@ export const Ticket: FC<TicketProps> = ({
             </Button>
             <Button
               onClick={() => {
-                downloadTicket(ticketRef, user.id);
+                downloadTicket(ticketRef, number.toString(), user?.id);
               }}
               variant={Variant.ghost}
             >
