@@ -29,8 +29,9 @@ import { User } from '../../types';
    }
  */
 
-export function groupParticipantsByRole(membersObj: User[], administrator: User) {
-  const grouped = membersObj.concat(administrator).reduce(
+export function groupParticipantsByRole(membersObj: User[], administratorObj: User) {
+  const grouped = [administratorObj].concat(membersObj).reduce(
+    // thanks Marcos <3!
     (acc, obj) => {
       if (!acc[obj.role]) {
         acc[obj.role] = [];

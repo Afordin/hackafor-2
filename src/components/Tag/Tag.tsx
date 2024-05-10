@@ -57,7 +57,7 @@ interface TagProps {
 export const Tag = ({ children, variant = TagVariant.primary, size = TagSize.sm, className, borderSize = TagSize.xs }: TagProps) => {
   const classes = {
     container: cn('flex items-center justify-center rounded-full w-fit', TagContainerVariants[variant], BorderSizes[borderSize], className),
-    tag: cn('rounded-full py-px px-2', TagVariants[variant], Sizes[size])
+    tag: cn('rounded-full py-0.5 px-3', TagVariants[variant], Sizes[size])
   };
 
   return (
