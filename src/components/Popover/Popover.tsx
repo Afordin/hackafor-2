@@ -1,5 +1,5 @@
-import { Children, cloneElement, ReactElement, ReactNode, RefObject, useEffect, useRef, useState } from 'react';
-import { cn, hasProp, PopoverPlacement, PopoverVariant, useOnClickOutside } from '@common';
+import { ReactNode, RefObject, useState } from 'react';
+import { cn, PopoverPlacement, PopoverVariant, useOnClickOutside } from '@common';
 import { Portal } from '@components';
 import { usePopper } from 'react-popper';
 
@@ -61,10 +61,9 @@ export const Popover = ({
   variant = PopoverVariant.ghost
 }: PopoverProps) => {
   const [popoverElement, setPopoverElement] = useState<RefObject<HTMLElement> | HTMLElement | null>(null);
-  const refTriggerNode = useRef<HTMLSpanElement>(null);
   const [open, setOpen] = useState<boolean>(isOpen);
-  const popoverMenuRef = useRef<HTMLDivElement>(null);
-  useOnClickOutside(popoverMenuRef, () => setOpen(false));
+
+  const refTriggerNode = useOnClickOutside<HTMLDivElement>(popoverElement, ({ isSameTrigger }) => setOpen(isSameTrigger));
 
   const classes = {
     menu: cn(
@@ -81,7 +80,7 @@ export const Popover = ({
   };
 
   /* Popper config */
-  const { styles, attributes, forceUpdate } = usePopper(refTriggerNode.current, popoverElement as HTMLElement, {
+  const { styles, attributes } = usePopper(refTriggerNode.current, popoverElement as HTMLElement, {
     placement,
     modifiers: [
       { name: 'offset', options: { offset: [0, 8] } },
@@ -102,38 +101,23 @@ export const Popover = ({
       }
     : { ...styles.popper };
 
-  const handleForceUpdate = () => {
-    let timeout: ReturnType<typeof setTimeout>;
-    if (forceUpdate) timeout = setTimeout(() => forceUpdate());
-    return () => clearTimeout(timeout);
+  const handleTriggerClick = (): void => {
+    setOpen((prevOpen) => !prevOpen);
   };
-
-  useEffect(() => {
-    setOpen(isOpen);
-    handleForceUpdate();
-  }, [isOpen]);
-
-  useEffect(() => {
-    handleForceUpdate();
-  }, [open]);
-
-  const handleTriggerClick = (): void => setOpen(!open);
-
-  const child = Children.only(children) as ReactElement;
-
-  /* Append handle to the trigger component */
-  const element = hasProp(child.props, 'onClick')
-    ? cloneElement(child, { ref: refTriggerNode })
-    : cloneElement(child, { ref: refTriggerNode, onClick: handleTriggerClick });
 
   return (
     <>
-      {element}
-      <Portal>
-        <div role={role} className={classes.menu} ref={setPopoverElement} style={menuStyles} {...attributes.popper}>
-          <div ref={popoverMenuRef}>{content}</div>
-        </div>
-      </Portal>
+      <div onClick={handleTriggerClick} ref={refTriggerNode}>
+        {children}
+      </div>
+
+      {open && (
+        <Portal>
+          <div role={role} className={classes.menu} ref={setPopoverElement} style={menuStyles} {...attributes.popper}>
+            <div>{content}</div>
+          </div>
+        </Portal>
+      )}
     </>
   );
 };

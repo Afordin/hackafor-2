@@ -24,13 +24,15 @@ export const LoggedUser: FC<Props> = ({ className, user, avatarSize = AvatarSize
 
   const modalRef = useRef<HTMLDivElement | null>(null);
 
-  useOnClickOutside(modalRef, () => setIsOpen(false));
+  const trigger = useOnClickOutside(modalRef, ({ isSameTrigger }) => setIsOpen(isSameTrigger));
 
   const classes = {
-    container: ` flex w-fit h-full items-center relative gap-4 text-white ${className}`,
-    expandIcon: 'absolute bottom-[-5px] right-[-5px] text-inherit font-bold text-lg',
+    container: cn('flex w-fit h-full items-center relative gap-4 text-white', className),
+    expandIcon: cn('i-material-symbols-expand-more absolute bottom-[-5px] right-[-5px] text-inherit font-bold text-lg', {
+      'text-yellow': isOpen
+    }),
     text: 'flex text-white hover:text-primary-400 items-center gap-3 text-inherit bg-transparent rounded-lg font-semibold text-sm cursor-pointer',
-    modal: 'absolute top-10  right-[-5px] border-1 border-cBorder rounded-lg px-5 py-2 bg-cBackground w-40 cursor-pointer'
+    modal: 'absolute top-10 right-[-5px] border-1 border-cBorder rounded-lg px-5 py-2 bg-cBackground w-40 cursor-pointer'
   };
 
   return isMobile ? (
@@ -38,21 +40,15 @@ export const LoggedUser: FC<Props> = ({ className, user, avatarSize = AvatarSize
       Salir
     </span>
   ) : (
-    <div className={classes.container} ref={modalRef}>
-      <span
-        className="relative cursor-pointer"
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-        onMouseDown={(e) => e.stopPropagation()}
-      >
-        <span className={cn('i-material-symbols-expand-more', classes.expandIcon, isOpen && 'text-yellow')} />
+    <div className={classes.container}>
+      <span className="relative cursor-pointer" ref={trigger} onClick={() => setIsOpen(!isOpen)}>
+        <span className={classes.expandIcon} />
         <Avatar avatar={user.user_metadata.avatar_url} size={avatarSize} />
       </span>
       {/* modal */}
       {isOpen && (
-        <div className={classes.modal}>
-          <p className={classes.text} onMouseDown={(e) => e.stopPropagation()} onClick={signOut}>
+        <div className={classes.modal} ref={modalRef}>
+          <p className={classes.text} onClick={signOut}>
             <span className="i-material-symbols-exit-to-app-rounded" />
             Cerrar sesión
           </p>
