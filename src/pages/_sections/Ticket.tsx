@@ -4,9 +4,9 @@ import { FC, RefObject, useRef } from 'react';
 import { Variant } from '@common';
 import { Button } from '@components';
 import { useUserStore } from '@store';
+import { uploadTicket } from '@utils';
 import { Atropos } from 'atropos/react';
 import { toBlob, toPng } from 'html-to-image';
-import { uploadTicket } from '../../utils/controller/ticket.controller';
 
 interface TicketProps {
   avatar?: string;
@@ -32,8 +32,6 @@ const downloadTicket = async (elementRef: RefObject<HTMLElement>, ticketId: stri
         console.error(); // TODO: Alert
         return;
       }
-
-      await uploadTicket(providerId, ticketId, img);
 
       const link = document.createElement('a');
       link.download = 'hackafor-ticket.png';

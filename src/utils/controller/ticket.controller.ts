@@ -4,17 +4,12 @@ import { apiClient } from '../api';
 const bucketStorage = import.meta.env.VITE_STORAGE_BUCKET;
 
 export const getUserTicket = async (providerId: string): Promise<Ticket> => {
-  const { data: ticketData, error } = await apiClient.from('Ticket').select().eq('discord_id', providerId).maybeSingle();
+  const { data: ticketData, error } = await apiClient.from('Ticket').select().eq('discord_id', providerId).single();
 
   if (error) {
     throw new Error(error.message);
   }
 
-  if (!ticketData) {
-    throw new Error('No ticket found.');
-  }
-
-  // TODO: Hacer esto correctamente
   return ticketData as Ticket;
 };
 
@@ -28,7 +23,15 @@ export const uploadTicket = async (providerId: string, ticketId: string, img: Bl
     throw new Error(error.message);
   }
 
-  const res = await apiClient.from('Ticket').update({ image: data.path }).eq('discord_id', providerId);
+  const res = await apiClient.from('Ticket').upsert(
+    {
+      discord_id: providerId,
+      image: data.path
+    },
+    {
+      onConflict: 'discord_id'
+    }
+  );
 
   if (res.error) {
     throw new Error(res.error.message);

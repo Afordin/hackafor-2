@@ -4,11 +4,9 @@ import { Home } from '@pages/Home';
 import { NotFound } from '@pages/NotFound/NotFound';
 import { Projects } from '@pages/Projects/Projects';
 import { Registration } from '@pages/Registration';
-import { apiClient } from '@utils';
+import { useTicketStore, useUserStore } from '@store';
+import { apiClient, getUserTicket } from '@utils';
 import { Route, Routes } from 'react-router-dom';
-import { useTicketStore } from './store/useTicketStore';
-import { useUserStore } from './store/useUserStore';
-import { getUserTicket } from './utils/controller/ticket.controller';
 
 function App() {
   const setUser = useUserStore((state) => state.setUser);
@@ -16,15 +14,19 @@ function App() {
 
   useEffect(() => {
     apiClient.auth.onAuthStateChange((_event, session) => {
+      console.log(_event);
       if (!session?.user) return;
       setUser(session.user);
-      getUserTicket(session.user.id)
-        .then((ticket) => {
-          setTicket(ticket);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+
+      if (_event == 'INITIAL_SESSION') {
+        getUserTicket(session.user.id)
+          .then((ticket) => {
+            setTicket(ticket);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     });
   }, [setUser, setTicket]);
 
