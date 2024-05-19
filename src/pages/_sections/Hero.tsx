@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { ButtonSize, cn, useTwitchStatus, Variant } from '@common';
 import { Button, Countdown } from '@components';
 import { CTA } from './CTA';
@@ -10,6 +11,11 @@ interface HeroProps {
 }
 export const Hero = ({ className }: HeroProps) => {
   const { isLive } = useTwitchStatus();
+  const isHeroUWU = useMemo(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.has('uwu');
+  }, []);
+
   const classes = {
     container: cn(className),
     innerContainer: cn('relative z-1', 'container mx-auto', 'grid md:grid-rows-[1fr_0.5fr]', 'w-full min-h-[100svh]')
@@ -30,11 +36,19 @@ export const Hero = ({ className }: HeroProps) => {
     }
   };
 
+  const renderHeroHeader = () => {
+    if (isHeroUWU) {
+      return <img src="/images/Hackafor_uwu_v1.png" className="w-full max-w-lg" alt="Hackafor logo UWU" />;
+    }
+
+    return <h1 className="text-fluid-title font-bold leading-none text-shadow-md">Hackafor</h1>;
+  };
+
   return (
     <section className={classes.container}>
       <div className={classes.innerContainer}>
-        <article className="text-center self-end ">
-          <h1 className="text-fluid-title font-bold leading-none text-shadow-md">Hackafor</h1>
+        <article className="text-center self-end flex flex-col items-center">
+          {renderHeroHeader()}
           <p className="max-sm:text-fluid-base text-fluid-lg font-semibold text-shadow-sm">Una hackaton de programación</p>
           <div className="flex justify-center mb-4 gap-4 mt-4 xl:mt-8 xl:mb-0 xl:gap-18">
             <Countdown />
