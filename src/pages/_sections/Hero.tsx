@@ -38,7 +38,7 @@ export const Hero = ({ className }: HeroProps) => {
 
   const renderHeroHeader = () => {
     if (isHeroUWU) {
-      return <img src="/images/Hackafor_uwu_v1.png" className="w-full max-w-lg" alt="Hackafor logo UWU" />;
+      return <img src="/images/Hackafor_uwu_v1.png" className="w-full max-w-lg hover:-rotate-4 transition-all" alt="Hackafor logo UWU" />;
     }
 
     return <h1 className="text-fluid-title font-bold leading-none text-shadow-md">Hackafor</h1>;
