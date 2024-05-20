@@ -40,7 +40,8 @@ export const Background = () => {
         top: 0,
         left: 0,
         width: '100%',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        filter: 'brightness(0.55)'
       }}
       ref={setVanta}
     >
