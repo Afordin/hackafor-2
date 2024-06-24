@@ -31,6 +31,6 @@ export const projectDTO = (rawProject: ProjectDataType): Project => {
     repositoryUrl: rawProject.repository_url,
     requiredRoles: rawProject.required_roles,
     status: convertStatus(rawProject.status),
-    createdAt: rawProject.created_at
+    createdAt: undefined
   };
 };

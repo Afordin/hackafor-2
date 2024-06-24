@@ -29,7 +29,7 @@ export type RequiredRoles = {
 
 export type Project = {
   administrator: User;
-  createdAt: string;
+  createdAt?: string;
   description: string;
   id: number;
   members: User[];

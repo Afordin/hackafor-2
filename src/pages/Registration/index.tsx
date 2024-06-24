@@ -38,7 +38,7 @@ const DEFAULT_PROJECT = {
     any: 0
   },
   status: 'PENDING',
-  created_at: ''
+  created_at: undefined
 } as const satisfies UpsertProjectType;
 
 export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertProjectType }) => {
