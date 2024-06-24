@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 export const Countdown = () => {
   const time = [
@@ -27,19 +27,27 @@ export const Countdown = () => {
     seconds: 0
   });
 
+  const updateCountdown = () => {
+    const countdownDate = new Date('2024-11-20');
+    const now = new Date();
+
+    const timeDifference = countdownDate.getTime() - now.getTime();
+
+    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+    const seconds = Math.floor((timeDifference / 1000) % 60);
+
+    setTimeLeft({ days, hours, minutes, seconds });
+  };
+
+  useLayoutEffect(() => {
+    updateCountdown();
+  }, []);
+
   useEffect(() => {
     setInterval(() => {
-      const countdownDate = new Date('2024-11-20');
-      const now = new Date();
-
-      const timeDifference = countdownDate.getTime() - now.getTime();
-
-      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
-      const seconds = Math.floor((timeDifference / 1000) % 60);
-
-      setTimeLeft({ days, hours, minutes, seconds });
+      updateCountdown();
     }, 1000);
   }, []);
 

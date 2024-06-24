@@ -41,7 +41,8 @@ export const ProjectCard = ({
     list: cn('flex flex-wrap gap-4 mt-4 text-3.5'),
     popoverTrigger: cn(
       'bg-gradient-to-rb from-primary-600 to-secondary-500 w-5 h-5 rounded-full text-xs flex items-center justify-center cursor-pointer select-none'
-    )
+    ),
+    adminBadge: cn('text-xs bg-gradient-to-rb from-primary-600 to-secondary-500 text-transparent bg-clip-text rounded-full')
   };
 
   const handleDescription = () => {
@@ -60,9 +61,9 @@ export const ProjectCard = ({
     const participantList = participantsByRole[role].map((participant, idx) => {
       const isAdmin = Object.values(administrator).includes(participant.name);
       return (
-        <li className="text-cWhite capitalize px-1 py-0.5 flex gap-1" key={participant.name + idx}>
+        <li className="text-cWhite capitalize px-1 py-0.5 flex items-center gap-1.5" key={participant.name + idx}>
           {participant.name}
-          {isAdmin && <span className="text-secondary-600">{'(Adm)'}</span>}
+          {isAdmin && <span className={classes.adminBadge}>{'(admin)'}</span>}
         </li>
       );
     });
@@ -70,9 +71,9 @@ export const ProjectCard = ({
     return (
       <li key={role + idx}>
         {/** TODO: change key later 😒 Why later?*/}
-        <Tag>
-          <div className="flex items-center gap-2">
-            {role}
+        <Tag className="relative capitalize">
+          <span>{role}</span>
+          <div className="absolute -right-2 -top-2">
             <Popover content={<ul>{participantList}</ul>}>
               <span className={classes.popoverTrigger}>{groupLength}</span>
             </Popover>
