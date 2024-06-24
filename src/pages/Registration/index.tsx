@@ -6,6 +6,7 @@ import { RootLayout } from '@layouts';
 import { useUserStore } from '@store';
 import { apiClient, UpsertProjectSchema, UpsertProjectType } from '@utils';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { RoleSelector } from './components';
 import { addWantedRole, removeWantedRole } from './utils';
 
@@ -52,7 +53,8 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
     handleSubmit,
     control,
     formState: { errors },
-    setValue
+    setValue,
+    reset
   } = useForm<UpsertProjectType>({
     resolver: zodResolver(UpsertProjectSchema),
     criteriaMode: 'all',
@@ -83,6 +85,8 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
   const onSubmit = async (values: UpsertProjectType) => {
     try {
       await createProject(values);
+      reset(DEFAULT_PROJECT);
+      toast.success('¡Enhorabuena! Acabas de registrar el proyecto');
       setSubmitError('');
     } catch (error) {
       console.error(error);
