@@ -25,10 +25,9 @@ const downloadTicket = async (elementRef: RefObject<HTMLElement>, ticketId: stri
   // TODO: Send Generated Image to Supabase
   if (elementRef.current && ticketId && providerId) {
     try {
-      const img = await toBlob(elementRef.current);
       const dataUrl = await toPng(elementRef.current);
 
-      if (!img) {
+      if (!dataUrl) {
         console.error(); // TODO: Alert
         return;
       }

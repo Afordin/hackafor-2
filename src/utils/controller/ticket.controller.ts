@@ -19,8 +19,12 @@ export const uploadTicket = async (providerId: string, ticketId: string, img: Bl
     upsert: true
   });
 
-  if (error) {
+  if (error && error['statusCode'] != '403') {
     throw new Error(error.message);
+  }
+
+  if (!data) {
+    return;
   }
 
   const res = await apiClient.from('Ticket').upsert(
