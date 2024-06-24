@@ -10,7 +10,7 @@ export const Projects = () => {
   const { projects, isLoading } = useProjects();
   const [filter, setFilter] = useState<string[]>([]);
   const [isActive, setIsActive] = useState(true);
-  const activeProjects = projects?.filter((project) => project.status === ProjectStatus.pending);
+  const activeProjects = projects?.filter((project) => project.status === ProjectStatus.open);
   const closedProjects = projects?.filter((project) => project.status === ProjectStatus.closed);
   const { signInWithDiscord } = useAuth();
   const user = useUserStore((state) => state.user);
@@ -21,8 +21,6 @@ export const Projects = () => {
         'bg-gradient-to-rb from-primary-600 to-secondary-500 ': filter.includes(role)
       })
   };
-
-  // TODO: Unificar filters
 
   const renderProjects = (projects: Project[] | undefined | null) =>
     filterBy(projects ?? [], filter).map((project, index) => {

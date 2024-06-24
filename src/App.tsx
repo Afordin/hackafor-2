@@ -7,6 +7,7 @@ import { Registration } from '@pages/Registration';
 import { useTicketStore, useUserStore } from '@store';
 import { apiClient, getUserTicket } from '@utils';
 import { Route, Routes } from 'react-router-dom';
+import { Toaster } from 'sonner';
 
 function App() {
   const setUser = useUserStore((state) => state.setUser);
@@ -32,6 +33,7 @@ function App() {
 
   return (
     <>
+      <Toaster theme="dark" richColors />
       <Routes>
         <Route path={ROUTE.home} element={<Home />} />
         <Route path={ROUTE.projects} element={<Projects />} />

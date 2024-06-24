@@ -27,7 +27,7 @@ export const ProjectSchema = z.object({
   repository_url: z.string().url().nullable(),
   required_roles: RequiredRolesSchema,
   status: z.enum(['OPEN', 'CLOSED', 'PENDING']),
-  created_at: z.string()
+  created_at: z.string().optional()
 });
 
 export type ProjectDataType = z.infer<typeof ProjectSchema>;

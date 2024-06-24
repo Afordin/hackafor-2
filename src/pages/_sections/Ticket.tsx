@@ -7,6 +7,7 @@ import { useUserStore } from '@store';
 import { uploadTicket } from '@utils';
 import { Atropos } from 'atropos/react';
 import { toBlob, toPng } from 'html-to-image';
+import { toast } from 'sonner';
 
 interface TicketProps {
   avatar?: string;
@@ -22,13 +23,12 @@ const sponsors = [
 ];
 
 const downloadTicket = async (elementRef: RefObject<HTMLElement>, ticketId: string | null, providerId: string | null) => {
-  // TODO: Send Generated Image to Supabase
   if (elementRef.current && ticketId && providerId) {
     try {
       const dataUrl = await toPng(elementRef.current);
 
       if (!dataUrl) {
-        console.error(); // TODO: Alert
+        toast.error('Ooops! Ha habido un problema con la descarga');
         return;
       }
 
