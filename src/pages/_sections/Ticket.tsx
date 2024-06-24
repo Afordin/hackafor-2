@@ -56,7 +56,7 @@ const shareTwitter = async (elementRef: RefObject<HTMLElement>, ticketId: string
 
       await uploadTicket(providerId, ticketId, img);
 
-      const url = `${import.meta.env.VITE_PROJECT_URL}/api/og?ticket=${ticketId}`;
+      const url = `${import.meta.env.VITE_WEBSITE_URL}/api/og?ticket=${ticketId}`;
       navigator.clipboard.writeText(url); // TODO: Alert so user know it was copied to clipboard
 
       const text = encodeURIComponent('Estoy participando en la Hackafor!');
