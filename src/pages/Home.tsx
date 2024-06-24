@@ -1,11 +1,12 @@
 import { Background } from '@components';
 import { RootLayout } from '@layouts';
-import { useUserStore } from '@store';
+import { useTicketStore, useUserStore } from '@store';
 import { CTA, FeatureProjects, Hero, Information, Ticket } from './_sections';
 import { Contributors } from './_sections/Contributors';
 
 export const Home = () => {
   const user = useUserStore((state) => state.user);
+  const ticket = useTicketStore((state) => state.ticket);
 
   return (
     <RootLayout>
@@ -15,7 +16,7 @@ export const Home = () => {
         <Information />
         <CTA className="mt-20 text-center" />
         <FeatureProjects />
-        <Ticket avatar={user?.user_metadata.avatar_url} name={user?.user_metadata.full_name} />
+        <Ticket avatar={user?.user_metadata.avatar_url} name={user?.user_metadata.full_name} number={ticket?.id} />
         <Contributors />
       </main>
     </RootLayout>
