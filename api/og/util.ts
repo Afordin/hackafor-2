@@ -14,3 +14,11 @@ export function htmlDocBuilder(tags: string, destination: string) {
     </body>
     </html>`;
 }
+
+export function getEnvOrThrow(key: string): string {
+  console.log({ env: process.env });
+  if(!process.env[key]) {
+    throw new Error(`Missing env variable: ${key}`);
+  }
+  return process.env[key]!;
+}

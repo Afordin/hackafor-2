@@ -3,25 +3,30 @@
 
 import type { VercelRequest } from '@vercel/node';
 import { ImageResponse } from '@vercel/og';
-import { htmlDocBuilder } from './util';
+import { getEnvOrThrow, htmlDocBuilder } from './util';
 
 export const config = {
   runtime: 'edge'
 };
 
 const metaTags = {
-  card: `<meta name="twitter:card" content="summary_large_image" />`,
   site: `<meta name="twitter:site" content="@afor_digital" />`,
   creator: `<meta name="twitter:creator" content="@afor_digital" />`,
-  url: `<meta property="og:url" content="https://hackafor-2.vercel.app/" />`,
+  url: `<meta property="og:url" content="https://${getEnvOrThrow('VERCEL_PROJECT_PRODUCTION_URL')}" />`,
   title: `<meta property="og:title" content="Hackafor 2024 - Ticket" />`,
+  image: ({ url }) => `<meta name="og:image" content="${url}" />`,
   description: `<meta property="og:description" content="Mensaje troncho" />`,
-  image: (url) => `<meta property="og:image" content="${url}" />`,
-  twitter_image: (url) => `<meta property="twitter:image" content="${url}" />`,
-  twitter_image_2: (url) => `<meta name="twitter:image" content="${url}" />`
+  twitter_card: `<meta name="twitter:card" content="summary_large_image" />`,
+  twitter_domain: `<meta property="twitter:domain" content="https://${getEnvOrThrow('VERCEL_PROJECT_PRODUCTION_URL')}" />`,
+  twitter_url: ({ ticketId }) =>
+    `<meta property="twitter:url" content="https://${getEnvOrThrow('VERCEL_PROJECT_PRODUCTION_URL')}/api/og?id=${ticketId}" />`,
+  twitter_title: `<meta name="twitter:title" content="Hackafor 2024 - Ticket" />`,
+  twitter_description: `<meta name="twitter:description" content="Mensaje troncho" />`,
+  twitter_image: ({ url }) => `<meta name="twitter:image" content="${url}" />`
 };
 
-export default async function handler(request: VercelRequest) {
+export default function handler(request: VercelRequest) {
+  console.log('here!!!!!!')
   const searchParams = new URL(request.url!).searchParams;
   const ticketId = searchParams.get('id');
   if (!ticketId) {
@@ -39,7 +44,7 @@ export default async function handler(request: VercelRequest) {
       Object.keys(metaTags)
         .map((key) => {
           if (typeof metaTags[key] === 'function') {
-            return metaTags[key](urlToImage);
+            return metaTags[key]({ url: urlToImage, ticketId });
           }
           return metaTags[key];
         })

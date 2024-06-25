@@ -3,6 +3,10 @@
     {
       "source": "/(.*)",
       "destination": "/"
+    },
+    {
+      "source": "/myTicket/(.*)",
+      "destination": "/api/og?id=$1"
     }
   ],
   "devCommand": "pnpm run dev"
