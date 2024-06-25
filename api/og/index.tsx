@@ -16,28 +16,29 @@ const metaTags = {
   url: `<meta property="og:url" content="https://hackafor-2.vercel.app/" />`,
   title: `<meta property="og:title" content="Hackafor 2024 - Ticket" />`,
   description: `<meta property="og:description" content="Mensaje troncho" />`,
-  image: (url) => `<meta property="og:image" content=${url} />`,
-  twitter_image: (url) => `<meta property="twitter:image" content=${url} />`
+  image: (url) => `<meta property="og:image" content="${url}" />`,
+  twitter_image: (url) => `<meta property="twitter:image" content="${url}" />`,
+  twitter_image_2: (url) => `<meta name="twitter:image" content="${url}" />`
 };
 
 export default async function handler(request: VercelRequest) {
   const searchParams = new URL(request.url!).searchParams;
-  const userId = searchParams.get('userId');
-  if (!userId) {
+  const ticketId = searchParams.get('id');
+  if (!ticketId) {
     //TODO: display nice error html
-    return new ImageResponse(<>Visit with &quot;?userId=vercel&quot;</>, {
+    return new ImageResponse(<>Visit with &quot;?id={'<tu_ticket_id>'}&quot;</>, {
       width: 1200,
       height: 630
     });
   }
 
-  const urlToImage = 'https://user-images.githubusercontent.com/43246362/228169742-496fac89-0191-4d24-a2f5-90106160185c.png';
+  const urlToImage = `https://zokfnpputuhdqcjsnatq.supabase.co/storage/v1/object/public/hackafor2/public/ticket-${ticketId}.png`;
 
   return new Response(
     htmlDocBuilder(
       Object.keys(metaTags)
         .map((key) => {
-          if (key === 'image' || key === 'twitter_image') {
+          if (typeof metaTags[key] === 'function') {
             return metaTags[key](urlToImage);
           }
           return metaTags[key];
