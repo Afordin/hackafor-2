@@ -1,4 +1,2 @@
+User-agent: *
 Allow: /api/og/*
-
-User-agent:Twitterbot
-Disallow:
