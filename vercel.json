@@ -1,12 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/"
-    },
-    {
-      "source": "/myTicket/(.*)",
-      "destination": "/api/og?id=$1"
+      "source": "/myTicket/:id",
+      "destination": "/api/og?id=:id"
     }
   ],
   "devCommand": "pnpm run dev"
