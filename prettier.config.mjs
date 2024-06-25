@@ -17,11 +17,14 @@ const config = {
   importOrder: [
     '^(react/(.*)$)|^(react$)|^(react-native(.*)$)',
     '<THIRD_PARTY_MODULES>',
-    '^@uiguideline/(.*)$',
-    '^@/utils/(.*)$',
+    '^@/common/(.*)$',
     '^@/components/(.*)$',
+    '^@/data/(.*)$',
+    '^@/layouts/(.*)$',
     '^@/pages/(.*)$',
     '^@/styles/(.*)$',
+    '^@/store/(.*)$',
+    '^@/utils/(.*)$',
     '^@/(.*)$',
     '^[./]',
     ''

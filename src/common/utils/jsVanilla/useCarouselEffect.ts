@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useBreakpoint } from '@common';
 
 interface CarouselConfig {
   /**
@@ -33,28 +34,30 @@ interface CarouselConfig {
 }
 
 export const useCarouselEffect = (id: string, config: CarouselConfig): void => {
+  const { isMobile } = useBreakpoint();
   useEffect(() => {
     const container = document.getElementById(id);
     const cards = document.querySelectorAll('.carousel-custom-border');
-    const updateCardsStyle = (event: MouseEvent) => {
-      cards.forEach((card) => {
-        const bounds = card.getBoundingClientRect();
-        const isActive = isMouseNearCard(event, bounds, config.proximity);
-        setActiveStyle(card, isActive, config.opacity);
+    if (!isMobile) {
+      const updateCardsStyle = (event: MouseEvent) => {
+        cards.forEach((card) => {
+          const bounds = card.getBoundingClientRect();
+          const isActive = isMouseNearCard(event, bounds, config.proximity);
+          setActiveStyle(card, isActive, config.opacity);
 
-        const angle = calculateAngle(event, bounds);
-        setRotationAngle(card, angle);
-      });
-    };
+          const angle = calculateAngle(event, bounds);
+          setRotationAngle(card, angle);
+        });
+      };
 
-    document.body.addEventListener('pointermove', updateCardsStyle);
+      document.body.addEventListener('pointermove', updateCardsStyle);
 
-    updateContainerStyle(container, config);
-
-    return () => {
-      document.body.removeEventListener('pointermove', updateCardsStyle);
-    };
-  }, [id, config]);
+      updateContainerStyle(container, config);
+      return () => {
+        document.body.removeEventListener('pointermove', updateCardsStyle);
+      };
+    }
+  }, [id, config, isMobile]);
 };
 
 /**

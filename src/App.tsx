@@ -1,65 +1,44 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ROUTE } from '@common';
 import { Home } from '@pages/Home';
+import { NotFound } from '@pages/NotFound/NotFound';
 import { Projects } from '@pages/Projects/Projects';
-import { Registration } from '@pages/Registration/Registration';
-import { User } from '@supabase/supabase-js';
+import { Registration } from '@pages/Registration';
+import { useTicketStore, useUserStore } from '@store';
+import { apiClient, getUserTicket } from '@utils';
 import { Route, Routes } from 'react-router-dom';
-
-// const supabase = createClient(
-// import.meta.env.VITE_PROJECT_URL,
-// import.meta.env.VITE_API_KEY
-// );
+import { Toaster } from 'sonner';
 
 function App() {
-  const [userSession] = useState<User | null>(null);
+  const setUser = useUserStore((state) => state.setUser);
+  const setTicket = useTicketStore((state) => state.setTicket);
 
   useEffect(() => {
-    // supabase.auth.onAuthStateChange((_event, session) => {
-    // setUserSession(session?.user ?? null);
-    // });
-  }, []);
+    apiClient.auth.onAuthStateChange((_event, session) => {
+      console.log(_event);
+      if (!session?.user) return;
+      setUser(session.user);
 
-  console.log(userSession);
+      if (_event == 'INITIAL_SESSION') {
+        getUserTicket(session.user.id)
+          .then((ticket) => {
+            setTicket(ticket);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
+  }, [setUser, setTicket]);
 
-  // function signInWithDiscord() {
-  //   supabase.auth.signInWithOAuth({
-  //     provider: "discord",
-  //   });
-  // }
-
-  // const sendMessage = () => {
-  //   fetch(`${import.meta.env.VITE_BASE_API_URL}/message`, {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       sender: userSession,
-  //       receiver: {
-  //         user_metadata: {
-  //           provider_id: "267695749058396183",
-  //         },
-  //       },
-  //     }),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => console.log(data));
-  // };
-
-  {
-    /* <div className="flex flex-col gap-8">
-    <button className="p-4" onClick={signInWithDiscord}>
-      Connect Discord
-    </button>
-    <button className="p-4" onClick={sendMessage}>
-      Conectar
-    </button>
-  </div> */
-  }
   return (
     <>
+      <Toaster theme="dark" richColors />
       <Routes>
         <Route path={ROUTE.home} element={<Home />} />
         <Route path={ROUTE.projects} element={<Projects />} />
         <Route path={ROUTE.registration} element={<Registration />} />
+        <Route path={ROUTE.notFound} element={<NotFound />} />
       </Routes>
     </>
   );

@@ -7,20 +7,20 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-The hackafor is a programming event made for developers.
+Hackafor is a programming event made for developers by developers.
 <br />
 You can demonstrate your talent by participating alone or as a team and win prizes by creating the applications of the future.
 
 [Figma Design
-](https://www.figma.com/file/oB8OIzcBcSUIBXDmmp46mb/Variety-Designs?type=design&node-id=1203-960&mode=design&t=MtKYUyZD2jwNeTxp-0) · [Report bug](https://github.com/Afordin/hackafor-2/issues)
+](https://www.figma.com/file/oB8OIzcBcSUIBXDmmp46mb/Variety-Designs?type=design&node-id=1203-960&mode=design&t=MtKYUyZD2jwNeTxp-0) · [Report a bug](https://github.com/Afordin/hackafor-2/issues)
 
 </div>
 
 ## Screenshots
 
-![image](https://github.com/jarrisondev/hackafor-2/assets/62910118/a7091cce-3968-4dc7-9b24-d6ac1a6e9174)
+![image](https://github.com/jarrisondev/hackafor-2/assets/62910118/46a63f8c-4b59-453b-a2fd-d3f12f854673)
 
-![image](https://github.com/jarrisondev/hackafor-2/assets/62910118/1186b914-7cec-430a-afc0-46ec3d9f3565)
+![image](https://github.com/jarrisondev/hackafor-2/assets/62910118/19e32117-2118-4a26-908e-469e3a478755)
 
 ## Getting started
 
@@ -33,12 +33,12 @@ You can demonstrate your talent by participating alone or as a team and win priz
 2. install dependencies
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. run the project
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 4. Open your browser and visit
 
@@ -70,7 +70,7 @@ If you want to contribute in a simpler way, you can start this project from _Sta
 
 **Thanks to all the contributors who have made this project possible!**
 
-[![Contribuidores](https://contrib.rocks/image?repo=Afordin/hackafor-2)](https://github.com/Afordin/hackafor-2/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=Afordin/hackafor-2)](https://github.com/Afordin/hackafor-2/graphs/contributors)
 
 ## 🛠️ Stack
 

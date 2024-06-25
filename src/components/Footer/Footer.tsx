@@ -1,4 +1,5 @@
-import { cn, useContributors } from '@common';
+import { cn, ROUTE } from '@common';
+import { Link } from 'react-router-dom';
 
 interface SocialIcon {
   icon: JSX.Element;
@@ -6,39 +7,26 @@ interface SocialIcon {
 }
 
 const socialIcons: SocialIcon[] = [
-  { icon: <span className="i-bi-discord" />, url: 'https://discord.com/invite/ke48ZgXcdU' },
-  { icon: <span className="i-bi-twitch" />, url: 'https://www.twitch.tv/afor_digital' },
-  { icon: <span className="i-bi-instagram" />, url: 'https://www.instagram.com/afor_digital' },
-  { icon: <span className="i-bi-github" />, url: 'https://github.com/Afordin' },
-  { icon: <span className="i-bi-twitter-x" />, url: 'https://twitter.com/afor_digital' }
+  { icon: <span className="i-bi-discord hover:text-[#5864F2] transition-colors" />, url: 'https://discord.com/invite/ke48ZgXcdU' },
+  { icon: <span className="i-bi-twitch hover:text-[#A96FFF] transition-colors" />, url: 'https://www.twitch.tv/afor_digital' },
+  {
+    icon: <span className="i-bi-instagram hover:text-warmGray transition-colors" />,
+    url: 'https://www.instagram.com/afor_digital'
+  },
+  { icon: <span className="i-bi-github hover:text-gray-7 transition-colors" />, url: 'https://github.com/Afordin' },
+  {
+    icon: <span className="i-bi-twitter-x hover:text-neutral-400 transition-colors" />,
+    url: 'https://twitter.com/afor_digital'
+  }
 ];
 
 export const Footer = () => {
-  const { contributors, isLoading } = useContributors();
   const classes = {
     container: cn('text-cWhite bg-gradient-to-r from-[#19101D] to-[#0D0D0E] py-5 w-full font-dmsans'),
-    innerContainer: cn(
-      'max-w-7xl w-full mx-auto text-center px-5 container relative pb-10 flex flex-col md:flex-row justify-between items-center'
-    ),
-    socialIcon: cn('hover:text-gray-500 inline-flex'),
+    innerContainer: cn('max-w-7xl w-full mx-auto text-center mb-10 flex flex-col justify-between items-center'),
+    socialIcon: cn('inline-flex'),
     copyRight: cn('text-sm mt-5 absolute inset-x-0 bottom-2')
   };
-
-  const renderContributors = () =>
-    contributors.map((contributor) => (
-      <a
-        href={`https://github.com/${contributor.username}`}
-        key={contributor.username}
-        className="contributor"
-        aria-label={`Contributor: ${contributor.username}`}
-      >
-        {isLoading ? (
-          <div className="w-12 h-12 bg-cGray" />
-        ) : (
-          <img key={contributor.username} src={contributor.avatarUrl} alt={contributor.username} />
-        )}
-      </a>
-    ));
 
   const renderSocialIcons = () =>
     socialIcons.map((socialIcon, index) => (
@@ -58,8 +46,10 @@ export const Footer = () => {
     <footer className={classes.container}>
       <div className={classes.innerContainer}>
         {/* Social Sections */}
-        <section aria-labelledby="event-info-heading" className="flex items-center mb-4 md:mb-0">
-          <img src="images/logo.webp" className="w-15 h-15" alt="Event Logo" aria-label="Event Logo Hackafor 2024" />
+        <section aria-labelledby="event-info-heading" className="flex items-center">
+          <Link to={ROUTE.home} className="cursor-pointer hover:opacity-85" aria-label="Volver al inicio">
+            <img src="images/logo.webp" className="w-15 h-15" alt="Event Logo" aria-label="Event Logo Hackafor 2024" />
+          </Link>
 
           <div className="ml-3 flex flex-col gap-y-3">
             <h4 id="event-info-heading" className="text-sm">
@@ -71,16 +61,17 @@ export const Footer = () => {
           </div>
         </section>
 
-        {/* Contributors Section */}
-        <section aria-labelledby="contributors-heading">
-          <div className="contributors overflow-x-scroll w-84">{renderContributors()}</div>
-          <h4 id="contributors-heading" className="text-sm">
-            Quienes han contribuido en el desarrollo
-          </h4>
-        </section>
-
         {/* Copyrights */}
-        <div className={classes.copyRight}>© 2024 Designed by Ana Rangel Developed by aforcita</div>
+        <div className={classes.copyRight}>
+          © 2024 Designed&nbsp;
+          <a href="https://www.twitch.tv/uxanarangel" className="custom-underline">
+            Ana Rangel
+          </a>
+          &nbsp;Developed by&nbsp;
+          <a href="https://discord.com/invite/comuafor" className="custom-underline">
+            Comuafor
+          </a>
+        </div>
       </div>
     </footer>
   );

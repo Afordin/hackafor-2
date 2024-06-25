@@ -1,19 +1,45 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.webp" />
+    <link rel="icon" type="image/webp" href="/logo.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="La hackafor es un evento de programación hecha para desarrolladores. Participa solo/a o en equipo y gana premios creando las aplicaciones del futuro."
     />
-    <meta name="keywords" content="Hackathon, Hackafor, Programming Challenges" />
     <meta name="author" content="Afordin" />
     <title>Hackafor 2024</title>
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <noscript>
+      <style>
+        body {
+          background-color: #0f111a;
+          min-height: 100svh;
+          display: grid;
+          place-content: center;
+          color: #f5f5f5;
+        }
+
+        .main {
+          text-align: center;
+          border-radius: 0.7rem;
+          padding: 2.5rem;
+        }
+
+        .paragraph {
+          font-size: clamp(2.7994rem, 1.8553rem + 4.7202vi, 6.1035rem);
+          text-align: center;
+        }
+      </style>
+      <main class="main">
+        <p class="paragraph">Lo siento, necesitas activar JavaScript para ver la página</p>
+      </main>
+    </noscript>
   </body>
 </html>

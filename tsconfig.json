@@ -8,7 +8,10 @@
       "@common": ["./src/common/index.ts"],
       "@components": ["./src/components/index.ts"],
       "@data": ["./src/data/index.ts"],
+      "@layouts": ["./src/layouts/index.ts"],
       "@pages/*": ["./src/pages/*"],
+      "@store": ["./src/store/index.ts"],
+      "@utils": ["./src/utils/index.ts"]
     },
     "allowJs": false,
     "skipLibCheck": true,

@@ -1,5 +1,5 @@
 export * from './breakpoints';
-export * from './button';
-export * from './carousel';
+export * from './components';
 export * from './general';
+export * from './inputs';
 export * from './routes';
