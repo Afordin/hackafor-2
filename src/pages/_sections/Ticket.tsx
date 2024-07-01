@@ -44,24 +44,28 @@ const downloadTicket = async (elementRef: RefObject<HTMLElement>, ticketId: stri
   }
 };
 
-const shareTwitter = async (elementRef: RefObject<HTMLElement>, ticketId: string | null, providerId: string | null) => {
-  if (elementRef.current && ticketId && providerId) {
+const shareTwitter = async (element: HTMLElement, ticketId: string | null, providerId: string | null) => {
+  if (element && ticketId && providerId) {
     try {
-      const img = await toBlob(elementRef.current);
+      const img = await toBlob(element);
 
       if (!img) {
-        console.error(); // TODO: Alert
+        toast.error('Ooops! Ha habido un problema generando la imagen');
         return;
       }
 
       await uploadTicket(providerId, ticketId, img);
 
-      const url = `${import.meta.env.VITE_WEBSITE_URL}/api/og?ticket=${ticketId}`;
-      navigator.clipboard.writeText(url); // TODO: Alert so user know it was copied to clipboard
+      const url = `${import.meta.env.VITE_WEBSITE_URL}?id=${ticketId}`;
+      navigator.clipboard.writeText(url);
 
-      const text = encodeURIComponent('Estoy participando en la Hackafor!');
+      const message = import.meta.env.VITE_HACKAFOR_X_MSG
+        ? `${import.meta.env.VITE_HACKAFOR_X_MSG}`
+        : 'Este es tu ticket exclusivo para el evento de la Hackafor, habrá premios y sorteos. ¡Te esperamos!';
+
+      const text = encodeURIComponent(message);
       const encodedUrl = encodeURIComponent(url);
-      const hashtags = encodeURIComponent('Hackafor,Afordin');
+      const hashtags = encodeURIComponent('Hackafor');
 
       const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${encodedUrl}&hashtags=${hashtags}`;
 
@@ -79,6 +83,43 @@ export const Ticket: FC<TicketProps> = ({
 }) => {
   const user = useUserStore((state) => state.user);
   const ticketRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const cardFooterRef = useRef<HTMLDivElement>(null);
+
+  const resizeAndCallShareTwitter = async (
+    elementRef: RefObject<HTMLElement>,
+    cardElementRef: RefObject<HTMLDivElement>,
+    cardFooterElementRef: RefObject<HTMLDivElement>,
+    ticketId: string | null,
+    providerId: string | null
+  ) => {
+    if (elementRef.current && cardElementRef.current && cardFooterElementRef.current) {
+      const atroposElement = document.querySelector('.atropos') as HTMLElement;
+
+      const originalCardPaddingBottom = cardElementRef.current.style.paddingBottom;
+      const originalAtroposHeight = atroposElement?.style.height;
+      const originalAtroposWidth = atroposElement?.style.width;
+      const originalCardFooterAlignItems = cardFooterElementRef.current.style.alignItems;
+
+      cardElementRef.current.style.paddingBottom = '70px';
+      if (atroposElement) {
+        atroposElement.style.height = '403px';
+        atroposElement.style.width = '720px';
+      }
+      cardFooterElementRef.current.style.alignItems = 'center';
+
+      try {
+        await shareTwitter(elementRef.current, ticketId, providerId);
+      } finally {
+        cardElementRef.current.style.paddingBottom = originalCardPaddingBottom || '';
+        if (atroposElement) {
+          atroposElement.style.height = originalAtroposHeight || '';
+          atroposElement.style.width = originalAtroposWidth || '';
+        }
+        cardFooterElementRef.current.style.alignItems = originalCardFooterAlignItems || '';
+      }
+    }
+  };
 
   return (
     <section>
@@ -91,7 +132,10 @@ export const Ticket: FC<TicketProps> = ({
             className="h-[175px] w-[720px] bg-transparent mx-auto sm:h-[310px] rounded-2xl shadow-[0_0px_90px_-10px_#c138b830] hover:shadow-none"
           >
             <div className="ticket-bg w-full flex h-full rounded-2xl border-2 border-[#171717]" id="ticket" ref={ticketRef}>
-              <div className="flex flex-col col-span-6 justify-between p-4 sm:p-[30px] sm:pb-[17px] w-full rounded-2xl bg-cBlack rounded-tr-0 rounded-rb-0">
+              <div
+                className="flex flex-col col-span-6 justify-between p-4 sm:p-[30px] sm:pb-[17px] w-full rounded-2xl bg-cBlack rounded-tr-0 rounded-rb-0"
+                ref={cardRef}
+              >
                 <div className="flex gap-5 items-center">
                   <img
                     data-atropos-offset="2"
@@ -114,7 +158,7 @@ export const Ticket: FC<TicketProps> = ({
                     </span>
                   </div>
                 </div>
-                <div className="flex justify-between items-end">
+                <div className="flex justify-between items-end" ref={cardFooterRef}>
                   <div data-atropos-offset="3" className="flex gap-1 items-end gap-4">
                     <p className="flex flex-col items-center text-xs sm:text-[28px] leading-tight">
                       <span className="font-100">NOV</span>
@@ -154,7 +198,7 @@ export const Ticket: FC<TicketProps> = ({
           <div className="flex justify-center gap-x-5 mt-10">
             <Button
               onClick={() => {
-                shareTwitter(ticketRef, number.toString(), user?.id);
+                resizeAndCallShareTwitter(ticketRef, cardRef, cardFooterRef, number.toString(), user?.id);
               }}
               hasBorder
               variant={Variant.secondary}
