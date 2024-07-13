@@ -19,8 +19,11 @@
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.41.1",
     "@unocss/reset": "^0.56.5",
+    "@vercel/node": "^3.0.25",
+    "@vercel/og": "^0.6.2",
     "atropos": "^2.0.2",
     "clsx": "^2.1.0",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "html-to-image": "^1.11.11",
     "lodash.throttle": "^4.1.1",
@@ -59,6 +62,7 @@
     "lint-staged": "^15.2.0",
     "typescript": "^5.3.2",
     "unocss": "^0.56.5",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-vercel": "^5.0.2"
   }
 }
