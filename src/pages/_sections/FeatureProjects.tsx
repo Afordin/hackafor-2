@@ -36,6 +36,8 @@ export const FeatureProjects = ({ className }: FeatureProjectsProps) => {
     );
   };
 
+  if (projects.length === 0 && !isLoading) return null;
+
   return (
     <section className={classes.container}>
       <div className="container mx-auto">
