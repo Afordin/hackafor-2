@@ -28,7 +28,7 @@ export const Countdown = () => {
   });
 
   const updateCountdown = () => {
-    const countdownDate = new Date('2024-11-20');
+    const countdownDate = new Date('2025-03-16');
     const now = new Date();
 
     const timeDifference = countdownDate.getTime() - now.getTime();
