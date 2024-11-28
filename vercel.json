@@ -1,8 +1,9 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "source": "/myTicket/:id",
+      "destination": "/api/og?id=:id"
     }
-  ]
+  ],
+  "devCommand": "pnpm run dev"
 }
