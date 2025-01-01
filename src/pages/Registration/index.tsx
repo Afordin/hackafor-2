@@ -175,8 +175,8 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
   return (
     <RootLayout>
       <main id="registration" className="pt-32 text-cWhite">
-        <div className="container mx-auto max-w-6xl px-4">
-          <h1 className="text-4xl text-center mb-10">Lorem ipsum dolor sit amet consectetur.</h1>
+        <div className="container mx-auto max-w-4xl px-4">
+          <h1 className="text-4xl text-center mb-10">Registra tu proyecto</h1>
 
           <form onSubmit={handleSubmit(onSubmit, handleError)}>
             {/* PROJECT INFO SECTION */}
@@ -303,9 +303,9 @@ export const Registration = ({ project = DEFAULT_PROJECT }: { project?: UpsertPr
               )}
             </fieldset>
 
-            <div className="my-16">
+            <div className="flex justify-center w-full my-16">
               {submitError && <div className="text-red-500 text-center my-4">{submitError}</div>}
-              <Button htmlType={HtmlType.submit} className="w-full mx-auto ">
+              <Button htmlType={HtmlType.submit} className="w-fit h-[56px] px-10 text-lg">
                 Registrar proyecto
               </Button>
             </div>
